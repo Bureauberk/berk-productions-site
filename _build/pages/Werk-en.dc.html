@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BERK — Work</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Archivo:wght@500;600;700&amp;family=Hind:wght@300;400;500;600&amp;display=swap">
+<style>
+body{margin:0;background:#161616}
+a{color:inherit;text-decoration:none}
+:root{--ease:cubic-bezier(0.16,1,0.3,1)}
+.wrap{max-width:none;margin:0;padding:0 clamp(16px,4vw,72px);box-sizing:border-box}
+h1,h2,h3,.h-black{text-wrap:balance;hyphens:manual;-webkit-hyphens:manual;overflow-wrap:normal;word-break:normal}p,li,dd{text-wrap:pretty}.h-black{font-family:'Archivo Black','Archivo',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:-0.01em;margin:0}
+.eyebrow{font-family:'Archivo',sans-serif;font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px}
+.dot{width:8px;height:8px;border-radius:50%;background:#FF5F57;display:inline-block}
+.btn{display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 26px;font-family:'Archivo',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;border:2px solid #161616;background:#FF5F57;color:#161616;box-shadow:5px 5px 0 #000;transition:transform 150ms var(--ease),box-shadow 150ms var(--ease),background 150ms var(--ease)}
+.btn:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 #000;background:#FFFFFF}
+.nav a:not(.btn){position:relative;font-family:'Archivo',sans-serif;font-weight:600;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:#EFEFEF;padding:6px 0}
+.nav a:not(.btn)::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:#FF5F57;transform:scaleX(0);transform-origin:right;transition:transform 200ms var(--ease)}
+.nav a:not(.btn):hover::after,.nav a[aria-current="page"]::after{transform:scaleX(1);transform-origin:left}
+.chip{font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;min-height:44px;padding:0 18px;border:2px solid #EFEFEF;cursor:pointer;transition:transform 100ms var(--ease),background 150ms var(--ease),color 150ms var(--ease)}
+.chip:active{transform:scale(.95)}
+.tile{display:flex;flex-direction:column;gap:16px}
+.tile .frame{position:relative;overflow:hidden;border:2px solid #000000;box-shadow:10px 10px 0 #000000;transition:transform 250ms var(--ease),box-shadow 250ms var(--ease)}
+.tile:hover .frame{transform:translate(-4px,-4px);box-shadow:14px 14px 0 #FF5F57}
+.tile img{width:100%;aspect-ratio:16 / 10;object-fit:cover;display:block;transition:transform 900ms var(--ease)}
+.tile:hover img{transform:scale(1.05)}
+.tag{position:absolute;left:14px;top:14px;font-family:'Archivo',sans-serif;font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;background:#FF5F57;color:#161616;padding:6px 10px}
+.foot a:hover{color:#FF5F57}
+@keyframes m-blink{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes m-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:no-preference){.dot{animation:m-blink 1.6s ease-in-out infinite}.tile{animation:m-in 600ms var(--ease) both}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:0s!important}}
+
+.lang{display:flex;align-items:center;gap:2px;font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em}.lang a{padding:6px 7px;color:#161616;border:2px solid transparent;line-height:1}.lang a:hover{border-color:#161616}.lang a[aria-current="true"]{background:#161616;color:#EFEFEF}.menu .lang a{color:#EFEFEF;font-size:15px}.menu .lang a:hover{border-color:#EFEFEF}.menu .lang a[aria-current="true"]{background:#FF5F57;color:#161616}.lang-dd{position:relative;font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em}.lang-dd summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;height:46px;padding:0 14px;border:2px solid #161616;background:#EFEFEF;color:#161616;box-sizing:border-box;user-select:none}.lang-dd summary::-webkit-details-marker{display:none}.lang-dd summary:hover{background:#FFFFFF}.lang-dd .chev{transition:transform 200ms var(--ease)}.lang-dd[open] .chev{transform:rotate(180deg)}.lang-dd .lang-list{position:absolute;right:0;top:calc(100% + 8px);min-width:170px;display:flex;flex-direction:column;background:#FFFFFF;border:2px solid #161616;box-shadow:6px 6px 0 #161616;z-index:40;animation:dd-in 180ms var(--ease)}.lang-dd .lang-list a{display:flex;justify-content:space-between;gap:16px;padding:12px 16px;color:#161616;letter-spacing:.02em;font-size:15px}.lang-dd .lang-list a+a{border-top:1px solid #D6D6D6}.lang-dd .lang-list a:hover{background:#EFEFEF}.lang-dd .lang-list a[aria-current="true"]{background:#161616;color:#EFEFEF}.lang-dd .lang-list small{color:#8C8C8C;font-size:12px}@keyframes dd-in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}@media (max-width:520px){.hdr .lang-dd{display:none}}.hdr{position:sticky;top:0;z-index:30;background:#EFEFEF;border-bottom:2px solid #161616;height:96px;transition:height 400ms var(--ease),box-shadow 300ms var(--ease)}
+.hdr.scrolled{height:76px;box-shadow:0 6px 0 rgba(0,0,0,.35)}
+.logo-link{position:relative;display:block;width:243px;height:100%}
+.logo{position:absolute;left:0;top:30px;height:116px;width:auto;transform-origin:0 0;transition:transform 450ms var(--ease)}
+.hdr.scrolled .logo{transform:translateY(-18px) scale(.48)}
+.burger{width:46px;height:46px;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:#161616;border:2px solid #EFEFEF;box-shadow:4px 4px 0 #000;cursor:pointer;transition:transform 100ms var(--ease),box-shadow 100ms var(--ease)}
+.burger:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #FF5F57}
+.burger span{display:block;width:20px;height:3px;background:#EFEFEF;transition:transform 300ms var(--ease),opacity 200ms}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(9px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+.menu{position:fixed;inset:0;z-index:25;background:#161616;padding:160px 0 56px;box-sizing:border-box;overflow-y:auto;transform:translateY(-100%);visibility:hidden;transition:transform 500ms var(--ease),visibility 0s 500ms}
+.menu{height:100vh;height:100dvh;display:flex;flex-direction:column;padding:clamp(120px,18svh,160px) 0 clamp(24px,5svh,56px)}.menu-in{flex:1 1 auto;min-height:0;align-content:space-between;align-items:flex-end;row-gap:clamp(20px,4svh,48px)!important}.menu-links{gap:clamp(4px,1.2svh,10px)!important}.menu-contact{font-size:clamp(15px,2svh,18px)!important;gap:clamp(4px,1svh,10px)!important}@media (max-height:560px){.menu-contact{display:none!important}}.menu.open{transform:none;visibility:visible;transition:transform 500ms var(--ease),visibility 0s}
+.menu-links a{display:inline-flex;align-items:baseline;gap:18px;font-family:'Archivo Black','Archivo',sans-serif;text-transform:uppercase;font-size:clamp(22px,min(3.4vw,calc((100svh - 360px) / 8.6)),50px);line-height:1.05;color:#EFEFEF;opacity:0;transform:translateY(24px);transition:color 150ms,transform 500ms var(--ease),opacity 400ms var(--ease)}@media (max-height:560px){.menu-links a{font-size:clamp(20px,calc((100svh - 190px) / 8.6),44px)}}
+.menu.open .menu-links a{opacity:1;transform:none}
+.menu.open .menu-links li:nth-child(2) a{transition-delay:60ms}.menu.open .menu-links li:nth-child(3) a{transition-delay:120ms}.menu.open .menu-links li:nth-child(4) a{transition-delay:180ms}.menu.open .menu-links li:nth-child(5) a{transition-delay:240ms}.menu.open .menu-links li:nth-child(6) a{transition-delay:300ms}
+.menu-links a:hover{color:#FF5F57}
+.menu-links a[aria-current="page"]{color:#FF5F57}
+.menu-links small{font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:.1em;color:#8C8C8C}
+@keyframes m-logo{0%{scale:.35;opacity:0}60%{opacity:1}100%{scale:1;opacity:1}}
+@media (prefers-reduced-motion:no-preference){.logo{animation:m-logo 900ms cubic-bezier(.34,1.56,.64,1) 100ms both}}
+@media (max-width:560px){.logo-link{width:124px}.logo{height:56px}.hdr .btn.cta{display:none}}
+</style>
+</helmet>
+<div class="site" style="font-family: 'Hind', sans-serif; color: #EFEFEF; background: #161616; min-height: 100vh">
+
+<header class="{{hdrCls}}">
+<div class="wrap" style="height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<a class="logo-link" href="Main-en.dc.html" aria-label="BERK, go to the homepage"><img class="logo" src="/_blob/73856d47736b3086e6728a2971a015f5" alt="BERK"></a>
+<div style="display: flex; align-items: center; gap: 20px; padding: 0 6px">
+<details class="lang-dd"><summary aria-label="Choose language: English">EN <span class="chev" aria-hidden="true">▾</span></summary><nav class="lang-list" aria-label="Language"><a href="Werk.dc.html" hreflang="nl" lang="nl">Nederlands<small>NL</small></a><a href="Werk-en.dc.html" hreflang="en" lang="en" aria-current="true">English<small>EN</small></a><a href="Werk-de.dc.html" hreflang="de" lang="de">Deutsch<small>DE</small></a></nav></details>
+<a class="btn cta" href="Contact-en.dc.html" style="min-height: 46px; padding: 0 20px; font-size: 13px">Book a call</a>
+<button class="burger" type="button" onClick="{{toggleMenu}}" aria-expanded="{{menuExpanded}}" aria-controls="menu" aria-label="{{menuLabel}}"><span></span><span></span><span></span></button>
+</div>
+</div>
+</header>
+<div id="menu" class="{{menuCls}}" aria-hidden="{{menuHidden}}">
+<div class="wrap menu-in" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 48px">
+<nav aria-label="Main menu"><ul class="menu-links" style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px"><li><a href="Main-en.dc.html" onClick="{{closeMenu}}"><small>01</small>Home</a></li><li><a href="Diensten-en.dc.html" onClick="{{closeMenu}}"><small>02</small>Services</a></li><li><a href="Inzicht-en.dc.html" onClick="{{closeMenu}}"><small>03</small>Why live</a></li><li><a href="Werk-en.dc.html" aria-current="page" onClick="{{closeMenu}}"><small>04</small>Work</a></li><li><a href="Over-en.dc.html" onClick="{{closeMenu}}"><small>05</small>About</a></li><li><a href="Contact-en.dc.html" onClick="{{closeMenu}}"><small>06</small>Contact</a></li></ul></nav>
+<div class="menu-contact" style="display: flex; flex-direction: column; gap: 10px; align-self: flex-end; font-size: 18px; color: #BDBDBD"><nav class="lang" aria-label="Language"><a href="Werk.dc.html" hreflang="nl" lang="nl">NL</a><a href="Werk-en.dc.html" hreflang="en" lang="en" aria-current="true">EN</a><a href="Werk-de.dc.html" hreflang="de" lang="de">DE</a></nav><span class="eyebrow" style="color: #FF5F57">Contact</span><a href="mailto:wouter@berk.productions" style="color: #FFFFFF">wouter@berk.productions</a><a href="tel:+31655764678" style="color: #FFFFFF">+31 6 55 76 46 78</a><span>Apeldoorn</span></div>
+</div>
+</div>
+
+<section style="padding: clamp(72px, 8vw, 120px) 0 48px">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 24px">
+<span class="eyebrow" style="color: #A8A8A8"><span class="dot"></span>Work · {{count}} projects</span>
+<h1 class="h-black" style="font-size: clamp(52px, 8vw, 124px); line-height: 0.92; color: #FFFFFF; text-shadow: 6px 6px 0 #000000">What&nbsp;we take <span style="color: #FF5F57">live</span> and&nbsp;film</h1>
+<p style="margin: 0; max-width: 680px; font-size: 18px; line-height: 1.6; color: #CFCFCF">Featured: the European Cable Wakeboard Championships 2026, with 5,300 hours of watch time from all over Europe. <a href="Inzicht-en.dc.html#bewijs" style="color: #FF5F57; font-weight: 600">See the numbers →</a></p>
+<div role="group" aria-label="Filter by service" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px">
+<sc-for list="{{filters}}" as="f" hint-placeholder-count="5"><button type="button" class="chip" onClick="{{f.pick}}" aria-pressed="{{f.pressed}}" style="{{f.style}}">{{f.label}}</button></sc-for>
+</div>
+</div>
+</section>
+
+<section style="padding: 0 0 clamp(96px, 10vw, 160px)">
+<div class="wrap" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 520px), 1fr)); gap: 56px 40px">
+<sc-for list="{{shown}}" as="p" hint-placeholder-count="6">
+<a class="tile" href="{{p.href}}">
+<div class="frame"><img src="{{p.src}}" alt="{{p.alt}}"><span class="tag">{{p.cat}}</span></div>
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 4px"><span class="h-black" style="font-size: 26px; color: #FFFFFF">{{p.title}}</span><span style="font-size: 16px; color: #A8A8A8">{{p.client}}</span></div>
+<span style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 0.08em; color: #A8A8A8">{{p.year}}</span>
+</div>
+</a>
+</sc-for>
+</div>
+</section>
+
+<footer class="foot" style="background: #000000; color: #BDBDBD; padding: 48px 0 32px">
+<div class="wrap" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; font-size: 15px">
+<img src="/_blob/73856d47736b3086e6728a2971a015f5" alt="BERK" style="height: 48px; width: auto">
+<div style="display: flex; flex-wrap: wrap; gap: 24px"><a href="mailto:wouter@berk.productions">wouter@berk.productions</a><a href="tel:+31655764678">+31 6 55 76 46 78</a><span>© 2026 BERK Productions, part of <a href="https://bureauberk.com" style="text-decoration: underline">Bureau BERK</a> · Chamber of Commerce no. [NUMBER]</span></div>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2600}}'>
+class Component extends DCLogic {
+navInit() {
+if (!this._ddClose) { this._ddClose = (e) => { document.querySelectorAll('details.lang-dd[open]').forEach((d) => { if (!d.contains(e.target)) d.removeAttribute('open'); }); }; document.addEventListener('click', this._ddClose); }
+const onScroll = () => {
+const y = window.scrollY || document.documentElement.scrollTop || 0;
+const sc = y > 30;
+if (sc !== !!(this.state && this.state.scrolled)) this.setState({ scrolled: sc });
+};
+this._navScroll = onScroll;
+document.addEventListener('scroll', onScroll, { capture: true, passive: true });
+onScroll();
+}
+navVals() {
+const s = this.state || {};
+const open = !!s.menuOpen;
+return {
+hdrCls: s.scrolled || open ? 'hdr scrolled' : 'hdr',
+menuCls: open ? 'menu open' : 'menu',
+menuExpanded: open ? 'true' : 'false',
+menuHidden: open ? 'false' : 'true',
+menuLabel: open ? 'Close menu' : 'Open menu',
+toggleMenu: () => this.setState({ menuOpen: !open }),
+closeMenu: () => this.setState({ menuOpen: false })
+};
+}
+constructor(props) {
+super(props);
+this.state = { filter: 'All' };
+}
+componentDidMount() {
+this.navInit();
+}
+componentWillUnmount() {
+document.removeEventListener('scroll', this._navScroll, { capture: true });
+}
+renderVals() {
+const B = '/_blob/';
+const projects = [
+{ title: 'EC Cable Wakeboard 2026', client: 'IWWF · Lakeside Paradise, Knokke-Heist', cat: 'Livestream', year: '2026', img: '43961b6008b5434aee2fd74d9a674b26', alt: 'Camera operator at the cable park during the European Championships', href: 'Werk-en.dc.html' },
+{ title: 'EC commentary studio', client: 'Lakeside Paradise', cat: 'Livestream', year: '2026', img: '85192bee0221be346b4096db7639b7ef', alt: 'Commentators in the European Championships studio', href: 'Werk-en.dc.html' },
+{ title: 'EC control room', client: 'IWWF', cat: 'Livestream', year: '2026', img: '8de8495379f82c55f0196e41bed0a4d1', alt: 'The production desk during the livestream', href: 'Werk-en.dc.html' },
+{ title: '[Podcast]', client: '[Client]', cat: 'Podcast', year: '[YEAR]', img: 'd95b8c445c8b98ed14255d1436504439', alt: 'Placeholder for a podcast project', href: 'Werk-en.dc.html' },
+{ title: 'EC highlights and clips', client: 'IWWF · aftercare per competition day', cat: 'Aftercare', year: '2026', img: 'de4ba877c3ada9391766ea4638d6bd3f', alt: 'Editors working on the highlights of the day', href: 'Werk-en.dc.html' },
+{ title: '[Conference]', client: '[Organiser]', cat: 'Large production', year: '[YEAR]', img: '4b4ba22a10248f001ac397a1b0e7930d', alt: 'Camera operator behind a camera on a tripod', href: 'Werk-en.dc.html' }
+];
+const labels = ['All', 'Livestream', 'Podcast', 'Large production', 'Aftercare'];
+const active = this.state.filter;
+const on = 'background: #EFEFEF; color: #161616';
+const off = 'background: transparent; color: #EFEFEF';
+const filters = labels.map((label) => ({
+label,
+pressed: label === active ? 'true' : 'false',
+style: label === active ? on : off,
+pick: () => this.setState({ filter: label })
+}));
+const shown = (active === 'All' ? projects : projects.filter((p) => p.cat === active)).map((p) => ({ ...p, src: B + p.img }));
+return { ...this.navVals(),  filters, shown, count: projects.length };
+}
+}
+</script>
+</body>
+</html>

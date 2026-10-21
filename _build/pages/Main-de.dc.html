@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>BERK — Start</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Archivo:wght@500;600;700&amp;family=Hind:wght@300;400;500;600&amp;display=swap">
+<style>
+body{margin:0;background:#161616}
+a{color:inherit;text-decoration:none}
+:root{--ink:#161616;--paper:#EFEFEF;--red:#FF5F57;--ease:cubic-bezier(0.16,1,0.3,1)}
+.wrap{max-width:none;margin:0;padding:0 clamp(16px,4vw,72px);box-sizing:border-box}
+h1,h2,h3,.h-black{text-wrap:balance;hyphens:manual;-webkit-hyphens:manual;overflow-wrap:normal;word-break:normal}p,li,dd{text-wrap:pretty}.h-black{font-family:'Archivo Black','Archivo',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:-0.01em;margin:0}
+.eyebrow{font-family:'Archivo',sans-serif;font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px}
+.dot{width:8px;height:8px;border-radius:50%;background:#FF5F57;display:inline-block}
+.btn{display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 26px;font-family:'Archivo',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;border:2px solid #161616;background:#FF5F57;color:#161616;box-shadow:5px 5px 0 #000;transition:transform 150ms var(--ease),box-shadow 150ms var(--ease),background 150ms var(--ease)}
+.btn:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 #000;background:#FFFFFF}
+.btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 #000;transition-duration:100ms}
+.btn.ghost{background:transparent;color:#FFFFFF;border-color:#FFFFFF;box-shadow:5px 5px 0 #FF5F57}
+.btn.ghost:hover{background:#FFFFFF;color:#161616;box-shadow:8px 8px 0 #FF5F57}
+.btn.dark{background:#161616;color:#FFFFFF;border-color:#161616}
+.btn.dark:hover{background:#FFFFFF;color:#161616}
+.nav a:not(.btn){position:relative;font-family:'Archivo',sans-serif;font-weight:600;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:#EFEFEF;padding:6px 0}
+.nav a:not(.btn)::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:#FF5F57;transform:scaleX(0);transform-origin:right;transition:transform 200ms var(--ease)}
+.nav a:not(.btn):hover::after,.nav a[aria-current="page"]::after{transform:scaleX(1);transform-origin:left}
+.card{background:#FFFFFF;border:2px solid #161616;box-shadow:8px 8px 0 #161616;transition:transform 200ms var(--ease),box-shadow 200ms var(--ease)}
+.card:hover{transform:translate(-4px,-4px);box-shadow:12px 12px 0 #FF5F57}
+.slider{display:flex;gap:32px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 24px 28px 4px;margin:-4px -24px 0 -4px;scrollbar-width:none;-webkit-overflow-scrolling:touch;cursor:grab}
+.slider::-webkit-scrollbar{display:none}
+.slider:focus-visible{outline:3px solid #FF5F57;outline-offset:4px}
+.slide{flex:0 0 min(420px,82vw);scroll-snap-align:start;box-sizing:border-box}
+.sbtn{width:52px;height:52px;display:inline-flex;align-items:center;justify-content:center;border:2px solid #161616;background:#FFFFFF;color:#161616;font-size:20px;font-family:'Archivo',sans-serif;font-weight:700;box-shadow:4px 4px 0 #161616;cursor:pointer;transition:transform 100ms var(--ease),box-shadow 100ms var(--ease),background 150ms var(--ease),opacity 150ms}
+.sbtn:hover:not(:disabled){background:#FF5F57;transform:translate(-2px,-2px);box-shadow:6px 6px 0 #161616}
+.sbtn:active:not(:disabled){transform:translate(2px,2px);box-shadow:2px 2px 0 #161616}
+.sbtn:disabled{opacity:.35;cursor:default}
+.sbar{height:4px;background:#D4D4D4;position:relative;overflow:hidden}
+.sbar span{position:absolute;inset:0;background:#161616;transform-origin:0 50%;transition:transform 200ms var(--ease)}
+.card .arrow{transition:transform 200ms var(--ease)}
+.card:hover .arrow{transform:translateX(6px)}
+.hero-img{animation:none}
+.marquee{overflow:hidden}
+.track{display:flex;width:max-content}
+.track img{height:56px;width:auto;filter:grayscale(1) brightness(0) invert(1);opacity:.85}
+.foot a:hover{color:#FF5F57}
+.rv-wait{opacity:0;transform:translateY(24px)}
+.rv-go{transition:opacity 900ms var(--ease),transform 900ms var(--ease)}
+@keyframes m-marquee{to{transform:translateX(-50%)}}
+@keyframes m-zoom{from{transform:scale(1.02)}to{transform:scale(1.12)}}
+@keyframes m-blink{0%,100%{opacity:1}50%{opacity:.3}}
+@media (prefers-reduced-motion:no-preference){
+.track{animation:m-marquee 40s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.hero-img{animation:m-zoom 24s ease-in-out infinite alternate}
+.dot{animation:m-blink 1.6s ease-in-out infinite}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:0s!important}}
+
+.lang{display:flex;align-items:center;gap:2px;font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em}.lang a{padding:6px 7px;color:#161616;border:2px solid transparent;line-height:1}.lang a:hover{border-color:#161616}.lang a[aria-current="true"]{background:#161616;color:#EFEFEF}.menu .lang a{color:#EFEFEF;font-size:15px}.menu .lang a:hover{border-color:#EFEFEF}.menu .lang a[aria-current="true"]{background:#FF5F57;color:#161616}.lang-dd{position:relative;font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em}.lang-dd summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;height:46px;padding:0 14px;border:2px solid #161616;background:#EFEFEF;color:#161616;box-sizing:border-box;user-select:none}.lang-dd summary::-webkit-details-marker{display:none}.lang-dd summary:hover{background:#FFFFFF}.lang-dd .chev{transition:transform 200ms var(--ease)}.lang-dd[open] .chev{transform:rotate(180deg)}.lang-dd .lang-list{position:absolute;right:0;top:calc(100% + 8px);min-width:170px;display:flex;flex-direction:column;background:#FFFFFF;border:2px solid #161616;box-shadow:6px 6px 0 #161616;z-index:40;animation:dd-in 180ms var(--ease)}.lang-dd .lang-list a{display:flex;justify-content:space-between;gap:16px;padding:12px 16px;color:#161616;letter-spacing:.02em;font-size:15px}.lang-dd .lang-list a+a{border-top:1px solid #D6D6D6}.lang-dd .lang-list a:hover{background:#EFEFEF}.lang-dd .lang-list a[aria-current="true"]{background:#161616;color:#EFEFEF}.lang-dd .lang-list small{color:#8C8C8C;font-size:12px}@keyframes dd-in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}@media (max-width:520px){.hdr .lang-dd{display:none}}.hero-h .hl{display:block;white-space:nowrap}@media (max-width:640px){.hero-h .hl{white-space:normal}}.hdr{position:sticky;top:0;z-index:30;background:#EFEFEF;border-bottom:2px solid #161616;height:96px;transition:height 400ms var(--ease),box-shadow 300ms var(--ease)}
+.hdr.scrolled{height:76px;box-shadow:0 6px 0 rgba(0,0,0,.35)}
+.logo-link{position:relative;display:block;width:243px;height:100%}
+.logo{position:absolute;left:0;top:30px;height:116px;width:auto;transform-origin:0 0;transition:transform 450ms var(--ease)}
+.hdr.scrolled .logo{transform:translateY(-18px) scale(.48)}
+.burger{width:46px;height:46px;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:#161616;border:2px solid #EFEFEF;box-shadow:4px 4px 0 #000;cursor:pointer;transition:transform 100ms var(--ease),box-shadow 100ms var(--ease)}
+.burger:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #FF5F57}
+.burger span{display:block;width:20px;height:3px;background:#EFEFEF;transition:transform 300ms var(--ease),opacity 200ms}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(9px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+.menu{position:fixed;inset:0;z-index:25;background:#161616;padding:160px 0 56px;box-sizing:border-box;overflow-y:auto;transform:translateY(-100%);visibility:hidden;transition:transform 500ms var(--ease),visibility 0s 500ms}
+.menu{height:100vh;height:100dvh;display:flex;flex-direction:column;padding:clamp(120px,18svh,160px) 0 clamp(24px,5svh,56px)}.menu-in{flex:1 1 auto;min-height:0;align-content:space-between;align-items:flex-end;row-gap:clamp(20px,4svh,48px)!important}.menu-links{gap:clamp(4px,1.2svh,10px)!important}.menu-contact{font-size:clamp(15px,2svh,18px)!important;gap:clamp(4px,1svh,10px)!important}@media (max-height:560px){.menu-contact{display:none!important}}.menu.open{transform:none;visibility:visible;transition:transform 500ms var(--ease),visibility 0s}
+.menu-links a{display:inline-flex;align-items:baseline;gap:18px;font-family:'Archivo Black','Archivo',sans-serif;text-transform:uppercase;font-size:clamp(22px,min(3.4vw,calc((100svh - 360px) / 8.6)),50px);line-height:1.05;color:#EFEFEF;opacity:0;transform:translateY(24px);transition:color 150ms,transform 500ms var(--ease),opacity 400ms var(--ease)}@media (max-height:560px){.menu-links a{font-size:clamp(20px,calc((100svh - 190px) / 8.6),44px)}}
+.menu.open .menu-links a{opacity:1;transform:none}
+.menu.open .menu-links li:nth-child(2) a{transition-delay:60ms}.menu.open .menu-links li:nth-child(3) a{transition-delay:120ms}.menu.open .menu-links li:nth-child(4) a{transition-delay:180ms}.menu.open .menu-links li:nth-child(5) a{transition-delay:240ms}.menu.open .menu-links li:nth-child(6) a{transition-delay:300ms}
+.menu-links a:hover{color:#FF5F57}
+.menu-links a[aria-current="page"]{color:#FF5F57}
+.menu-links small{font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:.1em;color:#8C8C8C}
+@keyframes m-logo{0%{scale:.35;opacity:0}60%{opacity:1}100%{scale:1;opacity:1}}
+@media (prefers-reduced-motion:no-preference){.logo{animation:m-logo 900ms cubic-bezier(.34,1.56,.64,1) 100ms both}}
+@media (max-width:560px){.logo-link{width:124px}.logo{height:56px}.hdr .btn.cta{display:none}}
+</style>
+</helmet>
+<div class="site" style="font-family: 'Hind', sans-serif; color: #EFEFEF; background: #161616; min-height: 100vh">
+
+<header class="{{hdrCls}}">
+<div class="wrap" style="height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<a class="logo-link" href="Main-de.dc.html" aria-label="BERK, zur Startseite"><img class="logo" src="/_blob/73856d47736b3086e6728a2971a015f5" alt="BERK"></a>
+<div style="display: flex; align-items: center; gap: 20px; padding: 0 6px">
+<details class="lang-dd"><summary aria-label="Sprache wählen: Deutsch">DE <span class="chev" aria-hidden="true">▾</span></summary><nav class="lang-list" aria-label="Sprache"><a href="Main.dc.html" hreflang="nl" lang="nl">Nederlands<small>NL</small></a><a href="Main-en.dc.html" hreflang="en" lang="en">English<small>EN</small></a><a href="Main-de.dc.html" hreflang="de" lang="de" aria-current="true">Deutsch<small>DE</small></a></nav></details>
+<a class="btn cta" href="Contact-de.dc.html" style="min-height: 46px; padding: 0 20px; font-size: 13px">Gespräch vereinbaren</a>
+<button class="burger" type="button" onClick="{{toggleMenu}}" aria-expanded="{{menuExpanded}}" aria-controls="menu" aria-label="{{menuLabel}}"><span></span><span></span><span></span></button>
+</div>
+</div>
+</header>
+<div id="menu" class="{{menuCls}}" aria-hidden="{{menuHidden}}">
+<div class="wrap menu-in" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 48px">
+<nav aria-label="Hauptmenü"><ul class="menu-links" style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px"><li><a href="Main-de.dc.html" aria-current="page" onClick="{{closeMenu}}"><small>01</small>Start</a></li><li><a href="Diensten-de.dc.html" onClick="{{closeMenu}}"><small>02</small>Leistungen</a></li><li><a href="Inzicht-de.dc.html" onClick="{{closeMenu}}"><small>03</small>Warum live</a></li><li><a href="Werk-de.dc.html" onClick="{{closeMenu}}"><small>04</small>Projekte</a></li><li><a href="Over-de.dc.html" onClick="{{closeMenu}}"><small>05</small>Über uns</a></li><li><a href="Contact-de.dc.html" onClick="{{closeMenu}}"><small>06</small>Kontakt</a></li></ul></nav>
+<div class="menu-contact" style="display: flex; flex-direction: column; gap: 10px; align-self: flex-end; font-size: 18px; color: #BDBDBD"><nav class="lang" aria-label="Sprache"><a href="Main.dc.html" hreflang="nl" lang="nl">NL</a><a href="Main-en.dc.html" hreflang="en" lang="en">EN</a><a href="Main-de.dc.html" hreflang="de" lang="de" aria-current="true">DE</a></nav><span class="eyebrow" style="color: #FF5F57">Kontakt</span><a href="mailto:wouter@berk.productions" style="color: #FFFFFF">wouter@berk.productions</a><a href="tel:+31655764678" style="color: #FFFFFF">+31 6 55 76 46 78</a><span>Apeldoorn</span></div>
+</div>
+</div>
+
+<section style="position: relative; overflow: hidden; min-height: 760px; display: flex; align-items: flex-end">
+<img class="hero-img" src="/_blob/43961b6008b5434aee2fd74d9a674b26" alt="Kameramann von BERK filmt an der Wakeboardanlage in Knokke-Heist" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+<div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(22,22,22,0.94) 0%, rgba(22,22,22,0.7) 45%, rgba(22,22,22,0.2) 100%)"></div>
+<div class="wrap" style="position: relative; width: 100%; padding-top: 120px; padding-bottom: 72px; display: flex; flex-direction: column; gap: 28px">
+<span class="eyebrow" style="color: #EFEFEF"><span class="dot"></span>Liveproduktion und Video · Apeldoorn</span>
+<h1 class="h-black hero-h" style="font-size: clamp(34px, 5.4vw, 104px); line-height: 0.95; color: #FFFFFF; text-shadow: 6px 6px 0 #000000; text-wrap: initial"><span class="hl">Mehr Publikum, als</span> <span class="hl">am <span style="color: #FF5F57">Rand</span> steht.</span></h1>
+<p style="margin: 0; max-width: 560px; font-size: 20px; line-height: 1.55; color: #D8D8D8">Livestreams, Podcasts und große Multicam-Produktionen, dazu die Clips, die danach weiterwirken. Mit festem Preis, einem Testtag und Bildmaterial, das Ihnen gehört.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 16px">
+<a class="btn" href="Contact-de.dc.html">Möglichkeiten entdecken <span aria-hidden="true">→</span></a>
+<a class="btn ghost" href="Werk-de.dc.html">Unsere Projekte ansehen</a>
+</div>
+</div>
+</section>
+
+<section aria-label="Feedback von Lakeside Paradise" style="background: #EFEFEF; color: #161616; padding: clamp(40px, 5vw, 64px) 0; border-bottom: 2px solid #161616">
+<div class="wrap rv" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 28px clamp(32px, 5vw, 80px)">
+<figure style="flex: 1 1 560px; margin: 0; display: flex; flex-direction: column; gap: 14px">
+<span class="eyebrow" style="color: #555555"><span class="dot"></span>Was der Veranstalter sagt</span>
+<blockquote class="h-black" style="margin: 0; font-size: clamp(22px, 2.4vw, 34px); line-height: 1.08; max-width: 920px">„Absolut empfehlenswert für alle, die einen zuverlässigen Partner suchen, der mitdenkt und seine Zusagen einhält.“</blockquote>
+<figcaption style="font-size: 16px; line-height: 1.4; color: #3C3C3C"><b style="font-family: 'Archivo', sans-serif; font-weight: 700; color: #161616">Arno Dhont</b> · Lakeside Paradise, Knokke-Heist · aus dem Niederländischen übersetzt</figcaption>
+</figure>
+<div style="flex: 0 1 auto; display: flex; flex-direction: column; gap: 10px; align-items: flex-start">
+<div style="display: flex; align-items: center; gap: 28px; background: #FFFFFF; border: 2px solid #161616; box-shadow: 6px 6px 0 #FF5F57; padding: 16px 24px">
+<img src="/_blob/f161dd2314cd642e4c66f09cff8b7d31" alt="International Waterski &amp; Wakeboard Federation (IWWF)" style="height: 56px; width: auto; max-width: 150px; object-fit: contain">
+<span aria-hidden="true" style="width: 2px; align-self: stretch; background: #DDDDDD"></span>
+<img src="/_blob/246c8d3f0bef37b94332530540a732ce" alt="Lakeside Paradise" style="height: 56px; width: auto; max-width: 150px; object-fit: contain">
+</div>
+<span style="font-size: 13px; color: #6B6B6B">IWWF Europe &amp; Africa Open Cable Wake Championships, 2026</span>
+</div>
+</div>
+</section>
+
+
+<section style="background: #EFEFEF; color: #161616; padding: clamp(80px, 9vw, 140px) 0">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 56px">
+<div class="rv" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 16px"><span class="eyebrow" style="color: #555555">Was wir machen</span><h2 class="h-black" style="font-size: clamp(40px, 5.6vw, 84px); line-height: 0.95; text-wrap: initial">Video wirkt weiter<br>nach dem letzten <span style="color: #D93A33">Heat</span></h2></div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px"><button class="sbtn" type="button" onClick="{{prev}}" disabled="{{atStart}}" aria-label="Vorherige Leistung">←</button><button class="sbtn" type="button" onClick="{{next}}" disabled="{{atEnd}}" aria-label="Nächste Leistung">→</button><a class="btn dark" href="Diensten-de.dc.html" style="margin-left: 8px">Alle Leistungen <span aria-hidden="true">→</span></a></div>
+</div>
+<div class="rv" style="display: flex; flex-direction: column; gap: 24px">
+<div class="slider" ref="{{trackRef}}" onScroll="{{onScroll}}" onPointerDown="{{down}}" onPointerMove="{{move}}" onPointerUp="{{up}}" onPointerLeave="{{up}}" tabindex="0" role="region" aria-label="Leistungen, horizontal scrollen">
+<a class="card slide" href="Diensten-de.dc.html" style="display: flex; flex-direction: column; gap: 16px; padding: 32px; color: #161616"><span class="h-black" style="font-size: 18px; color: #D93A33">01</span><h3 class="h-black" style="font-size: 30px; line-height: 1">Livestreams</h3><p style="margin: 0; font-size: 17px; line-height: 1.55; color: #3C3C3C">Multicam-Regie, Replay, eigene Grafiken und der Stream zu YouTube oder auf Ihre eigene Website.</p><span class="arrow" aria-hidden="true" style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 20px">→</span></a>
+<a class="card slide" href="Diensten-de.dc.html" style="display: flex; flex-direction: column; gap: 16px; padding: 32px; color: #161616"><span class="h-black" style="font-size: 18px; color: #D93A33">02</span><h3 class="h-black" style="font-size: 30px; line-height: 1">Podcasts</h3><p style="margin: 0; font-size: 17px; line-height: 1.55; color: #3C3C3C">Aufnahme mit mehreren Kameras, im Studio oder vor Ort, fertig für YouTube und Spotify.</p><span class="arrow" aria-hidden="true" style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 20px">→</span></a>
+<a class="card slide" href="Diensten-de.dc.html" style="display: flex; flex-direction: column; gap: 16px; padding: 32px; color: #161616"><span class="h-black" style="font-size: 18px; color: #D93A33">03</span><h3 class="h-black" style="font-size: 30px; line-height: 1">Großproduktionen</h3><p style="margin: 0; font-size: 17px; line-height: 1.55; color: #3C3C3C">Multicam für Kongresse und Events: Regie, Aufnahme und Stream, mit einem festen Ansprechpartner.</p><span class="arrow" aria-hidden="true" style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 20px">→</span></a>
+<a class="card slide" href="Diensten-de.dc.html" style="display: flex; flex-direction: column; gap: 16px; padding: 32px; color: #161616"><span class="h-black" style="font-size: 18px; color: #D93A33">04</span><h3 class="h-black" style="font-size: 30px; line-height: 1">Aftercare</h3><p style="margin: 0; font-size: 17px; line-height: 1.55; color: #3C3C3C">Nach jedem Wettkampftag holt unsere KI die Highlights aus den Aufnahmen. Wir geben alles frei, bevor es online geht.</p><span class="arrow" aria-hidden="true" style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 20px">→</span></a>
+</div>
+<div style="display: flex; align-items: center; gap: 20px"><span style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.08em; font-variant-numeric: tabular-nums">{{counter}}</span><div class="sbar" style="flex: 1"><span style="transform: scaleX({{prog}})"></span></div></div>
+</div>
+</div>
+</section>
+
+<section style="background: #161616; padding: clamp(80px, 9vw, 140px) 0">
+<div class="wrap" style="display: flex; flex-wrap: wrap; gap: clamp(32px, 5vw, 80px); align-items: center">
+<div class="rv" style="flex: 1 1 520px; position: relative">
+<img src="/_blob/4df518f60dbdd9dabeae08db7e609ac6" alt="Das Produktionsteam von BERK auf dem Steg bei Lakeside Paradise" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; border: 2px solid #000000; box-shadow: 12px 12px 0 #FF5F57">
+</div>
+<div class="rv" style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 24px">
+<span class="eyebrow" style="color: #A8A8A8"><span class="dot"></span>Im Fokus · Europameisterschaft · 1.–3. Oktober 2026</span>
+<div style="display: flex; flex-direction: column; gap: 10px"><h2 class="h-black" style="font-size: clamp(36px, 4.2vw, 64px); line-height: 0.95; color: #FFFFFF">EM Cable Wakeboard 2026</h2><span style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 17px; color: #FF5F57">IWWF Europe &amp; Africa Open Cable Wake Championships</span></div>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #CFCFCF">Drei Tage live auf dem YouTube-Kanal der IWWF aus Lakeside Paradise, Knokke-Heist. Mit Replay, eigenen Overlays, Live-Scores und einem Kommentatorenstudio.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 20px 16px; border-top: 1px solid #333333; padding-top: 20px">
+<div style="display: flex; flex-direction: column; gap: 4px"><span class="h-black" style="font-size: clamp(28px, 2.6vw, 40px); color: #FFFFFF">30.000+</span><span style="font-size: 14px; line-height: 1.35; color: #A8A8A8">Aufrufe</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span class="h-black" style="font-size: clamp(28px, 2.6vw, 40px); color: #FFFFFF">395</span><span style="font-size: 14px; line-height: 1.35; color: #A8A8A8">Zuschauer gleichzeitig zur Spitze</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span class="h-black" style="font-size: clamp(28px, 2.6vw, 40px); color: #FF5F57">5.300</span><span style="font-size: 14px; line-height: 1.35; color: #A8A8A8">Stunden Wiedergabezeit</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span class="h-black" style="font-size: clamp(28px, 2.6vw, 40px); color: #FF5F57">22</span><span style="font-size: 14px; line-height: 1.35; color: #A8A8A8">Stunden live</span></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 14px"><a class="btn ghost" href="Werk-de.dc.html">Case ansehen <span aria-hidden="true">→</span></a><a class="btn ghost" href="Inzicht-de.dc.html#bewijs">Alle Zahlen</a></div>
+</div>
+</div>
+</section>
+
+<section style="background: #000000; padding: clamp(80px, 9vw, 140px) 0; border-top: 1px solid #2A2A2A">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 40px">
+<div class="rv" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px"><div style="display: flex; flex-direction: column; gap: 16px"><span class="eyebrow" style="color: #FF5F57"><span class="dot"></span>Warum live</span><h2 class="h-black" style="font-size: clamp(40px, 5.2vw, 80px); line-height: 0.95; color: #FFFFFF; max-width: 900px">Ein&nbsp;Nischensport, ein&nbsp;internationales Publikum</h2></div><a class="btn" href="Inzicht-de.dc.html">Warum live funktioniert <span aria-hidden="true">→</span></a></div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 28px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 8px; border-top: 3px solid #FF5F57; padding-top: 18px"><span class="h-black" style="font-size: clamp(44px, 4.4vw, 68px); line-height: 1; color: #FFFFFF">65%</span><span style="font-size: 16px; line-height: 1.5; color: #BDBDBD">neue Zuschauer an Tag 1 der EM</span></div>
+<div class="rv" style="display: flex; flex-direction: column; gap: 8px; border-top: 3px solid #FF5F57; padding-top: 18px"><span class="h-black" style="font-size: clamp(44px, 4.4vw, 68px); line-height: 1; color: #FFFFFF">83%</span><span style="font-size: 16px; line-height: 1.5; color: #BDBDBD">der Wiedergabezeit kam von Nicht-Abonnenten</span></div>
+<div class="rv" style="display: flex; flex-direction: column; gap: 8px; border-top: 3px solid #FF5F57; padding-top: 18px"><span class="h-black" style="font-size: clamp(44px, 4.4vw, 68px); line-height: 1; color: #FFFFFF">1/3</span><span style="font-size: 16px; line-height: 1.5; color: #BDBDBD">der Wiedergabezeit auf dem Fernseher im Wohnzimmer</span></div>
+<div class="rv" style="display: flex; flex-direction: column; gap: 8px; border-top: 3px solid #FF5F57; padding-top: 18px"><span class="h-black" style="font-size: clamp(44px, 4.4vw, 68px); line-height: 1; color: #FFFFFF">25–44</span><span style="font-size: 16px; line-height: 1.5; color: #BDBDBD">Jahre: das Alter von 58 bis 68% der Zuschauer</span></div>
+</div>
+<span style="font-size: 14px; color: #8C8C8C">EM Cable Wakeboard 2026 · YouTube Analytics</span>
+</div>
+</section>
+
+<section style="background: #EFEFEF; color: #161616; padding: clamp(80px, 9vw, 140px) 0">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 48px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 16px"><span class="eyebrow" style="color: #555555">So arbeiten wir</span><h2 class="h-black" style="font-size: clamp(44px, 5.6vw, 84px); line-height: 0.95">In&nbsp;vier Schritten zum&nbsp;Livestream</h2></div>
+<ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 32px">
+<li class="rv" style="display: flex; flex-direction: column; gap: 12px; border-top: 3px solid #161616; padding-top: 20px"><span class="h-black" style="font-size: 64px; line-height: 1; color: transparent; -webkit-text-stroke: 2px #161616">01</span><h3 class="h-black" style="font-size: 24px">Erstgespräch</h3><p style="margin: 0; font-size: 17px; line-height: 1.55; color: #3C3C3C">Event, Ort und wohin das Bild gehen soll.</p></li>
+<li class="rv" style="display: flex; flex-direction: column; gap: 12px; border-top: 3px solid #161616; padding-top: 20px"><span class="h-black" style="font-size: 64px; line-height: 1; color: transparent; -webkit-text-stroke: 2px #161616">02</span><h3 class="h-black" style="font-size: 24px">Angebot</h3><p style="margin: 0; font-size: 17px; line-height: 1.55; color: #3C3C3C">Kameras, Crew und Planung, mit einem individuellen Preis. Immer unverbindlich.</p></li>
+<li class="rv" style="display: flex; flex-direction: column; gap: 12px; border-top: 3px solid #161616; padding-top: 20px"><span class="h-black" style="font-size: 64px; line-height: 1; color: transparent; -webkit-text-stroke: 2px #161616">03</span><h3 class="h-black" style="font-size: 24px">Testtag</h3><p style="margin: 0; font-size: 17px; line-height: 1.55; color: #3C3C3C">Die ganze Kette läuft vorab: Internet, Regie und Stream.</p></li>
+<li class="rv" style="display: flex; flex-direction: column; gap: 12px; border-top: 3px solid #FF5F57; padding-top: 20px"><span class="h-black" style="font-size: 64px; line-height: 1; color: #D93A33">04</span><h3 class="h-black" style="font-size: 24px">Live</h3><p style="margin: 0; font-size: 17px; line-height: 1.55; color: #3C3C3C">Wir produzieren. Sie erhalten die Aufnahmen und die Aufzeichnung zum Nachschauen.</p></li>
+</ol>
+</div>
+</section>
+
+
+<section style="background: #161616; padding: clamp(96px, 10vw, 160px) 0">
+<div class="wrap rv" style="display: flex; flex-direction: column; align-items: flex-start; gap: 32px">
+<h2 class="h-black" style="font-size: clamp(56px, 9vw, 150px); line-height: 0.9; color: #FFFFFF; text-shadow: 6px 6px 0 #000000">Bereit, <span style="color: #FF5F57">live</span> zu&nbsp;gehen?</h2>
+<p style="margin: 0; max-width: 560px; font-size: 20px; line-height: 1.55; color: #CFCFCF">Erzählen Sie uns, was Sie produzieren möchten. Innerhalb von zwei Werktagen erhalten Sie ein unverbindliches, individuelles Angebot.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 16px">
+<a class="btn" href="Contact-de.dc.html">Möglichkeiten entdecken <span aria-hidden="true">→</span></a>
+<a class="btn ghost" href="mailto:wouter@berk.productions">wouter@berk.productions</a>
+</div>
+</div>
+</section>
+
+<footer class="foot" style="background: #000000; color: #BDBDBD; padding: 64px 0 32px">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px">
+<img src="/_blob/73856d47736b3086e6728a2971a015f5" alt="BERK" style="height: 72px; width: auto">
+<div style="display: flex; flex-wrap: wrap; gap: 56px; font-size: 16px; line-height: 1.9">
+<div style="display: flex; flex-direction: column"><span class="eyebrow" style="color: #FFFFFF; margin-bottom: 8px">Leistungen</span><a href="Diensten-de.dc.html">Livestreams</a><a href="Diensten-de.dc.html">Podcasts</a><a href="Diensten-de.dc.html">Aftercare</a><a href="Diensten-de.dc.html">Großproduktionen</a></div>
+<div style="display: flex; flex-direction: column"><span class="eyebrow" style="color: #FFFFFF; margin-bottom: 8px">BERK</span><a href="Inzicht-de.dc.html">Warum live</a><a href="Werk-de.dc.html">Projekte</a><a href="Over-de.dc.html">Über uns</a><a href="Contact-de.dc.html">Kontakt</a></div>
+<div style="display: flex; flex-direction: column"><span class="eyebrow" style="color: #FFFFFF; margin-bottom: 8px">Kontakt</span><a href="mailto:wouter@berk.productions">wouter@berk.productions</a><a href="tel:+31655764678">+31 6 55 76 46 78</a><span>Apeldoorn</span></div>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-top: 1px solid #2A2A2A; padding-top: 20px; font-size: 14px; color: #8C8C8C"><span>© 2026 BERK Productions, ein Teil von <a href="https://bureauberk.com" style="text-decoration: underline">Bureau BERK</a> · Handelsregister-Nr. [NUMMER]</span><span>Instagram · YouTube · LinkedIn</span></div>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5200}}'>
+class Component extends DCLogic {
+navInit() {
+if (!this._ddClose) { this._ddClose = (e) => { document.querySelectorAll('details.lang-dd[open]').forEach((d) => { if (!d.contains(e.target)) d.removeAttribute('open'); }); }; document.addEventListener('click', this._ddClose); }
+const onScroll = () => {
+const y = window.scrollY || document.documentElement.scrollTop || 0;
+const sc = y > 30;
+if (sc !== !!(this.state && this.state.scrolled)) this.setState({ scrolled: sc });
+};
+this._navScroll = onScroll;
+document.addEventListener('scroll', onScroll, { capture: true, passive: true });
+onScroll();
+}
+navVals() {
+const s = this.state || {};
+const open = !!s.menuOpen;
+return {
+hdrCls: s.scrolled || open ? 'hdr scrolled' : 'hdr',
+menuCls: open ? 'menu open' : 'menu',
+menuExpanded: open ? 'true' : 'false',
+menuHidden: open ? 'false' : 'true',
+menuLabel: open ? 'Menü schließen' : 'Menü öffnen',
+toggleMenu: () => this.setState({ menuOpen: !open }),
+closeMenu: () => this.setState({ menuOpen: false })
+};
+}
+componentDidMount() {
+this.navInit();
+if (typeof window === 'undefined' || !window.IntersectionObserver) return;
+if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+const root = document.querySelector('.site');
+if (!root) return;
+this._ro = new IntersectionObserver((entries) => {
+let i = 0;
+entries.forEach((e) => {
+if (!e.isIntersecting) return;
+const el = e.target;
+this._ro.unobserve(el);
+el.style.transitionDelay = (i++ * 80) + 'ms';
+el.classList.add('rv-go');
+requestAnimationFrame(() => el.classList.remove('rv-wait'));
+setTimeout(() => { el.classList.remove('rv-go'); el.style.transitionDelay = ''; }, 1400);
+});
+}, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+root.querySelectorAll('.rv').forEach((el) => {
+if (el.getBoundingClientRect().top < window.innerHeight * 0.92) return;
+el.classList.add('rv-wait');
+this._ro.observe(el);
+});
+}
+componentWillUnmount() {
+document.removeEventListener('scroll', this._navScroll, { capture: true });
+if (this._ro) this._ro.disconnect();
+cancelAnimationFrame(this._raf);
+}
+measure() {
+const el = this.track;
+if (!el) return;
+const max = el.scrollWidth - el.clientWidth;
+const first = el.firstElementChild;
+const step = first ? first.getBoundingClientRect().width + 32 : 1;
+const n = el.children.length;
+const visible = Math.max(1, Math.round(el.clientWidth / step));
+const idx = Math.min(n, Math.round(el.scrollLeft / step) + visible);
+this.setState({ p: max > 0 ? el.scrollLeft / max : 1, atStart: el.scrollLeft <= 2, atEnd: el.scrollLeft >= max - 2, idx, n });
+}
+slide(dir) {
+const el = this.track;
+if (!el) return;
+const first = el.firstElementChild;
+const step = first ? first.getBoundingClientRect().width + 32 : el.clientWidth;
+const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+el.scrollBy({ left: dir * step, behavior: reduce ? 'auto' : 'smooth' });
+}
+renderVals() {
+const s = this.state || {};
+const pad = (k) => String(k).padStart(2, '0');
+return { ...this.navVals(), 
+trackRef: this._trackRef || (this._trackRef = (el) => { this.track = el; if (el) setTimeout(() => this.measure(), 50); }),
+onScroll: () => { cancelAnimationFrame(this._raf); this._raf = requestAnimationFrame(() => this.measure()); },
+prev: () => this.slide(-1),
+next: () => this.slide(1),
+down: (e) => { if (e.pointerType !== 'mouse' || !this.track) return; this._drag = { x: e.clientX, left: this.track.scrollLeft, moved: false }; this.track.style.scrollSnapType = 'none'; },
+move: (e) => { const d = this._drag; if (!d || !this.track) return; const dx = e.clientX - d.x; if (Math.abs(dx) > 4) d.moved = true; this.track.scrollLeft = d.left - dx; },
+up: (e) => { const d = this._drag; if (!d || !this.track) return; this._drag = null; this.track.style.scrollSnapType = ''; if (d.moved) { const stop = (ev) => { ev.preventDefault(); ev.stopPropagation(); this.track.removeEventListener('click', stop, true); }; this.track.addEventListener('click', stop, true); } },
+atStart: s.atStart === undefined ? true : s.atStart,
+atEnd: !!s.atEnd,
+prog: (s.p === undefined ? 0 : s.p).toFixed(3),
+counter: pad(s.idx || 3) + ' / ' + pad(s.n || 5)
+};
+}
+}
+</script>
+</body>
+</html>

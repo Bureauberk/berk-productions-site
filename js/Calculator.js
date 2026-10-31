@@ -150,7 +150,7 @@ ${t.moreForm?b`
 
 <div class="print-area" aria-hidden="true">
 <img src="/assets/73856d47736b3086e6728a2971a015f5.svg" alt="" style="height: 56px; width: auto" />
-<h1 style="font-family: 'Archivo', sans-serif; font-size: 26px; margin: 18px 0 4px">Indicatieve prijsberekening</h1>
+<h2 style="font-family: 'Archivo', sans-serif; font-size: 26px; margin: 18px 0 4px">Indicatieve prijsberekening</h2>
 <p style="margin: 0 0 18px; font-size: 13px">${t.printDate} · BERK Productions · wouter@berk.productions · +31 6 55 76 46 78</p>
 <p style="margin: 0 0 12px; font-size: 13px">${t.printSummary}</p>
 <table class="spec">

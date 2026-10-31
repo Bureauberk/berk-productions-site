@@ -21,8 +21,7 @@ import{a as o,b as d,c,d as h}from"./chunk-O3OTVWYO.js";var g=h.bind(o),r=class 
 <img class="hero-img" src="/assets/43961b6008b5434aee2fd74d9a674b26.webp" alt="Cameraman van BERK filmt aan de kabelbaan in Knokke-Heist" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover" />
 <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(22,22,22,0.94) 0%, rgba(22,22,22,0.7) 45%, rgba(22,22,22,0.2) 100%)"></div>
 <div class="wrap" style="position: relative; width: 100%; padding-top: 120px; padding-bottom: 72px; display: flex; flex-direction: column; gap: 28px">
-<span class="eyebrow" style="color: #EFEFEF"><span class="dot"></span>Live productie en video · Apeldoorn</span>
-<h1 class="h-black hero-h" style="font-size: clamp(34px, 5.4vw, 104px); line-height: 0.95; color: #FFFFFF; text-shadow: 6px 6px 0 #000000; text-wrap: initial"><span class="hl">Meer publiek dan er</span> <span class="hl">langs de <span style="color: #FF5F57">kant</span> staat.</span></h1>
+<h1 class="h-black hero-h" style="font-size: clamp(34px, 5.4vw, 104px); line-height: 0.95; color: #FFFFFF; text-shadow: 6px 6px 0 #000000; text-wrap: initial"><span class="eyebrow" style="display: flex; width: fit-content; margin-bottom: 28px; color: #EFEFEF; line-height: 1.4; text-shadow: none"><span class="dot"></span>Livestream en videoproductie · Apeldoorn</span><span class="hl">Meer publiek dan er</span> <span class="hl">langs de <span style="color: #FF5F57">kant</span> staat.</span></h1>
 <p style="margin: 0; max-width: 560px; font-size: 20px; line-height: 1.55; color: #D8D8D8">Livestreams, podcasts en grote multicamproducties, plus de clips die erna blijven werken. Met een vaste prijs, een testdag en beelden die van jou zijn.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 16px">
 <a class="btn" href="/contact">Ontdek de mogelijkheden <span aria-hidden="true">→</span></a>

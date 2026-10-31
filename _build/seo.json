@@ -1,0 +1,131 @@
+{
+  "site": "https://berk.productions",
+  "ogImage": "/assets/43961b6008b5434aee2fd74d9a674b26.webp",
+  "locales": {
+    "nl": "nl_NL",
+    "en": "en_GB",
+    "de": "de_DE"
+  },
+  "pages": {
+    "/": {
+      "title": "Livestream laten maken voor sport en events | BERK Productions",
+      "description": "Livestream, videopodcast of multicamproductie voor je sportevent of congres. Vaste prijs, testdag vooraf en beelden die van jou zijn. Vanuit Apeldoorn."
+    },
+    "/diensten": {
+      "title": "Livestreams, videopodcasts en multicam | BERK Productions",
+      "description": "Multicam-livestreams met replay en graphics, videopodcasts in de studio of op locatie, regie voor congressen en highlights na afloop. Bekijk wat BERK draait."
+    },
+    "/waarom-live": {
+      "title": "Waarom je event livestreamen? De cijfers | BERK Productions",
+      "description": "Een livestream geeft je event publiek buiten de locatie. Cijfers van het EK Cable Wakeboard 2026: 30.000+ weergaven, 5.300 uur kijktijd, 65% nieuwe kijkers."
+    },
+    "/werk": {
+      "title": "Livestreams en sportproducties: ons werk | BERK Productions",
+      "description": "Livestreams en video van sportevents, waaronder drie dagen live van het EK Cable Wakeboard 2026 in Knokke-Heist. Bekijk de producties van BERK."
+    },
+    "/over": {
+      "title": "Over BERK: livestreamcrew uit Apeldoorn | BERK Productions",
+      "description": "BERK Productions is de livestream- en videotak van Bureau BERK uit Apeldoorn: een crew die zelf op het water staat en weet wat een sportevent nodig heeft."
+    },
+    "/contact": {
+      "title": "Offerte voor je livestream aanvragen | BERK Productions",
+      "description": "Vertel wat je wil draaien en ontvang binnen twee werkdagen een vrijblijvende offerte op maat voor je livestream, podcast of multicamproductie."
+    },
+    "/prijscalculator": {
+      "title": "Wat kost een livestream? Prijscalculator | BERK Productions",
+      "description": "Bereken zelf wat een livestream of multicamproductie kost: kies camera's, crew, dagen en extra's en zie direct een indicatieve prijs, excl. en incl. btw."
+    },
+    "/en": {
+      "title": "Live streaming for sports and events | BERK Productions",
+      "description": "Live streams, video podcasts and multicam productions for sports events and conferences in the Netherlands, Belgium and Germany. Fixed price, test day first."
+    },
+    "/en/services": {
+      "title": "Live streams, video podcasts and multicam | BERK Productions",
+      "description": "Multicam live streams with replay and graphics, video podcasts in the studio or on location, conference direction and highlights afterwards."
+    },
+    "/en/why-live": {
+      "title": "Why live stream your event? The numbers | BERK Productions",
+      "description": "A live stream gives your event an audience beyond the venue. From the 2026 European Cable Wakeboard Championships: 30,000+ views and 5,300 hours watched."
+    },
+    "/en/work": {
+      "title": "Sports live streams and productions: our work | BERK Productions",
+      "description": "Live streams and video from sports events, including three days live from the 2026 European Cable Wakeboard Championships in Knokke-Heist."
+    },
+    "/en/about": {
+      "title": "About BERK: live streaming crew from Apeldoorn | BERK Productions",
+      "description": "BERK Productions is the live streaming and video arm of Bureau BERK in Apeldoorn: a crew that rides the water too and knows what a sports event needs."
+    },
+    "/en/contact": {
+      "title": "Request a live streaming quote | BERK Productions",
+      "description": "Tell us what you want to shoot and get a free tailored quote for your live stream, podcast or multicam production within two working days."
+    },
+    "/de": {
+      "title": "Livestream für Sport und Events | BERK Productions",
+      "description": "Livestreams, Videopodcasts und Multicam-Produktionen für Sportevents und Kongresse in den Niederlanden, Belgien und Deutschland. Festpreis, Testtag vorab."
+    },
+    "/de/leistungen": {
+      "title": "Livestreams, Videopodcasts und Multicam | BERK Productions",
+      "description": "Multicam-Livestreams mit Replay und Grafiken, Videopodcasts im Studio oder vor Ort, Regie für Kongresse und Highlights im Anschluss."
+    },
+    "/de/warum-live": {
+      "title": "Warum Ihr Event live streamen? Die Zahlen | BERK Productions",
+      "description": "Ein Livestream bringt Ihrem Event Publikum über den Veranstaltungsort hinaus. Von der Cable-Wakeboard-EM 2026: 30.000+ Aufrufe, 5.300 Stunden Wiedergabezeit."
+    },
+    "/de/projekte": {
+      "title": "Sport-Livestreams und Produktionen: Projekte | BERK Productions",
+      "description": "Livestreams und Videos von Sportevents, darunter drei Tage live von der Cable-Wakeboard-Europameisterschaft 2026 in Knokke-Heist."
+    },
+    "/de/ueber-uns": {
+      "title": "Über BERK: Livestream-Crew aus Apeldoorn | BERK Productions",
+      "description": "BERK Productions ist der Livestream- und Videobereich von Bureau BERK aus Apeldoorn: eine Crew, die selbst auf dem Wasser steht und Sportevents kennt."
+    },
+    "/de/kontakt": {
+      "title": "Angebot für Ihren Livestream anfragen | BERK Productions",
+      "description": "Erzählen Sie uns, was Sie produzieren möchten, und erhalten Sie innerhalb von zwei Werktagen ein unverbindliches Angebot für Livestream, Podcast oder Multicam."
+    }
+  },
+  "org": {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": "https://berk.productions/#org",
+    "name": "BERK Productions",
+    "url": "https://berk.productions/",
+    "logo": "https://berk.productions/assets/favicon.svg",
+    "image": "https://berk.productions/assets/43961b6008b5434aee2fd74d9a674b26.webp",
+    "email": "wouter@berk.productions",
+    "telephone": "+31655764678",
+    "priceRange": "€€",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Apeldoorn",
+      "addressCountry": "NL"
+    },
+    "areaServed": [
+      {
+        "@type": "Country",
+        "name": "Nederland"
+      },
+      {
+        "@type": "Country",
+        "name": "België"
+      },
+      {
+        "@type": "Country",
+        "name": "Duitsland"
+      }
+    ],
+    "knowsAbout": [
+      "livestream",
+      "multicamproductie",
+      "videopodcast",
+      "sportlivestream",
+      "congres livestream",
+      "aftermovie"
+    ],
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "Bureau BERK",
+      "url": "https://bureauberk.com"
+    }
+  }
+}

@@ -21,8 +21,7 @@ import{a as r,b as d,c,d as h}from"./chunk-O3OTVWYO.js";var u=h.bind(r),o=class 
 <img class="hero-img" src="/assets/43961b6008b5434aee2fd74d9a674b26.webp" alt="Kameramann von BERK filmt an der Wakeboardanlage in Knokke-Heist" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover" />
 <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(22,22,22,0.94) 0%, rgba(22,22,22,0.7) 45%, rgba(22,22,22,0.2) 100%)"></div>
 <div class="wrap" style="position: relative; width: 100%; padding-top: 120px; padding-bottom: 72px; display: flex; flex-direction: column; gap: 28px">
-<span class="eyebrow" style="color: #EFEFEF"><span class="dot"></span>Liveproduktion und Video · Apeldoorn</span>
-<h1 class="h-black hero-h" style="font-size: clamp(34px, 5.4vw, 104px); line-height: 0.95; color: #FFFFFF; text-shadow: 6px 6px 0 #000000; text-wrap: initial"><span class="hl">Mehr Publikum, als</span> <span class="hl">am <span style="color: #FF5F57">Rand</span> steht.</span></h1>
+<h1 class="h-black hero-h" style="font-size: clamp(34px, 5.4vw, 104px); line-height: 0.95; color: #FFFFFF; text-shadow: 6px 6px 0 #000000; text-wrap: initial"><span class="eyebrow" style="display: flex; width: fit-content; margin-bottom: 28px; color: #EFEFEF; line-height: 1.4; text-shadow: none"><span class="dot"></span>Livestream und Videoproduktion · Apeldoorn</span><span class="hl">Mehr Publikum, als</span> <span class="hl">am <span style="color: #FF5F57">Rand</span> steht.</span></h1>
 <p style="margin: 0; max-width: 560px; font-size: 20px; line-height: 1.55; color: #D8D8D8">Livestreams, Podcasts und große Multicam-Produktionen, dazu die Clips, die danach weiterwirken. Mit festem Preis, einem Testtag und Bildmaterial, das Ihnen gehört.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 16px">
 <a class="btn" href="/de/kontakt">Möglichkeiten entdecken <span aria-hidden="true">→</span></a>

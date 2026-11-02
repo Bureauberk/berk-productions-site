@@ -1,3 +1,3 @@
-// Microsoft Clarity, loaded only after the page has loaded and the browser is idle,
-// so it never competes with the page itself for bandwidth or the main thread.
-export const clarityTag = (id) => id ? `<script>addEventListener('load',function(){var go=function(){(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","${id}")};'requestIdleCallback' in window?requestIdleCallback(go,{timeout:4000}):setTimeout(go,2000)})</script>` : '';
+// Cookie banner plus Microsoft Clarity. js/consent.js loads Clarity only after the visitor accepts,
+// and then only once the page has loaded and the browser is idle.
+export const clarityTag = (id) => `<script src="/js/consent.js" defer${id ? ` data-clarity="${id}"` : ''}></script>`;

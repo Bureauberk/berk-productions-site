@@ -17,6 +17,7 @@ T = {
         promises=['Offerte binnen twee werkdagen', 'Vaste prijs, testdag vooraf', 'De beelden zijn van jou', 'Geen jaarcontract'],
         legal='© 2026 BERK Productions, onderdeel van <a href="https://bureauberk.com" style="text-decoration: underline">Bureau BERK</a> · KvK 95395792',
         area='Apeldoorn · Nederland · België · Duitsland',
+        privacy=('/privacy', 'Privacyverklaring', 'Cookie-instellingen'),
     ),
     'en': dict(
         intro='Live streams, podcasts and multicam productions for sport and events. Specialised in niche and extreme sports, from Apeldoorn across the Netherlands, Belgium and Germany.',
@@ -29,6 +30,7 @@ T = {
         promises=['A quote within two working days', 'Fixed price, test day first', 'The footage is yours', 'No annual contract'],
         legal='© 2026 BERK Productions, part of <a href="https://bureauberk.com" style="text-decoration: underline">Bureau BERK</a> · Chamber of Commerce no. 95395792',
         area='Apeldoorn · Netherlands · Belgium · Germany',
+        privacy=('/en/privacy', 'Privacy policy', 'Cookie settings'),
     ),
     'de': dict(
         intro='Livestreams, Podcasts und Multicam-Produktionen für Sport und Events. Spezialisiert auf Nischen- und Extremsportarten, von Apeldoorn aus in den Niederlanden, Belgien und Deutschland.',
@@ -41,6 +43,7 @@ T = {
         promises=['Angebot innerhalb von zwei Werktagen', 'Festpreis, Testtag vorab', 'Das Bildmaterial gehört Ihnen', 'Kein Jahresvertrag'],
         legal='© 2026 BERK Productions, Teil von <a href="https://bureauberk.com" style="text-decoration: underline">Bureau BERK</a> · Handelsregister-Nr. 95395792',
         area='Apeldoorn · Niederlande · Belgien · Deutschland',
+        privacy=('/de/datenschutz', 'Datenschutz', 'Cookie-Einstellungen'),
     ),
 }
 HEAD = 'class="eyebrow" style="color: #FFFFFF; margin-bottom: 4px"'
@@ -66,7 +69,7 @@ def footer(lang):
         '</div>\n'
         '<nav aria-label="Footer" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: 36px 32px; font-size: 16px; line-height: 1.45; border-top: 1px solid #2A2A2A; padding-top: clamp(40px, 5vw, 56px)">'
         f'{cols}{promises}</nav>\n'
-        f'<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-top: 1px solid #2A2A2A; padding-top: 20px; font-size: 14px; color: #8C8C8C"><span>{t["legal"]}</span><span>{t["area"]}</span></div>\n'
+        f'<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-top: 1px solid #2A2A2A; padding-top: 20px; font-size: 14px; color: #8C8C8C"><span>{t["legal"]}</span><span style="display: flex; flex-wrap: wrap; gap: 6px 18px"><a href="{t["privacy"][0]}">{t["privacy"][1]}</a><a href="#cookies" data-consent-open="">{t["privacy"][2]}</a><span>{t["area"]}</span></span></div>\n'
         '</div>\n</footer>')
 
 

@@ -66,8 +66,8 @@ function applyHead(html, route) {
 
 const routes = [...readFileSync(join(ROOT, 'sitemap.xml'), 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)]
   .map((m) => m[1].replace(SEO.site, '') || '/')
-  // Kennisbank and landing pages are static HTML from kennisbank.mjs, which also owns their SEO tags.
-  .filter((r) => !r.startsWith('/kennisbank') && r !== '/livestream-watersport');
+  // Only the Preact pages listed in seo.json; kennisbank, landing and legal pages are static HTML from kennisbank.mjs.
+  .filter((r) => SEO.pages[r]);
 
 const browser = await chromium.launch({ executablePath: CHROME });
 // Reduced motion keeps the scroll-reveal classes out of the snapshot, so all content is visible without JS.

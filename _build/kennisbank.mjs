@@ -10,6 +10,7 @@ import { clarityTag } from './clarity.mjs';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = join(ROOT, '_build/kennisbank');
 const LANDING = join(ROOT, '_build/landing');
+const LEGAL = join(ROOT, '_build/legal');
 const OUT = join(ROOT, 'kennisbank');
 const SEO = JSON.parse(readFileSync(join(ROOT, '_build/seo.json'), 'utf8'));
 const SITE = SEO.site;
@@ -106,6 +107,7 @@ function markdown(md) {
 
 const ARTICLE_KEYS = ['order', 'slug', 'cluster', 'keyword', 'title', 'description', 'h1', 'summary', 'cta', 'related'];
 const LANDING_KEYS = ['path', 'keyword', 'title', 'description', 'h1', 'eyebrow', 'intro', 'cta', 'related'];
+const LEGAL_KEYS = ['path', 'lang', 'alts', 'title', 'description', 'h1', 'eyebrow', 'updated'];
 
 function parse(dir, file, keys) {
   const raw = readFileSync(join(dir, file), 'utf8');
@@ -118,26 +120,35 @@ function parse(dir, file, keys) {
   }
   for (const k of keys) if (!fm[k]) throw new Error(`${file}: frontmatter "${k}" missing`);
   if (fm.cluster && !CLUSTERS[fm.cluster]) throw new Error(`${file}: unknown cluster ${fm.cluster}`);
-  if (!CTAS[fm.cta]) throw new Error(`${file}: unknown cta ${fm.cta}`);
+  if (fm.cta && !CTAS[fm.cta]) throw new Error(`${file}: unknown cta ${fm.cta}`);
   const body = markdown(m[2]);
   const words = m[2].split(/\s+/).filter(Boolean).length;
-  return { ...fm, order: +fm.order || 0, related: fm.related.split(',').map((s) => s.trim()), date: fm.date || TODAY, words, ...body };
+  return { ...fm, order: +fm.order || 0, related: (fm.related || '').split(',').map((s) => s.trim()).filter(Boolean), date: fm.date || TODAY, words, ...body };
 }
 
-// --- Shell taken from the prerendered /over page ---
-const over = readFileSync(join(ROOT, 'over/index.html'), 'utf8');
-const baseCss = over.match(/<style>([\s\S]*?)<\/style>/)[1];
-const app = over.match(/<div id="app">([\s\S]*?)<!--\/prerender-->/)[1];
-const siteOpen = app.match(/^<div class="site"[^>]*>/)[0];
-let chrome = app.slice(siteOpen.length, app.indexOf('<section'));
-const footer = app.slice(app.indexOf('<footer'), app.lastIndexOf('</footer>') + 9);
-if (!chrome.includes('href="/kennisbank"')) throw new Error('Menu has no Kennisbank link; run prerender.mjs first');
-chrome = chrome
-  .replace(/\s*aria-current="page"/g, '')
-  .replace('<a href="/kennisbank"', '<a href="/kennisbank" aria-current="page"')
-  .replace(/href="\/over" hreflang="nl"/g, 'href="/kennisbank" hreflang="nl"')
-  .replace(/href="\/en\/about"/g, 'href="/en"')
-  .replace(/href="\/de\/ueber-uns"/g, 'href="/de"');
+// --- Shell (header, menu, footer, base CSS) taken from the prerendered "about" page of each language ---
+const SHELL_PAGE = { nl: '/over', en: '/en/about', de: '/de/ueber-uns' };
+const LOCALES = { nl: 'nl_NL', en: 'en_GB', de: 'de_DE' };
+const SHELLS = Object.fromEntries(Object.entries(SHELL_PAGE).map(([lang, route]) => {
+  const html = readFileSync(join(ROOT, route.slice(1), 'index.html'), 'utf8');
+  const app = html.match(/<div id="app">([\s\S]*?)<!--\/prerender-->/)[1];
+  const siteOpen = app.match(/^<div class="site"[^>]*>/)[0];
+  return [lang, {
+    css: html.match(/<style>([\s\S]*?)<\/style>/)[1],
+    siteOpen,
+    chrome: app.slice(siteOpen.length, app.indexOf('<section')).replace(/\s*aria-current="page"/g, ''),
+    footer: app.slice(app.indexOf('<footer'), app.lastIndexOf('</footer>') + 9),
+  }];
+}));
+if (!SHELLS.nl.chrome.includes('href="/kennisbank"')) throw new Error('Menu has no Kennisbank link; run prerender.mjs first');
+
+// Header for a page: its language switcher points at the page's own translations, and its menu item is marked current.
+function chromeFor(lang, alts, current) {
+  let c = SHELLS[lang].chrome;
+  for (const [l, route] of Object.entries(SHELL_PAGE)) c = c.replaceAll(`href="${route}" hreflang="${l}"`, `href="${alts[l]}" hreflang="${l}"`);
+  if (current) c = c.replace(`<a href="${current}"`, `<a href="${current}" aria-current="page"`);
+  return c;
+}
 
 const CSS = `
 .kb-hero h1,.prose h2,.prose h3,.card h3,.kb-cluster h2{hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word}
@@ -187,22 +198,25 @@ const CSS = `
 .kb-cluster+.kb-cluster{margin-top:clamp(64px,7vw,104px)}
 `;
 
-function page({ path, title, description, jsonld, body, ogType, ogImage }) {
+function page({ path, title, description, jsonld, body, ogType, ogImage, lang = 'nl', alts, current }) {
+  const shell = SHELLS[lang];
+  const translated = alts && new Set(Object.values(alts)).size > 1 && Object.values(alts).every((a) => !['/', '/en', '/de'].includes(a));
+  const hreflang = translated ? Object.entries(alts).map(([l, p]) => `<link rel="alternate" hreflang="${l}" href="${SITE}${p}">`).join('') + `<link rel="alternate" hreflang="x-default" href="${SITE}${alts.nl}">\n` : '';
   return `<!doctype html>
-<html lang="nl">
+<html lang="${lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${SITE}${path}">
-<meta property="og:title" content="${esc(title)}">
+${hreflang}<meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:image" content="${SITE}${ogImage || SEO.ogImage}">
 <meta property="og:type" content="${ogType || (path === '/kennisbank' ? 'website' : 'article')}">
 <meta property="og:url" content="${SITE}${path}">
 <meta property="og:site_name" content="BERK Productions">
-<meta property="og:locale" content="nl_NL">
+<meta property="og:locale" content="${LOCALES[lang]}">
 <meta name="twitter:card" content="summary_large_image">
 ${ldJson(jsonld)}
 ${clarityTag(SEO.clarity)}
@@ -210,12 +224,12 @@ ${clarityTag(SEO.clarity)}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Archivo:wght@500;600;700&amp;family=Hind:wght@300;400;500;600&amp;display=swap">
-<style>${baseCss}${CSS}</style>
+<style>${shell.css}${CSS}</style>
 </head>
 <body>
-${siteOpen}${path.startsWith('/kennisbank') ? chrome : chrome.replace('<a href="/kennisbank" aria-current="page"', '<a href="/kennisbank"')}<main>
+${shell.siteOpen}${chromeFor(lang, alts || { nl: path.startsWith('/kennisbank') ? '/kennisbank' : path, en: '/en', de: '/de' }, current === undefined ? (path.startsWith('/kennisbank') ? '/kennisbank' : null) : current)}<main>
 ${body}
-</main>${footer}</div>
+</main>${shell.footer}</div>
 <script src="/js/kb.js" defer></script>
 </body>
 </html>
@@ -224,19 +238,20 @@ ${body}
 
 const ORG = { '@type': 'Organization', '@id': SEO.org['@id'], name: 'BERK Productions', url: SITE + '/', logo: SEO.org.logo };
 const crumbsLd = (items) => ({ '@type': 'BreadcrumbList', itemListElement: items.map(([name, path], i) => ({ '@type': 'ListItem', position: i + 1, name, item: SITE + path })) });
-const crumbsHtml = (items) => `<nav aria-label="Kruimelpad"><ol class="crumbs">${items.map(([name, path], i) => `<li>${i < items.length - 1 ? `<a href="${path}">${esc(name)}</a>` : `<span aria-current="page">${esc(name)}</span>`}</li>`).join('')}</ol></nav>`;
+const crumbsHtml = (items, label = 'Kruimelpad') => `<nav aria-label="${label}"><ol class="crumbs">${items.map(([name, path], i) => `<li>${i < items.length - 1 ? `<a href="${path}">${esc(name)}</a>` : `<span aria-current="page">${esc(name)}</span>`}</li>`).join('')}</ol></nav>`;
 const card = (a) => `<a class="card" href="/kennisbank/${a.slug}"><span class="eyebrow">${esc(CLUSTERS[a.cluster])}</span><h3>${esc(a.h1)}</h3><p>${esc(a.description)}</p><span class="more">Lees het artikel →</span></a>`;
 const ctaBand = (c) => `<section style="background: #FF5F57; color: #161616; padding: clamp(56px, 6vw, 88px) 0"><div class="wrap" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 28px"><p class="h-black" style="margin: 0; font-size: clamp(28px, 3.4vw, 48px); line-height: 1; max-width: 900px">${esc(c.text)}</p><a class="btn" href="${c.href}" style="background: #161616; color: #FFFFFF">${esc(c.label)} <span aria-hidden="true">→</span></a></div></section>`;
 
 // --- Build ---
 const articles = readdirSync(SRC).filter((f) => f.endsWith('.md') && !f.startsWith('_')).map((f) => parse(SRC, f, ARTICLE_KEYS)).sort((a, b) => a.order - b.order);
 const landings = existsSync(LANDING) ? readdirSync(LANDING).filter((f) => f.endsWith('.md')).map((f) => parse(LANDING, f, LANDING_KEYS)) : [];
+const legals = existsSync(LEGAL) ? readdirSync(LEGAL).filter((f) => f.endsWith('.md')).map((f) => parse(LEGAL, f, LEGAL_KEYS)) : [];
 const bySlug = Object.fromEntries(articles.map((a) => [a.slug, a]));
 const problems = [];
-for (const a of [...articles, ...landings]) {
+for (const a of [...articles, ...landings, ...legals]) {
   for (const r of a.related) if (!bySlug[r]) problems.push(`${a.slug || a.path}: related "${r}" does not exist`);
   for (const [, href] of a.html.matchAll(/href="(\/[^"#]*)/g)) {
-    const ok = href.startsWith('/kennisbank/') ? bySlug[href.slice(12)] : ['/', '/kennisbank', ...landings.map((l) => l.path), ...Object.keys(SEO.pages)].includes(href);
+    const ok = href.startsWith('/kennisbank/') ? bySlug[href.slice(12)] : ['/', '/kennisbank', ...[...landings, ...legals].map((l) => l.path), ...Object.keys(SEO.pages)].includes(href);
     if (!ok) problems.push(`${a.slug || a.path}: broken internal link ${href}`);
   }
 }
@@ -305,9 +320,30 @@ ${ctaBand(CTAS[l.cta])}
   writeFileSync(join(dir, 'index.html'), page({ path: l.path, title: `${l.title} | BERK Productions`, description: l.description, jsonld, body, ogType: 'website', ogImage: l.poster }));
 }
 
-// Sitemap: replace the kennisbank and landing block
-const sm = join(ROOT, 'sitemap.xml');
-const urls = [...landings.map((l) => l.path), '/kennisbank', ...articles.map((a) => `/kennisbank/${a.slug}`)].map((p) => `<url><loc>${SITE}${p}</loc></url>`).join('\n');
-writeFileSync(sm, readFileSync(sm, 'utf8').replace(new RegExp(`<url><loc>[^<]*(/kennisbank|${landings.map((l) => l.path).join('|') || '/kennisbank'})[^<]*</loc></url>\\n`, 'g'), '').replace('</urlset>', `${urls}\n</urlset>`));
+// Legal pages (privacy policy per language)
+const LEGAL_UI = { nl: { home: 'Home', updated: 'Laatst bijgewerkt', crumbs: 'Kruimelpad' }, en: { home: 'Home', updated: 'Last updated', crumbs: 'Breadcrumb' }, de: { home: 'Startseite', updated: 'Zuletzt aktualisiert', crumbs: 'Brotkrumen' } };
+for (const l of legals) {
+  const ui = LEGAL_UI[l.lang];
+  const [nl, en, de] = l.alts.split(',').map((s) => s.trim());
+  const alts = { nl, en, de };
+  const home = { nl: '/', en: '/en', de: '/de' }[l.lang];
+  const crumbs = [[ui.home, home], [l.title, l.path]];
+  const jsonld = [
+    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + l.path + '#page', url: SITE + l.path, name: l.title, description: l.description, inLanguage: l.lang, isPartOf: { '@type': 'WebSite', name: 'BERK Productions', url: SITE + '/' }, publisher: ORG },
+    { '@context': 'https://schema.org', ...crumbsLd(crumbs) },
+  ];
+  const body = `<section class="kb-hero"><div class="wrap">${crumbsHtml(crumbs, ui.crumbs)}<div style="display: flex; flex-direction: column; gap: 24px; max-width: 1100px"><span class="eyebrow" style="color: #A8A8A8"><span class="dot"></span>${esc(l.eyebrow)}</span><h1 class="h-black" style="font-size: clamp(30px, 6vw, 96px); line-height: 0.95; color: #FFFFFF; text-shadow: 6px 6px 0 #000; hyphens: manual; -webkit-hyphens: manual">${esc(l.h1)}</h1><span class="kb-meta">${ui.updated}: ${esc(l.updated)}</span></div></div></section>
+<section class="kb-light"><div class="wrap kb-grid"><article class="prose">
+${l.html}
+</article><nav class="toc" aria-label="${l.lang === 'de' ? 'Inhalt' : l.lang === 'en' ? 'Contents' : 'Inhoud'}"><span class="eyebrow">${l.lang === 'de' ? 'Inhalt' : l.lang === 'en' ? 'Contents' : 'Inhoud'}</span>${l.toc.map((t) => `<a href="#${t.id}">${esc(t.text)}</a>`).join('')}</nav></div></section>`;
+  const dir = join(ROOT, l.path.slice(1));
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, 'index.html'), page({ path: l.path, title: `${l.title} | BERK Productions`, description: l.description, jsonld, body, ogType: 'website', lang: l.lang, alts, current: null }));
+}
 
-console.table([...landings, ...articles].map((a) => ({ slug: a.slug || a.path, words: a.words, title: (a.title + ' | BERK Productions').length, desc: a.description.length, faq: a.faq.length, links: (a.html.match(/href="\//g) || []).length })));
+// Sitemap: replace the kennisbank, landing and legal block
+const sm = join(ROOT, 'sitemap.xml');
+const urls = [...landings.map((l) => l.path), ...legals.map((l) => l.path), '/kennisbank', ...articles.map((a) => `/kennisbank/${a.slug}`)].map((p) => `<url><loc>${SITE}${p}</loc></url>`).join('\n');
+writeFileSync(sm, readFileSync(sm, 'utf8').replace(new RegExp(`<url><loc>[^<]*(/kennisbank|${[...landings, ...legals].map((l) => l.path).join('|') || '/kennisbank'})[^<]*</loc></url>\\n`, 'g'), '').replace('</urlset>', `${urls}\n</urlset>`));
+
+console.table([...legals, ...landings, ...articles].map((a) => ({ slug: a.slug || a.path, words: a.words, title: (a.title + ' | BERK Productions').length, desc: a.description.length, faq: a.faq.length, links: (a.html.match(/href="\//g) || []).length })));

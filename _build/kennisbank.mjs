@@ -6,6 +6,7 @@ import { readFileSync, writeFileSync, readdirSync, mkdirSync, rmSync, existsSync
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { clarityTag } from './clarity.mjs';
+import { siteCss } from './site-css.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = join(ROOT, '_build/kennisbank');
@@ -256,6 +257,7 @@ ${clarityTag(SEO.clarity)}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Archivo:wght@500;600;700&amp;family=Hind:wght@300;400;500;600&amp;display=swap">
 <style>${shell.css}${CSS}</style>
+${siteCss(false)}
 </head>
 <body>
 ${shell.siteOpen}${chromeFor(lang, alts || { nl: path.startsWith('/kennisbank') ? '/kennisbank' : path, en: '/en', de: '/de' }, current === undefined ? (path.startsWith('/kennisbank') ? '/kennisbank' : null) : current)}<main>

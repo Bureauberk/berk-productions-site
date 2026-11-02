@@ -7,6 +7,7 @@ import { readFileSync, writeFileSync, existsSync, statSync } from 'node:fs';
 import { join, extname, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { clarityTag } from './clarity.mjs';
+import { siteCss } from './site-css.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SEO = JSON.parse(readFileSync(join(ROOT, '_build/seo.json'), 'utf8'));
@@ -60,6 +61,7 @@ function applyHead(html, route) {
     `<meta name="twitter:card" content="summary_large_image">`,
     `<script type="application/ld+json">${JSON.stringify(isHome ? [ld, pageLd] : [pageLd])}</script>`,
     clarityTag(SEO.clarity),
+    siteCss(isHome),
   ].filter(Boolean);
   return html.replace('<meta property="og:type" content="website">', (m) => `${m}\n<!--seo-->${extra.join('\n')}<!--/seo-->`);
 }

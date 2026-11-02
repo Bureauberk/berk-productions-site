@@ -9,7 +9,7 @@
   const merk = (params.get('merk') || '').trim();
   const validMerk = merk.length > 0 && merk.length <= 30 && /^[\p{L}\p{N} .'’-]+$/u.test(merk);
   const kicker = document.getElementById('p-kicker');
-  if (validMerk && kicker) kicker.textContent = 'Voorstel voor ' + merk;
+  if (validMerk && kicker) kicker.textContent = ((root && root.dataset.proposal) || 'Voorstel voor') + ' ' + merk;
 
   if (root) clarity('set', 'partner_categorie', root.dataset.cat);
   if (validMerk) clarity('set', 'merk', merk);

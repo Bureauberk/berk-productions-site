@@ -24,7 +24,7 @@ T = {
         ask='Going live?', cta=('/en/contact', 'Request a quote'),
         cols=[
             ('Services', [('/en/services', 'Livestreams'), ('/en/services', 'Podcasts'), ('/en/services', 'Large productions'), ('/en/services', 'Aftercare')]),
-            ('BERK', [('/en/why-live', 'Why live'), ('/en/work', 'Work'), ('/en/about', 'About'), ('/en/contact', 'Contact')]),
+            ('BERK', [('/en/why-live', 'Why live'), ('/en/work', 'Work'), ('/en/about', 'About'), ('/en/partners', 'Partners'), ('/en/contact', 'Contact')]),
         ],
         promise_head='How we work',
         promises=['A quote within two working days', 'Fixed price, test day first', 'The footage is yours', 'No annual contract'],
@@ -37,7 +37,7 @@ T = {
         ask='Live gehen?', cta=('/de/kontakt', 'Angebot anfragen'),
         cols=[
             ('Leistungen', [('/de/leistungen', 'Livestreams'), ('/de/leistungen', 'Podcasts'), ('/de/leistungen', 'Großproduktionen'), ('/de/leistungen', 'Aftercare')]),
-            ('BERK', [('/de/warum-live', 'Warum live'), ('/de/projekte', 'Projekte'), ('/de/ueber-uns', 'Über uns'), ('/de/kontakt', 'Kontakt')]),
+            ('BERK', [('/de/warum-live', 'Warum live'), ('/de/projekte', 'Projekte'), ('/de/ueber-uns', 'Über uns'), ('/de/partner', 'Partner'), ('/de/kontakt', 'Kontakt')]),
         ],
         promise_head='So arbeiten wir',
         promises=['Angebot innerhalb von zwei Werktagen', 'Festpreis, Testtag vorab', 'Das Bildmaterial gehört Ihnen', 'Kein Jahresvertrag'],

@@ -12,7 +12,7 @@ const SRC = join(ROOT, '_build/kennisbank');
 const LANDING = join(ROOT, '_build/landing');
 const LEGAL = join(ROOT, '_build/legal');
 const PARTNERS = JSON.parse(readFileSync(join(ROOT, '_build/partners.json'), 'utf8'));
-const partnerPaths = ['/partners', ...PARTNERS.categories.map((c) => `/partners/${c.slug}`)];
+const partnerPaths = Object.values(PARTNERS.langs).flatMap((l) => [l.base, ...l.categories.map((c) => `${l.base}/${c.slug}`)]);
 const OUT = join(ROOT, 'kennisbank');
 const SEO = JSON.parse(readFileSync(join(ROOT, '_build/seo.json'), 'utf8'));
 const SITE = SEO.site;
@@ -372,44 +372,52 @@ ${l.html}
   writeFileSync(join(dir, 'index.html'), page({ path: l.path, title: `${l.title} | BERK Productions`, description: l.description, jsonld, body, ogType: 'website', lang: l.lang, alts, current: null }));
 }
 
-// Partner pages for brands (/partners and one page per sport), all content from _build/partners.json
+// Partner pages for brands (/partners, /en/partners, /de/partner and one page per sport), all content from _build/partners.json
 {
-  const P = PARTNERS, S = P.shared;
-  const mailto = (name) => `mailto:${P.email}?subject=${encodeURIComponent(`Partnerschap livestream - ${name}`)}`;
+  const P = PARTNERS;
+  const LANGS = Object.keys(P.langs);
   const sec = (bg, inner) => `<section class="p-sec" style="${bg}"><div class="wrap">${inner}</div></section>`;
   const LIGHT = 'background: #EFEFEF; color: #161616', DARK = 'background: #161616; color: #EFEFEF', BLACK = 'background: #000000; color: #EFEFEF';
   const head = (text, color = '#161616') => `<h2 class="h-black p-head" style="color: ${color}">${esc(text)}</h2>`;
-  const build = (e, isOverview) => {
-    const path = isOverview ? '/partners' : `/partners/${e.slug}`;
-    const crumbs = isOverview ? [['Home', '/'], ['Partners', path]] : [['Home', '/'], ['Partners', '/partners'], [e.name, path]];
-    const hero = `<section class="kb-hero"><div class="wrap">${crumbsHtml(crumbs)}<div style="display: flex; flex-direction: column; gap: 24px; max-width: 1100px"><span class="eyebrow" style="color: #A8A8A8"><span class="dot"></span><span id="p-kicker">${esc(e.kicker)}</span></span><h1 class="h-black" style="font-size: clamp(34px, 6.4vw, 96px); line-height: 0.95; color: #FFFFFF; text-shadow: 6px 6px 0 #000">${esc(e.h1)}</h1><p style="margin: 0; max-width: 720px; font-size: 20px; line-height: 1.6; color: #CFCFCF">${esc(e.intro)}</p>${e.events ? `<p class="kb-meta" style="margin: 0; max-width: 720px; line-height: 1.6">Events: ${esc(e.events)}</p>` : ''}<div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 8px"><a class="btn" href="${mailto(e.name)}">Plan een gesprek <span aria-hidden="true">→</span></a><a class="btn" href="#livestream" style="background: #161616; color: #FFFFFF; border-color: #EFEFEF">Bekijk de livestream</a></div></div></div></section>`;
+  const HOME = { nl: '/', en: '/en', de: '/de' };
+  const build = (lang, e, isOverview) => {
+    const L = P.langs[lang], S = L.shared, U = L.ui, Y = P.youtube;
+    const suffix = isOverview ? '' : `/${e.slug}`;
+    const path = L.base + suffix;
+    const alts = Object.fromEntries(LANGS.map((l) => [l, P.langs[l].base + suffix]));
+    const mailto = `mailto:${P.email}?subject=${encodeURIComponent(`${U.subject} - ${e.name}`)}`;
+    const crumbs = isOverview ? [[U.home, HOME[lang]], [U.partners, path]] : [[U.home, HOME[lang]], [U.partners, L.base], [e.name, path]];
+    const hero = `<section class="kb-hero"><div class="wrap">${crumbsHtml(crumbs, U.crumbs)}<div style="display: flex; flex-direction: column; gap: 24px; max-width: 1100px"><span class="eyebrow" style="color: #A8A8A8"><span class="dot"></span><span id="p-kicker">${esc(e.kicker)}</span></span><h1 class="h-black" style="font-size: clamp(34px, 6.4vw, 96px); line-height: 0.95; color: #FFFFFF; text-shadow: 6px 6px 0 #000">${esc(e.h1)}</h1><p style="margin: 0; max-width: 720px; font-size: 20px; line-height: 1.6; color: #CFCFCF">${esc(e.intro)}</p>${e.events ? `<p class="kb-meta" style="margin: 0; max-width: 720px; line-height: 1.6">${esc(U.events)}: ${esc(e.events)}</p>` : ''}<div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 8px"><a class="btn" href="${mailto}">${esc(U.talk)} <span aria-hidden="true">→</span></a><a class="btn" href="#livestream" style="background: #161616; color: #FFFFFF; border-color: #EFEFEF">${esc(U.watch)}</a></div></div></div></section>`;
     const how = sec(LIGHT, `${head(S.howHead)}<p class="p-lead" style="color: #2A2A2A">${esc(S.how)}</p>`);
     const middle = isOverview
-      ? sec(LIGHT, `${head(e.gridHead)}<div class="p-grid">${P.categories.map((c) => `<a class="promise p-cat" href="/partners/${c.slug}"><h3>${esc(c.name)}</h3><p>${esc(c.events)}</p><span class="p-more">Bekijk de mogelijkheden →</span></a>`).join('')}</div>`)
+      ? sec(LIGHT, `${head(e.gridHead)}<div class="p-grid">${L.categories.map((c) => `<a class="promise p-cat" href="${L.base}/${c.slug}"><h3>${esc(c.name)}</h3><p>${esc(c.events)}</p><span class="p-more">${esc(U.more)}</span></a>`).join('')}</div>`)
       : sec(LIGHT, `${head(S.ideasHead)}<div class="p-grid">${e.ideas.map((i, n) => `<div class="promise"><span class="p-num">0${n + 1}</span><h3>${esc(i.title)}</h3><p>${esc(i.text)}</p></div>`).join('')}</div>`);
     const gets = sec(DARK, `${head(S.getsHead, '#FFFFFF')}<div class="p-gets">${S.gets.map((g) => `<div><h3>${esc(g.title)}</h3><p>${esc(g.text)}</p></div>`).join('')}</div>`);
-    const proof = sec(BLACK, `${head(S.proofHead, '#FFFFFF')}<p class="p-lead" style="color: #CFCFCF">${esc(S.proof)}</p><div class="p-stats">${S.stats.map((st) => `<div class="p-stat"><b>${esc(st.value)}</b><span>${esc(st.label)}</span></div>`).join('')}</div><div class="yt" id="livestream"><button type="button" data-yt="${S.youtube.id}" data-title="${esc(S.youtube.title)}" aria-label="Speel de livestream af: ${esc(S.youtube.title)}"><img src="${S.youtube.poster}" alt="${esc(S.youtube.posterAlt)}" loading="lazy" decoding="async" width="1440" height="1080"><span class="yt-btn"><span aria-hidden="true">▶</span> Bekijk de livestream</span></button></div><p class="yt-note">De video komt van YouTube en laadt pas als je op afspelen klikt.</p>`);
+    const proof = sec(BLACK, `${head(S.proofHead, '#FFFFFF')}<p class="p-lead" style="color: #CFCFCF">${esc(S.proof)}</p><div class="p-stats">${S.stats.map((st) => `<div class="p-stat"><b>${esc(st.value)}</b><span>${esc(st.label)}</span></div>`).join('')}</div><div class="yt" id="livestream"><button type="button" data-yt="${Y.id}" data-title="${esc(Y.title)}" aria-label="${esc(U.play)}: ${esc(Y.title)}"><img src="${Y.poster}" alt="${esc(S.posterAlt)}" loading="lazy" decoding="async" width="1440" height="1080"><span class="yt-btn"><span aria-hidden="true">▶</span> ${esc(U.watch)}</span></button></div><p class="yt-note">${esc(U.ytNote)}</p>`);
     const packages = sec(LIGHT, `${head(S.packagesHead)}<div class="p-grid">${S.packages.map((pk) => `<div class="promise"><h3>${esc(pk.name)}</h3><p>${esc(pk.text)}</p><span class="p-price">${esc(pk.price)}</span></div>`).join('')}</div><p style="margin: 28px 0 0; font-size: 16px; color: #3C3C3C">${esc(S.packagesNote)}</p>`);
-    const pilot = `<section style="background: #FF5F57; color: #161616; padding: clamp(64px, 7vw, 104px) 0"><div class="wrap" style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start"><h2 class="h-black" style="margin: 0; font-size: clamp(36px, 5vw, 72px); line-height: 0.95">${esc(S.pilotHead)}</h2><p style="margin: 0; max-width: 720px; font-size: 21px; line-height: 1.55">${esc(e.pilot)} ${esc(S.pilotAsk)}</p><a class="btn" href="${mailto(e.name)}" style="background: #161616; color: #FFFFFF">Plan een gesprek <span aria-hidden="true">→</span></a><p style="margin: 0; font-size: 16px">${esc(P.contactLine)}</p></div></section>`;
-    const faq = sec(LIGHT, `${head('Veelgestelde vragen')}<div class="p-faq">${S.faq.map((f) => `<h3>${esc(f.q)}</h3><p>${esc(f.a)}</p>`).join('')}</div>`);
+    const pilot = `<section style="background: #FF5F57; color: #161616; padding: clamp(64px, 7vw, 104px) 0"><div class="wrap" style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start"><h2 class="h-black" style="margin: 0; font-size: clamp(36px, 5vw, 72px); line-height: 0.95">${esc(S.pilotHead)}</h2><p style="margin: 0; max-width: 720px; font-size: 21px; line-height: 1.55">${esc(e.pilot)} ${esc(S.pilotAsk)}</p><a class="btn" href="${mailto}" style="background: #161616; color: #FFFFFF">${esc(U.talk)} <span aria-hidden="true">→</span></a><p style="margin: 0; font-size: 16px">${esc(P.contactLine)}</p></div></section>`;
+    const faq = sec(LIGHT, `${head(U.faqHead)}<div class="p-faq">${S.faq.map((f) => `<h3>${esc(f.q)}</h3><p>${esc(f.a)}</p>`).join('')}</div>`);
     const jsonld = [
-      { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + path + '#page', url: SITE + path, name: e.metaTitle, description: e.metaDescription, inLanguage: 'nl', isPartOf: { '@type': 'WebSite', name: 'BERK Productions', url: SITE + '/' }, publisher: ORG },
+      { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + path + '#page', url: SITE + path, name: e.metaTitle, description: e.metaDescription, inLanguage: lang, isPartOf: { '@type': 'WebSite', name: 'BERK Productions', url: SITE + '/' }, publisher: ORG },
       { '@context': 'https://schema.org', ...crumbsLd(crumbs) },
       { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: S.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
     ];
-    const body = `<div id="partner" data-cat="${e.slug || 'overzicht'}">${hero}${how}${middle}${gets}${proof}${packages}${pilot}${faq}</div>`;
+    const body = `<div id="partner" data-cat="${e.slug || 'overzicht'}" data-proposal="${esc(U.proposal)}">${hero}${how}${middle}${gets}${proof}${packages}${pilot}${faq}</div>`;
     const dir = join(ROOT, path.slice(1));
     mkdirSync(dir, { recursive: true });
-    writeFileSync(join(dir, 'index.html'), page({ path, title: e.metaTitle, description: e.metaDescription, jsonld, body, ogType: 'website', ogImage: P.ogImage, scripts: ['/js/partners.js'] }));
+    writeFileSync(join(dir, 'index.html'), page({ path, title: e.metaTitle, description: e.metaDescription, jsonld, body, ogType: 'website', ogImage: P.ogImage, scripts: ['/js/partners.js'], lang, alts, current: null }));
   };
-  if (existsSync(join(ROOT, 'partners'))) rmSync(join(ROOT, 'partners'), { recursive: true });
-  build(P.overview, true);
-  for (const c of P.categories) build(c, false);
+  for (const lang of LANGS) {
+    const dir = join(ROOT, P.langs[lang].base.slice(1));
+    if (existsSync(dir)) rmSync(dir, { recursive: true });
+    build(lang, P.langs[lang].overview, true);
+    for (const c of P.langs[lang].categories) build(lang, c, false);
+  }
 }
 
 // Sitemap: replace the kennisbank, landing, legal and partner block
 const sm = join(ROOT, 'sitemap.xml');
 const urls = [...landings.map((l) => l.path), ...legals.map((l) => l.path), ...partnerPaths, '/kennisbank', ...articles.map((a) => `/kennisbank/${a.slug}`)].map((p) => `<url><loc>${SITE}${p}</loc></url>`).join('\n');
-writeFileSync(sm, readFileSync(sm, 'utf8').replace(new RegExp(`<url><loc>[^<]*(/kennisbank|${['/partners', ...[...landings, ...legals].map((l) => l.path)].join('|')})[^<]*</loc></url>\\n`, 'g'), '').replace('</urlset>', `${urls}\n</urlset>`));
+writeFileSync(sm, readFileSync(sm, 'utf8').replace(new RegExp(`<url><loc>[^<]*(/kennisbank|${[...Object.values(PARTNERS.langs).map((l) => l.base), ...[...landings, ...legals].map((l) => l.path)].join('|')})[^<]*</loc></url>\\n`, 'g'), '').replace('</urlset>', `${urls}\n</urlset>`));
 
 console.table([...legals, ...landings, ...articles].map((a) => ({ slug: a.slug || a.path, words: a.words, title: (a.title + ' | BERK Productions').length, desc: a.description.length, faq: a.faq.length, links: (a.html.match(/href="\//g) || []).length })));

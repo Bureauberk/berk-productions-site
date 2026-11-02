@@ -5,6 +5,7 @@
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, rmSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { clarityTag } from './clarity.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = join(ROOT, '_build/kennisbank');
@@ -204,6 +205,7 @@ function page({ path, title, description, jsonld, body, ogType, ogImage }) {
 <meta property="og:locale" content="nl_NL">
 <meta name="twitter:card" content="summary_large_image">
 ${ldJson(jsonld)}
+${clarityTag(SEO.clarity)}
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">

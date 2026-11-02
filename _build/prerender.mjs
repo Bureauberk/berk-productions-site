@@ -6,6 +6,7 @@ import { createServer } from 'node:http';
 import { readFileSync, writeFileSync, existsSync, statSync } from 'node:fs';
 import { join, extname, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { clarityTag } from './clarity.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SEO = JSON.parse(readFileSync(join(ROOT, '_build/seo.json'), 'utf8'));
@@ -23,7 +24,8 @@ const server = createServer((req, res) => {
   if (!existsSync(f) || statSync(f).isDirectory()) f = join(ROOT, p, 'index.html');
   if (!f.startsWith(ROOT) || !existsSync(f)) { res.writeHead(404); return res.end(); }
   let body = readFileSync(f);
-  if (f.endsWith('.html')) body = stripSnapshot(body.toString());
+  // Without the SEO block (and so without Clarity), so building the site never records visits.
+  if (f.endsWith('.html')) body = stripSnapshot(body.toString()).replace(/<!--seo-->[\s\S]*?<!--\/seo-->/, '');
   res.writeHead(200, { 'Content-Type': TYPES[extname(f)] || 'application/octet-stream' });
   res.end(body);
 }).listen(0);
@@ -57,7 +59,8 @@ function applyHead(html, route) {
     `<meta property="og:locale" content="${SEO.locales[lang]}">`,
     `<meta name="twitter:card" content="summary_large_image">`,
     `<script type="application/ld+json">${JSON.stringify(isHome ? [ld, pageLd] : [pageLd])}</script>`,
-  ];
+    clarityTag(SEO.clarity),
+  ].filter(Boolean);
   return html.replace('<meta property="og:type" content="website">', (m) => `${m}\n<!--seo-->${extra.join('\n')}<!--/seo-->`);
 }
 

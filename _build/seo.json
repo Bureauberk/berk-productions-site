@@ -125,7 +125,12 @@
     "parentOrganization": {
       "@type": "Organization",
       "name": "Bureau BERK",
-      "url": "https://bureauberk.com"
+      "url": "https://bureauberk.com",
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "KvK",
+        "value": "95395792"
+      }
     }
   }
 }

@@ -22,7 +22,7 @@ import{a as n,b as c,c as p,d}from"./chunk-O3OTVWYO.js";var u=d.bind(n),i=class 
 <div style="flex: 3 1 560px; display: flex; flex-direction: column; gap: 24px">
 <span class="eyebrow" style="color: #A8A8A8"><span class="dot"></span>About BERK</span>
 <h1 class="h-black" style="font-size: clamp(52px, 7.6vw, 116px); line-height: 0.92; color: #FFFFFF; text-shadow: 6px 6px 0 #000000">We ride the <span style="color: #FF5F57">water</span> too</h1>
-<p style="margin: 0; max-width: 620px; font-size: 20px; line-height: 1.6; color: #CFCFCF">BERK is a production company from Apeldoorn, set up by Wouter. He wakeboards himself and knows how a trick should look on camera. For each production we work with a regular crew of [NUMBER] operators and editors.</p>
+<p style="margin: 0; max-width: 620px; font-size: 20px; line-height: 1.6; color: #CFCFCF">BERK is a production company from Apeldoorn, set up by Wouter. He wakeboards himself and knows how a trick should look on camera. For each production we work with a regular crew of 95395792 operators and editors.</p>
 </div>
 <div style="flex: 2 1 320px; display: flex; justify-content: center">
 <img src="/assets/eae890c425e9b3d2d96138dda45ade9d.svg" alt="" aria-hidden="true" style="width: min(100%, 340px); height: auto; filter: drop-shadow(14px 14px 0 #FF5F57)" />
@@ -67,7 +67,7 @@ import{a as n,b as c,c as p,d}from"./chunk-O3OTVWYO.js";var u=d.bind(n),i=class 
 <footer class="foot" style="background: #000000; color: #BDBDBD; padding: 48px 0 32px">
 <div class="wrap" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; font-size: 15px">
 <img src="/assets/73856d47736b3086e6728a2971a015f5.svg" alt="BERK" style="height: 48px; width: auto" />
-<div style="display: flex; flex-wrap: wrap; gap: 24px"><a href="mailto:wouter@berk.productions">wouter@berk.productions</a><a href="tel:+31655764678">+31 6 55 76 46 78</a><span>© 2026 BERK Productions, part of <a href="https://bureauberk.com" style="text-decoration: underline">Bureau BERK</a> · Chamber of Commerce no. [NUMBER]</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 24px"><a href="mailto:wouter@berk.productions">wouter@berk.productions</a><a href="tel:+31655764678">+31 6 55 76 46 78</a><span>© 2026 BERK Productions, part of <a href="https://bureauberk.com" style="text-decoration: underline">Bureau BERK</a> · Chamber of Commerce no. 95395792</span></div>
 </div>
 </footer>
 

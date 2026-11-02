@@ -63,8 +63,8 @@ function applyHead(html, route) {
 
 const routes = [...readFileSync(join(ROOT, 'sitemap.xml'), 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)]
   .map((m) => m[1].replace(SEO.site, '') || '/')
-  // The kennisbank pages are static HTML from kennisbank.mjs, which also owns their SEO tags.
-  .filter((r) => !r.startsWith('/kennisbank'));
+  // Kennisbank and landing pages are static HTML from kennisbank.mjs, which also owns their SEO tags.
+  .filter((r) => !r.startsWith('/kennisbank') && r !== '/livestream-watersport');
 
 const browser = await chromium.launch({ executablePath: CHROME });
 // Reduced motion keeps the scroll-reveal classes out of the snapshot, so all content is visible without JS.

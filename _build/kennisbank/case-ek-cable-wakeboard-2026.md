@@ -78,6 +78,8 @@ Kijktijd, landen, leeftijden en de piek in gelijktijdige kijkers zijn precies de
 
 Meer producties zie je op onze pagina met [werk](/werk).
 
+Hoe we deze aanpak inzetten voor andere wedstrijden op het water, zie je op de pagina [livestream voor watersport-events](/livestream-watersport).
+
 ## Veelgestelde vragen
 ### Waar was het EK Cable Wakeboard 2026 te zien?
 De wedstrijd was drie dagen live te zien op het YouTube-kanaal van de IWWF. De streams zijn daar ook terug te kijken.

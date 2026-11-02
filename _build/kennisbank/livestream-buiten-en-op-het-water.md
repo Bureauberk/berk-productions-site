@@ -68,6 +68,8 @@ Een stream die even stilvalt is minder erg dan een crew die zich in gevaar breng
 
 Bekijk ook onze complete gids over [een sportevent livestreamen](/kennisbank/sportevent-livestreamen) voor alle andere onderdelen van een productie.
 
+Organiseer je een wedstrijd op het water? Op onze pagina over [livestream voor watersport-events](/livestream-watersport) zie je in een korte video hoe we zo'n productie aanpakken, van locatiecheck tot aftercare.
+
 ## Veelgestelde vragen
 ### Kan een livestream buiten doorgaan als het regent?
 Ja, met regenhoezen voor de camera's en een droge plek voor de regie gaat een stream bij gewone regen gewoon door. Bij onweer stoppen we om veiligheidsredenen met camera's op hoge posities en met de drone.

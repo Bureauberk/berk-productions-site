@@ -80,6 +80,8 @@ Veel sportevents zijn buiten. Dat vraagt om een paar extra keuzes: waar staat de
 
 Een drone kan daar helpen. Bij het EK Cable Wakeboard werkte een drone als volgcamera boven het water. Meer over camera-posities, weer en afstand lees je in [livestreamen buiten en op het water](/kennisbank/livestream-buiten-en-op-het-water).
 
+Voor wakeboard, waterski en andere sporten op het water hebben we een aparte pagina: [livestream voor watersport-events](/livestream-watersport).
+
 ## Welk platform kies je?
 Voor de meeste sportevents is YouTube de logische keuze. Het is gratis te bekijken, werkt op telefoon, computer en tv, en YouTube raadt je stream aan bij mensen die nog nooit van je event hoorden. Bij het EK Cable Wakeboard kwam 44 tot 51% van de weergaven via die aanbevelingen.
 

@@ -129,7 +129,7 @@ import{a as o,b as d,c,d as h}from"./chunk-O3OTVWYO.js";var g=h.bind(o),r=class 
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px">
 <img src="/assets/73856d47736b3086e6728a2971a015f5.svg" alt="BERK" style="height: 72px; width: auto" />
 <div style="display: flex; flex-wrap: wrap; gap: 56px; font-size: 16px; line-height: 1.9">
-<div style="display: flex; flex-direction: column"><span class="eyebrow" style="color: #FFFFFF; margin-bottom: 8px">Diensten</span><a href="/diensten">Livestreams</a><a href="/diensten">Podcasts</a><a href="/diensten">Aftercare</a><a href="/diensten">Grote producties</a></div>
+<div style="display: flex; flex-direction: column"><span class="eyebrow" style="color: #FFFFFF; margin-bottom: 8px">Diensten</span><a href="/diensten">Livestreams</a><a href="/diensten">Podcasts</a><a href="/diensten">Aftercare</a><a href="/diensten">Grote producties</a><a href="/livestream-watersport">Watersport</a></div>
 <div style="display: flex; flex-direction: column"><span class="eyebrow" style="color: #FFFFFF; margin-bottom: 8px">BERK</span><a href="/prijscalculator">Prijscalculator</a><a href="/waarom-live">Waarom live</a><a href="/werk">Werk</a><a href="/over">Over</a><a href="/kennisbank">Kennisbank</a><a href="/contact">Contact</a></div>
 <div style="display: flex; flex-direction: column"><span class="eyebrow" style="color: #FFFFFF; margin-bottom: 8px">Contact</span><a href="mailto:wouter@berk.productions">wouter@berk.productions</a><a href="tel:+31655764678">+31 6 55 76 46 78</a><span>Apeldoorn</span></div>
 </div>

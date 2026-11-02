@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = join(ROOT, '_build/kennisbank');
+const LANDING = join(ROOT, '_build/landing');
 const OUT = join(ROOT, 'kennisbank');
 const SEO = JSON.parse(readFileSync(join(ROOT, '_build/seo.json'), 'utf8'));
 const SITE = SEO.site;
@@ -102,8 +103,11 @@ function markdown(md) {
   return { html: out.join('\n'), toc, faq: faq.filter((f) => f.a.length) };
 }
 
-function parse(file) {
-  const raw = readFileSync(join(SRC, file), 'utf8');
+const ARTICLE_KEYS = ['order', 'slug', 'cluster', 'keyword', 'title', 'description', 'h1', 'summary', 'cta', 'related'];
+const LANDING_KEYS = ['path', 'keyword', 'title', 'description', 'h1', 'eyebrow', 'intro', 'cta', 'related'];
+
+function parse(dir, file, keys) {
+  const raw = readFileSync(join(dir, file), 'utf8');
   const m = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
   if (!m) throw new Error(`${file}: missing frontmatter`);
   const fm = {};
@@ -111,13 +115,12 @@ function parse(file) {
     const kv = line.match(/^(\w+):\s*(.*)$/);
     if (kv) fm[kv[1]] = kv[2].trim();
   }
-  for (const k of ['order', 'slug', 'cluster', 'keyword', 'title', 'description', 'h1', 'summary', 'cta', 'related'])
-    if (!fm[k]) throw new Error(`${file}: frontmatter "${k}" missing`);
-  if (!CLUSTERS[fm.cluster]) throw new Error(`${file}: unknown cluster ${fm.cluster}`);
+  for (const k of keys) if (!fm[k]) throw new Error(`${file}: frontmatter "${k}" missing`);
+  if (fm.cluster && !CLUSTERS[fm.cluster]) throw new Error(`${file}: unknown cluster ${fm.cluster}`);
   if (!CTAS[fm.cta]) throw new Error(`${file}: unknown cta ${fm.cta}`);
   const body = markdown(m[2]);
   const words = m[2].split(/\s+/).filter(Boolean).length;
-  return { ...fm, order: +fm.order, related: fm.related.split(',').map((s) => s.trim()), date: fm.date || TODAY, words, ...body };
+  return { ...fm, order: +fm.order || 0, related: fm.related.split(',').map((s) => s.trim()), date: fm.date || TODAY, words, ...body };
 }
 
 // --- Shell taken from the prerendered /over page ---
@@ -178,11 +181,12 @@ const CSS = `
 .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
 .chips a{font-family:'Archivo',sans-serif;font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;border:2px solid #EFEFEF;padding:8px 12px;color:#EFEFEF}
 .chips a:hover{background:#FF5F57;border-color:#FF5F57;color:#161616}
+.kb-video{display:block;width:100%;height:auto;aspect-ratio:16 / 9;background:#161616;border:2px solid #EFEFEF;box-shadow:10px 10px 0 #FF5F57}
 .kb-cluster{scroll-margin-top:110px}
 .kb-cluster+.kb-cluster{margin-top:clamp(64px,7vw,104px)}
 `;
 
-function page({ path, title, description, jsonld, body }) {
+function page({ path, title, description, jsonld, body, ogType, ogImage }) {
   return `<!doctype html>
 <html lang="nl">
 <head>
@@ -193,8 +197,8 @@ function page({ path, title, description, jsonld, body }) {
 <link rel="canonical" href="${SITE}${path}">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
-<meta property="og:image" content="${SITE}${SEO.ogImage}">
-<meta property="og:type" content="${path === '/kennisbank' ? 'website' : 'article'}">
+<meta property="og:image" content="${SITE}${ogImage || SEO.ogImage}">
+<meta property="og:type" content="${ogType || (path === '/kennisbank' ? 'website' : 'article')}">
 <meta property="og:url" content="${SITE}${path}">
 <meta property="og:site_name" content="BERK Productions">
 <meta property="og:locale" content="nl_NL">
@@ -207,7 +211,7 @@ ${ldJson(jsonld)}
 <style>${baseCss}${CSS}</style>
 </head>
 <body>
-${siteOpen}${chrome}<main>
+${siteOpen}${path.startsWith('/kennisbank') ? chrome : chrome.replace('<a href="/kennisbank" aria-current="page"', '<a href="/kennisbank"')}<main>
 ${body}
 </main>${footer}</div>
 <script src="/js/kb.js" defer></script>
@@ -223,14 +227,15 @@ const card = (a) => `<a class="card" href="/kennisbank/${a.slug}"><span class="e
 const ctaBand = (c) => `<section style="background: #FF5F57; color: #161616; padding: clamp(56px, 6vw, 88px) 0"><div class="wrap" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 28px"><p class="h-black" style="margin: 0; font-size: clamp(28px, 3.4vw, 48px); line-height: 1; max-width: 900px">${esc(c.text)}</p><a class="btn" href="${c.href}" style="background: #161616; color: #FFFFFF">${esc(c.label)} <span aria-hidden="true">→</span></a></div></section>`;
 
 // --- Build ---
-const articles = readdirSync(SRC).filter((f) => f.endsWith('.md') && !f.startsWith('_')).map(parse).sort((a, b) => a.order - b.order);
+const articles = readdirSync(SRC).filter((f) => f.endsWith('.md') && !f.startsWith('_')).map((f) => parse(SRC, f, ARTICLE_KEYS)).sort((a, b) => a.order - b.order);
+const landings = existsSync(LANDING) ? readdirSync(LANDING).filter((f) => f.endsWith('.md')).map((f) => parse(LANDING, f, LANDING_KEYS)) : [];
 const bySlug = Object.fromEntries(articles.map((a) => [a.slug, a]));
 const problems = [];
-for (const a of articles) {
-  for (const r of a.related) if (!bySlug[r]) problems.push(`${a.slug}: related "${r}" does not exist`);
+for (const a of [...articles, ...landings]) {
+  for (const r of a.related) if (!bySlug[r]) problems.push(`${a.slug || a.path}: related "${r}" does not exist`);
   for (const [, href] of a.html.matchAll(/href="(\/[^"#]*)/g)) {
-    const ok = href.startsWith('/kennisbank/') ? bySlug[href.slice(12)] : ['/', '/kennisbank', ...Object.keys(SEO.pages)].includes(href);
-    if (!ok) problems.push(`${a.slug}: broken internal link ${href}`);
+    const ok = href.startsWith('/kennisbank/') ? bySlug[href.slice(12)] : ['/', '/kennisbank', ...landings.map((l) => l.path), ...Object.keys(SEO.pages)].includes(href);
+    if (!ok) problems.push(`${a.slug || a.path}: broken internal link ${href}`);
   }
 }
 if (problems.length) { console.error(problems.join('\n')); process.exit(1); }
@@ -274,9 +279,33 @@ ${ctaBand(CTAS.contact)}`;
   writeFileSync(join(OUT, 'index.html'), page({ path, title, description, jsonld, body }));
 }
 
-// Sitemap: replace the kennisbank block
-const sm = join(ROOT, 'sitemap.xml');
-const urls = ['/kennisbank', ...articles.map((a) => `/kennisbank/${a.slug}`)].map((p) => `<url><loc>${SITE}${p}</loc></url>`).join('\n');
-writeFileSync(sm, readFileSync(sm, 'utf8').replace(/<url><loc>[^<]*\/kennisbank[^<]*<\/loc><\/url>\n/g, '').replace('</urlset>', `${urls}\n</urlset>`));
 
-console.table(articles.map((a) => ({ slug: a.slug, words: a.words, title: (a.title + ' | BERK Productions').length, desc: a.description.length, faq: a.faq.length, links: (a.html.match(/href="\//g) || []).length })));
+// Landing pages (static service pages with an optional video), e.g. /livestream-watersport
+for (const l of landings) {
+  const crumbs = [['Home', '/'], ['Diensten', '/diensten'], [l.h1, l.path]];
+  const url = SITE + l.path;
+  const jsonld = [
+    { '@context': 'https://schema.org', '@type': 'Service', '@id': url + '#service', name: l.h1, serviceType: l.keyword, description: l.description, url, provider: ORG, areaServed: ['NL', 'BE', 'DE'], inLanguage: 'nl' },
+    { '@context': 'https://schema.org', ...crumbsLd(crumbs) },
+  ];
+  if (l.video) jsonld.push({ '@context': 'https://schema.org', '@type': 'VideoObject', name: l.videoName || l.h1, description: l.videoDescription || l.description, thumbnailUrl: SITE + l.poster, contentUrl: SITE + l.video, uploadDate: l.videoDate || l.date, duration: l.videoDuration, inLanguage: 'nl', publisher: ORG });
+  if (l.faq.length) jsonld.push({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: l.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a.join(' ') } })) });
+  const video = l.video ? `<section style="background: #000000; padding: clamp(40px, 5vw, 72px) 0"><div class="wrap"><figure style="margin: 0 auto; max-width: 1200px"><video class="kb-video" controls playsinline preload="none" poster="${l.poster}" aria-label="${esc(l.videoName || l.h1)}"><source src="${l.video}" type="video/mp4"></video><figcaption class="kb-meta" style="margin-top: 16px">${esc(l.videoName || '')}</figcaption></figure></div></section>` : '';
+  const body = `<section class="kb-hero"><div class="wrap">${crumbsHtml(crumbs)}<div style="display: flex; flex-direction: column; gap: 24px; max-width: 1100px"><span class="eyebrow" style="color: #A8A8A8"><span class="dot"></span>${esc(l.eyebrow)}</span><h1 class="h-black" style="font-size: clamp(34px, 7vw, 108px); line-height: 0.95; color: #FFFFFF; text-shadow: 6px 6px 0 #000">${esc(l.h1)}</h1><p style="margin: 0; max-width: 680px; font-size: 20px; line-height: 1.6; color: #CFCFCF">${inline(l.intro)}</p><div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 8px"><a class="btn" href="/contact">Vraag een offerte aan <span aria-hidden="true">→</span></a><a class="btn" href="/prijscalculator" style="background: #161616; color: #FFFFFF; border-color: #EFEFEF">Bereken je prijs</a></div></div></div></section>
+${video}
+<section class="kb-light"><div class="wrap kb-grid"><article class="prose">
+${l.html}
+</article><nav class="toc" aria-label="Inhoud"><span class="eyebrow">Inhoud</span>${l.toc.map((t) => `<a href="#${t.id}">${esc(t.text)}</a>`).join('')}</nav></div></section>
+${ctaBand(CTAS[l.cta])}
+<section style="padding: clamp(80px, 9vw, 140px) 0"><div class="wrap" style="display: flex; flex-direction: column; gap: 40px"><div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px"><h2 class="h-black" style="font-size: clamp(36px, 4.4vw, 64px); line-height: 0.95; color: #FFFFFF">Lees verder</h2><a class="kb-meta" href="/kennisbank" style="color: #FF5F57">Naar de kennisbank →</a></div><div class="cards">${l.related.map((r) => card(bySlug[r])).join('')}</div></div></section>`;
+  const dir = join(ROOT, l.path.slice(1));
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, 'index.html'), page({ path: l.path, title: `${l.title} | BERK Productions`, description: l.description, jsonld, body, ogType: 'website', ogImage: l.poster }));
+}
+
+// Sitemap: replace the kennisbank and landing block
+const sm = join(ROOT, 'sitemap.xml');
+const urls = [...landings.map((l) => l.path), '/kennisbank', ...articles.map((a) => `/kennisbank/${a.slug}`)].map((p) => `<url><loc>${SITE}${p}</loc></url>`).join('\n');
+writeFileSync(sm, readFileSync(sm, 'utf8').replace(new RegExp(`<url><loc>[^<]*(/kennisbank|${landings.map((l) => l.path).join('|') || '/kennisbank'})[^<]*</loc></url>\\n`, 'g'), '').replace('</urlset>', `${urls}\n</urlset>`));
+
+console.table([...landings, ...articles].map((a) => ({ slug: a.slug || a.path, words: a.words, title: (a.title + ' | BERK Productions').length, desc: a.description.length, faq: a.faq.length, links: (a.html.match(/href="\//g) || []).length })));

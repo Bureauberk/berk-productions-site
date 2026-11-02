@@ -74,5 +74,6 @@
 
   const c = read();
   if (c === 'granted') loadClarity();
-  else if (c === null) open();
+  // Wait for the web fonts, so the banner doesn't reflow (and count as a layout shift) when they swap in.
+  else if (c === null) (document.fonts ? document.fonts.ready : Promise.resolve()).then(open);
 })();

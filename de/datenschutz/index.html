@@ -111,6 +111,35 @@ h1,h2,h3,.h-black{text-wrap:balance;hyphens:manual;-webkit-hyphens:manual;overfl
 .chips a:hover{background:#FF5F57;border-color:#FF5F57;color:#161616}
 .kb-video{display:block;width:100%;height:auto;aspect-ratio:16 / 9;background:#161616;border:2px solid #EFEFEF;box-shadow:10px 10px 0 #FF5F57}
 .kb-cluster{scroll-margin-top:110px}
+.p-sec{padding:clamp(64px,8vw,120px) 0}
+.p-head{font-size:clamp(32px,4.6vw,64px);line-height:.95;margin:0 0 clamp(28px,4vw,48px)}
+.p-lead{margin:0;max-width:760px;font-size:clamp(19px,1.6vw,22px);line-height:1.6}
+.p-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:28px}
+.p-grid .promise{padding:28px}
+.p-grid h3{font-family:'Archivo Black','Archivo',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(21px,2vw,26px);line-height:1.05;margin:0;color:#161616;hyphens:auto;-webkit-hyphens:auto}
+.p-grid p{margin:0;font-size:17px;line-height:1.55;color:#3C3C3C}
+.p-num{font-family:'Archivo Black','Archivo',sans-serif;font-size:18px;color:#B3261E}
+.p-gets{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:clamp(28px,4vw,56px)}
+.p-gets h3{font-family:'Archivo Black','Archivo',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(24px,2.4vw,32px);line-height:1;margin:0 0 12px;color:#FFFFFF}
+.p-gets p{margin:0;font-size:18px;line-height:1.6;color:#CFCFCF}
+.p-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:28px;margin:clamp(32px,4vw,48px) 0}
+.p-stat b{display:block;font-family:'Archivo Black','Archivo',sans-serif;font-weight:400;font-size:clamp(48px,6vw,84px);line-height:.9;color:#FF5F57}
+.p-stat span{display:block;margin-top:8px;font-size:17px;line-height:1.4;color:#CFCFCF}
+.yt{position:relative;aspect-ratio:16 / 9;background:#161616;border:2px solid #EFEFEF;box-shadow:10px 10px 0 #FF5F57;scroll-margin-top:110px}
+.yt button{all:unset;position:absolute;inset:0;cursor:pointer;display:block}
+.yt img,.yt iframe{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;display:block}
+.yt img{filter:brightness(.6)}
+.yt-btn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:inline-flex;align-items:center;gap:12px;white-space:nowrap;min-height:56px;padding:0 26px;font-family:'Archivo',sans-serif;font-weight:700;font-size:15px;letter-spacing:.08em;text-transform:uppercase;background:#FF5F57;color:#161616;border:2px solid #161616;box-shadow:5px 5px 0 #000}
+.yt button:hover .yt-btn,.yt button:focus-visible .yt-btn{background:#FFFFFF}
+.yt button:focus-visible{outline:3px solid #FF5F57;outline-offset:4px}
+.yt-note{margin:16px 0 0;font-size:14px;color:#8C8C8C}
+.p-price{margin-top:auto;font-family:'Archivo Black','Archivo',sans-serif;font-size:clamp(24px,2.4vw,30px);color:#161616}
+.p-faq{max-width:820px}
+.p-faq h3{font-family:'Archivo',sans-serif;font-weight:700;font-size:21px;margin:0 0 6px;color:#161616}
+.p-faq p{margin:0 0 28px;font-size:18px;line-height:1.6;color:#3C3C3C}
+.p-cat{text-decoration:none}
+.p-more{margin-top:auto;font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#B3261E}
+.p-cat:hover{transform:translate(-4px,-4px);box-shadow:12px 12px 0 #FF5F57}
 .kb-cluster+.kb-cluster{margin-top:clamp(64px,7vw,104px)}
 </style>
 </head>
@@ -137,11 +166,13 @@ h1,h2,h3,.h-black{text-wrap:balance;hyphens:manual;-webkit-hyphens:manual;overfl
 <p>Wenn Sie im Cookie-Banner zustimmen, nutzen wir Microsoft Clarity, um zu sehen, wie Besucher die Website nutzen. Clarity erfasst Klicks, Scrollen und Mausbewegungen, erstellt Sitzungsaufzeichnungen und Heatmaps und verarbeitet Daten zu Gerät, Browser und ungefährem Standort. Texte, die Sie in Formulare eingeben, blendet Clarity standardmäßig aus. Laut Microsoft werden Sitzungsaufzeichnungen 30 Tage und zusammengefasste Daten wie Heatmaps bis zu 13 Monate gespeichert.</p>
 <p>Clarity setzt dafür Cookies, unter anderem _clck und _clsk von Clarity selbst und Cookies von Microsoft wie MUID. Sie bleiben bis zu einem Jahr gespeichert. Ohne Ihre Einwilligung laden wir Clarity nicht, und diese Cookies werden nicht gesetzt. Rechtsgrundlage ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Sie können sie jederzeit über die <a href="#cookies">Cookie-Einstellungen</a> unten auf jeder Seite widerrufen.</p>
 <p>Die Website selbst setzt keine Cookies. Wir speichern nur Ihre Entscheidung zu Clarity, im Speicher Ihres eigenen Browsers.</p>
+<h3 id="videos-von-youtube">Videos von YouTube</h3>
+<p>Auf unseren Partnerseiten ist ein YouTube-Video eingebunden. Es lädt erst, wenn Sie auf Abspielen klicken, über youtube-nocookie.com. Erst dann erhält Google (YouTube) Daten wie Ihre IP-Adresse, und YouTube kann Cookies oder ähnliche Technologien einsetzen. Ohne Klick wird nichts an YouTube übertragen.</p>
 <h3 id="produktionen">Produktionen</h3>
 <p>Bei Livestreams und Aufnahmen filmen wir im Auftrag des Veranstalters. Der Veranstalter informiert Teilnehmende und Publikum darüber, dass gefilmt und übertragen wird.</p>
 <h2 id="mit-wem-wir-daten-teilen">Mit wem wir Daten teilen</h2>
 <p>Wir geben Daten nur an Partner weiter, die wir für unsere Leistung benötigen:</p>
-<ul><li>Vercel, für das Hosting der Website.</li><li>FormSubmit, für die Weiterleitung von Formularen.</li><li>Unser E-Mail-Anbieter, für den Empfang und Versand von E-Mails.</li><li>Google, für die Schriftarten.</li><li>Microsoft, für Clarity, nur mit Ihrer Einwilligung.</li><li>Unser Steuerberater und die niederländische Steuerbehörde, für die Buchhaltung von Kunden.</li></ul>
+<ul><li>Vercel, für das Hosting der Website.</li><li>FormSubmit, für die Weiterleitung von Formularen.</li><li>Unser E-Mail-Anbieter, für den Empfang und Versand von E-Mails.</li><li>Google, für die Schriftarten und, wenn Sie ein Video abspielen, YouTube.</li><li>Microsoft, für Clarity, nur mit Ihrer Einwilligung.</li><li>Unser Steuerberater und die niederländische Steuerbehörde, für die Buchhaltung von Kunden.</li></ul>
 <p>Einige dieser Partner haben ihren Sitz in den USA. Daten verlassen den Europäischen Wirtschaftsraum nur mit geeigneten Garantien, etwa dem EU-US Data Privacy Framework oder den Standardvertragsklauseln der Europäischen Kommission.</p>
 <h2 id="wie-lange-wir-daten-speichern">Wie lange wir Daten speichern</h2>
 <ul><li>Anfragen und Nachrichten, aus denen kein Auftrag entsteht: höchstens zwei Jahre.</li><li>Kundendaten: sieben Jahre, wegen der niederländischen steuerlichen Aufbewahrungspflicht.</li><li>Clarity-Daten: wie oben beschrieben, nach den Fristen von Microsoft.</li></ul>

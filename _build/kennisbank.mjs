@@ -11,6 +11,8 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = join(ROOT, '_build/kennisbank');
 const LANDING = join(ROOT, '_build/landing');
 const LEGAL = join(ROOT, '_build/legal');
+const PARTNERS = JSON.parse(readFileSync(join(ROOT, '_build/partners.json'), 'utf8'));
+const partnerPaths = ['/partners', ...PARTNERS.categories.map((c) => `/partners/${c.slug}`)];
 const OUT = join(ROOT, 'kennisbank');
 const SEO = JSON.parse(readFileSync(join(ROOT, '_build/seo.json'), 'utf8'));
 const SITE = SEO.site;
@@ -195,10 +197,39 @@ const CSS = `
 .chips a:hover{background:#FF5F57;border-color:#FF5F57;color:#161616}
 .kb-video{display:block;width:100%;height:auto;aspect-ratio:16 / 9;background:#161616;border:2px solid #EFEFEF;box-shadow:10px 10px 0 #FF5F57}
 .kb-cluster{scroll-margin-top:110px}
+.p-sec{padding:clamp(64px,8vw,120px) 0}
+.p-head{font-size:clamp(32px,4.6vw,64px);line-height:.95;margin:0 0 clamp(28px,4vw,48px)}
+.p-lead{margin:0;max-width:760px;font-size:clamp(19px,1.6vw,22px);line-height:1.6}
+.p-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:28px}
+.p-grid .promise{padding:28px}
+.p-grid h3{font-family:'Archivo Black','Archivo',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(21px,2vw,26px);line-height:1.05;margin:0;color:#161616;hyphens:auto;-webkit-hyphens:auto}
+.p-grid p{margin:0;font-size:17px;line-height:1.55;color:#3C3C3C}
+.p-num{font-family:'Archivo Black','Archivo',sans-serif;font-size:18px;color:#B3261E}
+.p-gets{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:clamp(28px,4vw,56px)}
+.p-gets h3{font-family:'Archivo Black','Archivo',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(24px,2.4vw,32px);line-height:1;margin:0 0 12px;color:#FFFFFF}
+.p-gets p{margin:0;font-size:18px;line-height:1.6;color:#CFCFCF}
+.p-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:28px;margin:clamp(32px,4vw,48px) 0}
+.p-stat b{display:block;font-family:'Archivo Black','Archivo',sans-serif;font-weight:400;font-size:clamp(48px,6vw,84px);line-height:.9;color:#FF5F57}
+.p-stat span{display:block;margin-top:8px;font-size:17px;line-height:1.4;color:#CFCFCF}
+.yt{position:relative;aspect-ratio:16 / 9;background:#161616;border:2px solid #EFEFEF;box-shadow:10px 10px 0 #FF5F57;scroll-margin-top:110px}
+.yt button{all:unset;position:absolute;inset:0;cursor:pointer;display:block}
+.yt img,.yt iframe{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;display:block}
+.yt img{filter:brightness(.6)}
+.yt-btn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:inline-flex;align-items:center;gap:12px;white-space:nowrap;min-height:56px;padding:0 26px;font-family:'Archivo',sans-serif;font-weight:700;font-size:15px;letter-spacing:.08em;text-transform:uppercase;background:#FF5F57;color:#161616;border:2px solid #161616;box-shadow:5px 5px 0 #000}
+.yt button:hover .yt-btn,.yt button:focus-visible .yt-btn{background:#FFFFFF}
+.yt button:focus-visible{outline:3px solid #FF5F57;outline-offset:4px}
+.yt-note{margin:16px 0 0;font-size:14px;color:#8C8C8C}
+.p-price{margin-top:auto;font-family:'Archivo Black','Archivo',sans-serif;font-size:clamp(24px,2.4vw,30px);color:#161616}
+.p-faq{max-width:820px}
+.p-faq h3{font-family:'Archivo',sans-serif;font-weight:700;font-size:21px;margin:0 0 6px;color:#161616}
+.p-faq p{margin:0 0 28px;font-size:18px;line-height:1.6;color:#3C3C3C}
+.p-cat{text-decoration:none}
+.p-more{margin-top:auto;font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#B3261E}
+.p-cat:hover{transform:translate(-4px,-4px);box-shadow:12px 12px 0 #FF5F57}
 .kb-cluster+.kb-cluster{margin-top:clamp(64px,7vw,104px)}
 `;
 
-function page({ path, title, description, jsonld, body, ogType, ogImage, lang = 'nl', alts, current }) {
+function page({ path, title, description, jsonld, body, ogType, ogImage, lang = 'nl', alts, current, scripts = [] }) {
   const shell = SHELLS[lang];
   const translated = alts && new Set(Object.values(alts)).size > 1 && Object.values(alts).every((a) => !['/', '/en', '/de'].includes(a));
   const hreflang = translated ? Object.entries(alts).map(([l, p]) => `<link rel="alternate" hreflang="${l}" href="${SITE}${p}">`).join('') + `<link rel="alternate" hreflang="x-default" href="${SITE}${alts.nl}">\n` : '';
@@ -230,7 +261,7 @@ ${clarityTag(SEO.clarity)}
 ${shell.siteOpen}${chromeFor(lang, alts || { nl: path.startsWith('/kennisbank') ? '/kennisbank' : path, en: '/en', de: '/de' }, current === undefined ? (path.startsWith('/kennisbank') ? '/kennisbank' : null) : current)}<main>
 ${body}
 </main>${shell.footer}</div>
-<script src="/js/kb.js" defer></script>
+<script src="/js/kb.js" defer></script>${scripts.map((src) => `\n<script src="${src}" defer></script>`).join('')}
 </body>
 </html>
 `;
@@ -251,7 +282,7 @@ const problems = [];
 for (const a of [...articles, ...landings, ...legals]) {
   for (const r of a.related) if (!bySlug[r]) problems.push(`${a.slug || a.path}: related "${r}" does not exist`);
   for (const [, href] of a.html.matchAll(/href="(\/[^"#]*)/g)) {
-    const ok = href.startsWith('/kennisbank/') ? bySlug[href.slice(12)] : ['/', '/kennisbank', ...[...landings, ...legals].map((l) => l.path), ...Object.keys(SEO.pages)].includes(href);
+    const ok = href.startsWith('/kennisbank/') ? bySlug[href.slice(12)] : ['/', '/kennisbank', ...partnerPaths, ...[...landings, ...legals].map((l) => l.path), ...Object.keys(SEO.pages)].includes(href);
     if (!ok) problems.push(`${a.slug || a.path}: broken internal link ${href}`);
   }
 }
@@ -341,9 +372,44 @@ ${l.html}
   writeFileSync(join(dir, 'index.html'), page({ path: l.path, title: `${l.title} | BERK Productions`, description: l.description, jsonld, body, ogType: 'website', lang: l.lang, alts, current: null }));
 }
 
-// Sitemap: replace the kennisbank, landing and legal block
+// Partner pages for brands (/partners and one page per sport), all content from _build/partners.json
+{
+  const P = PARTNERS, S = P.shared;
+  const mailto = (name) => `mailto:${P.email}?subject=${encodeURIComponent(`Partnerschap livestream - ${name}`)}`;
+  const sec = (bg, inner) => `<section class="p-sec" style="${bg}"><div class="wrap">${inner}</div></section>`;
+  const LIGHT = 'background: #EFEFEF; color: #161616', DARK = 'background: #161616; color: #EFEFEF', BLACK = 'background: #000000; color: #EFEFEF';
+  const head = (text, color = '#161616') => `<h2 class="h-black p-head" style="color: ${color}">${esc(text)}</h2>`;
+  const build = (e, isOverview) => {
+    const path = isOverview ? '/partners' : `/partners/${e.slug}`;
+    const crumbs = isOverview ? [['Home', '/'], ['Partners', path]] : [['Home', '/'], ['Partners', '/partners'], [e.name, path]];
+    const hero = `<section class="kb-hero"><div class="wrap">${crumbsHtml(crumbs)}<div style="display: flex; flex-direction: column; gap: 24px; max-width: 1100px"><span class="eyebrow" style="color: #A8A8A8"><span class="dot"></span><span id="p-kicker">${esc(e.kicker)}</span></span><h1 class="h-black" style="font-size: clamp(34px, 6.4vw, 96px); line-height: 0.95; color: #FFFFFF; text-shadow: 6px 6px 0 #000">${esc(e.h1)}</h1><p style="margin: 0; max-width: 720px; font-size: 20px; line-height: 1.6; color: #CFCFCF">${esc(e.intro)}</p>${e.events ? `<p class="kb-meta" style="margin: 0; max-width: 720px; line-height: 1.6">Events: ${esc(e.events)}</p>` : ''}<div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 8px"><a class="btn" href="${mailto(e.name)}">Plan een gesprek <span aria-hidden="true">→</span></a><a class="btn" href="#livestream" style="background: #161616; color: #FFFFFF; border-color: #EFEFEF">Bekijk de livestream</a></div></div></div></section>`;
+    const how = sec(LIGHT, `${head(S.howHead)}<p class="p-lead" style="color: #2A2A2A">${esc(S.how)}</p>`);
+    const middle = isOverview
+      ? sec(LIGHT, `${head(e.gridHead)}<div class="p-grid">${P.categories.map((c) => `<a class="promise p-cat" href="/partners/${c.slug}"><h3>${esc(c.name)}</h3><p>${esc(c.events)}</p><span class="p-more">Bekijk de mogelijkheden →</span></a>`).join('')}</div>`)
+      : sec(LIGHT, `${head(S.ideasHead)}<div class="p-grid">${e.ideas.map((i, n) => `<div class="promise"><span class="p-num">0${n + 1}</span><h3>${esc(i.title)}</h3><p>${esc(i.text)}</p></div>`).join('')}</div>`);
+    const gets = sec(DARK, `${head(S.getsHead, '#FFFFFF')}<div class="p-gets">${S.gets.map((g) => `<div><h3>${esc(g.title)}</h3><p>${esc(g.text)}</p></div>`).join('')}</div>`);
+    const proof = sec(BLACK, `${head(S.proofHead, '#FFFFFF')}<p class="p-lead" style="color: #CFCFCF">${esc(S.proof)}</p><div class="p-stats">${S.stats.map((st) => `<div class="p-stat"><b>${esc(st.value)}</b><span>${esc(st.label)}</span></div>`).join('')}</div><div class="yt" id="livestream"><button type="button" data-yt="${S.youtube.id}" data-title="${esc(S.youtube.title)}" aria-label="Speel de livestream af: ${esc(S.youtube.title)}"><img src="${S.youtube.poster}" alt="${esc(S.youtube.posterAlt)}" loading="lazy" decoding="async" width="1440" height="1080"><span class="yt-btn"><span aria-hidden="true">▶</span> Bekijk de livestream</span></button></div><p class="yt-note">De video komt van YouTube en laadt pas als je op afspelen klikt.</p>`);
+    const packages = sec(LIGHT, `${head(S.packagesHead)}<div class="p-grid">${S.packages.map((pk) => `<div class="promise"><h3>${esc(pk.name)}</h3><p>${esc(pk.text)}</p><span class="p-price">${esc(pk.price)}</span></div>`).join('')}</div><p style="margin: 28px 0 0; font-size: 16px; color: #3C3C3C">${esc(S.packagesNote)}</p>`);
+    const pilot = `<section style="background: #FF5F57; color: #161616; padding: clamp(64px, 7vw, 104px) 0"><div class="wrap" style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start"><h2 class="h-black" style="margin: 0; font-size: clamp(36px, 5vw, 72px); line-height: 0.95">${esc(S.pilotHead)}</h2><p style="margin: 0; max-width: 720px; font-size: 21px; line-height: 1.55">${esc(e.pilot)} ${esc(S.pilotAsk)}</p><a class="btn" href="${mailto(e.name)}" style="background: #161616; color: #FFFFFF">Plan een gesprek <span aria-hidden="true">→</span></a><p style="margin: 0; font-size: 16px">${esc(P.contactLine)}</p></div></section>`;
+    const faq = sec(LIGHT, `${head('Veelgestelde vragen')}<div class="p-faq">${S.faq.map((f) => `<h3>${esc(f.q)}</h3><p>${esc(f.a)}</p>`).join('')}</div>`);
+    const jsonld = [
+      { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + path + '#page', url: SITE + path, name: e.metaTitle, description: e.metaDescription, inLanguage: 'nl', isPartOf: { '@type': 'WebSite', name: 'BERK Productions', url: SITE + '/' }, publisher: ORG },
+      { '@context': 'https://schema.org', ...crumbsLd(crumbs) },
+      { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: S.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+    ];
+    const body = `<div id="partner" data-cat="${e.slug || 'overzicht'}">${hero}${how}${middle}${gets}${proof}${packages}${pilot}${faq}</div>`;
+    const dir = join(ROOT, path.slice(1));
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(join(dir, 'index.html'), page({ path, title: e.metaTitle, description: e.metaDescription, jsonld, body, ogType: 'website', ogImage: P.ogImage, scripts: ['/js/partners.js'] }));
+  };
+  if (existsSync(join(ROOT, 'partners'))) rmSync(join(ROOT, 'partners'), { recursive: true });
+  build(P.overview, true);
+  for (const c of P.categories) build(c, false);
+}
+
+// Sitemap: replace the kennisbank, landing, legal and partner block
 const sm = join(ROOT, 'sitemap.xml');
-const urls = [...landings.map((l) => l.path), ...legals.map((l) => l.path), '/kennisbank', ...articles.map((a) => `/kennisbank/${a.slug}`)].map((p) => `<url><loc>${SITE}${p}</loc></url>`).join('\n');
-writeFileSync(sm, readFileSync(sm, 'utf8').replace(new RegExp(`<url><loc>[^<]*(/kennisbank|${[...landings, ...legals].map((l) => l.path).join('|') || '/kennisbank'})[^<]*</loc></url>\\n`, 'g'), '').replace('</urlset>', `${urls}\n</urlset>`));
+const urls = [...landings.map((l) => l.path), ...legals.map((l) => l.path), ...partnerPaths, '/kennisbank', ...articles.map((a) => `/kennisbank/${a.slug}`)].map((p) => `<url><loc>${SITE}${p}</loc></url>`).join('\n');
+writeFileSync(sm, readFileSync(sm, 'utf8').replace(new RegExp(`<url><loc>[^<]*(/kennisbank|${['/partners', ...[...landings, ...legals].map((l) => l.path)].join('|')})[^<]*</loc></url>\\n`, 'g'), '').replace('</urlset>', `${urls}\n</urlset>`));
 
 console.table([...legals, ...landings, ...articles].map((a) => ({ slug: a.slug || a.path, words: a.words, title: (a.title + ' | BERK Productions').length, desc: a.description.length, faq: a.faq.length, links: (a.html.match(/href="\//g) || []).length })));

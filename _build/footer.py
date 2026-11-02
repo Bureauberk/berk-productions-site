@@ -11,7 +11,7 @@ T = {
         cols=[
             ('Diensten', [('/diensten', 'Livestreams'), ('/diensten', 'Podcasts'), ('/diensten', 'Grote producties'), ('/diensten', 'Aftercare'), ('/livestream-watersport', 'Watersport-livestream')]),
             ('Kennisbank', [('/kennisbank/wat-kost-een-livestream', 'Wat kost een livestream?'), ('/kennisbank/hoeveel-internet-voor-livestream', 'Hoeveel internet heb je nodig?'), ('/kennisbank/sportevent-livestreamen', 'Je sportevent livestreamen'), ('/kennisbank/case-ek-cable-wakeboard-2026', 'Case: EK Cable Wakeboard'), ('/kennisbank', 'Alle artikelen →')]),
-            ('BERK', [('/prijscalculator', 'Prijscalculator'), ('/waarom-live', 'Waarom live'), ('/werk', 'Werk'), ('/over', 'Over'), ('/contact', 'Contact')]),
+            ('BERK', [('/prijscalculator', 'Prijscalculator'), ('/waarom-live', 'Waarom live'), ('/werk', 'Werk'), ('/over', 'Over'), ('/partners', 'Partners'), ('/contact', 'Contact')]),
         ],
         promise_head='Zo werken we',
         promises=['Offerte binnen twee werkdagen', 'Vaste prijs, testdag vooraf', 'De beelden zijn van jou', 'Geen jaarcontract'],

@@ -46,6 +46,10 @@ Clarity zet daarvoor cookies, onder meer _clck en _clsk van Clarity zelf en cook
 
 Zelf plaatst deze website geen cookies. We onthouden alleen je keuze over Clarity, in de opslag van je eigen browser.
 
+### Video's van YouTube
+
+Op onze partnerpagina's staat een video van YouTube. Die laadt pas als je op afspelen klikt, via youtube-nocookie.com. Pas dan ontvangt Google (YouTube) gegevens zoals je IP-adres, en kan YouTube cookies of vergelijkbare technieken gebruiken. Klik je niet, dan gaat er niets naar YouTube.
+
 ### Producties
 
 Bij livestreams en opnames filmen we in opdracht van de organisator van het event. De organisator informeert deelnemers en publiek dat er gefilmd en uitgezonden wordt. Meer daarover lees je in ons artikel over [beeldrecht, AVG en muziek bij een livestream](/kennisbank/beeldrecht-avg-muziek-livestream).
@@ -57,7 +61,7 @@ We delen gegevens alleen met partijen die we nodig hebben om onze dienst te leve
 - Vercel, voor de hosting van de website.
 - FormSubmit, voor het doorsturen van formulieren.
 - Onze e-mailprovider, voor het ontvangen en versturen van mail.
-- Google, voor de lettertypes.
+- Google, voor de lettertypes en, als je een video afspeelt, YouTube.
 - Microsoft, voor Clarity, alleen met jouw toestemming.
 - Onze boekhouder en de Belastingdienst, voor de administratie van klanten.
 

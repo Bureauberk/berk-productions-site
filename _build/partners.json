@@ -1,0 +1,137 @@
+{
+  "ogImage": "/assets/partners-og.jpg",
+  "email": "wouter@berk.productions",
+  "contactLine": "Wouter Henneberke · BERK Productions · wouter@berk.productions",
+  "shared": {
+    "howHead": "Hoe het werkt",
+    "how": "Wij maken professionele livestreams van actiesport-events. Het merk betaalt de productie, de organisator krijgt de stream gratis, en het merk krijgt het podium, het bereik en alle content. Bij een eigen event van het merk zetten wij de complete uitzending neer op het kanaal van het merk.",
+    "ideasHead": "Zo komt jullie merk in beeld",
+    "getsHead": "Wat jullie krijgen",
+    "gets": [
+      { "title": "Live in beeld", "text": "Een multicam-livestream met replays en live graphics. Het merk zit in de uitzending zelf: in de titel, de graphics en een eigen blok." },
+      { "title": "Clips binnen 24 uur", "text": "Na afloop een clip per rider, klaar voor socials. Content die het merk zelf bezit en direct inzet." },
+      { "title": "Rapport met cijfers", "text": "Na elk event een helder rapport: kijkers, kijktijd en het bereik van de clips." }
+    ],
+    "proofHead": "Wat we al hebben laten zien",
+    "proof": "In oktober 2026 produceerden we de IWWF Europe & Africa Open Cable Wake Championships in Knokke-Heist, drie dagen live op het YouTube-kanaal van de IWWF.",
+    "stats": [
+      { "value": "27.500", "label": "weergaven tijdens de livestreams" },
+      { "value": "3", "label": "dagen live" },
+      { "value": "6", "label": "camera's, met instant replay en live graphics" }
+    ],
+    "youtube": { "id": "VpUZN8ngSGs", "title": "Livestream IWWF Europe & Africa Open Cable Wake Championships 2026, Knokke-Heist", "poster": "/assets/43961b6008b5434aee2fd74d9a674b26.webp", "posterAlt": "Cameraman van BERK aan de kabelbaan in Knokke-Heist" },
+    "packagesHead": "Pakketten",
+    "packages": [
+      { "name": "Presenting partner", "text": "\"Presented by\" jullie merk bij één event: naam in de titel en graphics, een eigen blok in de stream, clips per rider en een rapport.", "price": "vanaf € 5.000" },
+      { "name": "Merkkanaal", "text": "Alles van presenting partner, en de stream gaat live op het eigen kanaal van het merk. Het publiek en de kijkcijfers komen bij het merk terecht.", "price": "vanaf € 7.500" },
+      { "name": "Seizoenspartner", "text": "Vaste partner van meerdere events in één seizoen, met terugkerende blokken en doorlopende content.", "price": "vanaf € 18.000" }
+    ],
+    "packagesNote": "Prijzen excl. btw. De precieze invulling stemmen we af op het event en jullie doelen.",
+    "pilotHead": "Begin met één pilot",
+    "pilotAsk": "Zullen we daar 20 tot 30 minuten over bellen?",
+    "faq": [
+      { "q": "Wie regelt het event?", "a": "De organisator. Wij doen de complete live-productie; het merk hoeft zelf niets te organiseren." },
+      { "q": "Op welk kanaal komt de stream?", "a": "Op het kanaal van de organisator, of bij het pakket Merkkanaal op het eigen kanaal van het merk." },
+      { "q": "Wat als er geen internet is op locatie?", "a": "Dan nemen we zelf Starlink mee." },
+      { "q": "Kunnen we klein beginnen?", "a": "Ja. We starten graag met één event als pilot, en evalueren daarna samen het rapport." }
+    ]
+  },
+  "overview": {
+    "slug": "",
+    "name": "Algemeen",
+    "kicker": "Partners",
+    "h1": "Jullie merk live in de actiesport",
+    "intro": "Van cable contests tot rail jams: wij zenden actiesport-events live uit met meerdere camera's, replays en graphics. Jullie merk zit in de uitzending zelf. Kies hieronder jullie sport en lees hoe dat werkt.",
+    "gridHead": "Kies jullie sport",
+    "pilot": "Begin met één event als pilot.",
+    "metaTitle": "Partner worden van actiesport-livestreams | BERK Productions",
+    "metaDescription": "Sponsor een actiesport-livestream: wakeboard, kite, snow-wake, skate, BMX, surf en SUP. Jullie merk in de uitzending, clips per rider en een rapport."
+  },
+  "categories": [
+    {
+      "slug": "wake",
+      "name": "Cable & wakeboard",
+      "kicker": "Partners · Cable & wakeboard",
+      "h1": "Jullie riders en boten live in beeld bij cable- en boatcontests",
+      "intro": "Cable contests en boatcontests in Nederland, België en Duitsland, live uitgezonden met meerdere camera's, replays en graphics. Jullie merk zit in de uitzending zelf, niet alleen op een banner langs het water.",
+      "events": "Cable contests (NK, EK, open contests), boatcontests, rail jams in wakeparks",
+      "ideas": [
+        { "title": "Trick van de Dag", "text": "Een vast moment per dag met jullie naam erop, met replay en clip achteraf." },
+        { "title": "Rider-cam & POV", "text": "Camera op jullie teamriders, als vaste live feed en als replay-blok." },
+        { "title": "Bootcam & walkaround", "text": "Bij boatcontests: de boot als studio, met camera aan boord en een korte walkaround in de pauze." },
+        { "title": "Productdemo tussen de heats", "text": "Een kort blok over board, binding of motor, met een QR-code naar dealer of shop." }
+      ],
+      "pilot": "Begin met één cable contest of boatcontest in de Benelux als pilot.",
+      "metaTitle": "Cable & wakeboard livestreams voor merken | BERK Productions",
+      "metaDescription": "Cable contests en boatcontests in Nederland, België en Duitsland, live uitgezonden met meerdere camera's, replays en graphics."
+    },
+    {
+      "slug": "kite",
+      "name": "Kite, wing & foil",
+      "kicker": "Partners · Kite, wing & foil",
+      "h1": "Big air, wing en foil live vanaf de Noordzeekust",
+      "intro": "Kite-, wing- en foilevents langs de Nederlandse en Belgische kust, live in beeld met replays waarin het materiaal goed zichtbaar is. Van big air-contests tot een downwinder voor een goed doel.",
+      "events": "Big air-contests, wing- en foilraces, testdagen, kite-downwinders langs de kust",
+      "ideas": [
+        { "title": "Big Air Moment", "text": "Een vast moment met de hoogste sprong van de dag, met slow-motion replay waarin de kite in beeld is." },
+        { "title": "Kite-, wing- en foil-cam", "text": "Camera op een rider met jullie setup, live en als clip." },
+        { "title": "Teamsessies en portretten", "text": "Een eigen serie rond jullie teamriders, met korte interviews." },
+        { "title": "Demo en testdag", "text": "Een productblok met een QR-code naar een testdag, dealer of shop." }
+      ],
+      "pilot": "Begin met één kite- of wingevent, of een downwinder langs de kust als pilot.",
+      "metaTitle": "Kite, wing & foil livestreams voor merken | BERK Productions",
+      "metaDescription": "Kite-, wing- en foilevents langs de Nederlandse en Belgische kust, live in beeld met replays waarin het materiaal goed zichtbaar is."
+    },
+    {
+      "slug": "snow-wake",
+      "name": "Snow-wake in de stad",
+      "kicker": "Partners · Snow-wake in de stad",
+      "h1": "Een snow-wake avondevent midden in de stad, live voor heel Nederland",
+      "intro": "Een avondevent met sneeuw en een wake-kicker op een plein in de binnenstad: festivalgevoel, publiek dicht op de actie en een livestream voor iedereen die er niet bij is. Dicht bij Nederlandse klanten, zonder reis naar de Alpen.",
+      "events": "Snow-wake avondevents in binnensteden (zoals Flatstyle), rail jams in de winter",
+      "ideas": [
+        { "title": "Presenting partner", "text": "De naam van het merk in de titel van het event en de uitzending." },
+        { "title": "Trick of Board van de Avond", "text": "Een vast moment per avond, met replay en clip achteraf." },
+        { "title": "Helm- en gear-cams", "text": "Camera op helm of board, en gear in close-up." },
+        { "title": "Plein en webshop", "text": "Een demo-stand of warmte-zone op het plein, en een QR-code naar een shoppable pagina of winactie." }
+      ],
+      "pilot": "Begin met één snow-wake avondevent in een binnenstad als pilot.",
+      "metaTitle": "Snow-wake in de stad livestreams voor merken | BERK Productions",
+      "metaDescription": "Een avondevent met sneeuw en een wake-kicker op een plein in de binnenstad: festivalgevoel, publiek dicht op de actie en een livestream."
+    },
+    {
+      "slug": "skate-bmx",
+      "name": "Skate, BMX & bike",
+      "kicker": "Partners · Skate, BMX & bike",
+      "h1": "Skate-, BMX- en bike-events live, met een clip per rider",
+      "intro": "Rail jams, skate-jams, BMX- en dirt-events in de Benelux en net over de grens, live uitgezonden en daarna omgezet in clips per rider. Zo komt er een vaste stroom content uit de lokale scenes.",
+      "events": "Rail jams, skate-jams en demo's, BMX- en dirt-events, lokale kampioenschappen",
+      "ideas": [
+        { "title": "Best Trick", "text": "Een vast blok met de naam van het merk erop, met replay en clip." },
+        { "title": "Eigen sessie of serie", "text": "Een eigen livestream rond jullie team, op jullie eigen kanaal." },
+        { "title": "Rider- en helm-cams", "text": "Camera op rider, fiets of helm, met korte uitleg van riders." },
+        { "title": "Shop-koppeling", "text": "Een kortingscode of QR in beeld die kijkers naar de shop stuurt." }
+      ],
+      "pilot": "Begin met één rail jam, skate-jam of BMX-event als pilot.",
+      "metaTitle": "Skate, BMX & bike livestreams voor merken | BERK Productions",
+      "metaDescription": "Rail jams, skate-jams, BMX- en dirt-events in de Benelux en net over de grens, live uitgezonden en daarna omgezet in clips per rider."
+    },
+    {
+      "slug": "surf-sup",
+      "name": "Surf, SUP & boardsport",
+      "kicker": "Partners · Surf, SUP & boardsport",
+      "h1": "Boardsport en SUP-races live, met elke dag nieuwe content",
+      "intro": "Surf- en boardsport-events en SUP-races in Noord-Europa, live in beeld met board-cams en replays. Na elke dag korte highlights en portretten voor jullie Europese kanalen.",
+      "events": "Surf- en boardsport-events, SUP-races en team-SUP, community-events en festivals",
+      "ideas": [
+        { "title": "Finale presented by", "text": "De finale of een sessie met de naam van het merk in de titel." },
+        { "title": "Board-cam", "text": "Camera op het board tijdens races en runs, met replays." },
+        { "title": "Eigen serie", "text": "Een terugkerende serie op jullie kanaal, met de riders centraal." },
+        { "title": "Dagelijkse shorts", "text": "Elke dag korte highlights en rider-portretten voor socials." }
+      ],
+      "pilot": "Begin met één boardsport-event of SUP-race als pilot.",
+      "metaTitle": "Surf, SUP & boardsport livestreams voor merken | BERK Productions",
+      "metaDescription": "Surf- en boardsport-events en SUP-races in Noord-Europa, live in beeld met board-cams en replays."
+    }
+  ]
+}

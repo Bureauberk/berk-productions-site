@@ -46,6 +46,10 @@ Clarity setzt dafür Cookies, unter anderem _clck und _clsk von Clarity selbst u
 
 Die Website selbst setzt keine Cookies. Wir speichern nur Ihre Entscheidung zu Clarity, im Speicher Ihres eigenen Browsers.
 
+### Videos von YouTube
+
+Auf unseren Partnerseiten ist ein YouTube-Video eingebunden. Es lädt erst, wenn Sie auf Abspielen klicken, über youtube-nocookie.com. Erst dann erhält Google (YouTube) Daten wie Ihre IP-Adresse, und YouTube kann Cookies oder ähnliche Technologien einsetzen. Ohne Klick wird nichts an YouTube übertragen.
+
 ### Produktionen
 
 Bei Livestreams und Aufnahmen filmen wir im Auftrag des Veranstalters. Der Veranstalter informiert Teilnehmende und Publikum darüber, dass gefilmt und übertragen wird.
@@ -57,7 +61,7 @@ Wir geben Daten nur an Partner weiter, die wir für unsere Leistung benötigen:
 - Vercel, für das Hosting der Website.
 - FormSubmit, für die Weiterleitung von Formularen.
 - Unser E-Mail-Anbieter, für den Empfang und Versand von E-Mails.
-- Google, für die Schriftarten.
+- Google, für die Schriftarten und, wenn Sie ein Video abspielen, YouTube.
 - Microsoft, für Clarity, nur mit Ihrer Einwilligung.
 - Unser Steuerberater und die niederländische Steuerbehörde, für die Buchhaltung von Kunden.
 

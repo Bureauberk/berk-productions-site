@@ -13,6 +13,7 @@ const SRC = join(ROOT, '_build/kennisbank');
 const LANDING = join(ROOT, '_build/landing');
 const LEGAL = join(ROOT, '_build/legal');
 const PARTNERS = JSON.parse(readFileSync(join(ROOT, '_build/partners.json'), 'utf8'));
+const VERHUUR = JSON.parse(readFileSync(join(ROOT, '_build/verhuur.json'), 'utf8'));
 const partnerPaths = Object.values(PARTNERS.langs).flatMap((l) => [l.base, ...l.categories.map((c) => `${l.base}/${c.slug}`)]);
 const OUT = join(ROOT, 'kennisbank');
 const SEO = JSON.parse(readFileSync(join(ROOT, '_build/seo.json'), 'utf8'));
@@ -230,7 +231,68 @@ const CSS = `
 .kb-cluster+.kb-cluster{margin-top:clamp(64px,7vw,104px)}
 `;
 
-function page({ path, title, description, jsonld, body, ogType, ogImage, lang = 'nl', alts, current, scripts = [] }) {
+// Extra CSS for the rental pages only
+const VH_CSS = `
+.vh-notice{background:#FF5F57;color:#161616;font-family:'Archivo',sans-serif;font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;padding:12px 0}
+.vh-card{gap:10px}
+.vh-card h3 a:hover{color:#B3261E}
+.vh-img{display:flex;align-items:center;justify-content:center;aspect-ratio:4 / 3;margin:-28px -28px 8px;background:#161616;color:#555;font-family:'Archivo Black','Archivo',sans-serif;text-transform:uppercase;font-size:20px;overflow:hidden;border-bottom:2px solid #161616}
+.vh-img img{width:100%;height:100%;object-fit:cover;display:block}
+.vh-img-lg{margin:0;border:2px solid #161616;box-shadow:10px 10px 0 #FF5F57;font-size:clamp(28px,4vw,48px)}
+.vh-foot{margin-top:auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-top:8px}
+.vh-price{font-family:'Archivo Black','Archivo',sans-serif;font-size:24px;color:#161616}
+.vh-price small{font-family:'Archivo',sans-serif;font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#555}
+.vh-price-lg{font-size:clamp(32px,4vw,48px);color:#FFFFFF}
+.vh-price-lg small{color:#A8A8A8}
+.vh-add{font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;background:#FF5F57;color:#161616;border:2px solid #161616;box-shadow:4px 4px 0 #161616;padding:10px 14px;cursor:pointer}
+.vh-add:hover{background:#161616;color:#FFFFFF}
+.vh-add.added,.btn.vh-add.added{background:#161616;color:#FFFFFF}
+.vh-op{font-family:'Archivo',sans-serif;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#B3261E}
+.vh-buy{display:flex;flex-wrap:wrap;align-items:center;gap:24px;margin-top:8px}
+.vh-buy .vh-add{box-shadow:5px 5px 0 #000;padding:0 26px;min-height:52px;font-size:14px}
+.vh-detail{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:start}
+@media (max-width:900px){.vh-detail{grid-template-columns:minmax(0,1fr)}}
+.vh-badge{position:fixed;right:clamp(16px,3vw,32px);bottom:clamp(16px,3vw,32px);z-index:40;display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 20px;font-family:'Archivo',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;background:#FF5F57;color:#161616;border:2px solid #161616;box-shadow:5px 5px 0 #000}
+.vh-badge b{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;padding:0 6px;background:#161616;color:#FFFFFF;font-size:13px}
+.vh-badge[hidden],#verhuur [hidden]{display:none!important}
+.vh-quote{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:start}
+@media (max-width:1000px){.vh-quote{grid-template-columns:minmax(0,1fr)}}
+.vh-h2{font-size:clamp(24px,2.6vw,34px);line-height:1;margin:0 0 24px;color:#161616}
+.vh-form .vh-h2:not(:first-child){margin-top:40px}
+.vh-form{display:flex;flex-direction:column;gap:18px}
+.vh-row{display:flex;flex-wrap:wrap;gap:18px}
+.lbl{display:flex;flex-direction:column;gap:8px;font-family:'Archivo',sans-serif;font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#161616}
+.field{width:100%;box-sizing:border-box;background:#FFFFFF;color:#161616;border:2px solid #161616;padding:14px 16px;font-size:17px;font-family:'Hind',sans-serif;border-radius:0;transition:box-shadow 100ms var(--ease)}
+.field:focus{outline:none;box-shadow:5px 5px 0 #FF5F57}
+.vh-hint{margin:-6px 0 0;font-size:15px;color:#555}
+.vh-radio{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.vh-radio legend{margin-bottom:10px}
+.vh-radio label,.vh-check{display:flex;gap:10px;align-items:flex-start;font-size:17px;line-height:1.4;color:#2A2A2A}
+.vh-radio input,.vh-check input{accent-color:#FF5F57;width:20px;height:20px;margin:1px 0 0;flex:none}
+.vh-check a{color:#B3261E;text-decoration:underline}
+.vh-honey{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.vh-empty{font-size:18px;color:#3C3C3C}
+.vh-empty a{color:#B3261E;text-decoration:underline}
+.vh-line{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:12px 16px;align-items:center;background:#FFFFFF;border:2px solid #161616;padding:16px 18px;margin-bottom:14px}
+.vh-line a{font-family:'Archivo',sans-serif;font-weight:700;font-size:17px;color:#161616}
+.vh-line a{overflow-wrap:anywhere}
+@media (max-width:560px){.vh-line{grid-template-columns:auto 1fr}.vh-line>div:first-child{grid-column:1 / -1}.vh-sum{text-align:right}}
+.vh-line small{display:block;font-size:14px;color:#555;margin-top:2px}
+.vh-qty{display:inline-flex;border:2px solid #161616}
+.vh-qty button{all:unset;cursor:pointer;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px}
+.vh-qty button:hover{background:#FF5F57}
+.vh-qty span{min-width:30px;display:flex;align-items:center;justify-content:center;font-weight:700;border-left:2px solid #161616;border-right:2px solid #161616}
+.vh-sum{font-family:'Archivo Black','Archivo',sans-serif;font-size:18px;white-space:nowrap}
+.vh-total{background:#161616;color:#EFEFEF;padding:20px 22px;font-size:16px;line-height:1.6}
+.vh-total:empty{display:none}
+.vh-total div{display:flex;justify-content:space-between;gap:16px}
+.vh-total .vh-grand{font-family:'Archivo Black','Archivo',sans-serif;font-size:22px;color:#FF5F57;border-top:1px solid #3C3C3C;margin-top:8px;padding-top:8px}
+.vh-total p{margin:8px 0 0;font-size:14px;color:#A8A8A8}
+.vh-status{margin:0;font-size:17px;font-weight:600}
+.vh-status.err{color:#B3261E}
+`;
+
+function page({ path, title, description, jsonld, body, ogType, ogImage, lang = 'nl', alts, current, scripts = [], noindex = false, css = '' }) {
   const shell = SHELLS[lang];
   const translated = alts && new Set(Object.values(alts)).size > 1 && Object.values(alts).every((a) => !['/', '/en', '/de'].includes(a));
   const hreflang = translated ? Object.entries(alts).map(([l, p]) => `<link rel="alternate" hreflang="${l}" href="${SITE}${p}">`).join('') + `<link rel="alternate" hreflang="x-default" href="${SITE}${alts.nl}">\n` : '';
@@ -242,7 +304,7 @@ function page({ path, title, description, jsonld, body, ogType, ogImage, lang = 
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${SITE}${path}">
-${hreflang}<meta property="og:title" content="${esc(title)}">
+${noindex ? '<meta name="robots" content="noindex, nofollow">\n' : ''}${hreflang}<meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:image" content="${SITE}${ogImage || SEO.ogImage}">
 <meta property="og:type" content="${ogType || (path === '/kennisbank' ? 'website' : 'article')}">
@@ -256,7 +318,7 @@ ${clarityTag(SEO.clarity)}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Archivo:wght@500;600;700&amp;family=Hind:wght@300;400;500;600&amp;display=swap">
-<style>${shell.css}${CSS}</style>
+<style>${shell.css}${CSS}${css}</style>
 ${siteCss(false)}
 </head>
 <body>
@@ -417,9 +479,131 @@ ${l.html}
   }
 }
 
-// Sitemap: replace the kennisbank, landing, legal and partner block
+// Rental pages (/verhuur, one page per product or package, /verhuur/offerte and /verhuur/voorwaarden), all content from _build/verhuur.json.
+// While "live" is false the pages get noindex, stay out of the sitemap and the menu has no link to them.
+const verhuurPaths = [];
+{
+  const V = VERHUUR, R = V.regels, B = V.base;
+  const live = V.live === true;
+  const items = [...V.pakketten.map((p) => ({ ...p, pakket: true })), ...V.producten].filter((p) => p.actief !== false);
+  const bySlugV = Object.fromEntries(V.producten.map((p) => [p.slug, p]));
+  const catName = Object.fromEntries(V.categorieen.map((c) => [c.slug, c.naam]));
+  for (const p of items) {
+    if (!p.pakket && !catName[p.categorie]) throw new Error(`verhuur: ${p.slug} has unknown categorie ${p.categorie}`);
+    for (const i of p.inhoud || []) if (!bySlugV[i.slug]) throw new Error(`verhuur: pakket ${p.slug} contains unknown product ${i.slug}`);
+  }
+  // Price factor for n rental days: day 1 full price, each next day R.vervolgdag, a full week at most R.week (same rule in js/verhuur.js).
+  const factor = (n) => { const w = Math.floor(n / 7), r = n % 7; return w * R.week + (r ? Math.min(1 + R.vervolgdag * (r - 1), R.week) : 0); };
+  const eur = (n) => '€ ' + n.toLocaleString('nl-NL', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
+  const sec = (bg, inner) => `<section class="p-sec" style="${bg}"><div class="wrap">${inner}</div></section>`;
+  const LIGHT = 'background: #EFEFEF; color: #161616', DARK = 'background: #161616; color: #EFEFEF';
+  const head = (text, color = '#161616') => `<h2 class="h-black p-head" style="color: ${color}">${esc(text)}</h2>`;
+  const hero = (crumbs, eyebrow, h1, intro, extra = '') => `<section class="kb-hero"><div class="wrap">${crumbsHtml(crumbs)}<div style="display: flex; flex-direction: column; gap: 24px; max-width: 1100px"><span class="eyebrow" style="color: #A8A8A8"><span class="dot"></span>${esc(eyebrow)}</span><h1 class="h-black" style="font-size: clamp(34px, 6.4vw, 96px); line-height: 0.95; color: #FFFFFF; text-shadow: 6px 6px 0 #000">${h1}</h1>${intro ? `<p style="margin: 0; max-width: 720px; font-size: 20px; line-height: 1.6; color: #CFCFCF">${esc(intro)}</p>` : ''}${extra}</div></div></section>`;
+  const notice = items.some((p) => p.voorbeeld) ? `<div class="vh-notice" role="note"><div class="wrap">Voorbeeldinventaris: deze producten en prijzen zijn nog niet echt.</div></div>` : '';
+  const badge = `<a class="vh-badge" href="${B}/offerte" hidden>Offerte <b data-vh-count>0</b></a>`;
+  const visual = (p) => p.foto ? `<img src="${p.foto}" alt="${esc(p.naam)}" loading="lazy" decoding="async">` : `<span aria-hidden="true">${esc(p.pakket ? 'Set' : catName[p.categorie])}</span>`;
+  const addBtn = (p, cls = 'vh-add') => `<button type="button" class="${cls}" data-add="${p.slug}" data-name="${esc(p.naam)}">+ Offerte</button>`;
+  const card = (p) => `<article class="card vh-card"><a class="vh-img" href="${B}/${p.slug}" tabindex="-1">${visual(p)}</a><span class="eyebrow">${esc(p.pakket ? 'Pakket' : catName[p.categorie])}</span><h3><a href="${B}/${p.slug}">${esc(p.naam)}</a></h3><p>${esc(p.kort)}</p><div class="vh-foot"><span class="vh-price">${eur(p.dagprijs)}<small> / dag</small></span>${addBtn(p)}</div>${p.operator ? '<span class="vh-op">Alleen met technicus</span>' : ''}</article>`;
+  const write = (path, { title, description, jsonld, body, scripts = [] }) => {
+    const dir = join(ROOT, path.slice(1));
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(join(dir, 'index.html'), page({ path, title, description, jsonld, body: `<div id="verhuur">${notice}${body}${badge}</div>`, ogType: 'website', ogImage: V.ogImage, scripts: ['/js/verhuur.js', ...scripts], current: null, noindex: !live || path === `${B}/offerte`, css: VH_CSS }));
+    if (live && path !== `${B}/offerte`) verhuurPaths.push(path);
+  };
+  const outDir = join(ROOT, B.slice(1));
+  if (existsSync(outDir)) rmSync(outDir, { recursive: true });
+
+  // Overview
+  {
+    const crumbs = [['Home', '/'], ['Verhuur', B]];
+    const title = 'Livestream- en broadcastapparatuur huren in Apeldoorn | BERK Productions';
+    const description = "Huur camera's, videomixers, replay, streaming- en audioapparatuur voor je event. Zakelijk, per draaidag, ophalen in Apeldoorn of laten bezorgen.";
+    const cats = V.categorieen.map((c) => [c, items.filter((p) => !p.pakket && p.categorie === c.slug)]).filter(([, list]) => list.length);
+    const pakketten = items.filter((p) => p.pakket);
+    const chips = `<div class="chips">${pakketten.length ? `<a href="#pakketten">Pakketten</a>` : ''}${cats.map(([c]) => `<a href="#${c.slug}">${esc(c.naam)}</a>`).join('')}</div>`;
+    const steps = [['Kies je apparatuur', 'Zet losse items of een pakket in je offerte. Je ziet meteen een indicatie van de prijs.'], ['Stuur je aanvraag', 'Kies je draaidagen, ophalen of bezorgen en of je een technicus wil. Binnen een werkdag heb je een definitieve offerte.'], ['Ophalen of bezorgd', 'Haal alles op in Apeldoorn, of wij brengen het naar je locatie. Getest, compleet en in flightcases.']];
+    const body = `${hero(crumbs, 'Verhuur · Apeldoorn', 'Apparatuur <span style="color: #FF5F57">huren</span>', "Camera's, regie, replay, streaming en audio waar wij zelf mee live gaan. Zakelijk te huur per draaidag, los of met een technicus erbij.", `${chips}<div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 8px"><a class="btn" href="#apparatuur">Bekijk de apparatuur <span aria-hidden="true">→</span></a><a class="btn" href="${B}/offerte" style="background: #161616; color: #FFFFFF; border-color: #EFEFEF">Naar je offerte</a></div>`)}
+${sec(LIGHT, `${head('Zo werkt het')}<div class="p-grid">${steps.map(([t, x], n) => `<div class="promise"><span class="p-num">0${n + 1}</span><h3>${esc(t)}</h3><p>${esc(x)}</p></div>`).join('')}</div>`)}
+${pakketten.length ? `<section class="kb-light" id="pakketten" style="padding-top: 0"><div class="wrap">${head('Pakketten')}<div class="cards">${pakketten.map(card).join('')}</div></div></section>` : ''}
+<section class="kb-light" id="apparatuur" style="padding-top: 0"><div class="wrap">${cats.map(([c, list]) => `<div class="kb-cluster" id="${c.slug}"><h2 class="h-black" style="font-size: clamp(30px, 4.4vw, 64px); line-height: 0.95; margin-bottom: 32px">${esc(c.naam)}</h2><div class="cards">${list.map(card).join('')}</div></div>`).join('')}</div></section>
+${sec(DARK, `${head('Goed om te weten', '#FFFFFF')}<div class="p-gets">${V.voorwaarden.slice(0, 4).map((v) => `<div><h3>${esc(v.kop)}</h3><p>${esc(v.tekst)}</p></div>`).join('')}</div><p style="margin: 40px 0 0"><a class="kb-meta" href="${B}/voorwaarden" style="color: #FF5F57">Alle huurvoorwaarden →</a></p>`)}
+${sec(LIGHT, `${head('Veelgestelde vragen')}<div class="p-faq">${V.faq.map((f) => `<h3>${esc(f.q)}</h3><p>${esc(f.a)}</p>`).join('')}</div>`)}
+${ctaBand({ text: 'Liever de hele productie uit handen geven? Wij draaien je livestream van begin tot eind.', href: '/diensten', label: 'Bekijk de diensten' })}`;
+    const jsonld = [
+      { '@context': 'https://schema.org', '@type': 'CollectionPage', '@id': SITE + B + '#page', url: SITE + B, name: title, description, inLanguage: 'nl', isPartOf: { '@type': 'WebSite', name: 'BERK Productions', url: SITE + '/' }, publisher: ORG, mainEntity: { '@type': 'ItemList', itemListElement: items.map((p, i) => ({ '@type': 'ListItem', position: i + 1, url: `${SITE}${B}/${p.slug}`, name: p.naam })) } },
+      { '@context': 'https://schema.org', ...crumbsLd(crumbs) },
+      { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: V.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+    ];
+    write(B, { title, description, jsonld, body });
+  }
+
+  // Product and package pages
+  for (const p of items) {
+    const path = `${B}/${p.slug}`;
+    const crumbs = [['Home', '/'], ['Verhuur', B], [p.naam, path]];
+    const title = `${p.naam} huren | BERK Productions`;
+    const description = `${p.kort} Te huur vanaf ${eur(p.dagprijs)} per dag excl. btw, ophalen in Apeldoorn of laten bezorgen.`.slice(0, 300);
+    const staffel = [1, 2, 3, 7].map((n) => `<tr><td>${n === 7 ? '1 week' : n === 1 ? '1 draaidag' : `${n} draaidagen`}</td><td>${eur(p.dagprijs * factor(n))}</td></tr>`).join('');
+    const list = (label, arr) => arr && arr.length ? `<h3>${label}</h3><ul>${arr.map((x) => `<li>${x}</li>`).join('')}</ul>` : '';
+    const inhoud = p.inhoud && p.inhoud.map((i) => `${i.aantal}× <a href="${B}/${i.slug}">${esc(bySlugV[i.slug].naam)}</a>`);
+    const related = p.pakket ? items.filter((x) => x.pakket && x.slug !== p.slug) : [...V.pakketten.filter((x) => x.actief !== false && x.inhoud.some((i) => i.slug === p.slug)).map((x) => items.find((y) => y.slug === x.slug)), ...items.filter((x) => !x.pakket && x.categorie === p.categorie && x.slug !== p.slug)];
+    const body = `${hero(crumbs, p.pakket ? 'Verhuur · Pakket' : `Verhuur · ${catName[p.categorie]}`, esc(p.naam), p.kort, `<div class="vh-buy"><span class="vh-price vh-price-lg">${eur(p.dagprijs)}<small> / dag excl. btw</small></span>${addBtn(p, 'btn vh-add')}</div>`)}
+<section class="kb-light"><div class="wrap vh-detail"><div class="vh-img vh-img-lg">${visual(p)}</div><div class="prose">${p.operator ? '<p class="vh-op">Alleen te huur met onze eigen technicus. Die zetten we automatisch in je offerte.</p>' : ''}${inhoud ? list('In dit pakket', inhoud) : ''}${list('Specificaties', (p.specs || []).map(esc))}${list('Inclusief', (p.inclusief || []).map(esc))}<h3>Prijs per periode</h3><div class="tbl"><table><thead><tr><th>Periode</th><th>Prijs excl. btw</th></tr></thead><tbody>${staffel}</tbody></table></div>${p.borg ? `<p>Borg: ${eur(p.borg)}, terug zodra alles compleet en heel retour is.</p>` : ''}<p>Ophalen kan de middag voor je eerste draaidag vanaf 16:00, terugbrengen de ochtend na je laatste draaidag tot 11:00. <a href="${B}/voorwaarden">Huurvoorwaarden</a></p></div></div></section>
+${related.length ? `<section style="padding: clamp(80px, 9vw, 140px) 0"><div class="wrap" style="display: flex; flex-direction: column; gap: 40px"><div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px"><h2 class="h-black" style="font-size: clamp(36px, 4.4vw, 64px); line-height: 0.95; color: #FFFFFF">${p.pakket ? 'Andere pakketten' : 'Vaak samen gehuurd'}</h2><a class="kb-meta" href="${B}" style="color: #FF5F57">Alle apparatuur →</a></div><div class="cards">${related.slice(0, 3).map(card).join('')}</div></div></section>` : ''}`;
+    const jsonld = [
+      { '@context': 'https://schema.org', '@type': 'Product', '@id': SITE + path + '#product', name: p.naam, description: p.kort, url: SITE + path, ...(p.foto ? { image: SITE + p.foto } : {}), ...(p.merk && !p.voorbeeld ? { brand: { '@type': 'Brand', name: p.merk } } : {}), offers: { '@type': 'Offer', url: SITE + path, priceCurrency: 'EUR', price: p.dagprijs, businessFunction: 'http://purl.org/goodrelations/v1#LeaseOut', eligibleCustomerType: 'http://purl.org/goodrelations/v1#Business', availability: 'https://schema.org/InStock', priceSpecification: { '@type': 'UnitPriceSpecification', price: p.dagprijs, priceCurrency: 'EUR', valueAddedTaxIncluded: false, referenceQuantity: { '@type': 'QuantitativeValue', value: 1, unitCode: 'DAY' } }, seller: ORG, areaServed: 'NL' } },
+      { '@context': 'https://schema.org', ...crumbsLd(crumbs) },
+    ];
+    write(path, { title, description, jsonld, body });
+  }
+
+  // Quote request page: the list lives in localStorage, js/verhuur.js renders it with the prices below and sends the form to FormSubmit.
+  {
+    const path = `${B}/offerte`;
+    const crumbs = [['Home', '/'], ['Verhuur', B], ['Offerte', path]];
+    const data = { email: V.email, regels: R, items: Object.fromEntries(items.map((p) => [p.slug, { naam: p.naam, dagprijs: p.dagprijs, borg: p.borg || 0, operator: !!p.operator, url: `${B}/${p.slug}` }])) };
+    const f = (label, input, wide) => `<label class="lbl" style="flex: ${wide ? '1 1 100%' : '1 1 220px'}">${label}${input}</label>`;
+    const body = `${hero(crumbs, 'Verhuur · Offerteaanvraag', 'Jouw <span style="color: #FF5F57">offerte</span>', 'Controleer je apparatuur, kies je draaidagen en stuur je aanvraag. Wij checken de beschikbaarheid en sturen binnen een werkdag een definitieve offerte.')}
+<section class="kb-light"><div class="wrap vh-quote">
+<div><h2 class="h-black vh-h2">Apparatuur</h2><div id="vh-list" aria-live="polite"><p class="vh-empty">Je offerte is nog leeg. <a href="${B}">Kies apparatuur</a></p></div></div>
+<form id="vh-form" class="vh-form" novalidate>
+<h2 class="h-black vh-h2">Periode en levering</h2>
+<div class="vh-row">${f('Eerste draaidag', '<input class="field" type="date" name="van" required>')}${f('Laatste draaidag', '<input class="field" type="date" name="tot" required>')}</div>
+<p class="vh-hint">Ophalen kan de middag ervoor vanaf 16:00, terugbrengen de ochtend erna tot 11:00.</p>
+<fieldset class="vh-radio"><legend class="lbl">Levering</legend><label><input type="radio" name="levering" value="ophalen" checked> Ophalen in Apeldoorn (gratis)</label><label><input type="radio" name="levering" value="bezorgen"> Bezorgen en ophalen op locatie (vanaf ${eur(R.bezorgenVanaf)})</label></fieldset>
+<div class="vh-row" id="vh-adres" hidden>${f('Afleveradres', '<input class="field" name="adres" autocomplete="street-address">', true)}</div>
+<label class="vh-check"><input type="checkbox" name="technicus" id="vh-tech"> Met technicus (${eur(R.technicusDagprijs)} per draaidag)</label>
+<h2 class="h-black vh-h2">Je gegevens</h2>
+<div class="vh-row">${f('Bedrijf', '<input class="field" name="bedrijf" autocomplete="organization" required>')}${f('KvK-nummer', '<input class="field" name="kvk" inputmode="numeric" pattern="[0-9]{8}" required>')}</div>
+<div class="vh-row">${f('Naam', '<input class="field" name="naam" autocomplete="name" required>')}${f('Telefoon', '<input class="field" type="tel" name="telefoon" autocomplete="tel" required>')}</div>
+<div class="vh-row">${f('E-mail', '<input class="field" type="email" name="email" autocomplete="email" required>')}${f('Event en locatie', '<input class="field" name="event">')}</div>
+${f('Opmerkingen', '<textarea class="field" name="opmerkingen" rows="4"></textarea>', true)}
+<input type="text" name="_honey" tabindex="-1" autocomplete="off" class="vh-honey" aria-hidden="true">
+<label class="vh-check"><input type="checkbox" name="akkoord" required> Ik ga akkoord met de <a href="${B}/voorwaarden" target="_blank">huurvoorwaarden</a></label>
+<div class="vh-total" id="vh-total"></div>
+<button class="btn" type="submit">Verstuur aanvraag <span aria-hidden="true">→</span></button>
+<p class="vh-status" id="vh-status" role="status"></p>
+</form>
+</div></section>
+<script type="application/json" id="vh-data">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`;
+    const jsonld = [{ '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + path + '#page', url: SITE + path, name: 'Offerte verhuur', inLanguage: 'nl', publisher: ORG }, { '@context': 'https://schema.org', ...crumbsLd(crumbs) }];
+    write(path, { title: 'Offerteaanvraag verhuur | BERK Productions', description: 'Vraag een offerte aan voor het huren van livestream- en broadcastapparatuur.', jsonld, body });
+  }
+
+  // Rental terms
+  {
+    const path = `${B}/voorwaarden`;
+    const crumbs = [['Home', '/'], ['Verhuur', B], ['Huurvoorwaarden', path]];
+    const body = `${hero(crumbs, 'Verhuur', 'Huurvoorwaarden', 'De afspraken voor het huren van apparatuur bij BERK Productions, in gewone taal.')}
+<section class="kb-light"><div class="wrap"><div class="prose" style="max-width: 820px">${V.voorwaarden.map((v) => `<h2>${esc(v.kop)}</h2><p>${esc(v.tekst)}</p>`).join('')}</div></div></section>`;
+    const jsonld = [{ '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + path + '#page', url: SITE + path, name: 'Huurvoorwaarden', inLanguage: 'nl', publisher: ORG }, { '@context': 'https://schema.org', ...crumbsLd(crumbs) }];
+    write(path, { title: 'Huurvoorwaarden | BERK Productions', description: 'Huurvoorwaarden voor het zakelijk huren van livestream- en broadcastapparatuur bij BERK Productions.', jsonld, body });
+  }
+}
+
+// Sitemap: replace the kennisbank, landing, legal, partner and rental block
 const sm = join(ROOT, 'sitemap.xml');
-const urls = [...landings.map((l) => l.path), ...legals.map((l) => l.path), ...partnerPaths, '/kennisbank', ...articles.map((a) => `/kennisbank/${a.slug}`)].map((p) => `<url><loc>${SITE}${p}</loc></url>`).join('\n');
-writeFileSync(sm, readFileSync(sm, 'utf8').replace(new RegExp(`<url><loc>[^<]*(/kennisbank|${[...Object.values(PARTNERS.langs).map((l) => l.base), ...[...landings, ...legals].map((l) => l.path)].join('|')})[^<]*</loc></url>\\n`, 'g'), '').replace('</urlset>', `${urls}\n</urlset>`));
+const urls = [...landings.map((l) => l.path), ...legals.map((l) => l.path), ...partnerPaths, ...verhuurPaths, '/kennisbank', ...articles.map((a) => `/kennisbank/${a.slug}`)].map((p) => `<url><loc>${SITE}${p}</loc></url>`).join('\n');
+writeFileSync(sm, readFileSync(sm, 'utf8').replace(new RegExp(`<url><loc>[^<]*(/kennisbank|${[VERHUUR.base, ...Object.values(PARTNERS.langs).map((l) => l.base), ...[...landings, ...legals].map((l) => l.path)].join('|')})[^<]*</loc></url>\\n`, 'g'), '').replace('</urlset>', `${urls}\n</urlset>`));
 
 console.table([...legals, ...landings, ...articles].map((a) => ({ slug: a.slug || a.path, words: a.words, title: (a.title + ' | BERK Productions').length, desc: a.description.length, faq: a.faq.length, links: (a.html.match(/href="\//g) || []).length })));

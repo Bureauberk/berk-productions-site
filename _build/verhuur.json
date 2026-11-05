@@ -251,21 +251,21 @@
       ]
     },
     {
-      "slug": "blackmagic-hyperdeck-studio-4k",
+      "slug": "blackmagic-hyperdeck-studio-hd-plus",
       "actief": true,
       "categorie": "opname",
-      "naam": "Blackmagic HyperDeck Studio 4K",
+      "naam": "Blackmagic HyperDeck Studio HD Plus",
       "merk": "Blackmagic Design",
-      "kort": "Broadcastrecorder voor een losse opname per camera of van je programmasignaal.",
-      "dagprijs": 105,
-      "borg": 800,
-      "aantal": 1,
+      "kort": "Compacte broadcastrecorder voor een losse opname per camera of van je programmasignaal. Twee op voorraad.",
+      "dagprijs": 49,
+      "borg": 300,
+      "aantal": 2,
       "operator": false,
-      "foto": "/assets/verhuur/blackmagic-hyperdeck-studio-4k.jpg",
+      "foto": "/assets/verhuur/blackmagic-hyperdeck-studio-hd-plus.jpg",
       "specs": [
-        "12G-SDI en HDMI, tot 2160p60",
-        "ProRes, DNx, H.264 en H.265",
-        "Opname op SD-kaart of SSD",
+        "6G-SDI en HDMI",
+        "H.264 tot 1080p60, ProRes en DNx",
+        "Opname op SD-kaart of USB-schijf",
         "Bediening via netwerk of ATEM"
       ],
       "inclusief": [

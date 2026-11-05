@@ -77,7 +77,7 @@
       "borg": 1000,
       "aantal": 1,
       "operator": false,
-      "foto": "",
+      "foto": "/assets/verhuur/sony-hxr-nx800.jpg",
       "specs": [
         "1-inch sensor",
         "4K tot 120p",
@@ -149,7 +149,7 @@
       "borg": 200,
       "aantal": 1,
       "operator": false,
-      "foto": "",
+      "foto": "/assets/verhuur/sony-e-pz-18-105mm-f4-g-oss.jpg",
       "specs": [
         "APS-C, E-mount (27–157 mm equivalent)",
         "Constante F4",
@@ -283,7 +283,7 @@
       "borg": 300,
       "aantal": 1,
       "operator": false,
-      "foto": "",
+      "foto": "/assets/verhuur/atomos-ninja-v.jpg",
       "specs": [
         "5,2-inch touchscreen, 1000 nits",
         "Opname in 4K ProRes en DNx",

@@ -257,13 +257,15 @@ const VH_CSS = `
 .vh-slider-wrap{background:#EFEFEF;border-bottom:2px solid #161616;padding:28px 0 26px}
 .vh-slider-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}
 .vh-slider-head h2{font-family:'Archivo Black','Archivo',sans-serif;text-transform:uppercase;font-size:clamp(18px,1.8vw,22px);margin:0;color:#161616}
-.vh-arrows{display:flex;gap:8px}
-.vh-arrows button{all:unset;cursor:pointer;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:2px solid #161616;background:#FFFFFF;font-weight:700;font-size:18px}
-.vh-arrows button:hover{background:#FF5F57}
+.vh-arrows{display:flex;gap:10px;padding-right:3px}
+.vh-arrows button{all:unset;box-sizing:border-box;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:2px solid #161616;background:#FFFFFF;color:#161616;box-shadow:3px 3px 0 #161616;transition:transform 120ms var(--ease),box-shadow 120ms var(--ease),background 120ms var(--ease)}
+.vh-arrows button svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:square;stroke-linejoin:miter}
+.vh-arrows button:hover{background:#FF5F57;transform:translate(-1px,-1px);box-shadow:4px 4px 0 #161616}
+.vh-arrows button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #161616}
 .vh-arrows button:focus-visible{outline:3px solid #FF5F57;outline-offset:2px}
-.vh-arrows button[disabled]{opacity:.3;cursor:default;background:#FFFFFF}
+.vh-arrows button[disabled]{cursor:default;color:#B5B5B5;border-color:#B5B5B5;box-shadow:none;background:#FFFFFF;transform:none}
 @media (max-width:640px){.vh-arrows{display:none}}
-.vh-slider{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding:2px 8px 10px 2px;margin:0 -2px}
+.vh-slider{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding:2px 6px 10px 0}
 .vh-slider::-webkit-scrollbar{display:none}
 .vh-tile{flex:0 0 auto;width:148px;scroll-snap-align:start;display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:16px;box-sizing:border-box;background:#FFFFFF;color:#161616;border:2px solid #161616;cursor:pointer;font:inherit;text-align:left;transition:transform 150ms var(--ease),box-shadow 150ms var(--ease)}
 .vh-tile svg{width:34px;height:34px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:square;stroke-linejoin:miter}
@@ -665,7 +667,7 @@ const verhuurPaths = [];
     const pakketten = items.filter((p) => p.pakket);
     const groups = [...(pakketten.length ? [[{ slug: 'pakketten', naam: 'Pakketten' }, pakketten]] : []), ...cats];
     const ordered = groups.flatMap(([, list]) => list);
-    const slider = `<div class="vh-slider-wrap"><div class="wrap"><div class="vh-slider-head"><h2>Kies een categorie</h2><div class="vh-arrows"><button type="button" data-dir="-1" aria-label="Vorige categorieën">←</button><button type="button" data-dir="1" aria-label="Volgende categorieën">→</button></div></div><div class="vh-slider" role="group" aria-label="Categorieën">${[[{ slug: 'alles', naam: 'Alles' }, items], ...groups].map(([c, list]) => `<button type="button" class="vh-tile" data-tile="${c.slug}" aria-pressed="${c.slug === 'alles'}">${icon(c.slug)}<span><b>${esc(c.naam)}</b><small>${list.length} ${list.length === 1 ? 'item' : 'items'}</small></span></button>`).join('')}</div></div></div>`;
+    const slider = `<div class="vh-slider-wrap"><div class="wrap"><div class="vh-slider-head"><h2>Kies een categorie</h2><div class="vh-arrows"><button type="button" data-dir="-1" aria-label="Vorige categorieën"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" data-dir="1" aria-label="Volgende categorieën"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div></div><div class="vh-slider" role="group" aria-label="Categorieën">${[[{ slug: 'alles', naam: 'Alles' }, items], ...groups].map(([c, list]) => `<button type="button" class="vh-tile" data-tile="${c.slug}" aria-pressed="${c.slug === 'alles'}">${icon(c.slug)}<span><b>${esc(c.naam)}</b><small>${list.length} ${list.length === 1 ? 'item' : 'items'}</small></span></button>`).join('')}</div></div></div>`;
     const check = (name, value, label, n) => `<label><input type="checkbox" name="${name}" value="${value}"> ${esc(label)}${n != null ? ` <small>${n}</small>` : ''}</label>`;
     const PRICES = [['0-50', 'Tot € 50', 0, 50], ['50-150', '€ 50 tot € 150', 50, 150], ['150-400', '€ 150 tot € 400', 150, 400], ['400-', '€ 400 en meer', 400, Infinity]];
     const side = `<details class="vh-side" open><summary>Filters <span class="vh-fcount" hidden></span></summary><form class="vh-fform" onsubmit="return false">

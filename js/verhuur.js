@@ -1,4 +1,4 @@
-// Rental pages: the quote list in localStorage, the "+ Offerte" buttons and badge, and the quote request page (/verhuur/offerte).
+// Rental pages: the quote list in localStorage, the "+ In offerte" buttons and quote bar, the overview filter, and the quote request page (/verhuur/offerte).
 // localStorage is functional storage, so it works without cookie consent; Clarity calls are queued and only sent after consent.
 (() => {
   const KEY = 'berk-verhuur';
@@ -11,29 +11,87 @@
   let state = load();
   const count = () => Object.values(state.items).reduce((a, b) => a + b, 0);
 
-  const badge = document.querySelector('.vh-badge');
-  const syncBadge = () => {
-    if (!badge) return;
+  const eur0 = (n) => '€ ' + n.toLocaleString('nl-NL', { maximumFractionDigits: 2 });
+
+  // Fixed bar with the number of items and the day price; hidden while empty and on the quote page itself.
+  const bar = document.querySelector('.vh-bar');
+  const prices = bar ? JSON.parse(bar.dataset.prices) : {};
+  const syncBar = () => {
+    if (!bar) return;
     const n = count();
-    badge.querySelector('[data-vh-count]').textContent = n;
-    badge.hidden = n === 0 || location.pathname.endsWith('/offerte');
+    bar.querySelector('[data-vh-count]').textContent = n;
+    bar.querySelector('[data-vh-label]').textContent = n === 1 ? 'item' : 'items';
+    bar.querySelector('[data-vh-sum]').textContent = eur0(Object.entries(state.items).reduce((s, [slug, q]) => s + (prices[slug] || 0) * q, 0));
+    bar.hidden = n === 0 || location.pathname.endsWith('/offerte');
+    document.body.classList.toggle('vh-has-bar', !bar.hidden);
   };
 
-  document.querySelectorAll('[data-add]').forEach((btn) => {
-    const mark = () => { if (state.items[btn.dataset.add]) { btn.classList.add('added'); btn.textContent = '✓ In offerte'; } };
-    mark();
-    btn.addEventListener('click', () => {
-      state = load();
-      state.items[btn.dataset.add] = (state.items[btn.dataset.add] || 0) + 1;
-      save(state);
-      mark();
-      btn.setAttribute('aria-label', `${btn.dataset.name} toegevoegd aan je offerte (${state.items[btn.dataset.add]}×)`);
-      syncBadge();
-      clarity('event', 'verhuur_toevoegen');
-      setTimeout(() => { if (btn.classList.contains('added')) btn.textContent = '+ Nog een'; }, 1400);
-    });
+  // "+ In offerte" button, replaced by a −/+ stepper once the item is in the quote.
+  const ctls = [...document.querySelectorAll('.vh-ctl')];
+  const renderCtl = (c) => {
+    const n = state.items[c.dataset.add] || 0, max = Number(c.dataset.max) || Infinity;
+    c.innerHTML = n
+      ? `<div class="vh-step" role="group" aria-label="Aantal ${c.dataset.name} in je offerte"><button type="button" data-d="-1" aria-label="Eén minder">−</button><span><b>${n}</b><i> in offerte</i></span><button type="button" data-d="1" aria-label="Eén meer"${n >= max ? ' disabled title="Meer hebben we er niet"' : ''}>+</button></div>`
+      : '<button type="button" class="vh-add" data-d="1">+ In offerte</button>';
+  };
+  ctls.forEach(renderCtl);
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.vh-ctl button[data-d]');
+    if (!btn) return;
+    const c = btn.closest('.vh-ctl'), slug = c.dataset.add, d = btn.dataset.d;
+    state = load();
+    const was = state.items[slug] || 0;
+    state.items[slug] = was + Number(d);
+    if (state.items[slug] <= 0) delete state.items[slug];
+    save(state);
+    ctls.filter((x) => x.dataset.add === slug).forEach(renderCtl);
+    (c.querySelector(`button[data-d="${d}"]:not([disabled])`) || c.querySelector('button:not([disabled])')).focus();
+    syncBar();
+    if (!was) clarity('event', 'verhuur_toevoegen');
   });
-  syncBadge();
+  syncBar();
+
+  // Overview: category tabs and search filter the list; the filter bar sticks right under the header.
+  const filter = document.querySelector('.vh-filter');
+  if (filter) {
+    const tabs = [...filter.querySelectorAll('[data-filter]')], q = filter.querySelector('input');
+    const groups = [...document.querySelectorAll('.vh-group')], none = document.querySelector('.vh-none');
+    const hdr = document.querySelector('.hdr');
+    const setTop = () => document.documentElement.style.setProperty('--vh-top', `${hdr ? Math.max(hdr.getBoundingClientRect().bottom, 0) : 0}px`);
+    addEventListener('scroll', () => requestAnimationFrame(setTop), { passive: true });
+    addEventListener('resize', setTop);
+    if (hdr) hdr.addEventListener('transitionend', setTop);
+    setTop();
+    let cat = tabs.some((t) => t.dataset.filter === location.hash.slice(1)) ? location.hash.slice(1) : 'alles';
+    const apply = () => {
+      const term = q.value.trim().toLowerCase();
+      let any = 0;
+      for (const g of groups) {
+        let vis = 0;
+        for (const it of g.querySelectorAll('.vh-item')) {
+          const ok = (cat === 'alles' || g.dataset.cat === cat) && (!term || term.split(/\s+/).every((w) => it.dataset.q.includes(w)));
+          it.hidden = !ok;
+          vis += ok;
+        }
+        g.hidden = !vis;
+        any += vis;
+      }
+      none.hidden = any > 0;
+      tabs.forEach((t) => t.setAttribute('aria-pressed', String(t.dataset.filter === cat)));
+    };
+    tabs.forEach((t) => t.addEventListener('click', (e) => {
+      e.preventDefault();
+      cat = t.dataset.filter;
+      apply();
+      t.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+      // Once the bar is stuck, jump back to the top of the list so the result is in view.
+      const top = filter.parentElement.getBoundingClientRect().top + scrollY - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh-top')) || 0);
+      if (scrollY > top) scrollTo({ top, behavior: 'smooth' });
+      history.replaceState(null, '', cat === 'alles' ? location.pathname : `#${cat}`);
+    }));
+    q.addEventListener('input', apply);
+    apply();
+  }
 
   // --- Quote request page ---
   const dataEl = document.getElementById('vh-data');
@@ -74,7 +132,7 @@
     if (!c.ls.length) {
       list.innerHTML = '<p class="vh-empty">Je offerte is nog leeg. <a href="/verhuur">Kies apparatuur</a></p>';
     } else {
-      list.innerHTML = c.ls.map((l) => `<div class="vh-line" data-slug="${l.slug}"><div><a href="${l.url}">${esc(l.naam)}</a><small>${eur(l.dagprijs)} per dag${l.operator ? ' · alleen met technicus' : ''}</small></div><div class="vh-qty"><button type="button" data-d="-1" aria-label="Eén minder ${esc(l.naam)}">−</button><span>${l.qty}</span><button type="button" data-d="1" aria-label="Eén meer ${esc(l.naam)}">+</button></div><span class="vh-sum">${eur(l.dagprijs * l.qty * c.f)}</span></div>`).join('')
+      list.innerHTML = c.ls.map((l) => `<div class="vh-line" data-slug="${l.slug}"><div><a href="${l.url}">${esc(l.naam)}</a><small>${eur(l.dagprijs)} per dag${l.operator ? ' · alleen met technicus' : ''}</small></div><div class="vh-qty"><button type="button" data-d="-1" aria-label="Eén minder ${esc(l.naam)}">−</button><span>${l.qty}</span><button type="button" data-d="1" aria-label="Eén meer ${esc(l.naam)}"${l.max && l.qty >= l.max ? ' disabled' : ''}>+</button></div><span class="vh-sum">${eur(l.dagprijs * l.qty * c.f)}</span></div>`).join('')
         + `<p class="vh-hint">${c.n ? `${c.n} draaidag${c.n > 1 ? 'en' : ''}, staffel toegepast.` : 'Prijzen voor 1 draaidag. Kies je data voor de staffel.'}</p>`;
     }
     if (needsOperator()) { tech.checked = true; tech.disabled = true; } else tech.disabled = false;
@@ -140,7 +198,7 @@
       clarity('event', 'verhuur_aanvraag');
       state = { items: {} };
       save(state);
-      syncBadge();
+      syncBar();
       form.hidden = true;
       list.innerHTML = `<div class="tldr"><span class="eyebrow">Aanvraag verstuurd</span><p>Bedankt! Je referentie is <strong>${ref}</strong>. We checken de beschikbaarheid en sturen binnen een werkdag een definitieve offerte naar ${esc(payload.email)}.</p></div>`;
       list.scrollIntoView({ behavior: 'smooth', block: 'start' });

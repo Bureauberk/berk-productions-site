@@ -53,7 +53,7 @@
       "borg": 600,
       "aantal": 1,
       "operator": false,
-      "foto": "",
+      "foto": "/assets/verhuur/sony-fx30.jpg",
       "specs": [
         "Super 35-sensor, 26 MP",
         "4K tot 120p, 10-bit 4:2:2",
@@ -101,7 +101,7 @@
       "borg": 500,
       "aantal": 1,
       "operator": false,
-      "foto": "",
+      "foto": "/assets/verhuur/sony-fe-70-200mm-f4.jpg",
       "specs": [
         "Full frame, E-mount",
         "Constante F4",
@@ -125,7 +125,7 @@
       "borg": 400,
       "aantal": 1,
       "operator": false,
-      "foto": "",
+      "foto": "/assets/verhuur/sigma-24-70mm-f28-dg-dn-art.jpg",
       "specs": [
         "Full frame, E-mount",
         "Constante F2.8",
@@ -165,18 +165,18 @@
       "slug": "blackmagic-atem-4k",
       "actief": true,
       "categorie": "live-regie",
-      "naam": "Blackmagic ATEM 4K-videomixer",
+      "naam": "Blackmagic ATEM Television Studio Pro 4K",
       "merk": "Blackmagic Design",
-      "kort": "Professionele 4K-videomixer met ingebouwd bedieningspaneel voor multicam-producties.",
+      "kort": "4K-videomixer met ingebouwd bedieningspaneel, camerabediening en Fairlight-audio voor multicam-producties.",
       "dagprijs": 110,
       "borg": 1000,
       "aantal": 1,
       "operator": false,
-      "foto": "",
+      "foto": "/assets/verhuur/blackmagic-atem-4k.jpg",
       "specs": [
-        "8 SDI-ingangen",
-        "Tot 4K (2160p)",
-        "Ingebouwd bedieningspaneel",
+        "8× 12G-SDI-ingangen, tot 2160p60",
+        "Ingebouwd bedieningspaneel met LCD",
+        "Camerabediening voor Blackmagic-camera's",
         "Fairlight-audiomixer"
       ],
       "inclusief": [
@@ -239,7 +239,7 @@
       "borg": 200,
       "aantal": 1,
       "operator": false,
-      "foto": "",
+      "foto": "/assets/verhuur/davinci-resolve-replay-editor.jpg",
       "specs": [
         "Replay- en multicam-bediening",
         "USB-C of Bluetooth",
@@ -261,7 +261,7 @@
       "borg": 800,
       "aantal": 1,
       "operator": false,
-      "foto": "",
+      "foto": "/assets/verhuur/blackmagic-hyperdeck-studio-4k.jpg",
       "specs": [
         "12G-SDI en HDMI, tot 2160p60",
         "ProRes, DNx, H.264 en H.265",
@@ -350,7 +350,7 @@
       "borg": 150,
       "aantal": 1,
       "operator": false,
-      "foto": "",
+      "foto": "/assets/verhuur/kf-concept-videostatief-192cm.jpg",
       "specs": [
         "Hoogte tot ongeveer 192 cm",
         "Vloeistofkop voor vloeiende pans en tilts",
@@ -394,7 +394,7 @@
       "borg": 600,
       "aantal": 1,
       "operator": false,
-      "foto": "",
+      "foto": "/assets/verhuur/dji-rs-4-pro.jpg",
       "specs": [
         "Draagvermogen 4,5 kg",
         "Accuduur ongeveer 13 uur",

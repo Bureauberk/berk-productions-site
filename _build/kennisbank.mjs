@@ -249,24 +249,70 @@ const VH_CSS = `
 .vh-usp li{display:flex;align-items:center;gap:10px}
 .vh-usp li::before{content:'';width:10px;height:10px;background:#FF5F57;flex:none}
 .vh-cat{padding-top:0}
-.vh-filter{position:sticky;top:var(--vh-top,76px);z-index:20;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;background:#EFEFEF;padding:20px 0 16px;margin-bottom:12px;border-bottom:2px solid #161616}
-.vh-tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;flex:1 1 480px;min-width:0;padding:2px 6px 6px 2px}
-.vh-tabs::-webkit-scrollbar{display:none}
-@media (min-width:900px){.vh-tabs{flex-wrap:wrap;overflow:visible}}
-.vh-tabs a{flex:none;font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#161616;background:#FFFFFF;border:2px solid #161616;padding:9px 12px;white-space:nowrap}
-.vh-tabs a small{font-weight:600;color:#777;margin-left:4px}
-.vh-tabs a:hover{background:#FFE3E1}
-.vh-tabs a[aria-pressed="true"]{background:#161616;color:#FFFFFF;box-shadow:3px 3px 0 #FF5F57}
-.vh-tabs a[aria-pressed="true"] small{color:#A8A8A8}
-.vh-search{flex:0 1 300px;min-width:200px}
-.vh-search input{width:100%;box-sizing:border-box;border:2px solid #161616;background:#FFFFFF;padding:10px 14px;font-size:16px;font-family:'Hind',sans-serif;border-radius:0}
-.vh-search input:focus{outline:none;box-shadow:4px 4px 0 #FF5F57}
-.vh-filter{box-shadow:0 0 0 100vmax #EFEFEF;clip-path:inset(0 -100vmax)}
-@media (max-width:640px){.vh-filter{padding:12px 0 10px;gap:8px}.vh-search{flex:1 1 100%}.vh-search input{padding:9px 12px}.vh-tabs a{padding:8px 10px}}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.vh-group{padding-top:28px;scroll-margin-top:180px}
-.vh-gh{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;font-family:'Archivo Black','Archivo',sans-serif;text-transform:uppercase;font-size:clamp(20px,2.2vw,28px);line-height:1;margin:0 0 14px;color:#161616}
-.vh-gh small{font-family:'Archivo',sans-serif;font-weight:600;font-size:14px;letter-spacing:.02em;text-transform:none;color:#555}
+.vh-slider-wrap{background:#EFEFEF;border-bottom:2px solid #161616;padding:28px 0 26px}
+.vh-slider-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}
+.vh-slider-head h2{font-family:'Archivo Black','Archivo',sans-serif;text-transform:uppercase;font-size:clamp(18px,1.8vw,22px);margin:0;color:#161616}
+.vh-arrows{display:flex;gap:8px}
+.vh-arrows button{all:unset;cursor:pointer;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:2px solid #161616;background:#FFFFFF;font-weight:700;font-size:18px}
+.vh-arrows button:hover{background:#FF5F57}
+.vh-arrows button:focus-visible{outline:3px solid #FF5F57;outline-offset:2px}
+.vh-arrows button[disabled]{opacity:.3;cursor:default;background:#FFFFFF}
+@media (max-width:640px){.vh-arrows{display:none}}
+.vh-slider{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding:2px 8px 10px 2px;margin:0 -2px}
+.vh-slider::-webkit-scrollbar{display:none}
+.vh-tile{flex:0 0 auto;width:148px;scroll-snap-align:start;display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:16px;box-sizing:border-box;background:#FFFFFF;color:#161616;border:2px solid #161616;cursor:pointer;font:inherit;text-align:left;transition:transform 150ms var(--ease),box-shadow 150ms var(--ease)}
+.vh-tile svg{width:34px;height:34px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:square;stroke-linejoin:miter}
+.vh-tile b{font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;line-height:1.2}
+.vh-tile small{display:block;font-family:'Archivo',sans-serif;font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#777;margin-top:2px}
+.vh-tile:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 #161616}
+.vh-tile:focus-visible{outline:3px solid #FF5F57;outline-offset:2px}
+.vh-tile[aria-pressed="true"]{background:#161616;color:#FFFFFF;box-shadow:4px 4px 0 #FF5F57}
+.vh-tile[aria-pressed="true"] svg{stroke:#FF5F57}
+.vh-tile[aria-pressed="true"] small{color:#A8A8A8}
+@media (max-width:640px){.vh-tile{width:118px;padding:12px;gap:10px}.vh-tile svg{width:28px;height:28px}}
+.vh-shop{display:grid;grid-template-columns:260px minmax(0,1fr);gap:clamp(24px,3vw,48px);align-items:start;padding-top:36px}
+@media (max-width:999px){.vh-shop{grid-template-columns:minmax(0,1fr);padding-top:20px}}
+.vh-side{position:sticky;top:calc(var(--vh-top,76px) + 20px);max-height:calc(100vh - var(--vh-top,76px) - 40px);overflow-y:auto;background:#FFFFFF;border:2px solid #161616}
+.vh-side summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;font-family:'Archivo',sans-serif;font-weight:800;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:#161616}
+.vh-side summary::-webkit-details-marker{display:none}
+.vh-side summary::after{content:'+';font-size:22px;line-height:1;color:#D93A33}
+.vh-side[open] summary::after{content:'−'}
+@media (min-width:1000px){.vh-side summary{cursor:default;border-bottom:2px solid #161616}.vh-side summary::after{display:none}}
+@media (max-width:999px){.vh-side{position:static;max-height:none}}
+.vh-side summary .vh-fcount{background:#FF5F57;color:#161616;padding:2px 8px;font-size:12px;margin-left:auto}
+.vh-fs{border:0;margin:0;padding:16px;border-bottom:1px solid #DDD}
+.vh-fs:last-of-type{border-bottom:0}
+.vh-fs legend{float:left;width:100%;padding:0;margin:0 0 10px;font-family:'Archivo',sans-serif;font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#555}
+.vh-fs label{clear:both;display:flex;align-items:center;gap:10px;padding:5px 0;font-size:16px;color:#2A2A2A;cursor:pointer}
+.vh-fs label small{margin-left:auto;font-size:13px;color:#888}
+.vh-fs input{accent-color:#161616;width:18px;height:18px;margin:0;flex:none}
+.vh-reset{all:unset;cursor:pointer;display:block;margin:0 16px 16px;font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#B3261E;text-decoration:underline}
+.vh-reset[disabled]{opacity:.35;cursor:default;text-decoration:none}
+.vh-show{display:none;margin:16px 16px 12px;width:calc(100% - 32px);min-height:48px;font-family:'Archivo',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;background:#161616;color:#FFFFFF;border:2px solid #161616;box-shadow:4px 4px 0 #FF5F57;cursor:pointer}
+@media (max-width:999px){.vh-show{display:block}}
+.vh-bar-tools{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin-bottom:18px}
+.vh-count{font-family:'Archivo',sans-serif;font-weight:700;font-size:15px;color:#161616;margin-right:auto}
+.vh-search{flex:1 1 240px;max-width:340px}
+.vh-search input,.vh-sort select{width:100%;box-sizing:border-box;border:2px solid #161616;background:#FFFFFF;padding:10px 12px;font-size:16px;font-family:'Hind',sans-serif;border-radius:0;color:#161616}
+.vh-search input:focus,.vh-sort select:focus{outline:none;box-shadow:4px 4px 0 #FF5F57}
+.vh-sort{flex:0 0 auto}
+.vh-view{display:inline-flex;border:2px solid #161616}
+.vh-view button{all:unset;cursor:pointer;width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:#FFFFFF;color:#161616}
+.vh-view button+button{border-left:2px solid #161616}
+.vh-view button svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:square}
+.vh-view button[aria-pressed="true"]{background:#161616;color:#FFFFFF}
+.vh-view button:focus-visible{outline:3px solid #FF5F57;outline-offset:-3px}
+@media (max-width:640px){.vh-count{flex:1 1 100%}.vh-search{flex:1 1 100%;max-width:none}.vh-sort{flex:1 1 auto}}
+.vh-results{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.vh-results.is-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:18px}
+.vh-results.is-grid .vh-item{display:flex;flex-direction:column;align-items:stretch;gap:12px;padding:0}
+.vh-results.is-grid .vh-thumb{width:100%;height:auto;aspect-ratio:4 / 3;font-size:13px;border-bottom:2px solid #161616}
+.vh-results.is-grid .vh-item-main{padding:0 16px;flex:1}
+.vh-results.is-grid .vh-meta{display:none}
+.vh-results.is-grid .vh-item-buy{flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px 16px;border-top:1px solid #DDD}
+.vh-results.is-grid .vh-item h3{font-size:17px}
+.vh-cat-l{display:block;font-family:'Archivo',sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#D93A33;margin-bottom:4px}
 .vh-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,640px),1fr));gap:14px}
 .vh-item{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:16px 20px;align-items:center;background:#FFFFFF;color:#161616;border:2px solid #161616;padding:14px;transition:box-shadow 150ms var(--ease),transform 150ms var(--ease)}
 .vh-item:hover{box-shadow:5px 5px 0 #161616;transform:translate(-2px,-2px)}
@@ -281,6 +327,7 @@ const VH_CSS = `
 .vh-meta{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:6px;font-size:13px;color:#555}
 .vh-item-buy{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
 @media (max-width:640px){.vh-item{grid-template-columns:64px minmax(0,1fr);gap:12px 14px;align-items:start}.vh-thumb{width:64px;height:64px;font-size:8px}.vh-item-buy{grid-column:1 / -1;flex-direction:row;align-items:center;justify-content:space-between;border-top:1px solid #DDD;padding-top:12px}.vh-item h3{font-size:17px}}
+@media (max-width:640px){.vh-results.is-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.vh-results.is-grid .vh-item{display:flex;padding:0;gap:8px}.vh-results.is-grid .vh-thumb{width:100%;height:auto}.vh-results.is-grid .vh-item-main{padding:0 10px}.vh-results.is-grid .vh-item p{display:none}.vh-results.is-grid .vh-item-buy{flex-direction:column;align-items:stretch;padding:10px;border-top:1px solid #DDD}.vh-results.is-grid .vh-add{width:100%;padding:0 6px}.vh-results.is-grid .vh-step{width:100%;justify-content:space-between}.vh-results.is-grid .vh-step i{display:none}.vh-results.is-grid .vh-step span{min-width:36px}.vh-results.is-grid .vh-step button{width:38px}}
 .vh-none{font-size:18px;color:#3C3C3C;padding:28px 0}
 .vh-none a{color:#B3261E;text-decoration:underline}
 .vh-ctl{display:inline-flex;min-height:44px}
@@ -578,7 +625,20 @@ const verhuurPaths = [];
     return m.length ? `<div class="vh-meta">${m.map((x) => `<span>${x}</span>`).join('')}</div>` : '';
   };
   const search = (p) => esc([p.naam, p.kort, p.pakket ? 'pakket set' : catName[p.categorie], ...(p.specs || []), ...(p.inclusief || []), ...(p.inhoud || []).map((i) => bySlugV[i.slug].naam)].join(' ').toLowerCase());
-  const card = (p) => `<article class="vh-item${p.pakket ? ' vh-item-set' : ''}" data-q="${search(p)}"><a class="vh-thumb" href="${B}/${p.slug}" tabindex="-1" aria-hidden="true">${visual(p)}</a><div class="vh-item-main"><h3><a href="${B}/${p.slug}">${esc(p.naam)}</a></h3><p>${esc(p.kort)}</p>${meta(p)}</div><div class="vh-item-buy"><span class="vh-price">${eur(p.dagprijs)}<small> / dag</small></span>${addBtn(p)}</div></article>`;
+  const catOf = (p) => p.pakket ? 'pakketten' : p.categorie;
+  const card = (p, i = 0) => `<article class="vh-item${p.pakket ? ' vh-item-set' : ''}" data-q="${search(p)}" data-cat="${catOf(p)}" data-price="${p.dagprijs}" data-op="${p.operator ? 1 : 0}" data-i="${i}"><a class="vh-thumb" href="${B}/${p.slug}" tabindex="-1" aria-hidden="true">${visual(p)}</a><div class="vh-item-main"><span class="vh-cat-l">${esc(p.pakket ? 'Pakket' : catName[p.categorie])}</span><h3><a href="${B}/${p.slug}">${esc(p.naam)}</a></h3><p>${esc(p.kort)}</p>${meta(p)}</div><div class="vh-item-buy"><span class="vh-price">${eur(p.dagprijs)}<small> / dag</small></span>${addBtn(p)}</div></article>`;
+  // Line icons per category for the slider; unknown categories fall back to the box.
+  const ICONS = {
+    alles: '<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>',
+    pakketten: '<path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/>',
+    cameras: '<rect x="2" y="6" width="14" height="12"/><path d="M16 10l6-3v10l-6-3"/><circle cx="9" cy="12" r="3"/>',
+    'live-regie': '<rect x="2" y="4" width="20" height="12"/><path d="M8 20h8M12 16v4M6 8h4v4H6zM14 8h4v4h-4z"/>',
+    streaming: '<circle cx="12" cy="12" r="2"/><path d="M8.5 15.5a5 5 0 0 1 0-7M15.5 8.5a5 5 0 0 1 0 7M5.6 18.4a9 9 0 0 1 0-12.8M18.4 5.6a9 9 0 0 1 0 12.8"/>',
+    audio: '<rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4M8 22h8"/>',
+    licht: '<rect x="4" y="3" width="16" height="11"/><path d="M12 14v7M8 21h8M7 6.5h10M7 10h10"/>',
+    statieven: '<rect x="8" y="2" width="8" height="5"/><path d="M12 7v4M12 11L5 22M12 11l7 11M12 11v11"/>',
+  };
+  const icon = (slug) => `<svg viewBox="0 0 24 24" aria-hidden="true">${ICONS[slug] || ICONS.pakketten}</svg>`;
   const write = (path, { title, description, jsonld, body, scripts = [] }) => {
     const dir = join(ROOT, path.slice(1));
     mkdirSync(dir, { recursive: true });
@@ -595,14 +655,25 @@ const verhuurPaths = [];
     const description = "Huur camera's, videomixers, replay, streaming- en audioapparatuur voor je event. Zakelijk, per draaidag, ophalen in Apeldoorn of laten bezorgen.";
     const cats = V.categorieen.map((c) => [c, items.filter((p) => !p.pakket && p.categorie === c.slug)]).filter(([, list]) => list.length);
     const pakketten = items.filter((p) => p.pakket);
-    const groups = [...(pakketten.length ? [[{ slug: 'pakketten', naam: 'Pakketten', sub: 'Complete sets, voordeliger dan los' }, pakketten]] : []), ...cats];
-    const tabs = `<div class="vh-tabs" role="group" aria-label="Filter op categorie"><a href="#apparatuur" data-filter="alles" aria-pressed="true">Alles <small>${items.length}</small></a>${groups.map(([c, list]) => `<a href="#${c.slug}" data-filter="${c.slug}" aria-pressed="false">${esc(c.naam)} <small>${list.length}</small></a>`).join('')}</div>`;
+    const groups = [...(pakketten.length ? [[{ slug: 'pakketten', naam: 'Pakketten' }, pakketten]] : []), ...cats];
+    const ordered = groups.flatMap(([, list]) => list);
+    const slider = `<div class="vh-slider-wrap"><div class="wrap"><div class="vh-slider-head"><h2>Kies een categorie</h2><div class="vh-arrows"><button type="button" data-dir="-1" aria-label="Vorige categorieën">←</button><button type="button" data-dir="1" aria-label="Volgende categorieën">→</button></div></div><div class="vh-slider" role="group" aria-label="Categorieën">${[[{ slug: 'alles', naam: 'Alles' }, items], ...groups].map(([c, list]) => `<button type="button" class="vh-tile" data-tile="${c.slug}" aria-pressed="${c.slug === 'alles'}">${icon(c.slug)}<span><b>${esc(c.naam)}</b><small>${list.length} ${list.length === 1 ? 'item' : 'items'}</small></span></button>`).join('')}</div></div></div>`;
+    const check = (name, value, label, n) => `<label><input type="checkbox" name="${name}" value="${value}"> ${esc(label)}${n != null ? ` <small>${n}</small>` : ''}</label>`;
+    const PRICES = [['0-50', 'Tot € 50', 0, 50], ['50-150', '€ 50 tot € 150', 50, 150], ['150-400', '€ 150 tot € 400', 150, 400], ['400-', '€ 400 en meer', 400, Infinity]];
+    const side = `<details class="vh-side" open><summary>Filters <span class="vh-fcount" hidden></span></summary><form class="vh-fform" onsubmit="return false">
+<fieldset class="vh-fs"><legend>Categorie</legend>${groups.map(([c, list]) => check('cat', c.slug, c.naam, list.length)).join('')}</fieldset>
+<fieldset class="vh-fs"><legend>Bediening</legend>${check('op', '0', 'Zelf bedienen (droge huur)', items.filter((p) => !p.operator).length)}${check('op', '1', 'Met onze technicus', items.filter((p) => p.operator).length)}</fieldset>
+<fieldset class="vh-fs"><legend>Prijs per dag</legend>${PRICES.map(([v, l, lo, hi]) => check('prijs', v, l, items.filter((p) => p.dagprijs >= lo && p.dagprijs < hi).length)).join('')}</fieldset>
+</form><button type="button" class="vh-show">Toon ${items.length} items</button><button type="button" class="vh-reset" disabled>Filters wissen</button></details>`;
     const steps = [['Kies je apparatuur', 'Zet losse items of een pakket in je offerte. Je ziet meteen wat het per dag kost.'], ['Stuur je aanvraag', 'Kies je draaidagen, ophalen of bezorgen en of je een technicus wil.'], ['Binnen een werkdag bevestigd', 'Wij checken de beschikbaarheid en sturen een definitieve offerte. Daarna staat alles getest en compleet klaar.']];
+    const VIEW = { grid: '<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>', list: '<path d="M3 5h18M3 12h18M3 19h18"/>' };
+    const tools = `<div class="vh-bar-tools"><p class="vh-count" aria-live="polite">${items.length} items</p><label class="vh-search"><span class="sr">Zoek in de apparatuur</span><input type="search" placeholder="Zoek, bijv. camera of microfoon" autocomplete="off"></label><label class="vh-sort"><span class="sr">Sorteren</span><select><option value="aanbevolen">Aanbevolen</option><option value="prijs-op">Prijs laag naar hoog</option><option value="prijs-af">Prijs hoog naar laag</option><option value="naam">Naam A–Z</option></select></label><div class="vh-view" role="group" aria-label="Weergave"><button type="button" data-view="grid" aria-pressed="false" aria-label="Rasterweergave"><svg viewBox="0 0 24 24" aria-hidden="true">${VIEW.grid}</svg></button><button type="button" data-view="list" aria-pressed="true" aria-label="Lijstweergave"><svg viewBox="0 0 24 24" aria-hidden="true">${VIEW.list}</svg></button></div></div>`;
     const body = `${hero(crumbs, 'Verhuur · Apeldoorn', 'Apparatuur <span style="color: #FF5F57">huren</span>', "Camera's, regie, replay, streaming en audio waar wij zelf mee live gaan. Kies wat je nodig hebt en vraag in één keer een offerte aan.", `<ul class="vh-usp"><li>Zakelijk, prijzen excl. btw</li><li>Dag 2 en verder halve prijs</li><li>Ophalen in Apeldoorn of laten bezorgen</li><li>Los of met technicus</li></ul>`)}
-<section class="kb-light vh-cat" id="apparatuur"><div class="wrap">
-<div class="vh-filter">${tabs}<label class="vh-search"><span class="sr">Zoek in de apparatuur</span><input type="search" placeholder="Zoek, bijv. camera of microfoon" autocomplete="off"></label></div>
-${groups.map(([c, list]) => `<div class="vh-group" id="${c.slug}" data-cat="${c.slug}"><h2 class="vh-gh">${esc(c.naam)}${c.sub ? ` <small>${esc(c.sub)}</small>` : ''}</h2><div class="vh-list">${list.map(card).join('')}</div></div>`).join('\n')}
-<p class="vh-none" hidden>Niets gevonden. Zoek je iets dat er niet tussen staat? Mail naar <a href="mailto:${V.email}">${V.email}</a>, dan kijken we wat er kan.</p>
+${slider}
+<section class="kb-light vh-cat" id="apparatuur"><div class="wrap vh-shop">
+${side}
+<div class="vh-main">${tools}<div class="vh-results">${ordered.map(card).join('')}</div>
+<p class="vh-none" hidden>Niets gevonden met deze filters. <button type="button" class="vh-reset" style="display: inline; margin: 0">Filters wissen</button> of mail naar <a href="mailto:${V.email}">${V.email}</a>, dan kijken we wat er kan.</p></div>
 </div></section>
 ${sec(LIGHT, `${head('Zo werkt het')}<div class="vh-steps">${steps.map(([t, x]) => `<div><h3>${esc(t)}</h3><p>${esc(x)}</p></div>`).join('')}</div>`)}
 ${sec(DARK, `${head('Goed om te weten', '#FFFFFF')}<div class="p-gets">${V.voorwaarden.slice(0, 4).map((v) => `<div><h3>${esc(v.kop)}</h3><p>${esc(v.tekst)}</p></div>`).join('')}</div><p style="margin: 40px 0 0"><a class="kb-meta" href="${B}/voorwaarden" style="color: #FF5F57">Alle huurvoorwaarden →</a></p>`)}

@@ -1,4 +1,4 @@
-// Rental pages: the quote list in localStorage, the "+ In offerte" buttons and quote bar, the overview filter, and the quote request page (/verhuur/offerte).
+// Rental pages: the quote list in localStorage, the "+ In offerte" buttons and quote bar, the overview slider/filters/view, and the quote request page (/verhuur/offerte).
 // localStorage is functional storage, so it works without cookie consent; Clarity calls are queued and only sent after consent.
 (() => {
   const KEY = 'berk-verhuur';
@@ -51,46 +51,114 @@
   });
   syncBar();
 
-  // Overview: category tabs and search filter the list; the filter bar sticks right under the header.
-  const filter = document.querySelector('.vh-filter');
-  if (filter) {
-    const tabs = [...filter.querySelectorAll('[data-filter]')], q = filter.querySelector('input');
-    const groups = [...document.querySelectorAll('.vh-group')], none = document.querySelector('.vh-none');
+  // Overview: category slider, sidebar filters, search, sort and grid/list view. Everything filters the same flat result list.
+  const shop = document.querySelector('.vh-shop');
+  if (shop) {
     const hdr = document.querySelector('.hdr');
     const setTop = () => document.documentElement.style.setProperty('--vh-top', `${hdr ? Math.max(hdr.getBoundingClientRect().bottom, 0) : 0}px`);
     addEventListener('scroll', () => requestAnimationFrame(setTop), { passive: true });
     addEventListener('resize', setTop);
     if (hdr) hdr.addEventListener('transitionend', setTop);
     setTop();
-    let cat = tabs.some((t) => t.dataset.filter === location.hash.slice(1)) ? location.hash.slice(1) : 'alles';
+
+    const results = shop.querySelector('.vh-results'), items = [...results.children];
+    const fform = shop.querySelector('.vh-fform'), side = shop.querySelector('.vh-side');
+    const q = shop.querySelector('.vh-search input'), sort = shop.querySelector('.vh-sort select');
+    const countEl = shop.querySelector('.vh-count'), none = shop.querySelector('.vh-none');
+    const showBtn = side.querySelector('.vh-show'), fcount = side.querySelector('.vh-fcount'), resets = [...shop.querySelectorAll('.vh-reset')];
+    const tiles = [...document.querySelectorAll('.vh-tile')], slider = document.querySelector('.vh-slider');
+    const PRICE = { '0-50': [0, 50], '50-150': [50, 150], '150-400': [150, 400], '400-': [400, Infinity] };
+    const checked = (name) => [...fform.querySelectorAll(`input[name="${name}"]:checked`)].map((i) => i.value);
+
     const apply = () => {
-      const term = q.value.trim().toLowerCase();
-      let any = 0;
-      for (const g of groups) {
-        let vis = 0;
-        for (const it of g.querySelectorAll('.vh-item')) {
-          const ok = (cat === 'alles' || g.dataset.cat === cat) && (!term || term.split(/\s+/).every((w) => it.dataset.q.includes(w)));
-          it.hidden = !ok;
-          vis += ok;
-        }
-        g.hidden = !vis;
-        any += vis;
+      const cats = checked('cat'), ops = checked('op'), prices = checked('prijs');
+      const words = q.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      let n = 0;
+      for (const it of items) {
+        const price = Number(it.dataset.price);
+        const ok = (!cats.length || cats.includes(it.dataset.cat))
+          && (!ops.length || ops.includes(it.dataset.op))
+          && (!prices.length || prices.some((v) => price >= PRICE[v][0] && price < PRICE[v][1]))
+          && words.every((w) => it.dataset.q.includes(w));
+        it.hidden = !ok;
+        n += ok;
       }
-      none.hidden = any > 0;
-      tabs.forEach((t) => t.setAttribute('aria-pressed', String(t.dataset.filter === cat)));
+      countEl.textContent = `${n} ${n === 1 ? 'item' : 'items'}`;
+      showBtn.textContent = `Toon ${n} ${n === 1 ? 'item' : 'items'}`;
+      none.hidden = n > 0;
+      const active = cats.length + ops.length + prices.length + (words.length ? 1 : 0);
+      fcount.hidden = !active;
+      fcount.textContent = `${active} actief`;
+      resets.forEach((r) => { r.disabled = !active; });
+      const one = cats.length === 1 ? cats[0] : cats.length ? null : 'alles';
+      tiles.forEach((t) => t.setAttribute('aria-pressed', String(t.dataset.tile === one)));
     };
-    tabs.forEach((t) => t.addEventListener('click', (e) => {
-      e.preventDefault();
-      cat = t.dataset.filter;
+    const doSort = () => {
+      const v = sort.value, by = {
+        aanbevolen: (a, b) => a.dataset.i - b.dataset.i,
+        'prijs-op': (a, b) => a.dataset.price - b.dataset.price,
+        'prijs-af': (a, b) => b.dataset.price - a.dataset.price,
+        naam: (a, b) => a.querySelector('h3').textContent.localeCompare(b.querySelector('h3').textContent, 'nl'),
+      }[v];
+      items.slice().sort(by).forEach((it) => results.appendChild(it));
+    };
+    items.forEach((it, i) => { it.dataset.i = i; });
+    const setCat = (slug) => {
+      fform.querySelectorAll('input[name="cat"]').forEach((i) => { i.checked = i.value === slug; });
       apply();
-      t.scrollIntoView({ block: 'nearest', inline: 'nearest' });
-      // Once the bar is stuck, jump back to the top of the list so the result is in view.
-      const top = filter.parentElement.getBoundingClientRect().top + scrollY - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh-top')) || 0);
-      if (scrollY > top) scrollTo({ top, behavior: 'smooth' });
-      history.replaceState(null, '', cat === 'alles' ? location.pathname : `#${cat}`);
+      history.replaceState(null, '', slug === 'alles' ? location.pathname : `#${slug}`);
+    };
+
+    tiles.forEach((t) => t.addEventListener('click', () => {
+      setCat(t.dataset.tile);
+      const top = shop.getBoundingClientRect().top + scrollY - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh-top')) || 0);
+      if (scrollY > top || shop.getBoundingClientRect().top > innerHeight * 0.6) scrollTo({ top, behavior: 'smooth' });
     }));
+    // Slider arrows scroll by most of a screen; they disable themselves at either end.
+    const arrows = [...document.querySelectorAll('.vh-arrows button')];
+    const syncArrows = () => {
+      arrows[0].parentElement.hidden = slider.scrollWidth <= slider.clientWidth + 2;
+      arrows[0].disabled = slider.scrollLeft <= 2;
+      arrows[1].disabled = slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 2;
+    };
+    arrows.forEach((b) => b.addEventListener('click', () => slider.scrollBy({ left: Number(b.dataset.dir) * slider.clientWidth * 0.8 })));
+    slider.addEventListener('scroll', () => requestAnimationFrame(syncArrows), { passive: true });
+    addEventListener('resize', syncArrows);
+    syncArrows();
+
+    fform.addEventListener('change', () => { apply(); history.replaceState(null, '', location.pathname); });
     q.addEventListener('input', apply);
-    apply();
+    sort.addEventListener('change', doSort);
+    resets.forEach((r) => r.addEventListener('click', () => { fform.reset(); q.value = ''; apply(); history.replaceState(null, '', location.pathname); }));
+
+    // The sidebar is always open on desktop and collapsed by default on mobile.
+    const mq = matchMedia('(min-width: 1000px)');
+    const syncSide = () => { side.open = mq.matches; };
+    mq.addEventListener('change', syncSide);
+    syncSide();
+    side.querySelector('summary').addEventListener('click', (e) => { if (mq.matches) e.preventDefault(); });
+
+    showBtn.addEventListener('click', () => {
+      side.open = false;
+      const top = shop.querySelector('.vh-main').getBoundingClientRect().top + scrollY - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh-top')) || 0) - 12;
+      scrollTo({ top, behavior: 'smooth' });
+    });
+
+    // Grid or list view, remembered per browser.
+    const VKEY = 'berk-verhuur-view';
+    const views = [...shop.querySelectorAll('[data-view]')];
+    const setView = (v) => {
+      results.classList.toggle('is-grid', v === 'grid');
+      views.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.view === v)));
+      try { localStorage.setItem(VKEY, v); } catch (e) {}
+    };
+    views.forEach((b) => b.addEventListener('click', () => setView(b.dataset.view)));
+    let saved = 'list';
+    try { saved = localStorage.getItem(VKEY) || 'list'; } catch (e) {}
+    setView(saved);
+
+    const h = location.hash.slice(1);
+    if (tiles.some((t) => t.dataset.tile === h)) setCat(h); else apply();
   }
 
   // --- Quote request page ---

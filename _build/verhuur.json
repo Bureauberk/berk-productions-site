@@ -64,7 +64,8 @@
         "2 accu's en lader",
         "Geheugenkaart en kaartlezer",
         "Tas"
-      ]
+      ],
+      "marktprijs": 50
     },
     {
       "slug": "sony-hxr-nx800",
@@ -112,7 +113,8 @@
         "Zonnekap",
         "Lensdoppen",
         "Tas"
-      ]
+      ],
+      "marktprijs": 40
     },
     {
       "slug": "sigma-24-70mm-f28-dg-dn-art",
@@ -136,7 +138,8 @@
         "Zonnekap",
         "Lensdoppen",
         "Tas"
-      ]
+      ],
+      "marktprijs": 30
     },
     {
       "slug": "sony-e-pz-18-105mm-f4-g-oss",
@@ -159,7 +162,8 @@
       "inclusief": [
         "Zonnekap",
         "Lensdoppen"
-      ]
+      ],
+      "marktprijs": 17
     },
     {
       "slug": "blackmagic-atem-4k",
@@ -204,7 +208,8 @@
       "inclusief": [
         "Flightcase",
         "Stroom- en signaalkabels"
-      ]
+      ],
+      "marktprijs": 135
     },
     {
       "slug": "replay-module-2-kanalen",
@@ -248,7 +253,8 @@
       ],
       "inclusief": [
         "USB-C-kabel"
-      ]
+      ],
+      "marktprijs": 20
     },
     {
       "slug": "blackmagic-hyperdeck-studio-hd-plus",
@@ -316,7 +322,8 @@
         "5 headsets",
         "Lader",
         "Koffer"
-      ]
+      ],
+      "marktprijs": 60
     },
     {
       "slug": "studiolampen-set-3",
@@ -337,7 +344,8 @@
       "inclusief": [
         "3 lampstatieven",
         "Tas"
-      ]
+      ],
+      "marktprijs": 35
     },
     {
       "slug": "kf-concept-videostatief-192cm",
@@ -359,7 +367,8 @@
       "inclusief": [
         "Pan-bar",
         "Snelwisselplaat"
-      ]
+      ],
+      "marktprijs": 18
     },
     {
       "slug": "manfrotto-videostatief-heavy-duty",
@@ -381,7 +390,8 @@
       "inclusief": [
         "Pan-bar",
         "Tas"
-      ]
+      ],
+      "marktprijs": 20
     },
     {
       "slug": "dji-rs-4-pro",
@@ -405,7 +415,8 @@
         "Accugrip en lader",
         "Snelwisselplaten",
         "Koffer"
-      ]
+      ],
+      "marktprijs": 60
     }
   ],
   "pakketten": [],
@@ -464,5 +475,9 @@
       "kop": "Identificatie",
       "tekst": "Bij het ophalen vragen we een geldig identiteitsbewijs van degene die tekent namens het bedrijf."
     }
-  ]
+  ],
+  "markt": {
+    "label": "Elders",
+    "uitleg": "Laagste dagprijs excl. btw die we vonden bij andere Nederlandse verhuurders (gecontroleerd in november 2026), met dezelfde staffel gerekend."
+  }
 }

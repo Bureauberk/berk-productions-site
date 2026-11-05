@@ -244,6 +244,17 @@ const VH_CSS = `
 .vh-price small{font-family:'Archivo',sans-serif;font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#555}
 .vh-price-lg{font-size:clamp(32px,4vw,48px);color:#FFFFFF}
 .vh-price-lg small{color:#A8A8A8}
+.vh-pricebox{display:flex;flex-direction:column;gap:2px}
+.vh-item-buy .vh-pricebox{align-items:flex-end}
+.vh-elders{font-family:'Archivo',sans-serif;font-weight:600;font-size:12px;letter-spacing:.02em;color:#2E7D32;white-space:nowrap}
+.vh-elders::before{content:'✓ ';font-weight:800}
+.vh-elders-lg{font-size:14px;color:#7BD88F;white-space:normal}
+.vh-note{font-size:14px!important;color:#666!important}
+.vh-save{color:#2E7D32}
+.vh-total .vh-save{color:#7BD88F}
+.vh-total .vh-was{color:#A8A8A8}
+.vh-tip{background:#E8F5E9;border:2px solid #161616;padding:12px 14px;font-size:15px;line-height:1.5;color:#1B3D1E;margin:0 0 14px}
+.vh-tip b{color:#161616}
 .vh-op{font-family:'Archivo',sans-serif;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#B3261E}
 .vh-buy{display:flex;flex-wrap:wrap;align-items:center;gap:24px;margin-top:8px}
 .vh-detail{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:start}
@@ -332,7 +343,7 @@ const VH_CSS = `
 .vh-item p{margin:0;font-size:15px;line-height:1.45;color:#3C3C3C}
 .vh-meta{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:6px;font-size:13px;color:#555}
 .vh-item-buy{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
-@media (max-width:640px){.vh-item{grid-template-columns:64px minmax(0,1fr);gap:12px 14px;align-items:start}.vh-thumb{width:64px;height:64px;font-size:8px}.vh-item-buy{grid-column:1 / -1;flex-direction:row;align-items:center;justify-content:space-between;border-top:1px solid #DDD;padding-top:12px}.vh-item h3{font-size:17px}}
+@media (max-width:640px){.vh-item-buy .vh-pricebox{align-items:flex-start}.vh-item{grid-template-columns:64px minmax(0,1fr);gap:12px 14px;align-items:start}.vh-thumb{width:64px;height:64px;font-size:8px}.vh-item-buy{grid-column:1 / -1;flex-direction:row;align-items:center;justify-content:space-between;border-top:1px solid #DDD;padding-top:12px}.vh-item h3{font-size:17px}}
 @media (max-width:640px){.vh-results.is-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.vh-results.is-grid .vh-item{display:flex;padding:0;gap:8px}.vh-results.is-grid .vh-thumb{width:100%;height:auto}.vh-results.is-grid .vh-item-main{padding:0 10px}.vh-results.is-grid .vh-item p{display:none}.vh-results.is-grid .vh-item-buy{flex-direction:column;align-items:stretch;padding:10px;border-top:1px solid #DDD}.vh-results.is-grid .vh-add{width:100%;padding:0 6px}.vh-results.is-grid .vh-step{width:100%;justify-content:space-between}.vh-results.is-grid .vh-step i{display:none}.vh-results.is-grid .vh-step span{min-width:36px}.vh-results.is-grid .vh-step button{width:38px}}
 .vh-none{font-size:18px;color:#3C3C3C;padding:28px 0}
 .vh-none a{color:#B3261E;text-decoration:underline}
@@ -401,7 +412,9 @@ body.vh-has-bar footer{padding-bottom:90px}
 .vh-qty button:hover{background:#FF5F57}
 .vh-qty span{min-width:30px;display:flex;align-items:center;justify-content:center;font-weight:700;border-left:2px solid #161616;border-right:2px solid #161616}
 .vh-sum{font-family:'Archivo Black','Archivo',sans-serif;font-size:18px;white-space:nowrap}
-.vh-total{background:#161616;color:#EFEFEF;padding:20px 22px;font-size:16px;line-height:1.6}
+.vh-sum small{display:block;font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;text-align:right}
+.vh-total{background:#161616;color:#EFEFEF;padding:20px 22px;font-size:16px;line-height:1.6;margin-top:20px}
+@media (min-width:1001px){.vh-quote-side{position:sticky;top:calc(var(--vh-top,76px) + 20px)}}
 .vh-total:empty{display:none}
 .vh-total div{display:flex;justify-content:space-between;gap:16px}
 .vh-total .vh-grand{font-family:'Archivo Black','Archivo',sans-serif;font-size:22px;color:#FF5F57;border-top:1px solid #3C3C3C;margin-top:8px;padding-top:8px}
@@ -632,7 +645,9 @@ const verhuurPaths = [];
   };
   const search = (p) => esc([p.naam, p.kort, p.pakket ? 'pakket set' : catName[p.categorie], ...(p.specs || []), ...(p.inclusief || []), ...(p.inhoud || []).map((i) => bySlugV[i.slug].naam)].join(' ').toLowerCase());
   const catOf = (p) => p.pakket ? 'pakketten' : p.categorie;
-  const card = (p, i = 0) => `<article class="vh-item${p.pakket ? ' vh-item-set' : ''}" data-q="${search(p)}" data-cat="${catOf(p)}" data-price="${p.dagprijs}" data-op="${p.operator ? 1 : 0}" data-i="${i}"><a class="vh-thumb" href="${B}/${p.slug}" tabindex="-1" aria-hidden="true">${visual(p)}</a><div class="vh-item-main"><span class="vh-cat-l">${esc(p.pakket ? 'Pakket' : catName[p.categorie])}</span><h3><a href="${B}/${p.slug}">${esc(p.naam)}</a></h3><p>${esc(p.kort)}</p>${meta(p)}</div><div class="vh-item-buy"><span class="vh-price">${eur(p.dagprijs)}<small> / dag</small></span>${addBtn(p)}</div></article>`;
+  // Reference price at other Dutch rental companies (verhuur.json marktprijs); only shown when we are actually cheaper.
+  const elders = (p) => p.marktprijs > p.dagprijs ? `<span class="vh-elders" title="${esc(V.markt.uitleg)}">${esc(V.markt.label)} vanaf ${eur(p.marktprijs)}</span>` : '';
+  const card = (p, i = 0) => `<article class="vh-item${p.pakket ? ' vh-item-set' : ''}" data-q="${search(p)}" data-cat="${catOf(p)}" data-price="${p.dagprijs}" data-op="${p.operator ? 1 : 0}" data-i="${i}"><a class="vh-thumb" href="${B}/${p.slug}" tabindex="-1" aria-hidden="true">${visual(p)}</a><div class="vh-item-main"><span class="vh-cat-l">${esc(p.pakket ? 'Pakket' : catName[p.categorie])}</span><h3><a href="${B}/${p.slug}">${esc(p.naam)}</a></h3><p>${esc(p.kort)}</p>${meta(p)}</div><div class="vh-item-buy"><span class="vh-pricebox"><span class="vh-price">${eur(p.dagprijs)}<small> / dag</small></span>${elders(p)}</span>${addBtn(p)}</div></article>`;
   // Line icons per category for the slider; unknown categories fall back to the box.
   const ICONS = {
     alles: '<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>',
@@ -703,12 +718,16 @@ ${ctaBand({ text: 'Liever de hele productie uit handen geven? Wij draaien je liv
     const crumbs = [['Home', '/'], ['Verhuur', B], [p.naam, path]];
     const title = `${p.naam} huren | BERK Productions`;
     const description = `${p.kort} Te huur vanaf ${eur(p.dagprijs)} per dag excl. btw, ophalen in Apeldoorn of laten bezorgen.`.slice(0, 300);
-    const staffel = [1, 2, 3, 7].map((n) => `<tr><td>${n === 7 ? '1 week' : n === 1 ? '1 draaidag' : `${n} draaidagen`}</td><td>${eur(p.dagprijs * factor(n))}</td></tr>`).join('');
+    const mk = p.marktprijs > p.dagprijs;
+    const staffel = [1, 2, 3, 5, 7].map((n) => {
+      const ons = p.dagprijs * factor(n), los = p.dagprijs * n;
+      return `<tr><td>${n === 7 ? '1 week' : n === 1 ? '1 draaidag' : `${n} draaidagen`}</td><td><strong>${eur(ons)}</strong></td><td>${n > 1 ? `${eur(los - ons)} <small>(${Math.round((1 - ons / los) * 100)}%)</small>` : '–'}</td>${mk ? `<td>${eur(p.marktprijs * factor(n))}</td>` : ''}</tr>`;
+    }).join('');
     const list = (label, arr) => arr && arr.length ? `<h3>${label}</h3><ul>${arr.map((x) => `<li>${x}</li>`).join('')}</ul>` : '';
     const inhoud = p.inhoud && p.inhoud.map((i) => `${i.aantal}× <a href="${B}/${i.slug}">${esc(bySlugV[i.slug].naam)}</a>`);
     const related = p.pakket ? items.filter((x) => x.pakket && x.slug !== p.slug) : [...V.pakketten.filter((x) => x.actief !== false && x.inhoud.some((i) => i.slug === p.slug)).map((x) => items.find((y) => y.slug === x.slug)), ...items.filter((x) => !x.pakket && x.categorie === p.categorie && x.slug !== p.slug)];
-    const body = `${hero(crumbs, p.pakket ? 'Verhuur · Pakket' : `Verhuur · ${catName[p.categorie]}`, esc(p.naam), p.kort, `<div class="vh-buy"><span class="vh-price vh-price-lg">${eur(p.dagprijs)}<small> / dag excl. btw</small></span>${addBtn(p, true)}</div>`)}
-<section class="kb-light"><div class="wrap vh-detail"><div class="vh-img vh-img-lg">${visual(p)}</div><div class="prose">${p.aantal ? `<p class="vh-op" style="color: #555">${p.aantal} op voorraad</p>` : ''}${p.operator ? '<p class="vh-op">Alleen te huur met onze eigen technicus. Die zetten we automatisch in je offerte.</p>' : ''}${inhoud ? list('In dit pakket', inhoud) : ''}${list('Specificaties', (p.specs || []).map(esc))}${list('Inclusief', (p.inclusief || []).map(esc))}<h3>Prijs per periode</h3><div class="tbl"><table><thead><tr><th>Periode</th><th>Prijs excl. btw</th></tr></thead><tbody>${staffel}</tbody></table></div>${p.borg ? `<p>Borg: ${eur(p.borg)}, terug zodra alles compleet en heel retour is.</p>` : ''}<p>Ophalen kan de middag voor je eerste draaidag vanaf 16:00, terugbrengen de ochtend na je laatste draaidag tot 11:00. <a href="${B}/voorwaarden">Huurvoorwaarden</a></p></div></div></section>
+    const body = `${hero(crumbs, p.pakket ? 'Verhuur · Pakket' : `Verhuur · ${catName[p.categorie]}`, esc(p.naam), p.kort, `<div class="vh-buy"><span class="vh-pricebox"><span class="vh-price vh-price-lg">${eur(p.dagprijs)}<small> / dag excl. btw</small></span>${p.marktprijs > p.dagprijs ? `<span class="vh-elders vh-elders-lg">${esc(V.markt.label)} vanaf ${eur(p.marktprijs)}, bij ons ${eur(p.marktprijs - p.dagprijs)} per dag goedkoper</span>` : ''}</span>${addBtn(p, true)}</div>`)}
+<section class="kb-light"><div class="wrap vh-detail"><div class="vh-img vh-img-lg">${visual(p)}</div><div class="prose">${p.aantal ? `<p class="vh-op" style="color: #555">${p.aantal} op voorraad</p>` : ''}${p.operator ? '<p class="vh-op">Alleen te huur met onze eigen technicus. Die zetten we automatisch in je offerte.</p>' : ''}${inhoud ? list('In dit pakket', inhoud) : ''}${list('Specificaties', (p.specs || []).map(esc))}${list('Inclusief', (p.inclusief || []).map(esc))}<h3>Prijs per periode</h3><p>Dag 2 en verder kosten de halve dagprijs, een hele week nooit meer dan drie dagen. Hoe langer je huurt, hoe meer je bespaart.</p><div class="tbl"><table><thead><tr><th>Periode</th><th>Bij BERK</th><th>Je bespaart</th>${mk ? `<th>${esc(V.markt.label)}</th>` : ''}</tr></thead><tbody>${staffel}</tbody></table></div>${mk ? `<p class="vh-note">${esc(V.markt.label)}: ${esc(V.markt.uitleg.charAt(0).toLowerCase() + V.markt.uitleg.slice(1))}</p>` : ''}${p.borg ? `<p>Borg: ${eur(p.borg)}, terug zodra alles compleet en heel retour is.</p>` : ''}<p>Ophalen kan de middag voor je eerste draaidag vanaf 16:00, terugbrengen de ochtend na je laatste draaidag tot 11:00. <a href="${B}/voorwaarden">Huurvoorwaarden</a></p></div></div></section>
 ${related.length ? `<section style="padding: clamp(80px, 9vw, 140px) 0"><div class="wrap" style="display: flex; flex-direction: column; gap: 40px"><div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px"><h2 class="h-black" style="font-size: clamp(36px, 4.4vw, 64px); line-height: 0.95; color: #FFFFFF">${p.pakket ? 'Andere pakketten' : 'Vaak samen gehuurd'}</h2><a class="kb-meta" href="${B}" style="color: #FF5F57">Alle apparatuur →</a></div><div class="vh-list">${related.slice(0, 4).map(card).join('')}</div></div></section>` : ''}`;
     const jsonld = [
       { '@context': 'https://schema.org', '@type': 'Product', '@id': SITE + path + '#product', name: p.naam, description: p.kort, url: SITE + path, ...(p.foto ? { image: SITE + p.foto } : {}), ...(p.merk && !p.voorbeeld ? { brand: { '@type': 'Brand', name: p.merk } } : {}), offers: { '@type': 'Offer', url: SITE + path, priceCurrency: 'EUR', price: p.dagprijs, businessFunction: 'http://purl.org/goodrelations/v1#LeaseOut', eligibleCustomerType: 'http://purl.org/goodrelations/v1#Business', availability: 'https://schema.org/InStock', priceSpecification: { '@type': 'UnitPriceSpecification', price: p.dagprijs, priceCurrency: 'EUR', valueAddedTaxIncluded: false, referenceQuantity: { '@type': 'QuantitativeValue', value: 1, unitCode: 'DAY' } }, seller: ORG, areaServed: 'NL' } },
@@ -721,11 +740,11 @@ ${related.length ? `<section style="padding: clamp(80px, 9vw, 140px) 0"><div cla
   {
     const path = `${B}/offerte`;
     const crumbs = [['Home', '/'], ['Verhuur', B], ['Offerte', path]];
-    const data = { email: V.email, regels: R, items: Object.fromEntries(items.map((p) => [p.slug, { naam: p.naam, dagprijs: p.dagprijs, borg: p.borg || 0, operator: !!p.operator, max: p.aantal || 0, url: `${B}/${p.slug}` }])) };
+    const data = { email: V.email, regels: R, marktLabel: V.markt.label, marktUitleg: V.markt.uitleg, items: Object.fromEntries(items.map((p) => [p.slug, { naam: p.naam, dagprijs: p.dagprijs, borg: p.borg || 0, operator: !!p.operator, max: p.aantal || 0, markt: p.marktprijs > p.dagprijs ? p.marktprijs : 0, url: `${B}/${p.slug}` }])) };
     const f = (label, input, wide) => `<label class="lbl" style="flex: ${wide ? '1 1 100%' : '1 1 220px'}">${label}${input}</label>`;
     const body = `${hero(crumbs, 'Verhuur · Offerteaanvraag', 'Jouw <span style="color: #FF5F57">offerte</span>', 'Controleer je apparatuur, kies je draaidagen en stuur je aanvraag. Wij checken de beschikbaarheid en sturen binnen een werkdag een definitieve offerte.')}
 <section class="kb-light"><div class="wrap vh-quote">
-<div><h2 class="h-black vh-h2">Apparatuur</h2><div id="vh-list" aria-live="polite"><p class="vh-empty">Je offerte is nog leeg. <a href="${B}">Kies apparatuur</a></p></div><a class="vh-more" href="${B}">+ Meer apparatuur toevoegen</a></div>
+<div class="vh-quote-side"><h2 class="h-black vh-h2">Apparatuur</h2><div id="vh-list" aria-live="polite"><p class="vh-empty">Je offerte is nog leeg. <a href="${B}">Kies apparatuur</a></p></div><a class="vh-more" href="${B}">+ Meer apparatuur toevoegen</a><div class="vh-total" id="vh-total" aria-live="polite"></div></div>
 <form id="vh-form" class="vh-form" novalidate>
 <h2 class="h-black vh-h2">Periode en levering</h2>
 <div class="vh-row">${f('Eerste draaidag', '<input class="field" type="date" name="van" required>')}${f('Laatste draaidag', '<input class="field" type="date" name="tot" required>')}</div>
@@ -740,7 +759,6 @@ ${related.length ? `<section style="padding: clamp(80px, 9vw, 140px) 0"><div cla
 ${f('Opmerkingen', '<textarea class="field" name="opmerkingen" rows="4"></textarea>', true)}
 <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="vh-honey" aria-hidden="true">
 <label class="vh-check"><input type="checkbox" name="akkoord" required> Ik ga akkoord met de <a href="${B}/voorwaarden" target="_blank">huurvoorwaarden</a></label>
-<div class="vh-total" id="vh-total"></div>
 <button class="btn" type="submit">Verstuur aanvraag <span aria-hidden="true">→</span></button>
 <p class="vh-status" id="vh-status" role="status"></p>
 </form>

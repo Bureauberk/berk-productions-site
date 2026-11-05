@@ -195,10 +195,15 @@
   const calc = () => {
     const n = days(), f = n ? factor(n) : 1, ls = lines();
     const huur = ls.reduce((s, l) => s + l.dagprijs * l.qty * f, 0);
+    // What the same days would cost without our staffel, and what the same items cost elsewhere (same staffel, see verhuur.json).
+    const los = ls.reduce((s, l) => s + l.dagprijs * l.qty * Math.max(n, 1), 0);
+    const vergeleken = ls.filter((l) => l.markt);
+    const elders = vergeleken.reduce((s, l) => s + l.markt * l.qty * f, 0);
+    const onsVergeleken = vergeleken.reduce((s, l) => s + l.dagprijs * l.qty * f, 0);
     const borg = ls.reduce((s, l) => s + l.borg * l.qty, 0);
     const technicus = tech.checked ? R.technicusDagprijs * Math.max(n, 1) : 0;
     const bezorgen = form.levering.value === 'bezorgen' ? R.bezorgenVanaf : 0;
-    return { n, f, ls, huur, borg, technicus, bezorgen, totaal: huur + technicus + bezorgen };
+    return { n, f, ls, huur, los, korting: los - huur, elders, onsVergeleken, nVergeleken: vergeleken.length, borg, technicus, bezorgen, totaal: huur + technicus + bezorgen };
   };
 
   const render = () => {
@@ -206,14 +211,28 @@
     if (!c.ls.length) {
       list.innerHTML = '<p class="vh-empty">Je offerte is nog leeg. <a href="/verhuur">Kies apparatuur</a></p>';
     } else {
-      list.innerHTML = c.ls.map((l) => `<div class="vh-line" data-slug="${l.slug}"><div><a href="${l.url}">${esc(l.naam)}</a><small>${eur(l.dagprijs)} per dag${l.operator ? ' · alleen met technicus' : ''}</small></div><div class="vh-qty"><button type="button" data-d="-1" aria-label="Eén minder ${esc(l.naam)}">−</button><span>${l.qty}</span><button type="button" data-d="1" aria-label="Eén meer ${esc(l.naam)}"${l.max && l.qty >= l.max ? ' disabled' : ''}>+</button></div><span class="vh-sum">${eur(l.dagprijs * l.qty * c.f)}</span></div>`).join('')
+      list.innerHTML = c.ls.map((l) => `<div class="vh-line" data-slug="${l.slug}"><div><a href="${l.url}">${esc(l.naam)}</a><small>${eur(l.dagprijs)} per dag${l.operator ? ' · alleen met technicus' : ''}</small></div><div class="vh-qty"><button type="button" data-d="-1" aria-label="Eén minder ${esc(l.naam)}">−</button><span>${l.qty}</span><button type="button" data-d="1" aria-label="Eén meer ${esc(l.naam)}"${l.max && l.qty >= l.max ? ' disabled' : ''}>+</button></div><span class="vh-sum">${eur(l.dagprijs * l.qty * c.f)}${c.n > 1 ? `<small class="vh-save">− ${eur(l.dagprijs * l.qty * (c.n - c.f))}</small>` : ''}</span></div>`).join('')
         + `<p class="vh-hint">${c.n ? `${c.n} draaidag${c.n > 1 ? 'en' : ''}, staffel toegepast.` : 'Prijzen voor 1 draaidag. Kies je data voor de staffel.'}</p>`;
+      if (c.n <= 1) {
+        const dag = c.ls.reduce((s, l) => s + l.dagprijs * l.qty, 0);
+        list.insertAdjacentHTML('afterbegin', `<p class="vh-tip"><b>Langer huren loont.</b> Dag 2 en verder kosten de halve dagprijs. Deze apparatuur 3 dagen huren kost ${eur(dag * factor(3))} in plaats van ${eur(dag * 3)}, een hele week ${eur(dag * factor(7))} in plaats van ${eur(dag * 7)}.</p>`);
+      }
     }
     if (needsOperator()) { tech.checked = true; tech.disabled = true; } else tech.disabled = false;
     adres.hidden = form.levering.value !== 'bezorgen';
     form.adres.required = !adres.hidden;
     const k = calc();
-    total.innerHTML = k.ls.length ? `<div><span>Huur${k.n ? ` (${k.n} draaidag${k.n > 1 ? 'en' : ''})` : ''}</span><span>${eur(k.huur)}</span></div>${k.technicus ? `<div><span>Technicus</span><span>${eur(k.technicus)}</span></div>` : ''}${k.bezorgen ? `<div><span>Bezorgen en ophalen</span><span>vanaf ${eur(k.bezorgen)}</span></div>` : ''}<div class="vh-grand"><span>Indicatie</span><span>${eur(k.totaal)}</span></div><p>Excl. btw.${k.borg ? ` Borg ${eur(k.borg)}, die je terugkrijgt.` : ''} De definitieve prijs staat in onze offerte.</p>` : '';
+    const row = (label, value, cls = '') => `<div${cls ? ` class="${cls}"` : ''}><span>${label}</span><span>${value}</span></div>`;
+    total.innerHTML = k.ls.length ? [
+      k.n > 1 ? row(`Normale prijs (${k.n} × dagprijs)`, `<s>${eur(k.los)}</s>`, 'vh-was') : '',
+      k.n > 1 ? row(`Staffelkorting`, `− ${eur(k.korting)}`, 'vh-save') : '',
+      row(`Huur${k.n ? ` (${k.n} draaidag${k.n > 1 ? 'en' : ''})` : ''}`, eur(k.huur)),
+      k.technicus ? row('Technicus', eur(k.technicus)) : '',
+      k.bezorgen ? row('Bezorgen en ophalen', `vanaf ${eur(k.bezorgen)}`) : '',
+      row('Indicatie', eur(k.totaal), 'vh-grand'),
+      k.elders > k.onsVergeleken ? `<p class="vh-save">${D.marktLabel} kost ${k.nVergeleken === k.ls.length ? 'deze apparatuur' : `${k.nVergeleken} van deze ${k.ls.length} items`} ongeveer ${eur(k.elders)}. Bij ons ${eur(k.onsVergeleken)}: je bespaart ${eur(k.elders - k.onsVergeleken)}.</p>` : '',
+      `<p>Excl. btw.${k.borg ? ` Borg ${eur(k.borg)}, die je terugkrijgt.` : ''} De definitieve prijs staat in onze offerte.${k.elders > k.onsVergeleken ? ` ${D.marktUitleg}` : ''}</p>`,
+    ].join('') : '';
   };
 
   list.addEventListener('click', (e) => {
@@ -260,6 +279,7 @@
       Levering: form.levering.value === 'bezorgen' ? `Bezorgen: ${form.adres.value}` : 'Ophalen in Apeldoorn',
       Technicus: tech.checked ? `Ja (${eur(c.technicus)})` : 'Nee',
       Indicatie: `${eur(c.totaal)} excl. btw${c.bezorgen ? ' (bezorgen vanaf-prijs)' : ''}`,
+      Staffelkorting: c.korting ? eur(c.korting) : '–',
       Borg: eur(c.borg),
       Opmerkingen: form.opmerkingen.value,
     };

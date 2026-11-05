@@ -1,3 +1,17 @@
 categorie;naam;merk;model;aantal;inclusief;kernspecs;nieuwwaarde_excl;dagprijs_berk_excl;concurrent_1_naam;concurrent_1_dagprijs;concurrent_2_naam;concurrent_2_dagprijs;concurrent_3_naam;concurrent_3_dagprijs;alleen_met_operator;in_pakket;foto_aanwezig;opmerking
-VOORBEELD camera's;Broadcastcamera;Merk;Model;2;2 accu's, lader, 2 kaarten, case;4K60, SDI-uit, tally;8000;;Verhuurder A;;Verhuurder B;;;;nee;Livestream-set;ja;rij verwijderen na invullen
-VOORBEELD live-regie;Replay-systeem;Merk;Model;1;laptop, controller, kabels;4 kanalen, slow motion;6000;;Verhuurder A;;;;;;ja;;nee;rij verwijderen na invullen
+camera's;Sony FX30;Sony;ILME-FX30;1;2 accu's, lader, kaart, lezer, tas;Super 35, 4K120, 10-bit;;45;Camera Huren Nederland;50;CineRentals (btw onbekend);65;Budgetcam;80;nee;;nee;prijzen gezien 05-11-2026
+camera's;Sony HXR-NX800;Sony;HXR-NX800;1;2 accu's, lader, kaart, tas;1-inch, 4K120, 20x zoom, XLR;;85;geen NL-aanbod (NX100 CineRentals);50;NX100 Budgetcam;65;More Than Video (Spanje);100;nee;;nee;inschatting: geen NL-concurrent
+objectieven;Sony FE 70-200mm F4 G OSS;Sony;SEL70200G of G2?;1;zonnekap, doppen, tas;F4, OSS;;35;Budgetcam (versie II);40;Kamera Express BE;40;;;nee;;nee;welke versie (I of II)?
+objectieven;Sigma 24-70mm F2.8 DG DN Art;Sigma;E-mount;1;zonnekap, doppen, tas;F2.8, E-mount;;27;OpenStudio;30;Budgetcam (L-mount);35;Ostron BE;38;nee;;nee;
+objectieven;Sony E PZ 18-105mm F4 G OSS;Sony;SELP18105G;1;zonnekap, doppen;APS-C, power zoom;;15;OpenStudio;17;Ostron BE (onzeker);20;;;nee;;nee;
+live-regie;Blackmagic ATEM 4K-videomixer;Blackmagic Design;welk model?;1;stroom-, netwerk- en USB-kabel;8 SDI, 4K;;110;Budgetcam (Pro 4K incl. monitor+case);135;Stream My Event (4K8);230;CelebrationEvents;245;nee;;nee;model navragen: Television Studio Pro 4K of 4K8?
+live-regie;ATEM-livestreammodule in flightcase;Blackmagic Design;;1;flightcase, kabels;;;125;Budgetcam ATEM-set;135;AudioVision livestreamset;225;CelebrationEvents;245;nee;;nee;inhoud navragen; zit de ATEM 4K hierin?
+live-regie;Replaymodule 2 kanalen in flightcase;Blackmagic Design;;1;flightcase, kabels;2 kanalen, slow motion;;350;geen NL 2-kanaals aanbod;;Livestream Rental 3Play 4-kanaals;750;vMix-server DE;398;nee;;nee;inschatting; alleen met operator?
+live-regie;DaVinci Resolve Replay Editor;Blackmagic Design;;1;USB-C-kabel;replaypaneel;;18;Valo Events;20;Livestream Rental;65;;;nee;;nee;
+opname;Blackmagic HyperDeck Studio 4K;Blackmagic Design;Studio 4K Pro?;1;stroomkabel;12G-SDI, ProRes;;105;Stream My Event;120;Livestream Rental;135;Gearbooker Nijkerk;149;nee;;nee;hoeveel stuks en welk model?
+opname;Atomos Ninja V;Atomos;Ninja V of V+?;1;SSD, lezer, accu's, lader;5 inch, ProRes;;29;Cameranu (onzeker);29-35;Ostron BE;40;Budgetcam (V+);45;nee;;nee;
+intercom;Intercomset voor 5 personen;?;?;1;5 headsets, lader, koffer;draadloos, full duplex;;55;Stream My Event (Hollyland Mars T1000);60;Productiehuis Rentals (C1 Pro);60;R.F. Systems (Eartec);65;nee;;nee;merk en type navragen
+licht;Set van 3 studiolampen;?;?;1;3 statieven, tas;3 lampen;;30;Camera Huren Nederland;35;Camera Huren Amsterdam;35;CHN LEDGO-set;60;nee;;nee;merk/type en LED of softbox?
+statieven;K&F Concept videostatief 192 cm;K&F Concept;VA3+BV10?;1;pan-bar, plaat;192 cm, vloeistofkop;;15;Budgetcam (MVH502);18;Camera Huren Nederland;20;AudioVision;20;nee;;nee;
+statieven;Manfrotto heavy duty videostatief;Manfrotto;welk model?;1;pan-bar, tas;vloeistofkop;;18;Budgetcam (Nitro/546);20;Camera Huren Nederland;20;Budgetcam Sachtler;40;nee;;nee;
+statieven;DJI RS 4 Pro;DJI;RS 4 Pro;1;accugrip, lader, platen, koffer;4,5 kg, 13 uur;;55;CineRentals (btw onbekend);60;Camera Huren Nederland;70;Westerpark Studio;70;nee;;nee;

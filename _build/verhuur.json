@@ -12,194 +12,457 @@
     "bezorgenPerKm": 0.85
   },
   "categorieen": [
-    { "slug": "cameras", "naam": "Camera's" },
-    { "slug": "live-regie", "naam": "Live-regie en replay" },
-    { "slug": "streaming", "naam": "Streaming en internet" },
-    { "slug": "audio", "naam": "Audio" },
-    { "slug": "licht", "naam": "Licht" },
-    { "slug": "statieven", "naam": "Statieven en rigging" }
+    {
+      "slug": "cameras",
+      "naam": "Camera's"
+    },
+    {
+      "slug": "objectieven",
+      "naam": "Objectieven"
+    },
+    {
+      "slug": "live-regie",
+      "naam": "Live-regie en replay"
+    },
+    {
+      "slug": "opname",
+      "naam": "Opname en monitoring"
+    },
+    {
+      "slug": "intercom",
+      "naam": "Intercom"
+    },
+    {
+      "slug": "licht",
+      "naam": "Licht"
+    },
+    {
+      "slug": "statieven",
+      "naam": "Statieven en gimbals"
+    }
   ],
   "producten": [
     {
-      "slug": "voorbeeld-4k-broadcastcamera",
-      "voorbeeld": true,
+      "slug": "sony-fx30",
       "actief": true,
       "categorie": "cameras",
-      "naam": "4K-broadcastcamera",
-      "merk": "Voorbeeld",
-      "kort": "Studiocamera met SDI-uitgang en tally, gemaakt voor multicam-livestreams.",
-      "dagprijs": 150,
-      "borg": 1500,
-      "aantal": 4,
-      "operator": false,
-      "foto": "",
-      "specs": ["4K tot 60 fps", "12G-SDI-uitgang", "Tally en talkback", "Opname op SSD"],
-      "inclusief": ["2 accu's en lader", "2 SSD's", "Zonnekap", "Flightcase"]
-    },
-    {
-      "slug": "voorbeeld-zoomlens-broadcast",
-      "voorbeeld": true,
-      "actief": true,
-      "categorie": "cameras",
-      "naam": "Broadcast-zoomlens",
-      "merk": "Voorbeeld",
-      "kort": "Lange zoom met servo, voor sport waar je ver van de actie staat.",
-      "dagprijs": 95,
-      "borg": 1000,
-      "aantal": 2,
-      "operator": false,
-      "foto": "",
-      "specs": ["Lang zoombereik", "Servozoom en focus-demand", "Past op de broadcastcamera"],
-      "inclusief": ["Zoom- en focusbediening", "Lensadapter", "Case"]
-    },
-    {
-      "slug": "voorbeeld-videomixer-4-kanalen",
-      "voorbeeld": true,
-      "actief": true,
-      "categorie": "live-regie",
-      "naam": "Videomixer 4 kanalen",
-      "merk": "Voorbeeld",
-      "kort": "Compacte mixer om tot vier camera's live te schakelen en direct te streamen.",
+      "naam": "Sony FX30",
+      "merk": "Sony",
+      "kort": "Compacte Cinema Line-camera met Super 35-sensor. Licht genoeg voor de gimbal, goed genoeg voor broadcast.",
       "dagprijs": 45,
-      "borg": 400,
-      "aantal": 2,
+      "borg": 600,
+      "aantal": 1,
       "operator": false,
       "foto": "",
-      "specs": ["4 HDMI-ingangen", "Direct streamen via ethernet", "Opname van alle ingangen"],
-      "inclusief": ["Voeding", "HDMI-kabels", "Case"]
+      "specs": [
+        "Super 35-sensor, 26 MP",
+        "4K tot 120p, 10-bit 4:2:2",
+        "Dual base ISO 800/2500, S-Log3 en S-Cinetone",
+        "Beeldstabilisatie in de body"
+      ],
+      "inclusief": [
+        "2 accu's en lader",
+        "Geheugenkaart en kaartlezer",
+        "Tas"
+      ]
     },
     {
-      "slug": "voorbeeld-replay-systeem",
-      "voorbeeld": true,
+      "slug": "sony-hxr-nx800",
       "actief": true,
-      "categorie": "live-regie",
-      "naam": "Replay-systeem",
-      "merk": "Voorbeeld",
-      "kort": "Herhalingen en slow motion binnen seconden in je uitzending. Alleen met onze replay-operator.",
-      "dagprijs": 650,
-      "borg": 0,
-      "aantal": 1,
-      "operator": true,
-      "foto": "",
-      "specs": ["4 kanalen opname", "Slow motion", "Highlights direct exporteren"],
-      "inclusief": ["Replay-computer", "Controller", "Bekabeling"]
-    },
-    {
-      "slug": "voorbeeld-bonding-router",
-      "voorbeeld": true,
-      "actief": true,
-      "categorie": "streaming",
-      "naam": "4G/5G-bondingrouter",
-      "merk": "Voorbeeld",
-      "kort": "Bundelt meerdere mobiele verbindingen tot één stabiele uplink voor je stream.",
-      "dagprijs": 120,
+      "categorie": "cameras",
+      "naam": "Sony HXR-NX800",
+      "merk": "Sony",
+      "kort": "4K-camcorder met 20× zoom, XLR-audio en streaming. Ideaal voor events waar je snel moet schakelen.",
+      "dagprijs": 85,
       "borg": 1000,
       "aantal": 1,
       "operator": false,
       "foto": "",
-      "specs": ["Meerdere simkaarten tegelijk", "Ethernet en wifi", "Ook als back-up naast vast internet"],
-      "inclusief": ["Antennes", "Voeding", "Simkaarten (data op nacalculatie)"]
+      "specs": [
+        "1-inch sensor",
+        "4K tot 120p",
+        "20× optische zoom (24–480 mm)",
+        "2× XLR, streaming via wifi of LAN"
+      ],
+      "inclusief": [
+        "2 accu's en lader",
+        "Geheugenkaart",
+        "Tas"
+      ]
     },
     {
-      "slug": "voorbeeld-draadloze-dasspeldset",
-      "voorbeeld": true,
+      "slug": "sony-fe-70-200mm-f4",
       "actief": true,
-      "categorie": "audio",
-      "naam": "Draadloze dasspeldset (2 kanalen)",
-      "merk": "Voorbeeld",
-      "kort": "Twee zenders en een ontvanger voor interviews, presentatoren en podcasts.",
+      "categorie": "objectieven",
+      "naam": "Sony FE 70-200mm F4 G OSS",
+      "merk": "Sony",
+      "kort": "Lichte telezoom voor sport en podium, als je ver van de actie staat.",
       "dagprijs": 35,
-      "borg": 300,
-      "aantal": 3,
+      "borg": 500,
+      "aantal": 1,
       "operator": false,
       "foto": "",
-      "specs": ["2 zenders, 1 ontvanger", "Interne back-upopname", "Bereik tot ongeveer 100 meter"],
-      "inclusief": ["Dasspeldmicrofoons", "Oplaadcase", "Kabels"]
+      "specs": [
+        "Full frame, E-mount",
+        "Constante F4",
+        "Optische stabilisatie (OSS)",
+        "72 mm filter"
+      ],
+      "inclusief": [
+        "Zonnekap",
+        "Lensdoppen",
+        "Tas"
+      ]
     },
     {
-      "slug": "voorbeeld-led-panelen-set",
-      "voorbeeld": true,
+      "slug": "sigma-24-70mm-f28-dg-dn-art",
+      "actief": true,
+      "categorie": "objectieven",
+      "naam": "Sigma 24-70mm F2.8 DG DN Art",
+      "merk": "Sigma",
+      "kort": "Lichtsterke standaardzoom voor E-mount. De lens die bijna altijd op de camera zit.",
+      "dagprijs": 27,
+      "borg": 400,
+      "aantal": 1,
+      "operator": false,
+      "foto": "",
+      "specs": [
+        "Full frame, E-mount",
+        "Constante F2.8",
+        "Snelle, stille autofocus",
+        "82 mm filter"
+      ],
+      "inclusief": [
+        "Zonnekap",
+        "Lensdoppen",
+        "Tas"
+      ]
+    },
+    {
+      "slug": "sony-e-pz-18-105mm-f4-g-oss",
+      "actief": true,
+      "categorie": "objectieven",
+      "naam": "Sony E PZ 18-105mm F4 G OSS",
+      "merk": "Sony",
+      "kort": "Motorzoom voor APS-C, gemaakt voor video. Vloeiend inzoomen tijdens een opname.",
+      "dagprijs": 15,
+      "borg": 200,
+      "aantal": 1,
+      "operator": false,
+      "foto": "",
+      "specs": [
+        "APS-C, E-mount (27–157 mm equivalent)",
+        "Constante F4",
+        "Motorzoom (power zoom)",
+        "Optische stabilisatie (OSS)"
+      ],
+      "inclusief": [
+        "Zonnekap",
+        "Lensdoppen"
+      ]
+    },
+    {
+      "slug": "blackmagic-atem-4k",
+      "actief": true,
+      "categorie": "live-regie",
+      "naam": "Blackmagic ATEM 4K-videomixer",
+      "merk": "Blackmagic Design",
+      "kort": "Professionele 4K-videomixer met ingebouwd bedieningspaneel voor multicam-producties.",
+      "dagprijs": 110,
+      "borg": 1000,
+      "aantal": 1,
+      "operator": false,
+      "foto": "",
+      "specs": [
+        "8 SDI-ingangen",
+        "Tot 4K (2160p)",
+        "Ingebouwd bedieningspaneel",
+        "Fairlight-audiomixer"
+      ],
+      "inclusief": [
+        "Stroomkabel",
+        "Netwerk- en USB-kabel"
+      ]
+    },
+    {
+      "slug": "atem-livestream-module",
+      "actief": true,
+      "categorie": "live-regie",
+      "naam": "ATEM-livestreammodule in flightcase",
+      "merk": "Blackmagic Design",
+      "kort": "Complete livestreamregie in één flightcase: aansluiten, camera's erin en live.",
+      "dagprijs": 125,
+      "borg": 1500,
+      "aantal": 1,
+      "operator": false,
+      "foto": "",
+      "specs": [
+        "Blackmagic ATEM-videomixer",
+        "Ingebouwd in flightcase",
+        "Klaar om te streamen"
+      ],
+      "inclusief": [
+        "Flightcase",
+        "Stroom- en signaalkabels"
+      ]
+    },
+    {
+      "slug": "replay-module-2-kanalen",
+      "actief": true,
+      "categorie": "live-regie",
+      "naam": "Replaymodule 2 kanalen in flightcase",
+      "merk": "Blackmagic Design",
+      "kort": "Complete replay voor livestreams: herhalingen en slow motion van twee camera's, binnen seconden in je uitzending.",
+      "dagprijs": 350,
+      "borg": 2000,
+      "aantal": 1,
+      "operator": false,
+      "foto": "",
+      "specs": [
+        "2 kanalen opname",
+        "Herhalingen en slow motion",
+        "Ingebouwd in flightcase"
+      ],
+      "inclusief": [
+        "Flightcase",
+        "Stroom- en signaalkabels"
+      ]
+    },
+    {
+      "slug": "davinci-resolve-replay-editor",
+      "actief": true,
+      "categorie": "live-regie",
+      "naam": "Blackmagic DaVinci Resolve Replay Editor",
+      "merk": "Blackmagic Design",
+      "kort": "Bedieningspaneel voor replay en multicam-montage in DaVinci Resolve.",
+      "dagprijs": 18,
+      "borg": 200,
+      "aantal": 1,
+      "operator": false,
+      "foto": "",
+      "specs": [
+        "Replay- en multicam-bediening",
+        "USB-C of Bluetooth",
+        "Ingebouwde accu",
+        "Resolve-licentie niet inbegrepen"
+      ],
+      "inclusief": [
+        "USB-C-kabel"
+      ]
+    },
+    {
+      "slug": "blackmagic-hyperdeck-studio-4k",
+      "actief": true,
+      "categorie": "opname",
+      "naam": "Blackmagic HyperDeck Studio 4K",
+      "merk": "Blackmagic Design",
+      "kort": "Broadcastrecorder voor een losse opname per camera of van je programmasignaal.",
+      "dagprijs": 105,
+      "borg": 800,
+      "aantal": 1,
+      "operator": false,
+      "foto": "",
+      "specs": [
+        "12G-SDI en HDMI, tot 2160p60",
+        "ProRes, DNx, H.264 en H.265",
+        "Opname op SD-kaart of SSD",
+        "Bediening via netwerk of ATEM"
+      ],
+      "inclusief": [
+        "Stroomkabel"
+      ]
+    },
+    {
+      "slug": "atomos-ninja-v",
+      "actief": true,
+      "categorie": "opname",
+      "naam": "Atomos Ninja V",
+      "merk": "Atomos",
+      "kort": "5-inch monitor en recorder op de camera: groter beeld en opname in ProRes.",
+      "dagprijs": 29,
+      "borg": 300,
+      "aantal": 1,
+      "operator": false,
+      "foto": "",
+      "specs": [
+        "5,2-inch touchscreen, 1000 nits",
+        "Opname in 4K ProRes en DNx",
+        "HDR-monitoring",
+        "Opname op SSD"
+      ],
+      "inclusief": [
+        "SSD en lezer",
+        "Accu's en lader"
+      ]
+    },
+    {
+      "slug": "intercom-set-5-personen",
+      "actief": true,
+      "categorie": "intercom",
+      "naam": "Intercomset voor 5 personen",
+      "merk": "",
+      "kort": "Draadloze intercom zodat regie, camera's en floor elkaar altijd horen.",
+      "dagprijs": 55,
+      "borg": 500,
+      "aantal": 1,
+      "operator": false,
+      "foto": "",
+      "specs": [
+        "5 headsets",
+        "Draadloos",
+        "Full duplex: iedereen praat en luistert tegelijk"
+      ],
+      "inclusief": [
+        "5 headsets",
+        "Lader",
+        "Koffer"
+      ]
+    },
+    {
+      "slug": "studiolampen-set-3",
       "actief": true,
       "categorie": "licht",
-      "naam": "Set van 2 ledpanelen",
-      "merk": "Voorbeeld",
-      "kort": "Zacht, regelbaar licht voor interviews en een podcastset.",
-      "dagprijs": 40,
-      "borg": 300,
-      "aantal": 2,
+      "naam": "Set van 3 studiolampen",
+      "merk": "",
+      "kort": "Drie lampen voor interviews, podcasts en een kleine studio.",
+      "dagprijs": 30,
+      "borg": 250,
+      "aantal": 1,
       "operator": false,
       "foto": "",
-      "specs": ["Bi-color", "Dimbaar", "Op accu of netstroom"],
-      "inclusief": ["2 lampstatieven", "Softboxen", "Tas"]
+      "specs": [
+        "3 lampen",
+        "Dimbaar"
+      ],
+      "inclusief": [
+        "3 lampstatieven",
+        "Tas"
+      ]
     },
     {
-      "slug": "voorbeeld-videostatief",
-      "voorbeeld": true,
+      "slug": "kf-concept-videostatief-192cm",
       "actief": true,
       "categorie": "statieven",
-      "naam": "Videostatief met vloeistofkop",
-      "merk": "Voorbeeld",
-      "kort": "Stevig statief voor vloeiende pans en tilts, ook met zware camera's.",
-      "dagprijs": 25,
-      "borg": 200,
-      "aantal": 6,
+      "naam": "K&F Concept videostatief 192 cm",
+      "merk": "K&F Concept",
+      "kort": "Stevig videostatief met vloeistofkop, tot 1,92 meter hoog.",
+      "dagprijs": 15,
+      "borg": 150,
+      "aantal": 1,
       "operator": false,
       "foto": "",
-      "specs": ["Vloeistofkop met tegenbalans", "Spreader", "Tot ongeveer 12 kg"],
-      "inclusief": ["Pan-bar", "Tas"]
-    }
-  ],
-  "pakketten": [
-    {
-      "slug": "voorbeeld-livestream-set-3-cameras",
-      "voorbeeld": true,
-      "actief": true,
-      "naam": "Livestream-set 3 camera's",
-      "kort": "Drie camera's op statief, een mixer en audio: alles voor een multicam-stream in één keer.",
-      "dagprijs": 395,
-      "borg": 3000,
-      "operator": false,
-      "foto": "",
-      "inhoud": [
-        { "slug": "voorbeeld-4k-broadcastcamera", "aantal": 3 },
-        { "slug": "voorbeeld-videostatief", "aantal": 3 },
-        { "slug": "voorbeeld-videomixer-4-kanalen", "aantal": 1 },
-        { "slug": "voorbeeld-draadloze-dasspeldset", "aantal": 1 }
+      "specs": [
+        "Hoogte tot ongeveer 192 cm",
+        "Vloeistofkop voor vloeiende pans en tilts",
+        "Snelwisselplaat"
+      ],
+      "inclusief": [
+        "Pan-bar",
+        "Snelwisselplaat"
       ]
     },
     {
-      "slug": "voorbeeld-podcastset",
-      "voorbeeld": true,
+      "slug": "manfrotto-videostatief-heavy-duty",
       "actief": true,
-      "naam": "Podcastset",
-      "kort": "Twee camera's, licht en microfoons voor een videopodcast in de studio of op locatie.",
-      "dagprijs": 245,
-      "borg": 2000,
+      "categorie": "statieven",
+      "naam": "Manfrotto heavy duty videostatief",
+      "merk": "Manfrotto",
+      "kort": "Zwaar videostatief met vloeistofkop voor grotere camera's en lange lenzen.",
+      "dagprijs": 18,
+      "borg": 250,
+      "aantal": 1,
       "operator": false,
       "foto": "",
-      "inhoud": [
-        { "slug": "voorbeeld-4k-broadcastcamera", "aantal": 2 },
-        { "slug": "voorbeeld-videostatief", "aantal": 2 },
-        { "slug": "voorbeeld-led-panelen-set", "aantal": 1 },
-        { "slug": "voorbeeld-draadloze-dasspeldset", "aantal": 1 }
+      "specs": [
+        "Vloeistofkop met tegenbalans",
+        "Geschikt voor zware camera's",
+        "Spreader"
+      ],
+      "inclusief": [
+        "Pan-bar",
+        "Tas"
+      ]
+    },
+    {
+      "slug": "dji-rs-4-pro",
+      "actief": true,
+      "categorie": "statieven",
+      "naam": "DJI RS 4 Pro",
+      "merk": "DJI",
+      "kort": "Gimbal voor vloeiende beelden uit de hand, ook met zwaardere camera's.",
+      "dagprijs": 55,
+      "borg": 600,
+      "aantal": 1,
+      "operator": false,
+      "foto": "",
+      "specs": [
+        "Draagvermogen 4,5 kg",
+        "Accuduur ongeveer 13 uur",
+        "Verticaal filmen",
+        "OLED-touchscreen"
+      ],
+      "inclusief": [
+        "Accugrip en lader",
+        "Snelwisselplaten",
+        "Koffer"
       ]
     }
   ],
+  "pakketten": [],
   "faq": [
-    { "q": "Huren jullie ook aan particulieren?", "a": "Nee, we verhuren alleen aan bedrijven en organisaties. Alle prijzen zijn exclusief btw." },
-    { "q": "Hoe werkt een draaidag?", "a": "Je betaalt per dag dat je de apparatuur gebruikt. Je mag hem de middag ervoor vanaf 16:00 ophalen en de ochtend erna tot 11:00 terugbrengen, zonder extra kosten." },
-    { "q": "Wordt het goedkoper als ik langer huur?", "a": "Ja. Elke dag na de eerste kost de helft van de dagprijs, en een hele week kost nooit meer dan drie keer de dagprijs." },
-    { "q": "Kunnen jullie de apparatuur ook bedienen?", "a": "Ja. Je kunt per aanvraag een technicus erbij vragen. Sommige systemen, zoals replay, verhuren we alleen met onze eigen operator." },
-    { "q": "Is mijn aanvraag meteen een boeking?", "a": "Nee. Je stuurt een aanvraag, wij checken de beschikbaarheid en sturen binnen een werkdag een definitieve offerte. Pas als je die bevestigt staat de apparatuur voor je klaar." }
+    {
+      "q": "Huren jullie ook aan particulieren?",
+      "a": "Nee, we verhuren alleen aan bedrijven en organisaties. Alle prijzen zijn exclusief btw."
+    },
+    {
+      "q": "Hoe werkt een draaidag?",
+      "a": "Je betaalt per dag dat je de apparatuur gebruikt. Je mag hem de middag ervoor vanaf 16:00 ophalen en de ochtend erna tot 11:00 terugbrengen, zonder extra kosten."
+    },
+    {
+      "q": "Wordt het goedkoper als ik langer huur?",
+      "a": "Ja. Elke dag na de eerste kost de helft van de dagprijs, en een hele week kost nooit meer dan drie keer de dagprijs."
+    },
+    {
+      "q": "Kunnen jullie de apparatuur ook bedienen?",
+      "a": "Ja. Je kunt per aanvraag een technicus of replay-operator erbij vragen, dan bedienen wij de apparatuur voor je."
+    },
+    {
+      "q": "Is mijn aanvraag meteen een boeking?",
+      "a": "Nee. Je stuurt een aanvraag, wij checken de beschikbaarheid en sturen binnen een werkdag een definitieve offerte. Pas als je die bevestigt staat de apparatuur voor je klaar."
+    }
   ],
   "voorwaarden": [
-    { "kop": "Alleen zakelijk", "tekst": "We verhuren aan bedrijven en organisaties met een KvK-nummer. Prijzen zijn exclusief btw." },
-    { "kop": "Huurperiode", "tekst": "Je betaalt per draaidag. Ophalen kan de dag ervoor vanaf 16:00, terugbrengen de dag erna tot 11:00. Te laat terug betekent een extra huurdag." },
-    { "kop": "Staffel", "tekst": "Dag 1 kost de volle dagprijs, elke volgende dag de helft. Een week kost maximaal drie keer de dagprijs." },
-    { "kop": "Borg", "tekst": "Per artikel geldt een borg, die je vooraf betaalt en binnen vier werkdagen terugkrijgt als alles compleet en onbeschadigd terug is." },
-    { "kop": "Ophalen en bezorgen", "tekst": "Ophalen in Apeldoorn is gratis. Bezorgen en ophalen op locatie kan tegen een meerprijs, afhankelijk van de afstand." },
-    { "kop": "Schade en verlies", "tekst": "Tijdens de huurperiode ben je verantwoordelijk voor de apparatuur. Schade, verlies en diefstal komen voor rekening van de huurder; controleer of je eigen verzekering dit dekt." },
-    { "kop": "Annuleren", "tekst": "Tot 48 uur voor de eerste draaidag kosteloos, daarna rekenen we 50% van de huurprijs." },
-    { "kop": "Identificatie", "tekst": "Bij het ophalen vragen we een geldig identiteitsbewijs van degene die tekent namens het bedrijf." }
+    {
+      "kop": "Alleen zakelijk",
+      "tekst": "We verhuren aan bedrijven en organisaties met een KvK-nummer. Prijzen zijn exclusief btw."
+    },
+    {
+      "kop": "Huurperiode",
+      "tekst": "Je betaalt per draaidag. Ophalen kan de dag ervoor vanaf 16:00, terugbrengen de dag erna tot 11:00. Te laat terug betekent een extra huurdag."
+    },
+    {
+      "kop": "Staffel",
+      "tekst": "Dag 1 kost de volle dagprijs, elke volgende dag de helft. Een week kost maximaal drie keer de dagprijs."
+    },
+    {
+      "kop": "Borg",
+      "tekst": "Per artikel geldt een borg, die je vooraf betaalt en binnen vier werkdagen terugkrijgt als alles compleet en onbeschadigd terug is."
+    },
+    {
+      "kop": "Ophalen en bezorgen",
+      "tekst": "Ophalen in Apeldoorn is gratis. Bezorgen en ophalen op locatie kan tegen een meerprijs, afhankelijk van de afstand."
+    },
+    {
+      "kop": "Schade en verlies",
+      "tekst": "Tijdens de huurperiode ben je verantwoordelijk voor de apparatuur. Schade, verlies en diefstal komen voor rekening van de huurder; controleer of je eigen verzekering dit dekt."
+    },
+    {
+      "kop": "Annuleren",
+      "tekst": "Tot 48 uur voor de eerste draaidag kosteloos, daarna rekenen we 50% van de huurprijs."
+    },
+    {
+      "kop": "Identificatie",
+      "tekst": "Bij het ophalen vragen we een geldig identiteitsbewijs van degene die tekent namens het bedrijf."
+    }
   ]
 }

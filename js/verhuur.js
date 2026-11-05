@@ -16,6 +16,12 @@
   // Fixed bar with the number of items and the day price; hidden while empty and on the quote page itself.
   const bar = document.querySelector('.vh-bar');
   const prices = bar ? JSON.parse(bar.dataset.prices) : {};
+  // Forget items that are no longer for rent (e.g. after the inventory changed).
+  if (bar) {
+    let changed = false;
+    for (const slug of Object.keys(state.items)) if (!(slug in prices)) { delete state.items[slug]; changed = true; }
+    if (changed) save(state);
+  }
   const syncBar = () => {
     if (!bar) return;
     const n = count();

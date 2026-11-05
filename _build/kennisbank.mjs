@@ -637,6 +637,10 @@ const verhuurPaths = [];
     audio: '<rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4M8 22h8"/>',
     licht: '<rect x="4" y="3" width="16" height="11"/><path d="M12 14v7M8 21h8M7 6.5h10M7 10h10"/>',
     statieven: '<rect x="8" y="2" width="8" height="5"/><path d="M12 7v4M12 11L5 22M12 11l7 11M12 11v11"/>',
+    objectieven: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v5M21 12h-5M12 21v-5M3 12h5"/>',
+    opname: '<rect x="2" y="5" width="20" height="14"/><circle cx="8" cy="12" r="3"/><path d="M14 10h5M14 14h5"/>',
+    intercom: '<path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2" y="14" width="5" height="7"/><rect x="17" y="14" width="5" height="7"/><path d="M20 21c0 1-2 1.5-5 1.5"/>',
+    gimbal: '<path d="M12 2v4M8 6h8v6H8zM12 12v4M7 16h10M12 16v6"/>',
   };
   const icon = (slug) => `<svg viewBox="0 0 24 24" aria-hidden="true">${ICONS[slug] || ICONS.pakketten}</svg>`;
   const write = (path, { title, description, jsonld, body, scripts = [] }) => {

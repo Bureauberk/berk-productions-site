@@ -9,13 +9,13 @@ T = {
     '': dict(
         label='Waarom BERK bestaat', eyebrow='Waarom BERK bestaat',
         h2='Nichesporten naar het <span style="color: #FF5F57">volgende</span> niveau',
-        intro='Meer zichtbaarheid voor de sport en voor de atleten. Atleten die gezien worden, trekken publiek en sponsors en kunnen meer verdienen met hun passie. Daar werken we aan, bij elke stream.',
+        intro='Meer zichtbaarheid voor de sport en voor de atleten. Atleten die gezien worden, trekken publiek en sponsors. Merken die erbij zijn, groeien mee. Daar werken we aan, bij elke stream.',
         steps=[
             ('Het begin', 'Het NK', '„Laten we het NK wakeboarden eens livestreamen, dat is lachen.” Zo begon BERK.'),
             ('Een jaar later', 'Het EK', 'We streamden het Europees kampioenschap Cable Wakeboard: drie dagen live voor een internationaal publiek.'),
             ('Nu', 'Meer sporten', 'We geven meer sporten een online platform, met dezelfde aanpak. Welke sport is de volgende?'),
         ],
-        cta=('Contact', 'Zet jouw sport live'),
+        cta=('Contact', 'Zet jullie sport live'),
     ),
     'en': dict(
         label='Why BERK exists', eyebrow='Why BERK exists',

@@ -15,6 +15,8 @@ const LEGAL = join(ROOT, '_build/legal');
 const PARTNERS = JSON.parse(readFileSync(join(ROOT, '_build/partners.json'), 'utf8'));
 const VERHUUR = JSON.parse(readFileSync(join(ROOT, '_build/verhuur.json'), 'utf8'));
 const partnerPaths = Object.values(PARTNERS.langs).flatMap((l) => [l.base, ...l.categories.map((c) => `${l.base}/${c.slug}`)]);
+const FORMATS = JSON.parse(readFileSync(join(ROOT, '_build/formats.json'), 'utf8'));
+const formatPaths = FORMATS.pages.map((f) => f.path);
 const OUT = join(ROOT, 'kennisbank');
 const SEO = JSON.parse(readFileSync(join(ROOT, '_build/seo.json'), 'utf8'));
 const SITE = SEO.site;
@@ -144,7 +146,7 @@ const SHELLS = Object.fromEntries(Object.entries(SHELL_PAGE).map(([lang, route])
     footer: app.slice(app.indexOf('<footer'), app.lastIndexOf('</footer>') + 9),
   }];
 }));
-if (!SHELLS.nl.chrome.includes('href="/kennisbank"')) throw new Error('Menu has no Kennisbank link; run prerender.mjs first');
+if (!SHELLS.nl.chrome.includes('href="/partners"')) throw new Error('Menu has no Voor merken link; run merken.py and prerender.mjs first');
 
 // Header for a page: its language switcher points at the page's own translations, and its menu item is marked current.
 function chromeFor(lang, alts, current) {
@@ -211,7 +213,7 @@ const CSS = `
 .p-gets h3{font-family:'Archivo Black','Archivo',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(24px,2.4vw,32px);line-height:1;margin:0 0 12px;color:#FFFFFF}
 .p-gets p{margin:0;font-size:18px;line-height:1.6;color:#CFCFCF}
 .p-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:28px;margin:clamp(32px,4vw,48px) 0}
-.p-stat b{display:block;font-family:'Archivo Black','Archivo',sans-serif;font-weight:400;font-size:clamp(48px,6vw,84px);line-height:.9;color:#FF5F57}
+.p-stat b{display:block;font-family:'Archivo Black','Archivo',sans-serif;font-weight:400;font-size:clamp(40px,4.4vw,64px);line-height:.9;color:#FF5F57}
 .p-stat span{display:block;margin-top:8px;font-size:17px;line-height:1.4;color:#CFCFCF}
 .yt{position:relative;aspect-ratio:16 / 9;background:#161616;border:2px solid #EFEFEF;box-shadow:10px 10px 0 #FF5F57;scroll-margin-top:110px}
 .yt button{all:unset;position:absolute;inset:0;cursor:pointer;display:block}
@@ -222,6 +224,9 @@ const CSS = `
 .yt button:focus-visible{outline:3px solid #FF5F57;outline-offset:4px}
 .yt-note{margin:16px 0 0;font-size:14px;color:#8C8C8C}
 .p-price{margin-top:auto;font-family:'Archivo Black','Archivo',sans-serif;font-size:clamp(24px,2.4vw,30px);color:#161616}
+.p-items{margin:4px 0 20px;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;font-size:16px;line-height:1.45;color:#2A2A2A}
+.p-items li{display:flex;gap:10px}
+.p-items li::before{content:"✓";color:#D93A33;font-weight:700}
 .p-faq{max-width:820px}
 .p-faq h3{font-family:'Archivo',sans-serif;font-weight:700;font-size:21px;margin:0 0 6px;color:#161616}
 .p-faq p{margin:0 0 28px;font-size:18px;line-height:1.6;color:#3C3C3C}
@@ -477,7 +482,7 @@ const problems = [];
 for (const a of [...articles, ...landings, ...legals]) {
   for (const r of a.related) if (!bySlug[r]) problems.push(`${a.slug || a.path}: related "${r}" does not exist`);
   for (const [, href] of a.html.matchAll(/href="(\/[^"#]*)/g)) {
-    const ok = href.startsWith('/kennisbank/') ? bySlug[href.slice(12)] : ['/', '/kennisbank', ...partnerPaths, ...[...landings, ...legals].map((l) => l.path), ...Object.keys(SEO.pages)].includes(href);
+    const ok = href.startsWith('/kennisbank/') ? bySlug[href.slice(12)] : ['/', '/kennisbank', ...partnerPaths, ...formatPaths, ...[...landings, ...legals].map((l) => l.path), ...Object.keys(SEO.pages)].includes(href);
     if (!ok) problems.push(`${a.slug || a.path}: broken internal link ${href}`);
   }
 }
@@ -582,31 +587,73 @@ ${l.html}
     const alts = Object.fromEntries(LANGS.map((l) => [l, P.langs[l].base + suffix]));
     const mailto = `mailto:${P.email}?subject=${encodeURIComponent(`${U.subject} - ${e.name}`)}`;
     const crumbs = isOverview ? [[U.home, HOME[lang]], [U.partners, path]] : [[U.home, HOME[lang]], [U.partners, L.base], [e.name, path]];
-    const hero = `<section class="kb-hero"><div class="wrap">${crumbsHtml(crumbs, U.crumbs)}<div style="display: flex; flex-direction: column; gap: 24px; max-width: 1100px"><span class="eyebrow" style="color: #A8A8A8"><span class="dot"></span><span id="p-kicker">${esc(e.kicker)}</span></span><h1 class="h-black" style="font-size: clamp(34px, 6.4vw, 96px); line-height: 0.95; color: #FFFFFF; text-shadow: 6px 6px 0 #000">${esc(e.h1)}</h1><p style="margin: 0; max-width: 720px; font-size: 20px; line-height: 1.6; color: #CFCFCF">${esc(e.intro)}</p>${e.events ? `<p class="kb-meta" style="margin: 0; max-width: 720px; line-height: 1.6">${esc(U.events)}: ${esc(e.events)}</p>` : ''}<div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 8px"><a class="btn" href="${mailto}">${esc(U.talk)} <span aria-hidden="true">→</span></a><a class="btn" href="#livestream" style="background: #161616; color: #FFFFFF; border-color: #EFEFEF">${esc(U.watch)}</a></div></div></div></section>`;
-    const how = sec(LIGHT, `${head(S.howHead)}<p class="p-lead" style="color: #2A2A2A">${esc(S.how)}</p>`);
+    const hero = `<section class="kb-hero"><div class="wrap">${crumbsHtml(crumbs, U.crumbs)}<div style="display: flex; flex-direction: column; gap: 24px; max-width: 1100px"><span class="eyebrow" style="color: #A8A8A8"><span class="dot"></span><span id="p-kicker">${esc(e.kicker)}</span></span><h1 class="h-black" style="font-size: clamp(34px, 6.4vw, 96px); line-height: 0.95; color: #FFFFFF; text-shadow: 6px 6px 0 #000">${esc(e.h1)}</h1><p style="margin: 0; max-width: 720px; font-size: 20px; line-height: 1.6; color: #CFCFCF">${esc(e.intro)}</p>${e.events ? `<p class="kb-meta" style="margin: 0; max-width: 720px; line-height: 1.6">${esc(U.events)}: ${esc(e.events)}</p>` : ''}<div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 8px"><a class="btn" href="${mailto}">${esc(U.talk)} <span aria-hidden="true">→</span></a><a class="btn" href="${U.packagesBtn ? '#pakketten' : '#livestream'}" style="background: #161616; color: #FFFFFF; border-color: #EFEFEF">${esc(U.packagesBtn || U.watch)}</a></div></div></div></section>`;
+    const how = sec(LIGHT, `${head(S.howHead)}${[].concat(S.how).map((t) => `<p class="p-lead" style="color: #2A2A2A; margin-bottom: 1em">${esc(t)}</p>`).join('')}`);
+    const problem = S.problem ? sec(BLACK, `${head(S.problemHead, '#FFFFFF')}<p class="p-lead" style="color: #CFCFCF">${esc(S.problem)}</p>`) : '';
+    const why = S.why ? sec(LIGHT, `${head(S.whyHead)}<p class="p-lead" style="color: #2A2A2A">${esc(S.why)}</p>`) : '';
     const middle = isOverview
       ? sec(LIGHT, `${head(e.gridHead)}<div class="p-grid">${L.categories.map((c) => `<a class="promise p-cat" href="${L.base}/${c.slug}"><h3>${esc(c.name)}</h3><p>${esc(c.events)}</p><span class="p-more">${esc(U.more)}</span></a>`).join('')}</div>`)
       : sec(LIGHT, `${head(S.ideasHead)}<div class="p-grid">${e.ideas.map((i, n) => `<div class="promise"><span class="p-num">0${n + 1}</span><h3>${esc(i.title)}</h3><p>${esc(i.text)}</p></div>`).join('')}</div>`);
     const gets = sec(DARK, `${head(S.getsHead, '#FFFFFF')}<div class="p-gets">${S.gets.map((g) => `<div><h3>${esc(g.title)}</h3><p>${esc(g.text)}</p></div>`).join('')}</div>`);
-    const proof = sec(BLACK, `${head(S.proofHead, '#FFFFFF')}<p class="p-lead" style="color: #CFCFCF">${esc(S.proof)}</p><div class="p-stats">${S.stats.map((st) => `<div class="p-stat"><b>${esc(st.value)}</b><span>${esc(st.label)}</span></div>`).join('')}</div><div class="yt" id="livestream"><button type="button" data-yt="${Y.id}" data-title="${esc(Y.title)}" aria-label="${esc(U.play)}: ${esc(Y.title)}"><img src="${Y.poster}" alt="${esc(S.posterAlt)}" loading="lazy" decoding="async" width="1440" height="1080"><span class="yt-btn"><span aria-hidden="true">▶</span> ${esc(U.watch)}</span></button></div><p class="yt-note">${esc(U.ytNote)}</p>`);
-    const packages = sec(LIGHT, `${head(S.packagesHead)}<div class="p-grid">${S.packages.map((pk) => `<div class="promise"><h3>${esc(pk.name)}</h3><p>${esc(pk.text)}</p><span class="p-price">${esc(pk.price)}</span></div>`).join('')}</div><p style="margin: 28px 0 0; font-size: 16px; color: #3C3C3C">${esc(S.packagesNote)}</p>`);
-    const pilot = `<section style="background: #FF5F57; color: #161616; padding: clamp(64px, 7vw, 104px) 0"><div class="wrap" style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start"><h2 class="h-black" style="margin: 0; font-size: clamp(36px, 5vw, 72px); line-height: 0.95">${esc(S.pilotHead)}</h2><p style="margin: 0; max-width: 720px; font-size: 21px; line-height: 1.55">${esc(e.pilot)} ${esc(S.pilotAsk)}</p><a class="btn" href="${mailto}" style="background: #161616; color: #FFFFFF">${esc(U.talk)} <span aria-hidden="true">→</span></a><p style="margin: 0; font-size: 16px">${esc(P.contactLine)}</p></div></section>`;
+    const proof = sec(BLACK, `${head(S.proofHead, '#FFFFFF')}<p class="p-lead" style="color: #CFCFCF">${esc(S.proof)}</p><div class="p-stats">${S.stats.map((st) => `<div class="p-stat"><b>${esc(st.value)}</b><span>${esc(st.label)}</span></div>`).join('')}</div><div class="yt" id="livestream"><button type="button" data-yt="${Y.id}" data-title="${esc(Y.title)}" aria-label="${esc(U.play)}: ${esc(Y.title)}"><img src="${Y.poster}" alt="${esc(S.posterAlt)}" loading="lazy" decoding="async" width="1440" height="1080"><span class="yt-btn"><span aria-hidden="true">▶</span> ${esc(U.watch)}</span></button></div><p class="yt-note">${esc(U.ytNote)}</p>${S.proofNote ? `<p class="kb-meta" style="margin: 20px 0 0">${esc(S.proofNote)}</p>` : ''}`);
+    const packages = sec(LIGHT, `<div id="pakketten" style="scroll-margin-top: 110px">${head(S.packagesHead)}${S.packagesIntro ? `<p class="p-lead" style="color: #2A2A2A; margin-bottom: 40px">${esc(S.packagesIntro)}</p>` : ''}<div class="p-grid">${S.packages.map((pk) => `<div class="promise"><h3>${esc(pk.name)}</h3><p>${esc(pk.text)}</p>${pk.items ? `<ul class="p-items">${pk.items.map((it) => `<li>${esc(it)}</li>`).join('')}</ul>` : ''}<span class="p-price">${esc(pk.price)}</span></div>`).join('')}</div></div><p style="margin: 28px 0 0; font-size: 16px; color: #3C3C3C">${esc(S.packagesNote)}</p>`);
+    const pilot = `<section style="background: #FF5F57; color: #161616; padding: clamp(64px, 7vw, 104px) 0"><div class="wrap" style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start"><h2 class="h-black" style="margin: 0; font-size: clamp(36px, 5vw, 72px); line-height: 0.95">${esc(S.pilotHead)}</h2><p style="margin: 0; max-width: 720px; font-size: 21px; line-height: 1.55">${esc([e.pilot, S.pilotAsk].filter(Boolean).join(' '))}</p><a class="btn" href="${mailto}" style="background: #161616; color: #FFFFFF">${esc(U.pilotBtn || U.talk)} <span aria-hidden="true">→</span></a><p style="margin: 0; font-size: 16px">${esc(P.contactLine)}</p></div></section>`;
     const faq = sec(LIGHT, `${head(U.faqHead)}<div class="p-faq">${S.faq.map((f) => `<h3>${esc(f.q)}</h3><p>${esc(f.a)}</p>`).join('')}</div>`);
     const jsonld = [
       { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + path + '#page', url: SITE + path, name: e.metaTitle, description: e.metaDescription, inLanguage: lang, isPartOf: { '@type': 'WebSite', name: 'BERK Productions', url: SITE + '/' }, publisher: ORG },
       { '@context': 'https://schema.org', ...crumbsLd(crumbs) },
       { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: S.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
     ];
-    const body = `<div id="partner" data-cat="${e.slug || 'overzicht'}" data-proposal="${esc(U.proposal)}">${hero}${how}${middle}${gets}${proof}${packages}${pilot}${faq}</div>`;
+    // The NL brief puts the problem first and the proof above what brands get; EN/DE keep the old order until they are translated.
+    const order = S.problem ? [hero, problem, how, proof, gets, why, middle, packages, pilot, faq] : [hero, how, middle, gets, proof, packages, pilot, faq];
+    const body = `<div id="partner" data-cat="${e.slug || 'overzicht'}" data-proposal="${esc(U.proposal)}">${order.join('')}</div>`;
     const dir = join(ROOT, path.slice(1));
     mkdirSync(dir, { recursive: true });
-    writeFileSync(join(dir, 'index.html'), page({ path, title: e.metaTitle, description: e.metaDescription, jsonld, body, ogType: 'website', ogImage: P.ogImage, scripts: ['/js/partners.js'], lang, alts, current: null }));
+    writeFileSync(join(dir, 'index.html'), page({ path, title: e.metaTitle, description: e.metaDescription, jsonld, body, ogType: 'website', ogImage: P.ogImage, scripts: ['/js/partners.js'], lang, alts, current: lang === 'nl' ? '/partners' : null }));
   };
   for (const lang of LANGS) {
     const dir = join(ROOT, P.langs[lang].base.slice(1));
     if (existsSync(dir)) rmSync(dir, { recursive: true });
     build(lang, P.langs[lang].overview, true);
     for (const c of P.langs[lang].categories) build(lang, c, false);
+  }
+}
+
+// Format pages (/live-verkopen, /podcasts), all content from _build/formats.json. "[BEVESTIGEN ...]" stays visible as a marked placeholder.
+{
+  const BG = { light: 'background: #EFEFEF; color: #161616', dark: 'background: #161616; color: #EFEFEF', black: 'background: #000000; color: #EFEFEF' };
+  const txt = (t) => esc(t).replace(/\[BEVESTIGEN[^\]]*\]/g, (m) => `<mark class="todo">${m}</mark>`);
+  const dark = (bg) => bg !== 'light';
+  const head = (t, bg) => `<h2 class="h-black p-head" style="color: ${dark(bg) ? '#FFFFFF' : '#161616'}">${txt(t)}</h2>`;
+  const lead = (t, bg) => `<p class="p-lead" style="color: ${dark(bg) ? '#CFCFCF' : '#2A2A2A'}; margin-bottom: 1em">${txt(t)}</p>`;
+  const sec = (x, inner) => `<section class="p-sec"${x.id ? ` id="${x.id}" style="scroll-margin-top: 90px; ${BG[x.bg]}"` : ` style="${BG[x.bg]}"`}><div class="wrap">${inner}</div></section>`;
+  const R = {
+    hero: (x) => `<section class="kb-hero"><div class="wrap">${x.crumbs}<div style="display: flex; flex-direction: column; gap: 24px; max-width: 1100px">${x.notice ? `<p class="f-notice">${txt(x.notice)}</p>` : ''}<span class="eyebrow" style="color: #A8A8A8"><span class="dot"></span>${txt(x.eyebrow)}</span><h1 class="h-black" style="font-size: clamp(34px, 6.4vw, 96px); line-height: 0.95; color: #FFFFFF; text-shadow: 6px 6px 0 #000">${txt(x.h1)}</h1><p style="margin: 0; max-width: 720px; font-size: 20px; line-height: 1.6; color: #CFCFCF">${txt(x.intro)}</p><div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 8px">${x.buttons.map(([label, href], i) => `<a class="btn" href="${href}"${i ? ' style="background: #161616; color: #FFFFFF; border-color: #EFEFEF"' : ''}>${esc(label)}${i ? '' : ' <span aria-hidden="true">→</span>'}</a>`).join('')}</div></div></div></section>`,
+    text: (x) => sec(x, `${head(x.head, x.bg)}${x.paras.map((p) => lead(p, x.bg)).join('')}`),
+    cards: (x) => sec(x, `${head(x.head, x.bg)}<div class="p-grid">${x.items.map((it, n) => `<div class="promise">${x.numbered ? `<span class="p-num">${String(n + 1).padStart(2, '0')}</span>` : it.label ? `<span class="p-num">${esc(it.label)}</span>` : ''}<h3>${txt(it.title)}</h3><p>${txt(it.text)}</p></div>`).join('')}</div>`),
+    stats: (x) => sec(x, `${head(x.head, x.bg)}<div class="p-stats">${x.items.map((st) => `<div class="p-stat"><b>${esc(st.value)}</b><span>${txt(st.label)}</span></div>`).join('')}</div>${x.note ? lead(x.note, x.bg) : ''}<p class="kb-meta" style="margin: 8px 0 0; line-height: 1.6">Bron: ${esc(x.source)}</p>`),
+    table: (x) => sec(x, `${head(x.head, x.bg)}${x.intro ? lead(x.intro, x.bg) : ''}<div class="prose" style="max-width: 1100px"><div class="tbl"${x.highlight ? ' style="box-shadow: 10px 10px 0 #FF5F57"' : ''}><table><thead><tr>${x.columns.map((c) => `<th scope="col">${esc(c)}</th>`).join('')}</tr></thead><tbody>${x.rows.map((r) => `<tr>${r.map((c, i) => i ? `<td>${txt(c)}</td>` : `<th scope="row" style="background: #FFFFFF; color: #161616">${txt(c)}</th>`).join('')}</tr>`).join('')}</tbody></table></div></div>${x.note ? `<p style="margin: 24px 0 0; font-size: 17px; color: ${dark(x.bg) ? '#CFCFCF' : '#3C3C3C'}">${txt(x.note)}</p>` : ''}`),
+    prices: (x) => sec(x, `${head(x.head, x.bg)}<div class="p-grid" style="max-width: 900px">${x.cards.map((c) => `<div class="promise"><h3>${esc(c.name)}</h3><ul class="p-items">${c.items.map((it) => `<li>${txt(it)}</li>`).join('')}</ul><span class="p-price">${esc(c.price)}</span></div>`).join('')}</div><p style="margin: 28px 0 0; font-size: 16px; color: #3C3C3C">${txt(x.note)}</p>${x.after ? `<p class="p-lead" style="margin-top: 28px; color: #2A2A2A">${txt(x.after)}</p>` : ''}`),
+    faq: (x) => sec(x, `${head('Veelgestelde vragen', x.bg)}<div class="p-faq">${x.items.map((f) => `<h3>${txt(f.q)}</h3><p>${txt(f.a)}</p>`).join('')}</div>`),
+    cta: (x) => `<section style="background: #FF5F57; color: #161616; padding: clamp(64px, 7vw, 104px) 0"><div class="wrap" style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start"><h2 class="h-black" style="margin: 0; font-size: clamp(36px, 5vw, 72px); line-height: 0.95">${txt(x.head)}</h2><p style="margin: 0; max-width: 720px; font-size: 21px; line-height: 1.55">${txt(x.text)}</p><a class="btn" href="${x.button[1]}" style="background: #161616; color: #FFFFFF">${esc(x.button[0])} <span aria-hidden="true">→</span></a></div></section>`,
+  };
+  const css = `.f-notice{margin:0;align-self:flex-start;background:#FF5F57;color:#161616;border:2px solid #161616;box-shadow:5px 5px 0 #000;padding:10px 16px;font-family:'Archivo',sans-serif;font-weight:700;font-size:15px;line-height:1.4}
+mark.todo{background:#FFE14D;color:#161616;padding:0 4px;font-weight:600}
+.p-grid h3{hyphens:manual;-webkit-hyphens:manual;overflow-wrap:break-word}`;
+  for (const f of FORMATS.pages) {
+    const crumbs = [['Home', '/'], [f.name, f.path]];
+    const url = SITE + f.path;
+    const faq = f.sections.find((x) => x.type === 'faq');
+    const clean = (t) => t.replace(/\s*\[BEVESTIGEN[^\]]*\]/g, '').trim();
+    const jsonld = [
+      { '@context': 'https://schema.org', '@type': 'Service', '@id': url + '#service', name: f.name, serviceType: f.serviceType, description: f.metaDescription, url, provider: ORG, areaServed: ['NL', 'BE', 'DE'], inLanguage: 'nl' },
+      { '@context': 'https://schema.org', ...crumbsLd(crumbs) },
+    ];
+    if (faq) jsonld.push({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.items.map((q) => ({ '@type': 'Question', name: q.q, acceptedAnswer: { '@type': 'Answer', text: clean(q.a) } })) });
+    const body = f.sections.map((x) => R[x.type](x.type === 'hero' ? { ...x, crumbs: crumbsHtml(crumbs) } : x)).join('\n');
+    const dir = join(ROOT, f.path.slice(1));
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(join(dir, 'index.html'), page({ path: f.path, title: f.metaTitle, description: f.metaDescription, jsonld, body, ogType: 'website', current: f.path, css }));
   }
 }
 
@@ -781,7 +828,7 @@ ${f('Opmerkingen', '<textarea class="field" name="opmerkingen" rows="4"></textar
 
 // Sitemap: replace the kennisbank, landing, legal, partner and rental block
 const sm = join(ROOT, 'sitemap.xml');
-const urls = [...landings.map((l) => l.path), ...legals.map((l) => l.path), ...partnerPaths, ...verhuurPaths, '/kennisbank', ...articles.map((a) => `/kennisbank/${a.slug}`)].map((p) => `<url><loc>${SITE}${p}</loc></url>`).join('\n');
-writeFileSync(sm, readFileSync(sm, 'utf8').replace(new RegExp(`<url><loc>[^<]*(/kennisbank|${[VERHUUR.base, ...Object.values(PARTNERS.langs).map((l) => l.base), ...[...landings, ...legals].map((l) => l.path)].join('|')})[^<]*</loc></url>\\n`, 'g'), '').replace('</urlset>', `${urls}\n</urlset>`));
+const urls = [...landings.map((l) => l.path), ...legals.map((l) => l.path), ...partnerPaths, ...formatPaths, ...verhuurPaths, '/kennisbank', ...articles.map((a) => `/kennisbank/${a.slug}`)].map((p) => `<url><loc>${SITE}${p}</loc></url>`).join('\n');
+writeFileSync(sm, readFileSync(sm, 'utf8').replace(new RegExp(`<url><loc>[^<]*(/kennisbank|${[VERHUUR.base, ...formatPaths, ...Object.values(PARTNERS.langs).map((l) => l.base), ...[...landings, ...legals].map((l) => l.path)].join('|')})[^<]*</loc></url>\\n`, 'g'), '').replace('</urlset>', `${urls}\n</urlset>`));
 
 console.table([...legals, ...landings, ...articles].map((a) => ({ slug: a.slug || a.path, words: a.words, title: (a.title + ' | BERK Productions').length, desc: a.description.length, faq: a.faq.length, links: (a.html.match(/href="\//g) || []).length })));

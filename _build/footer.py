@@ -6,15 +6,15 @@ import glob, re
 LOGO = '/assets/73856d47736b3086e6728a2971a015f5.svg'
 T = {
     '': dict(
-        intro='Livestreams, podcasts en multicamproducties voor sport en events. Gespecialiseerd in niche- en extreme sporten, vanuit Apeldoorn door Nederland, België en Duitsland.',
-        ask='Iets live zetten?', cta=('/contact', 'Vraag een offerte aan'),
+        intro='Live uitzendingen en clips van sport en events, voor merken en organisatoren. Gespecialiseerd in niche- en actiesporten, vanuit Apeldoorn door Nederland, België en Duitsland.',
+        ask='Iets live zetten?', cta=('/contact', 'Plan een gesprek'),
         cols=[
-            ('Diensten', [('/diensten', 'Livestreams'), ('/diensten', 'Podcasts'), ('/diensten', 'Grote producties'), ('/diensten', 'Aftercare'), ('/livestream-watersport', 'Watersport-livestream')]),
+            ('Diensten', [('/diensten', 'Livestreams'), ('/live-verkopen', 'Live verkopen'), ('/podcasts', 'Podcasts'), ('/diensten', 'Grote producties'), ('/diensten', 'Content na het event'), ('/livestream-watersport', 'Watersport-livestream')]),
             ('Kennisbank', [('/kennisbank/wat-kost-een-livestream', 'Wat kost een livestream?'), ('/kennisbank/hoeveel-internet-voor-livestream', 'Hoeveel internet heb je nodig?'), ('/kennisbank/sportevent-livestreamen', 'Je sportevent livestreamen'), ('/kennisbank/case-ek-cable-wakeboard-2026', 'Case: EK Cable Wakeboard'), ('/kennisbank', 'Alle artikelen →')]),
-            ('BERK', [('/prijscalculator', 'Prijscalculator'), ('/waarom-live', 'Waarom live'), ('/werk', 'Werk'), ('/over', 'Over'), ('/partners', 'Partners'), ('/contact', 'Contact')]),
+            ('BERK', [('/partners', 'Voor merken'), ('/prijscalculator', 'Prijscalculator'), ('/waarom-live', 'Waarom live'), ('/kennisbank', 'Kennisbank'), ('/werk', 'Werk'), ('/over', 'Over'), ('/contact', 'Contact')]),
         ],
         promise_head='Zo werken we',
-        promises=['Offerte binnen twee werkdagen', 'Vaste prijs, testdag vooraf', 'De beelden zijn van jou', 'Geen jaarcontract'],
+        promises=['Offerte binnen twee werkdagen', 'Vaste prijs, testdag vooraf', 'Clips binnen 24 uur', 'De clips zijn van jullie', 'Geen jaarcontract'],
         legal='© 2026 BERK Productions, onderdeel van <a href="https://bureauberk.com" style="text-decoration: underline">Bureau BERK</a> · KvK 95395792',
         area='Apeldoorn · Nederland · België · Duitsland',
         privacy=('/privacy', 'Privacyverklaring', 'Cookie-instellingen'),

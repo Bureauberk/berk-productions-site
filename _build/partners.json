@@ -22,72 +22,130 @@
         "play": "Speel de livestream af",
         "subject": "Partnerschap livestream",
         "proposal": "Voorstel voor",
-        "partners": "Partners"
+        "partners": "Voor merken",
+        "packagesBtn": "Bekijk de pakketten",
+        "pilotBtn": "Plan een gesprek van 20 minuten"
       },
       "shared": {
         "howHead": "Hoe het werkt",
-        "how": "Wij maken professionele livestreams van actiesport-events. Het merk betaalt de productie, de organisator krijgt de stream gratis, en het merk krijgt het podium, het bereik en alle content. Bij een eigen event van het merk zetten wij de complete uitzending neer op het kanaal van het merk.",
+        "how": [
+          "Wij maken de livestream van een bestaand actiesport-event. Het merk financiert het grootste deel van de productie. De organisator betaalt een kleine bijdrage en levert het event, de locatie en de atleten. Het merk krijgt de plek in de uitzending, de clips en het rapport.",
+          "Organiseert jullie merk zelf een event? Dan zetten we de complete uitzending neer op het kanaal van jullie merk."
+        ],
         "ideasHead": "Zo komt jullie merk in beeld",
         "getsHead": "Wat jullie krijgen",
         "gets": [
           {
             "title": "Live in beeld",
-            "text": "Een multicam-livestream met replays en live graphics. Het merk zit in de uitzending zelf: in de titel, de graphics en een eigen blok."
+            "text": "Een multicam-livestream met replays en live graphics. Jullie merk zit in de titel, de graphics en een eigen blok. Geen reclameblokken: we werken jullie merk in het verhaal, bijvoorbeeld met interviews met atleten die jullie product gebruiken."
           },
           {
             "title": "Clips binnen 24 uur",
-            "text": "Na afloop een clip per rider, klaar voor socials. Content die het merk zelf bezit en direct inzet."
+            "text": "Een clip per rijder en per hoogtepunt, in staand formaat, klaar voor socials."
           },
           {
-            "title": "Rapport met cijfers",
-            "text": "Na elk event een helder rapport: kijkers, kijktijd en het bereik van de clips."
+            "title": "De clips zijn van jullie",
+            "text": "Geen termijn, geen beperking per kanaal: eigen socials, website en advertenties. De afspraken met organisator en atleten regelen wij vooraf."
+          },
+          {
+            "title": "Media-rapport",
+            "text": "Na elk event: kijkers, kijktijd, waar het publiek vandaan kwam, en welke clips er zijn geleverd. Zo kunnen jullie intern laten zien wat het opleverde."
           }
         ],
-        "proofHead": "Wat we al hebben laten zien",
-        "proof": "In oktober 2026 produceerden we de IWWF Europe & Africa Open Cable Wake Championships in Knokke-Heist, drie dagen live op het YouTube-kanaal van de IWWF.",
+        "proofHead": "Het publiek kwam niet van het eigen kanaal",
+        "proof": "Kijkers vonden de uitzending via aanbevelingen, niet via het kanaal. Dat bereik krijgt jullie merk mee.",
         "stats": [
           {
-            "value": "27.500",
-            "label": "weergaven tijdens de livestreams"
+            "value": "83%",
+            "label": "van de kijktijd van niet-abonnees"
           },
           {
-            "value": "3",
-            "label": "dagen live"
+            "value": "30.000",
+            "label": "unieke kijkers"
           },
           {
-            "value": "6",
-            "label": "camera's, met instant replay en live graphics"
+            "value": "5.300",
+            "label": "uur kijktijd"
+          },
+          {
+            "value": "58–68%",
+            "label": "van de kijkers tussen 25 en 44 jaar"
           }
         ],
         "packagesHead": "Pakketten",
         "packages": [
           {
             "name": "Presenting partner",
-            "text": "\"Presented by\" jullie merk bij één event: naam in de titel en graphics, een eigen blok in de stream, clips per rider en een rapport.",
+            "text": "\"Presented by\" jullie merk bij één event.",
+            "items": [
+              "Naam in de streamtitel en graphics",
+              "Eigen blok in de uitzending",
+              "Clips per rijder en per hoogtepunt",
+              "De clips zijn van jullie",
+              "Media-rapport"
+            ],
             "price": "vanaf € 5.000"
           },
           {
             "name": "Merkkanaal",
-            "text": "Alles van presenting partner, en de stream gaat live op het eigen kanaal van het merk. Het publiek en de kijkcijfers komen bij het merk terecht.",
+            "text": "De stream gaat live op het kanaal van jullie merk. Het publiek en de kijkcijfers komen bij jullie.",
+            "items": [
+              "Alles van Presenting partner",
+              "Live op jullie eigen YouTube-kanaal",
+              "Clips per rijder en per hoogtepunt, inclusief interviews met atleten"
+            ],
             "price": "vanaf € 7.500"
           },
           {
             "name": "Seizoenspartner",
-            "text": "Vaste partner van meerdere events in één seizoen, met terugkerende blokken en doorlopende content.",
+            "text": "Vaste partner van meerdere events in één seizoen.",
+            "items": [
+              "Terugkerende blokken in elke uitzending",
+              "Clips van elk event en een seizoensrapport",
+              "Drie events per seizoen"
+            ],
             "price": "vanaf € 18.000"
           }
         ],
         "packagesNote": "Prijzen excl. btw. De precieze invulling stemmen we af op het event en jullie doelen.",
         "pilotHead": "Begin met één pilot",
-        "pilotAsk": "Zullen we daar 20 tot 30 minuten over bellen?",
+        "pilotAsk": "",
         "faq": [
           {
+            "q": "Hoeveel mensen kijken er?",
+            "a": "Dat hangt af van de sport en het event. Het EK Cable Wakeboard trok 30.000 unieke kijkers en 5.300 uur kijktijd. We beloven geen bereik vooraf: we rapporteren na afloop precies wat het opleverde."
+          },
+          {
+            "q": "Mogen we de clips ook in advertenties gebruiken?",
+            "a": "Ja. De clips zijn van jullie: eigen kanalen, website en advertenties, zonder termijn."
+          },
+          {
+            "q": "Zijn er andere merken in dezelfde stream?",
+            "a": "Nee. We werken met één partner per stream."
+          },
+          {
+            "q": "Wie regelt de toestemming van de atleten?",
+            "a": "Wij maken vooraf afspraken met de organisator, inclusief de atleten, zodat de clips echt van jullie zijn."
+          },
+          {
+            "q": "Wie keurt de clips voor ze online gaan?",
+            "a": "Onze AI haalt de hoogtepunten uit de opnames. Wij keuren alles goed. Willen jullie zelf meekijken, dan kan dat."
+          },
+          {
             "q": "Wie regelt het event?",
-            "a": "De organisator. Wij doen de complete live-productie; het merk hoeft zelf niets te organiseren."
+            "a": "De organisator. Wij doen de complete live-productie. Jullie merk hoeft zelf niets te organiseren."
+          },
+          {
+            "q": "Wat betaalt de organisator?",
+            "a": "Een kleine bijdrage, zodat het event zich ook committeert. Het grootste deel van de productie betaalt het merk."
           },
           {
             "q": "Op welk kanaal komt de stream?",
-            "a": "Op het kanaal van de organisator, of bij het pakket Merkkanaal op het eigen kanaal van het merk."
+            "a": "Op het kanaal van de organisator, of bij Merkkanaal op het kanaal van jullie merk."
+          },
+          {
+            "q": "Wat als het event uitvalt door het weer?",
+            "a": "Dan schuiven we op naar een volgende dag. Wat dat kost, spreken we vooraf af in de offerte."
           },
           {
             "q": "Wat als er geen internet is op locatie?",
@@ -95,28 +153,34 @@
           },
           {
             "q": "Kunnen we klein beginnen?",
-            "a": "Ja. We starten graag met één event als pilot, en evalueren daarna samen het rapport."
+            "a": "Ja, met één event als pilot."
           }
         ],
-        "posterAlt": "Cameraman van BERK aan de kabelbaan in Knokke-Heist"
+        "posterAlt": "Cameraman van BERK aan de kabelbaan in Knokke-Heist",
+        "problemHead": "Een logo langs de baan levert geen content op",
+        "problem": "De meeste sponsordeals leveren een logo op een banner en een vermelding in een post. Daarna moet jullie marketingteam zelf beelden zoeken voor social. Bij ons is het andersom: de content is het product, de uitzending is de plek waar het gemaakt wordt.",
+        "proofNote": "EK Cable Wakeboard 2026, IWWF-kanaal, YouTube Analytics",
+        "whyHead": "Veel clips, dan pas budget",
+        "why": "Op social bepaalt de content zelf het bereik, niet het aantal volgers. Daarom zijn veel clips nodig om te zien wat werkt. Jullie plaatsen ze organisch, kijken welke het best lopen, en zetten daar het advertentiebudget achter. Wij leveren de clips. Jullie kiezen de winnaars.",
+        "packagesIntro": "Elk pakket draait om één partner per stream. Geen logo tussen tien andere."
       },
       "overview": {
         "slug": "",
         "name": "Algemeen",
-        "kicker": "Partners",
-        "h1": "Jullie merk live in de actiesport",
-        "intro": "Van cable contests tot rail jams: wij zenden actiesport-events live uit met meerdere camera's, replays en graphics. Jullie merk zit in de uitzending zelf. Kies hieronder jullie sport en lees hoe dat werkt.",
-        "gridHead": "Kies jullie sport",
-        "pilot": "Begin met één event als pilot.",
-        "metaTitle": "Partner worden van actiesport-livestreams | BERK Productions",
-        "metaDescription": "Sponsor een actiesport-livestream: wakeboard, kite, snow-wake, skate, BMX, surf en SUP. Jullie merk in de uitzending, clips per rider en een rapport."
+        "kicker": "Voor merken",
+        "h1": "Jullie merk live in de actiesport. En een maand aan content.",
+        "intro": "Wij zenden actiesport-events live uit, van cable contests tot rail jams. Jullie merk zit in de uitzending zelf. Daarna krijgen jullie clips per rijder. Die zijn van jullie.",
+        "gridHead": "Bij welke sport zit jullie doelgroep?",
+        "pilot": "Begin met één event. Na afloop bespreken we samen het rapport en de clips. Pas daarna beslissen jullie over een seizoen.",
+        "metaTitle": "Jullie merk live in de actiesport | Livestream partner worden | BERK Productions",
+        "metaDescription": "Financier als merk een actiesport-livestream: zichtbaarheid, clips per rijder die van jullie zijn, en een media-rapport. Pakketten vanaf € 5.000."
       },
       "categories": [
         {
           "slug": "wake",
           "name": "Cable & wakeboard",
           "kicker": "Partners · Cable & wakeboard",
-          "h1": "Jullie riders en boten live in beeld bij cable- en boatcontests",
+          "h1": "Jullie rijders en boten live in beeld bij cable- en boatcontests",
           "intro": "Cable contests en boatcontests in Nederland, België en Duitsland, live uitgezonden met meerdere camera's, replays en graphics. Jullie merk zit in de uitzending zelf, niet alleen op een banner langs het water.",
           "events": "Cable contests (NK, EK, open contests), boatcontests, rail jams in wakeparks",
           "ideas": [
@@ -125,8 +189,8 @@
               "text": "Een vast moment per dag met jullie naam erop, met replay en clip achteraf."
             },
             {
-              "title": "Rider-cam & POV",
-              "text": "Camera op jullie teamriders, als vaste live feed en als replay-blok."
+              "title": "Rijder-cam & POV",
+              "text": "Camera op jullie teamrijders, als vaste live feed en als replay-blok."
             },
             {
               "title": "Bootcam & walkaround",
@@ -155,11 +219,11 @@
             },
             {
               "title": "Kite-, wing- en foil-cam",
-              "text": "Camera op een rider met jullie setup, live en als clip."
+              "text": "Camera op een rijder met jullie setup, live en als clip."
             },
             {
               "title": "Teamsessies en portretten",
-              "text": "Een eigen serie rond jullie teamriders, met korte interviews."
+              "text": "Een eigen serie rond jullie teamrijders, met korte interviews."
             },
             {
               "title": "Demo en testdag",
@@ -203,8 +267,8 @@
           "slug": "skate-bmx",
           "name": "Skate, BMX & bike",
           "kicker": "Partners · Skate, BMX & bike",
-          "h1": "Skate-, BMX- en bike-events live, met een clip per rider",
-          "intro": "Rail jams, skate-jams, BMX- en dirt-events in de Benelux en net over de grens, live uitgezonden en daarna omgezet in clips per rider. Zo komt er een vaste stroom content uit de lokale scenes.",
+          "h1": "Skate-, BMX- en bike-events live, met een clip per rijder",
+          "intro": "Rail jams, skate-jams, BMX- en dirt-events in de Benelux en net over de grens, live uitgezonden en daarna omgezet in clips per rijder. Zo komt er een vaste stroom content uit de lokale scenes.",
           "events": "Rail jams, skate-jams en demo's, BMX- en dirt-events, lokale kampioenschappen",
           "ideas": [
             {
@@ -216,8 +280,8 @@
               "text": "Een eigen livestream rond jullie team, op jullie eigen kanaal."
             },
             {
-              "title": "Rider- en helm-cams",
-              "text": "Camera op rider, fiets of helm, met korte uitleg van riders."
+              "title": "Rijder- en helm-cams",
+              "text": "Camera op rijder, fiets of helm, met korte uitleg van rijders."
             },
             {
               "title": "Shop-koppeling",
@@ -226,7 +290,7 @@
           ],
           "pilot": "Begin met één rail jam, skate-jam of BMX-event als pilot.",
           "metaTitle": "Skate, BMX & bike livestreams voor merken | BERK Productions",
-          "metaDescription": "Rail jams, skate-jams, BMX- en dirt-events in de Benelux en net over de grens, live uitgezonden en daarna omgezet in clips per rider."
+          "metaDescription": "Rail jams, skate-jams, BMX- en dirt-events in de Benelux en net over de grens, live uitgezonden en daarna omgezet in clips per rijder."
         },
         {
           "slug": "surf-sup",
@@ -246,11 +310,11 @@
             },
             {
               "title": "Eigen serie",
-              "text": "Een terugkerende serie op jullie kanaal, met de riders centraal."
+              "text": "Een terugkerende serie op jullie kanaal, met de rijders centraal."
             },
             {
               "title": "Dagelijkse shorts",
-              "text": "Elke dag korte highlights en rider-portretten voor socials."
+              "text": "Elke dag korte highlights en rijder-portretten voor socials."
             }
           ],
           "pilot": "Begin met één boardsport-event of SUP-race als pilot.",

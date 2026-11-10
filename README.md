@@ -4,6 +4,8 @@ Statische website van BERK Productions (NL/EN/DE), gehost op Vercel.
 
 - Pagina's: `index.html`, `diensten/`, `waarom-live/`, `werk/`, `over/`, `contact/`, `prijscalculator/`, `en/…`, `de/…`
 - Kennisbank: artikelen staan als Markdown in `_build/kennisbank/*.md` (formaat en feitenkader in `_build/kennisbank/_BRIEF.md`). Na `prerender.mjs` draai je `node _build/kennisbank.mjs`: dat bouwt `kennisbank/`, controleert interne links en werkt `sitemap.xml` bij.
+- Contentbrief "media voor merken" (fase 1, NL): `_build/merken.py` zet het nieuwe hoofdmenu op alle NL-pagina's en bouwt de homepagesecties (hero, bewijsbalk, drie formats, eventdag, twee ingangen, waarom live, slot-CTA). Draai daarna `verhaal.py`, `prerender.mjs` en `kennisbank.mjs`.
+- Formatpagina's `/live-verkopen` en `/podcasts`: inhoud in `_build/formats.json` (sectietypes hero, text, cards, stats, table, prices, faq, cta), gebouwd door `kennisbank.mjs`. Tekst met `[BEVESTIGEN …]` blijft zichtbaar gemarkeerd tot het bevestigd is.
 - Homepageblok "Waarom BERK bestaat" (missie + NK → EK → meer sporten, NL/EN/DE): tekst in `_build/verhaal.py`. Aanpassen, dan `python3 _build/verhaal.py`, `prerender.mjs` en `kennisbank.mjs` draaien.
 - Footer: één footer per taal in `_build/footer.py`. Aanpassen, dan `python3 _build/footer.py`, `prerender.mjs` en `kennisbank.mjs` draaien.
 - Privacy en cookies: privacyverklaring in `_build/legal/*.md` (NL/EN/DE), gebouwd door `kennisbank.mjs`. `js/consent.js` toont de cookiebanner en laadt Microsoft Clarity (ID in `seo.json`) pas na akkoord. Footerlink "Cookie-instellingen" opent de keuze opnieuw.

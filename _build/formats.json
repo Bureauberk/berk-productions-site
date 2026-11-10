@@ -10,7 +10,7 @@
       "sections": [
         {
           "type": "hero",
-          "notice": "De studio opent in [BEVESTIGEN: maand]. Plan nu een gesprek voor de eerste shows.",
+          "notice": "De studio opent binnenkort. Plan nu een gesprek voor de eerste shows.",
           "eyebrow": "Live verkopen",
           "h1": "Live verkopen vanuit onze studio. Wij regelen de rest.",
           "intro": "In onze studio in Apeldoorn gaan jullie live op TikTok en YouTube en verkopen jullie producten direct in de stream. Wij regelen de techniek, de TikTok Shop en als jullie willen ook de presentator. Jullie betalen huur, of een percentage van wat de show verkoopt.",
@@ -82,8 +82,8 @@
           "rows": [
             [
               "Jullie betalen",
-              "Een vaste prijs per show [BEVESTIGEN: prijs en eenheid, bijv. per show of per dagdeel]",
-              "[BEVESTIGEN: percentage] van de omzet uit de show"
+              "Een vaste prijs per show, op aanvraag",
+              "Een percentage van de omzet uit de show"
             ],
             [
               "Past bij",
@@ -92,8 +92,8 @@
             ],
             [
               "Wat erbij zit",
-              "[BEVESTIGEN]",
-              "[BEVESTIGEN]"
+              "De studio, de livestream en het overzicht na de show. Een presentator op wens.",
+              "De studio, de livestream en het overzicht na de show. Een presentator op wens."
             ]
           ],
           "eyebrow": "Betalen"
@@ -171,7 +171,7 @@
             },
             {
               "q": "Waar is de studio?",
-              "a": "In Apeldoorn. [BEVESTIGEN: adres zodra de studio open is]"
+              "a": "In Apeldoorn. Het precieze adres krijgen jullie bij de afspraak."
             },
             {
               "q": "Kunnen we tegelijk op TikTok en YouTube live?",
@@ -270,7 +270,7 @@
           "items": [
             {
               "title": "Opname",
-              "text": "Meerdere camera's, goede microfoons en licht. In onze studio of bij jullie op locatie. [BEVESTIGEN: studio pas noemen als die open is]"
+              "text": "Meerdere camera's, goede microfoons en licht. Bij jullie op locatie, of in onze studio zodra die open is."
             },
             {
               "title": "Aflevering",
@@ -333,7 +333,7 @@
               ]
             }
           ],
-          "note": "Prijzen excl. btw. [BEVESTIGEN: excl. btw, net als de rest van de site]",
+          "note": "Prijzen excl. btw.",
           "after": "Willen jullie helemaal niets zelf doen? Gasten, onderwerpen, publicatie: neem contact op, we regelen het.",
           "eyebrow": "Twee opties"
         },
@@ -347,7 +347,7 @@
             },
             {
               "q": "Waar nemen we op?",
-              "a": "In onze studio in Apeldoorn of bij jullie op locatie. [BEVESTIGEN: studio pas noemen als die open is]"
+              "a": "Bij jullie op locatie, of in onze studio in Apeldoorn zodra die open is."
             },
             {
               "q": "Hoeveel clips krijgen we?",

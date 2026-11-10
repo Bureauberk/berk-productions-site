@@ -144,3 +144,4 @@ Meerdere dagen: vanaf dag 2 15% korting. Reiskosten € 0,48 per km, heen en ter
 | 26 | live-verkopen-tiktok-shop | verkopen | live verkopen TikTok | Live verkopen via TikTok Shop: wat je nodig hebt, producten, draaiboek 60 min, rollen, na de LIVE (bron: TikTok Shop Academy, juni 2026). |
 | 27 | tiktok-shop-live-regels | verkopen | TikTok Shop live regels | De zes overtredingen in een Shop-LIVE en hoe je ze voorkomt (bron: TikTok Shop Academy). |
 | 28 | tiktok-shop-starten | verkopen | TikTok Shop starten | Registratie, uitbetaling, btw, GPSR/EPR, verzendopties 4PL/FBT/3PL (bron: TikTok Shop Academy NL/BE/PL). |
+| 29 | clips-uit-tiktok-live | verkopen | clips uit TikTok LIVE | Clips uit een LIVE: welke momenten, vuistregels lengte/aantal/timing, specificaties, LIVE Highlights en Auto Remix, cross-platform en rechten, meten. |

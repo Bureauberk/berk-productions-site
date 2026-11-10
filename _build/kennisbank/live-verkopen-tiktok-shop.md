@@ -71,7 +71,7 @@ De fouten die TikTok het vaakst ziet: live gaan zonder plan, te veel producten t
 
 ## Na de LIVE: clips en cijfers
 
-Een LIVE levert ook na afloop nog wat op. TikTok raadt aan de opname terug te kijken, de sterke productmomenten eruit te knippen en daar korte video's met een productlink van te maken. Zo blijven ze verkopen als de stream al voorbij is. Dat is hetzelfde principe als [highlights en clips na een event](/kennisbank/highlights-en-clips-na-je-event): één opname, en daarna de stukken die blijven werken.
+Een LIVE levert ook na afloop nog wat op. TikTok raadt aan de opname terug te kijken, de sterke productmomenten eruit te knippen en daar korte video's met een productlink van te maken. Zo blijven ze verkopen als de stream al voorbij is. Dat is hetzelfde principe als [highlights en clips na een event](/kennisbank/highlights-en-clips-na-je-event): één opname, en daarna de stukken die blijven werken. Hoe je die clips kiest en knipt, lees je in [clips uit je TikTok LIVE](/kennisbank/clips-uit-tiktok-live).
 
 Je cijfers vind je in Seller Center onder Data Compass, LIVE Stream Analysis. Kijk vooral naar:
 

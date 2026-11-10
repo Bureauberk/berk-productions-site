@@ -22,7 +22,7 @@ import{a as n,b as c,c as p,d}from"./chunk-O3OTVWYO.js";var u=d.bind(n),i=class 
 <div style="flex: 3 1 560px; display: flex; flex-direction: column; gap: 24px">
 <span class="eyebrow" style="color: #A8A8A8"><span class="dot"></span>Over BERK</span>
 <h1 class="h-black" style="font-size: clamp(52px, 7.6vw, 116px); line-height: 0.92; color: #FFFFFF; text-shadow: 6px 6px 0 #000000">Wij staan zelf ook op het <span style="color: #FF5F57">water</span></h1>
-<p style="margin: 0; max-width: 620px; font-size: 20px; line-height: 1.6; color: #CFCFCF">BERK is een productiebureau uit Apeldoorn, opgezet door Wouter. Hij wakeboardt zelf en weet hoe een trick er in beeld uit moet zien. Per productie werken we met een vaste crew van [AANTAL] operators en editors.</p>
+<p style="margin: 0; max-width: 620px; font-size: 20px; line-height: 1.6; color: #CFCFCF">BERK is een productiebureau uit Apeldoorn, opgezet door Wouter. Hij wakeboardt zelf en weet hoe een trick er in beeld uit moet zien.</p>
 </div>
 <div style="flex: 2 1 320px; display: flex; justify-content: center">
 <img src="/assets/eae890c425e9b3d2d96138dda45ade9d.svg" alt="" aria-hidden="true" style="width: min(100%, 340px); height: auto; filter: drop-shadow(14px 14px 0 #FF5F57)" />
@@ -49,18 +49,6 @@ import{a as n,b as c,c as p,d}from"./chunk-O3OTVWYO.js";var u=d.bind(n),i=class 
 <div class="wrap rv" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 28px">
 <p class="h-black" style="margin: 0; font-size: clamp(28px, 3.4vw, 48px); line-height: 1; max-width: 900px">Kleine sporten verdienen een groot publiek. Daarom doen we dit.</p>
 <a class="btn" href="/waarom-live" style="background: #161616; color: #FFFFFF">Waarom live <span aria-hidden="true">→</span></a>
-</div>
-</section>
-
-<section style="padding: clamp(80px, 9vw, 140px) 0">
-<div class="wrap" style="display: flex; flex-direction: column; gap: 40px">
-<div class="rv" style="display: flex; flex-direction: column; gap: 16px"><span class="eyebrow" style="color: #A8A8A8">Crew</span><h2 class="h-black" style="font-size: clamp(40px, 5vw, 72px); line-height: 0.95; color: #FFFFFF">De mensen achter de camera</h2></div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 32px">
-<div class="rv" style="display: flex; flex-direction: column; gap: 12px"><div class="crew">Portret · Wouter</div><span class="h-black" style="font-size: 22px; color: #FFFFFF">Wouter</span><span style="font-size: 16px; color: #A8A8A8">Oprichter, regie</span></div>
-<div class="rv" style="display: flex; flex-direction: column; gap: 12px"><div class="crew">Portret</div><span class="h-black" style="font-size: 22px; color: #FFFFFF">[Naam]</span><span style="font-size: 16px; color: #A8A8A8">[Rol]</span></div>
-<div class="rv" style="display: flex; flex-direction: column; gap: 12px"><div class="crew">Portret</div><span class="h-black" style="font-size: 22px; color: #FFFFFF">[Naam]</span><span style="font-size: 16px; color: #A8A8A8">[Rol]</span></div>
-<div class="rv" style="display: flex; flex-direction: column; gap: 12px"><div class="crew">Portret</div><span class="h-black" style="font-size: 22px; color: #FFFFFF">[Naam]</span><span style="font-size: 16px; color: #A8A8A8">[Rol]</span></div>
-</div>
 </div>
 </section>
 

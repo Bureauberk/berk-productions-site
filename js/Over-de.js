@@ -22,7 +22,7 @@ import{a as t,b as c,c as d,d as p}from"./chunk-O3OTVWYO.js";var h=p.bind(t),i=c
 <div style="flex: 3 1 560px; display: flex; flex-direction: column; gap: 24px">
 <span class="eyebrow" style="color: #A8A8A8"><span class="dot"></span>Über BERK</span>
 <h1 class="h-black" style="font-size: clamp(52px, 7.6vw, 116px); line-height: 0.92; color: #FFFFFF; text-shadow: 6px 6px 0 #000000">Wir stehen selbst auch auf dem <span style="color: #FF5F57">Wasser</span></h1>
-<p style="margin: 0; max-width: 620px; font-size: 20px; line-height: 1.6; color: #CFCFCF">BERK ist eine Produktionsfirma aus Apeldoorn, gegründet von Wouter. Er fährt selbst Wakeboard und weiß, wie ein Trick im Bild aussehen muss. Pro Produktion arbeiten wir mit einer festen Crew von [ANZAHL] Kameraleuten und Editoren.</p>
+<p style="margin: 0; max-width: 620px; font-size: 20px; line-height: 1.6; color: #CFCFCF">BERK ist eine Produktionsfirma aus Apeldoorn, gegründet von Wouter. Er fährt selbst Wakeboard und weiß, wie ein Trick im Bild aussehen muss.</p>
 </div>
 <div style="flex: 2 1 320px; display: flex; justify-content: center">
 <img src="/assets/eae890c425e9b3d2d96138dda45ade9d.svg" alt="" aria-hidden="true" style="width: min(100%, 340px); height: auto; filter: drop-shadow(14px 14px 0 #FF5F57)" />
@@ -49,18 +49,6 @@ import{a as t,b as c,c as d,d as p}from"./chunk-O3OTVWYO.js";var h=p.bind(t),i=c
 <div class="wrap rv" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 28px">
 <p class="h-black" style="margin: 0; font-size: clamp(28px, 3.4vw, 48px); line-height: 1; max-width: 900px">Kleine Sportarten verdienen ein großes Publikum. Deshalb machen wir das.</p>
 <a class="btn" href="/de/warum-live" style="background: #161616; color: #FFFFFF">Warum live <span aria-hidden="true">→</span></a>
-</div>
-</section>
-
-<section style="padding: clamp(80px, 9vw, 140px) 0">
-<div class="wrap" style="display: flex; flex-direction: column; gap: 40px">
-<div class="rv" style="display: flex; flex-direction: column; gap: 16px"><span class="eyebrow" style="color: #A8A8A8">Crew</span><h2 class="h-black" style="font-size: clamp(40px, 5vw, 72px); line-height: 0.95; color: #FFFFFF">Die Menschen hinter der Kamera</h2></div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 32px">
-<div class="rv" style="display: flex; flex-direction: column; gap: 12px"><div class="crew">Porträt · Wouter</div><span class="h-black" style="font-size: 22px; color: #FFFFFF">Wouter</span><span style="font-size: 16px; color: #A8A8A8">Gründer, Regie</span></div>
-<div class="rv" style="display: flex; flex-direction: column; gap: 12px"><div class="crew">Porträt</div><span class="h-black" style="font-size: 22px; color: #FFFFFF">[Name]</span><span style="font-size: 16px; color: #A8A8A8">[Rolle]</span></div>
-<div class="rv" style="display: flex; flex-direction: column; gap: 12px"><div class="crew">Porträt</div><span class="h-black" style="font-size: 22px; color: #FFFFFF">[Name]</span><span style="font-size: 16px; color: #A8A8A8">[Rolle]</span></div>
-<div class="rv" style="display: flex; flex-direction: column; gap: 12px"><div class="crew">Porträt</div><span class="h-black" style="font-size: 22px; color: #FFFFFF">[Name]</span><span style="font-size: 16px; color: #A8A8A8">[Rolle]</span></div>
-</div>
 </div>
 </section>
 

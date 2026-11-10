@@ -23,7 +23,34 @@
               "Zo werkt het",
               "#zo-werkt-het"
             ]
-          ]
+          ],
+          "phones": [
+            {
+              "img": "/assets/4b4ba22a10248f001ac397a1b0e7930d.webp",
+              "tag": "Camera 2",
+              "card": "Close-up van het product"
+            },
+            {
+              "img": "/assets/85192bee0221be346b4096db7639b7ef.webp",
+              "tag": "Studio",
+              "chat": [
+                "Welke maat is dit?",
+                "Hoe lang loopt de actie nog?"
+              ],
+              "product": {
+                "img": "/assets/verhuur/sony-fx30.jpg",
+                "name": "Jullie product",
+                "note": "Actie alleen tijdens de show",
+                "cta": "Kopen"
+              }
+            },
+            {
+              "img": "/assets/8de8495379f82c55f0196e41bed0a4d1.webp",
+              "tag": "Regie",
+              "card": "Graphics met prijs, actie en afteltimer"
+            }
+          ],
+          "phonesCaption": "Impressie van een live verkoopshow"
         },
         {
           "type": "text",
@@ -69,63 +96,77 @@
           "eyebrow": "Wat wij regelen"
         },
         {
-          "type": "table",
+          "type": "options",
           "bg": "dark",
-          "highlight": true,
+          "eyebrow": "Betalen",
           "head": "Huur de studio, of betaal per verkoop",
           "intro": "Jullie kiezen hoe jullie betalen. Bij het percentagemodel verdienen wij pas als jullie verkopen.",
-          "columns": [
-            "",
-            "Studio huren",
-            "Percentage van de verkoop"
-          ],
-          "rows": [
-            [
-              "Jullie betalen",
-              "Een vaste prijs per show, op aanvraag",
-              "Een percentage van de omzet uit de show"
-            ],
-            [
-              "Past bij",
-              "Merken die vaker live gaan en zelf willen presenteren",
-              "Merken die willen beginnen zonder vaste kosten"
-            ],
-            [
-              "Wat erbij zit",
-              "De studio, de livestream en het overzicht na de show. Een presentator op wens.",
-              "De studio, de livestream en het overzicht na de show. Een presentator op wens."
-            ]
-          ],
-          "eyebrow": "Betalen"
+          "options": [
+            {
+              "name": "Studio huren",
+              "tag": "Vaste prijs",
+              "rows": [
+                [
+                  "Jullie betalen",
+                  "Een vaste prijs per show, op aanvraag"
+                ],
+                [
+                  "Past bij",
+                  "Merken die vaker live gaan en zelf willen presenteren"
+                ],
+                [
+                  "Wat erbij zit",
+                  "De studio, de livestream en het overzicht na de show. Een presentator op wens."
+                ]
+              ]
+            },
+            {
+              "name": "Percentage van de verkoop",
+              "tag": "Zonder vaste kosten",
+              "highlight": true,
+              "rows": [
+                [
+                  "Jullie betalen",
+                  "Een percentage van de omzet uit de show"
+                ],
+                [
+                  "Past bij",
+                  "Merken die willen beginnen zonder vaste kosten"
+                ],
+                [
+                  "Wat erbij zit",
+                  "De studio, de livestream en het overzicht na de show. Een presentator op wens."
+                ]
+              ]
+            }
+          ]
         },
         {
-          "type": "table",
+          "type": "platforms",
           "bg": "light",
+          "eyebrow": "Platforms",
           "head": "Waar jullie live kunnen verkopen",
-          "columns": [
-            "Platform",
-            "Afrekenen tijdens de live",
-            "Hoe wij het inzetten"
-          ],
-          "rows": [
-            [
-              "TikTok",
-              "Ja, via TikTok Shop (sinds 15 juni 2026 in Nederland)",
-              "Hoofdplatform. Producten vastgepind in de live, afrekenen in de app."
-            ],
-            [
-              "YouTube",
-              "Ja, via YouTube Shopping",
-              "Welke variant we gebruiken, stemmen we per merk af."
-            ],
-            [
-              "Instagram",
-              "Nee. Meta stopte in maart 2023 met afrekenen in Instagram Live",
-              "Live gaan kan wel. Daar werken we met een kortingscode of een link in de bio."
-            ]
-          ],
           "note": "Op welke platforms jullie tegelijk live gaan, stemmen we per show met jullie af.",
-          "eyebrow": "Platforms"
+          "items": [
+            {
+              "name": "TikTok",
+              "checkout": true,
+              "checkoutText": "Afrekenen in de live, via TikTok Shop. Sinds 15 juni 2026 in Nederland.",
+              "use": "Hoofdplatform. Producten vastgepind in de live, afrekenen in de app."
+            },
+            {
+              "name": "YouTube",
+              "checkout": true,
+              "checkoutText": "Afrekenen in de live, via YouTube Shopping.",
+              "use": "Welke variant we gebruiken, stemmen we per merk af."
+            },
+            {
+              "name": "Instagram",
+              "checkout": false,
+              "checkoutText": "Geen afrekenen in de live. Meta stopte daar in maart 2023 mee.",
+              "use": "Live gaan kan wel. Daar werken we met een kortingscode of een link in de bio."
+            }
+          ]
         },
         {
           "type": "cards",

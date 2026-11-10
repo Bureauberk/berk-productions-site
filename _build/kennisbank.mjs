@@ -643,19 +643,68 @@ ${l.html}
   const split = (x, title, right) => `<div class="p-split"><div>${label(x)}${head(title, x.bg)}</div><div>${right}</div></div>`;
   const lead = (t, bg) => `<p class="p-lead" style="color: ${dark(bg) ? '#CFCFCF' : '#2A2A2A'}; margin-bottom: 1em">${txt(t)}</p>`;
   const sec = (x, inner) => `<section class="p-sec"${x.id ? ` id="${x.id}" style="scroll-margin-top: 90px; ${BG[x.bg]}"` : ` style="${BG[x.bg]}"`}><div class="wrap">${inner}</div></section>`;
+  // Three tilted phone frames with a live-shopping screen (own photos, no platform branding); decorative.
+  const phones = (x) => `<figure class="f-phones"><div class="f-stack" aria-hidden="true">${x.phones.map((ph, i) => `<div class="f-phone f-ph${i}"><img src="${ph.img}" alt="" loading="${i === 1 ? 'eager' : 'lazy'}" decoding="async"><div class="f-ui"><div class="f-top"><span class="f-live">Live</span><span class="f-handle">${esc(ph.tag)}</span></div>${ph.card ? `<span class="f-card">${esc(ph.card)}</span>` : ''}${ph.chat ? `<div class="f-chat">${ph.chat.map((c) => `<span>${esc(c)}</span>`).join('')}</div>` : ''}${ph.product ? `<div class="f-prod"><img src="${ph.product.img}" alt=""><div><b>${esc(ph.product.name)}</b><small>${esc(ph.product.note)}</small></div><span>${esc(ph.product.cta)}</span></div>` : ''}</div></div>`).join('')}</div><figcaption class="kb-meta">${esc(x.phonesCaption)}</figcaption></figure>`;
   const R = {
-    hero: (x) => `<section class="kb-hero"><div class="wrap">${x.crumbs}<div style="display: flex; flex-direction: column; gap: 24px; max-width: 1100px">${x.notice ? `<p class="f-notice">${txt(x.notice)}</p>` : ''}<span class="eyebrow" style="color: #A8A8A8"><span class="dot"></span>${txt(x.eyebrow)}</span><h1 class="h-black" style="font-size: clamp(34px, 5vw, 76px); line-height: 0.98; color: #FFFFFF; text-shadow: 5px 5px 0 #000; max-width: 1000px">${txt(x.h1)}</h1><p style="margin: 0; max-width: 720px; font-size: 20px; line-height: 1.6; color: #CFCFCF">${txt(x.intro)}</p><div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 8px">${x.buttons.map(([label, href], i) => `<a class="btn" href="${href}"${i ? ' style="background: #161616; color: #FFFFFF; border-color: #EFEFEF"' : ''}>${esc(label)}${i ? '' : ' <span aria-hidden="true">→</span>'}</a>`).join('')}</div></div></div></section>`,
+    hero: (x) => `<section class="kb-hero"><div class="wrap">${x.crumbs}<div class="${x.phones ? 'f-hero' : ''}"><div style="display: flex; flex-direction: column; gap: 24px; max-width: 1100px">${x.notice ? `<p class="f-notice">${txt(x.notice)}</p>` : ''}<span class="eyebrow" style="color: #A8A8A8"><span class="dot"></span>${txt(x.eyebrow)}</span><h1 class="h-black" style="font-size: clamp(34px, 5vw, 76px); line-height: 0.98; color: #FFFFFF; text-shadow: 5px 5px 0 #000; max-width: 1000px">${txt(x.h1)}</h1><p style="margin: 0; max-width: 720px; font-size: 20px; line-height: 1.6; color: #CFCFCF">${txt(x.intro)}</p><div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 8px">${x.buttons.map(([label, href], i) => `<a class="btn" href="${href}"${i ? ' style="background: #161616; color: #FFFFFF; border-color: #EFEFEF"' : ''}>${esc(label)}${i ? '' : ' <span aria-hidden="true">→</span>'}</a>`).join('')}</div></div>${x.phones ? phones(x) : ''}</div></div></section>`,
     text: (x) => sec(x, split(x, x.head, x.paras.map((p) => lead(p, x.bg)).join(''))),
     cards: (x) => sec(x, `${top(x)}<div class="p-grid">${x.items.map((it, n) => `<div class="promise">${x.numbered ? `<span class="p-num">${String(n + 1).padStart(2, '0')}</span>` : it.label ? `<span class="p-num">${esc(it.label)}</span>` : ''}<h3>${txt(it.title)}</h3><p>${txt(it.text)}</p></div>`).join('')}</div>`),
     stats: (x) => sec(x, `${top(x)}<div class="p-stats">${x.items.map((st) => `<div class="p-stat"><b>${esc(st.value)}</b><span>${txt(st.label)}</span></div>`).join('')}</div>${x.note ? lead(x.note, x.bg) : ''}<p class="kb-meta" style="margin: 8px 0 0; line-height: 1.6">Bron: ${esc(x.source)}</p>`),
     table: (x) => sec(x, `${top(x, x.intro ? lead(x.intro, x.bg) : '')}<div class="prose" style="max-width: 1100px"><div class="tbl"${x.highlight ? ' style="box-shadow: 10px 10px 0 #FF5F57"' : ''}><table><thead><tr>${x.columns.map((c) => `<th scope="col">${esc(c)}</th>`).join('')}</tr></thead><tbody>${x.rows.map((r) => `<tr>${r.map((c, i) => i ? `<td>${txt(c)}</td>` : `<th scope="row" style="background: #FFFFFF; color: #161616">${txt(c)}</th>`).join('')}</tr>`).join('')}</tbody></table></div></div>${x.note ? `<p style="margin: 24px 0 0; font-size: 17px; color: ${dark(x.bg) ? '#CFCFCF' : '#3C3C3C'}">${txt(x.note)}</p>` : ''}`),
+    options: (x) => sec(x, `${top(x, x.intro ? lead(x.intro, x.bg) : '')}<div class="f-options">${x.options.map((o) => `<div class="f-opt${o.highlight ? ' hi' : ''}"><span class="f-tag">${esc(o.tag)}</span><h3>${esc(o.name)}</h3><dl>${o.rows.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${txt(v)}</dd></div>`).join('')}</dl></div>`).join('')}</div>`),
+    platforms: (x) => sec(x, `${top(x)}<div class="f-plats">${x.items.map((it) => `<div class="f-plat"><h3>${esc(it.name)}</h3><span class="f-badge${it.checkout ? ' yes' : ''}"><span aria-hidden="true">${it.checkout ? '✓' : '✕'}</span>${it.checkout ? 'Afrekenen in de live' : 'Geen afrekenen in de live'}</span><p class="f-sub">${txt(it.checkoutText)}</p><div class="f-use"><span>Hoe wij het inzetten</span><p>${txt(it.use)}</p></div></div>`).join('')}</div>${x.note ? `<p style="margin: 40px 0 0; font-size: 17px; color: #3C3C3C">${txt(x.note)}</p>` : ''}`),
     prices: (x) => sec(x, `${top(x)}<div class="p-grid" style="max-width: 900px">${x.cards.map((c) => `<div class="promise"><h3>${esc(c.name)}</h3><ul class="p-items">${c.items.map((it) => `<li>${txt(it)}</li>`).join('')}</ul><span class="p-price">${esc(c.price)}</span></div>`).join('')}</div><p style="margin: 28px 0 0; font-size: 16px; color: #3C3C3C">${txt(x.note)}</p>${x.after ? `<p class="p-lead" style="margin-top: 28px; color: #2A2A2A">${txt(x.after)}</p>` : ''}`),
     faq: (x) => sec(x, split(x, 'Veelgestelde vragen', `<div class="p-faq">${x.items.map((f) => `<h3>${txt(f.q)}</h3><p>${txt(f.a)}</p>`).join('')}</div>`).replace('class="p-split"', 'class="p-split p-sticky"')),
     cta: (x) => `<section style="background: #FF5F57; color: #161616; padding: clamp(64px, 7vw, 104px) 0"><div class="wrap" style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start"><h2 class="h-black" style="margin: 0; font-size: clamp(36px, 5vw, 72px); line-height: 0.95">${txt(x.head)}</h2><p style="margin: 0; max-width: 720px; font-size: 21px; line-height: 1.55">${txt(x.text)}</p><a class="btn" href="${x.button[1]}" style="background: #161616; color: #FFFFFF">${esc(x.button[0])} <span aria-hidden="true">→</span></a></div></section>`,
   };
   const css = `.f-notice{margin:0;align-self:flex-start;background:#FF5F57;color:#161616;border:2px solid #161616;box-shadow:5px 5px 0 #000;padding:10px 16px;font-family:'Archivo',sans-serif;font-weight:700;font-size:15px;line-height:1.4}
 mark.todo{background:#FFE14D;color:#161616;padding:0 4px;font-weight:600}
-.p-grid h3{hyphens:manual;-webkit-hyphens:manual;overflow-wrap:break-word}`;
+.p-grid h3{hyphens:manual;-webkit-hyphens:manual;overflow-wrap:break-word}
+.f-hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:center}
+.f-hero h1{font-size:clamp(32px,4.2vw,64px)!important;hyphens:manual!important;-webkit-hyphens:manual!important}
+.f-phones{margin:0;display:flex;flex-direction:column;align-items:center;gap:44px}
+.f-stack{position:relative;width:100%;max-width:560px;height:560px}
+.f-phone{position:absolute;width:228px;aspect-ratio:9/19;border:7px solid #000;border-radius:34px;overflow:hidden;background:#000;box-shadow:8px 8px 0 #000}
+.f-phone>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.f-ph0{left:18px;top:56px;transform:rotate(-9deg);z-index:1}
+.f-ph1{left:50%;top:0;transform:translateX(-50%) rotate(3deg);z-index:3;box-shadow:10px 10px 0 #FF5F57}
+.f-ph2{right:18px;top:84px;transform:rotate(10deg);z-index:2}
+.f-ph0>img,.f-ph2>img{filter:brightness(.82)}
+.f-ui{position:absolute;inset:0;display:flex;flex-direction:column;padding:14px 12px;gap:8px;background:linear-gradient(180deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,0) 28%,rgba(0,0,0,0) 55%,rgba(0,0,0,.6) 100%);font-family:'Archivo',sans-serif}
+.f-top{display:flex;align-items:center;gap:8px}
+.f-live{background:#FF5F57;color:#161616;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 7px;border-radius:4px}
+.f-handle{color:#FFFFFF;font-weight:700;font-size:12px}
+.f-card{margin-top:auto;align-self:flex-start;background:#161616;color:#FFFFFF;border:2px solid #FF5F57;font-weight:700;font-size:12px;line-height:1.3;padding:7px 9px;max-width:85%}
+.f-chat{margin-top:auto;display:flex;flex-direction:column;gap:6px}
+.f-chat span{align-self:flex-start;background:rgba(0,0,0,.55);color:#FFFFFF;font-family:'Hind',sans-serif;font-size:12px;line-height:1.3;padding:5px 9px;border-radius:12px}
+.f-prod{display:flex;align-items:center;gap:8px;background:#FFFFFF;color:#161616;border-radius:10px;padding:7px}
+.f-prod img{width:40px;height:40px;object-fit:cover;border-radius:6px;background:#EFEFEF}
+.f-prod div{display:flex;flex-direction:column;min-width:0;flex:1}
+.f-prod b{font-size:12px;line-height:1.2}
+.f-prod small{font-family:'Hind',sans-serif;font-size:10px;line-height:1.2;color:#555}
+.f-prod>span{background:#FF5F57;font-weight:800;font-size:11px;text-transform:uppercase;padding:6px 8px;border-radius:6px}
+@media (max-width:960px){.f-hero{grid-template-columns:minmax(0,1fr)}.f-stack{height:440px;max-width:420px}.f-phone{width:176px;border-width:6px;border-radius:28px}.f-ph0{top:44px}.f-ph2{top:66px}}
+@media (max-width:960px){.f-prod small,.f-prod img{display:none}.f-chat span{font-size:11px}.f-card{font-size:11px}}
+@media (max-width:420px){.f-stack{height:370px}.f-phone{width:140px}.f-ph0{left:10px}.f-ph2{right:10px}}
+.f-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(24px,3vw,40px)}
+.f-opt{background:#FFFFFF;color:#161616;border:2px solid #161616;box-shadow:8px 8px 0 #000;padding:clamp(28px,3.4vw,44px);display:flex;flex-direction:column;gap:18px}
+.f-opt.hi{box-shadow:10px 10px 0 #FF5F57}
+.f-opt h3{font-family:'Archivo Black','Archivo',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(24px,2.4vw,32px);line-height:1;margin:0}
+.f-tag{align-self:flex-start;font-family:'Archivo',sans-serif;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:6px 10px;border:2px solid #161616}
+.f-opt.hi .f-tag{background:#FF5F57}
+.f-opt dl{margin:4px 0 0}
+.f-opt dl div{border-top:1px solid #DDDDDD;padding:16px 0}
+.f-opt dt{font-family:'Archivo',sans-serif;font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#6B6B6B;margin-bottom:6px}
+.f-opt dd{margin:0;font-size:18px;line-height:1.55}
+.f-plats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(24px,3vw,40px)}
+.f-plat{background:#FFFFFF;color:#161616;border:2px solid #161616;box-shadow:8px 8px 0 #161616;padding:clamp(28px,3vw,40px);display:flex;flex-direction:column;gap:16px}
+.f-plat h3{font-family:'Archivo Black','Archivo',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(26px,2.6vw,36px);line-height:1;margin:0}
+.f-badge{align-self:flex-start;display:inline-flex;gap:8px;align-items:center;font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:8px 12px;border:2px solid #8C8C8C;color:#6B6B6B}
+.f-badge.yes{background:#FF5F57;border-color:#161616;color:#161616}
+.f-sub{margin:0;font-size:16px;line-height:1.5;color:#555555}
+.f-use{margin-top:auto;border-top:1px solid #DDDDDD;padding-top:16px}
+.f-use span{display:block;font-family:'Archivo',sans-serif;font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#6B6B6B;margin-bottom:6px}
+.f-use p{margin:0;font-size:17px;line-height:1.55}`;
   for (const f of FORMATS.pages) {
     const crumbs = [['Home', '/'], [f.name, f.path]];
     const url = SITE + f.path;

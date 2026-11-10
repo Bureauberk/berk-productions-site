@@ -208,7 +208,8 @@ const CSS = `
 .p-top{margin-bottom:clamp(40px,5vw,64px)}
 .p-split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,6vw,96px);align-items:start}
 .p-split .p-head{margin:0}
-@media (max-width:860px){.p-split{grid-template-columns:minmax(0,1fr)}}
+.p-sticky>div:first-child{position:sticky;top:128px}
+@media (max-width:860px){.p-split{grid-template-columns:minmax(0,1fr)}.p-sticky>div:first-child{position:static}}
 .p-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:32px}
 .p-grid .promise{padding:28px}
 .p-grid h3{font-family:'Archivo Black','Archivo',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(21px,2vw,26px);line-height:1.05;margin:0;color:#161616;hyphens:auto;-webkit-hyphens:auto}
@@ -609,7 +610,8 @@ ${l.html}
     const packages = sec(LIGHT, `<div id="pakketten" style="scroll-margin-top: 110px">${top(E.packages, S.packagesHead)}${S.packagesIntro ? `<p class="p-lead" style="color: #2A2A2A; margin: -24px 0 40px">${esc(S.packagesIntro)}</p>` : ''}<div class="p-grid">${S.packages.map((pk) => `<div class="promise"><h3>${esc(pk.name)}</h3><p>${esc(pk.text)}</p>${pk.items ? `<ul class="p-items">${pk.items.map((it) => `<li>${esc(it)}</li>`).join('')}</ul>` : ''}<span class="p-price">${esc(pk.price)}</span></div>`).join('')}</div></div><p style="margin: 28px 0 0; font-size: 16px; color: #3C3C3C">${esc(S.packagesNote)}</p>`);
     const pilot = `<section style="background: #FF5F57; color: #161616; padding: clamp(64px, 7vw, 104px) 0"><div class="wrap" style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start"><h2 class="h-black" style="margin: 0; font-size: clamp(36px, 5vw, 72px); line-height: 0.95">${esc(S.pilotHead)}</h2><p style="margin: 0; max-width: 720px; font-size: 21px; line-height: 1.55">${esc([e.pilot, S.pilotAsk].filter(Boolean).join(' '))}</p><a class="btn" href="${mailto}" style="background: #161616; color: #FFFFFF">${esc(U.pilotBtn || U.talk)} <span aria-hidden="true">→</span></a><p style="margin: 0; font-size: 16px">${esc(P.contactLine)}</p></div></section>`;
     const faqList = `<div class="p-faq">${S.faq.map((f) => `<h3>${esc(f.q)}</h3><p>${esc(f.a)}</p>`).join('')}</div>`;
-    const faq = sec(LIGHT, S.problem ? split(E.faq, U.faqHead, '#161616', faqList) : `${head(U.faqHead)}${faqList}`);
+    // The FAQ heading stays in view while the questions scroll past.
+    const faq = sec(LIGHT, S.problem ? split(E.faq, U.faqHead, '#161616', faqList).replace('class="p-split"', 'class="p-split p-sticky"') : `${head(U.faqHead)}${faqList}`);
     const jsonld = [
       { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + path + '#page', url: SITE + path, name: e.metaTitle, description: e.metaDescription, inLanguage: lang, isPartOf: { '@type': 'WebSite', name: 'BERK Productions', url: SITE + '/' }, publisher: ORG },
       { '@context': 'https://schema.org', ...crumbsLd(crumbs) },
@@ -648,7 +650,7 @@ ${l.html}
     stats: (x) => sec(x, `${top(x)}<div class="p-stats">${x.items.map((st) => `<div class="p-stat"><b>${esc(st.value)}</b><span>${txt(st.label)}</span></div>`).join('')}</div>${x.note ? lead(x.note, x.bg) : ''}<p class="kb-meta" style="margin: 8px 0 0; line-height: 1.6">Bron: ${esc(x.source)}</p>`),
     table: (x) => sec(x, `${top(x, x.intro ? lead(x.intro, x.bg) : '')}<div class="prose" style="max-width: 1100px"><div class="tbl"${x.highlight ? ' style="box-shadow: 10px 10px 0 #FF5F57"' : ''}><table><thead><tr>${x.columns.map((c) => `<th scope="col">${esc(c)}</th>`).join('')}</tr></thead><tbody>${x.rows.map((r) => `<tr>${r.map((c, i) => i ? `<td>${txt(c)}</td>` : `<th scope="row" style="background: #FFFFFF; color: #161616">${txt(c)}</th>`).join('')}</tr>`).join('')}</tbody></table></div></div>${x.note ? `<p style="margin: 24px 0 0; font-size: 17px; color: ${dark(x.bg) ? '#CFCFCF' : '#3C3C3C'}">${txt(x.note)}</p>` : ''}`),
     prices: (x) => sec(x, `${top(x)}<div class="p-grid" style="max-width: 900px">${x.cards.map((c) => `<div class="promise"><h3>${esc(c.name)}</h3><ul class="p-items">${c.items.map((it) => `<li>${txt(it)}</li>`).join('')}</ul><span class="p-price">${esc(c.price)}</span></div>`).join('')}</div><p style="margin: 28px 0 0; font-size: 16px; color: #3C3C3C">${txt(x.note)}</p>${x.after ? `<p class="p-lead" style="margin-top: 28px; color: #2A2A2A">${txt(x.after)}</p>` : ''}`),
-    faq: (x) => sec(x, split(x, 'Veelgestelde vragen', `<div class="p-faq">${x.items.map((f) => `<h3>${txt(f.q)}</h3><p>${txt(f.a)}</p>`).join('')}</div>`)),
+    faq: (x) => sec(x, split(x, 'Veelgestelde vragen', `<div class="p-faq">${x.items.map((f) => `<h3>${txt(f.q)}</h3><p>${txt(f.a)}</p>`).join('')}</div>`).replace('class="p-split"', 'class="p-split p-sticky"')),
     cta: (x) => `<section style="background: #FF5F57; color: #161616; padding: clamp(64px, 7vw, 104px) 0"><div class="wrap" style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start"><h2 class="h-black" style="margin: 0; font-size: clamp(36px, 5vw, 72px); line-height: 0.95">${txt(x.head)}</h2><p style="margin: 0; max-width: 720px; font-size: 21px; line-height: 1.55">${txt(x.text)}</p><a class="btn" href="${x.button[1]}" style="background: #161616; color: #FFFFFF">${esc(x.button[0])} <span aria-hidden="true">→</span></a></div></section>`,
   };
   const css = `.f-notice{margin:0;align-self:flex-start;background:#FF5F57;color:#161616;border:2px solid #161616;box-shadow:5px 5px 0 #000;padding:10px 16px;font-family:'Archivo',sans-serif;font-weight:700;font-size:15px;line-height:1.4}

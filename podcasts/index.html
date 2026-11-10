@@ -178,6 +178,17 @@ mark.todo{background:#FFE14D;color:#161616;padding:0 4px;font-weight:600}
 @media (max-width:960px){.f-hero{grid-template-columns:minmax(0,1fr)}.f-stack{height:440px;max-width:420px}.f-phone{width:176px;border-width:6px;border-radius:28px}.f-ph0{top:44px}.f-ph2{top:66px}}
 @media (max-width:960px){.f-prod small,.f-prod img{display:none}.f-chat span{font-size:11px}.f-card{font-size:11px}}
 @media (max-width:420px){.f-stack{height:370px}.f-phone{width:140px}.f-ph0{left:10px}.f-ph2{right:10px}}
+.f-track{display:grid;grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:min(82vw,330px);gap:32px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-right:calc(50% - 50vw);padding:4px 40px 14px 0;scroll-padding-left:0;overscroll-behavior-x:contain}
+.f-track::-webkit-scrollbar{display:none}
+.f-track>*{scroll-snap-align:start}
+.f-track:focus-visible{outline:3px solid #FF5F57;outline-offset:4px}
+.f-ctrl{display:flex;align-items:center;gap:14px;margin-top:28px}
+.f-btn{width:52px;height:52px;display:inline-flex;align-items:center;justify-content:center;font-family:'Archivo',sans-serif;font-weight:700;font-size:20px;background:#FFFFFF;color:#161616;border:2px solid #161616;box-shadow:4px 4px 0 #161616;cursor:pointer;transition:transform 150ms var(--ease),box-shadow 150ms var(--ease),background 150ms var(--ease)}
+.f-btn:hover:not(:disabled){background:#FF5F57;transform:translate(-2px,-2px);box-shadow:6px 6px 0 #161616}
+.f-btn:disabled{opacity:.35;cursor:default}
+.f-count{margin-left:8px;font-family:'Archivo',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;font-variant-numeric:tabular-nums;min-width:62px}
+.f-bar{flex:1;height:3px;background:#CFCFCF;overflow:hidden}
+.f-bar span{display:block;height:100%;background:#FF5F57;transform-origin:left;transform:scaleX(.3);transition:transform 200ms var(--ease)}
 .f-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(24px,3vw,40px)}
 .f-opt{background:#FFFFFF;color:#161616;border:2px solid #161616;box-shadow:8px 8px 0 #000;padding:clamp(28px,3.4vw,44px);display:flex;flex-direction:column;gap:18px}
 .f-opt.hi{box-shadow:10px 10px 0 #FF5F57}

@@ -648,7 +648,7 @@ ${l.html}
   const R = {
     hero: (x) => `<section class="kb-hero"><div class="wrap">${x.crumbs}<div class="${x.phones ? 'f-hero' : ''}"><div style="display: flex; flex-direction: column; gap: 24px; max-width: 1100px">${x.notice ? `<p class="f-notice">${txt(x.notice)}</p>` : ''}<span class="eyebrow" style="color: #A8A8A8"><span class="dot"></span>${txt(x.eyebrow)}</span><h1 class="h-black" style="font-size: clamp(34px, 5vw, 76px); line-height: 0.98; color: #FFFFFF; text-shadow: 5px 5px 0 #000; max-width: 1000px">${txt(x.h1)}</h1><p style="margin: 0; max-width: 720px; font-size: 20px; line-height: 1.6; color: #CFCFCF">${txt(x.intro)}</p><div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 8px">${x.buttons.map(([label, href], i) => `<a class="btn" href="${href}"${i ? ' style="background: #161616; color: #FFFFFF; border-color: #EFEFEF"' : ''}>${esc(label)}${i ? '' : ' <span aria-hidden="true">→</span>'}</a>`).join('')}</div></div>${x.phones ? phones(x) : ''}</div></div></section>`,
     text: (x) => sec(x, split(x, x.head, x.paras.map((p) => lead(p, x.bg)).join(''))),
-    cards: (x) => sec(x, `${top(x)}<div class="p-grid">${x.items.map((it, n) => `<div class="promise">${x.numbered ? `<span class="p-num">${String(n + 1).padStart(2, '0')}</span>` : it.label ? `<span class="p-num">${esc(it.label)}</span>` : ''}<h3>${txt(it.title)}</h3><p>${txt(it.text)}</p></div>`).join('')}</div>`),
+    cards: (x) => sec(x, `${top(x)}${x.slider ? `<div class="f-slider" data-slider><div class="f-track p-grid" tabindex="0" role="region" aria-label="${esc(x.head)}, scroll horizontaal">${x.items.map((it, n) => `<div class="promise">${x.numbered ? `<span class="p-num">${String(n + 1).padStart(2, '0')}</span>` : it.label ? `<span class="p-num">${esc(it.label)}</span>` : ''}<h3>${txt(it.title)}</h3><p>${txt(it.text)}</p></div>`).join('')}</div><div class="f-ctrl"><button type="button" class="f-btn" data-prev aria-label="Vorige" disabled>←</button><button type="button" class="f-btn" data-next aria-label="Volgende">→</button><span class="f-count" aria-hidden="true"></span><div class="f-bar"><span></span></div></div></div>` : `<div class="p-grid">${x.items.map((it, n) => `<div class="promise">${x.numbered ? `<span class="p-num">${String(n + 1).padStart(2, '0')}</span>` : it.label ? `<span class="p-num">${esc(it.label)}</span>` : ''}<h3>${txt(it.title)}</h3><p>${txt(it.text)}</p></div>`).join('')}</div>`}`),
     stats: (x) => sec(x, `${top(x)}<div class="p-stats">${x.items.map((st) => `<div class="p-stat"><b>${esc(st.value)}</b><span>${txt(st.label)}</span></div>`).join('')}</div>${x.note ? lead(x.note, x.bg) : ''}<p class="kb-meta" style="margin: 8px 0 0; line-height: 1.6">Bron: ${esc(x.source)}</p>`),
     table: (x) => sec(x, `${top(x, x.intro ? lead(x.intro, x.bg) : '')}<div class="prose" style="max-width: 1100px"><div class="tbl"${x.highlight ? ' style="box-shadow: 10px 10px 0 #FF5F57"' : ''}><table><thead><tr>${x.columns.map((c) => `<th scope="col">${esc(c)}</th>`).join('')}</tr></thead><tbody>${x.rows.map((r) => `<tr>${r.map((c, i) => i ? `<td>${txt(c)}</td>` : `<th scope="row" style="background: #FFFFFF; color: #161616">${txt(c)}</th>`).join('')}</tr>`).join('')}</tbody></table></div></div>${x.note ? `<p style="margin: 24px 0 0; font-size: 17px; color: ${dark(x.bg) ? '#CFCFCF' : '#3C3C3C'}">${txt(x.note)}</p>` : ''}`),
     options: (x) => sec(x, `${top(x, x.intro ? lead(x.intro, x.bg) : '')}<div class="f-options">${x.options.map((o) => `<div class="f-opt${o.highlight ? ' hi' : ''}"><span class="f-tag">${esc(o.tag)}</span><h3>${esc(o.name)}</h3><dl>${o.rows.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${txt(v)}</dd></div>`).join('')}</dl></div>`).join('')}</div>`),
@@ -686,6 +686,17 @@ mark.todo{background:#FFE14D;color:#161616;padding:0 4px;font-weight:600}
 @media (max-width:960px){.f-hero{grid-template-columns:minmax(0,1fr)}.f-stack{height:440px;max-width:420px}.f-phone{width:176px;border-width:6px;border-radius:28px}.f-ph0{top:44px}.f-ph2{top:66px}}
 @media (max-width:960px){.f-prod small,.f-prod img{display:none}.f-chat span{font-size:11px}.f-card{font-size:11px}}
 @media (max-width:420px){.f-stack{height:370px}.f-phone{width:140px}.f-ph0{left:10px}.f-ph2{right:10px}}
+.f-track{display:grid;grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:min(82vw,330px);gap:32px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-right:calc(50% - 50vw);padding:4px 40px 14px 0;scroll-padding-left:0;overscroll-behavior-x:contain}
+.f-track::-webkit-scrollbar{display:none}
+.f-track>*{scroll-snap-align:start}
+.f-track:focus-visible{outline:3px solid #FF5F57;outline-offset:4px}
+.f-ctrl{display:flex;align-items:center;gap:14px;margin-top:28px}
+.f-btn{width:52px;height:52px;display:inline-flex;align-items:center;justify-content:center;font-family:'Archivo',sans-serif;font-weight:700;font-size:20px;background:#FFFFFF;color:#161616;border:2px solid #161616;box-shadow:4px 4px 0 #161616;cursor:pointer;transition:transform 150ms var(--ease),box-shadow 150ms var(--ease),background 150ms var(--ease)}
+.f-btn:hover:not(:disabled){background:#FF5F57;transform:translate(-2px,-2px);box-shadow:6px 6px 0 #161616}
+.f-btn:disabled{opacity:.35;cursor:default}
+.f-count{margin-left:8px;font-family:'Archivo',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;font-variant-numeric:tabular-nums;min-width:62px}
+.f-bar{flex:1;height:3px;background:#CFCFCF;overflow:hidden}
+.f-bar span{display:block;height:100%;background:#FF5F57;transform-origin:left;transform:scaleX(.3);transition:transform 200ms var(--ease)}
 .f-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(24px,3vw,40px)}
 .f-opt{background:#FFFFFF;color:#161616;border:2px solid #161616;box-shadow:8px 8px 0 #000;padding:clamp(28px,3.4vw,44px);display:flex;flex-direction:column;gap:18px}
 .f-opt.hi{box-shadow:10px 10px 0 #FF5F57}
@@ -718,7 +729,7 @@ mark.todo{background:#FFE14D;color:#161616;padding:0 4px;font-weight:600}
     const body = f.sections.map((x) => R[x.type](x.type === 'hero' ? { ...x, crumbs: crumbsHtml(crumbs) } : x)).join('\n');
     const dir = join(ROOT, f.path.slice(1));
     mkdirSync(dir, { recursive: true });
-    writeFileSync(join(dir, 'index.html'), page({ path: f.path, title: f.metaTitle, description: f.metaDescription, jsonld, body, ogType: 'website', current: f.path, css }));
+    writeFileSync(join(dir, 'index.html'), page({ path: f.path, title: f.metaTitle, description: f.metaDescription, jsonld, body, ogType: 'website', current: f.path, css, scripts: f.sections.some((x) => x.slider) ? ['/js/f-slider.js'] : [] }));
   }
 }
 

@@ -93,7 +93,8 @@
               "text": "Na elke show: kijkers, piek en bestellingen, uit de gegevens van het platform."
             }
           ],
-          "eyebrow": "Wat wij regelen"
+          "eyebrow": "Wat wij regelen",
+          "slider": true
         },
         {
           "type": "options",

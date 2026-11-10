@@ -28,12 +28,14 @@ const CLUSTERS = {
   podcast: 'Videopodcast',
   zakelijk: 'Congres en zakelijk',
   resultaat: 'Resultaat en na afloop',
+  verkopen: 'Live verkopen',
 };
 const CTAS = {
   prijscalculator: { text: 'Benieuwd wat jouw productie kost? Reken het in een minuut uit.', href: '/prijscalculator', label: 'Naar de prijscalculator' },
   contact: { text: 'Vertel wat je wil draaien. Binnen twee werkdagen heb je een vrijblijvende offerte.', href: '/contact', label: 'Vraag een offerte aan' },
   diensten: { text: 'Livestreams, podcasts, grote producties en aftercare. Bekijk wat we draaien.', href: '/diensten', label: 'Bekijk de diensten' },
   'waarom-live': { text: 'Wat levert een livestream op? Bekijk de cijfers van het EK Cable Wakeboard.', href: '/waarom-live', label: 'Waarom live werkt' },
+  'live-verkopen': { text: 'Live verkopen vanuit onze studio? Wij regelen de stream, de TikTok Shop en als je wilt de presentator.', href: '/live-verkopen', label: 'Bekijk live verkopen' },
 };
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');

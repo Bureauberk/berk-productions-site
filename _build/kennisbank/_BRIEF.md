@@ -41,8 +41,8 @@ Antwoord.
 ```
 
 - `title`: maximaal 45 tekens (de site plakt er " | BERK Productions" achter). Zoekterm vooraan.
-- `cluster`: kosten | sport | techniek | podcast | zakelijk | resultaat
-- `cta`: prijscalculator | contact | diensten | waarom-live (welke vervolgstap het best past)
+- `cluster`: kosten | sport | techniek | podcast | zakelijk | resultaat | verkopen
+- `cta`: prijscalculator | contact | diensten | waarom-live | live-verkopen (welke vervolgstap het best past)
 - `related`: precies 3 slugs uit de lijst hieronder.
 - Geen H1 in de tekst. Geen afsluitende "neem contact op"-alinea: de site zet zelf een CTA-blok onder elk artikel.
 - Ondersteunde opmaak: ## en ###, alinea's, - en 1. lijsten, tabellen, **vet**, [links](/pad), > citaat. Niets anders (geen afbeeldingen, geen HTML, geen *cursief*).
@@ -141,3 +141,6 @@ Meerdere dagen: vanaf dag 2 15% korting. Reiskosten € 0,48 per km, heen en ter
 | 23 | hoeveel-kijkers-livestream | resultaat | livestream bereik | Hoeveel kijkers levert een livestream op, wat je meet, benchmarks uit de EK-case. |
 | 24 | highlights-en-clips-na-je-event | resultaat | highlights maken | Highlights en clips na afloop (aftercare), en waarom dat geen aftermovie is. |
 | 25 | van-wie-zijn-de-beelden | resultaat | rechten videobeelden | Van wie zijn de beelden na de productie: eigendom, archief, hergebruik. |
+| 26 | live-verkopen-tiktok-shop | verkopen | live verkopen TikTok | Live verkopen via TikTok Shop: wat je nodig hebt, producten, draaiboek 60 min, rollen, na de LIVE (bron: TikTok Shop Academy, juni 2026). |
+| 27 | tiktok-shop-live-regels | verkopen | TikTok Shop live regels | De zes overtredingen in een Shop-LIVE en hoe je ze voorkomt (bron: TikTok Shop Academy). |
+| 28 | tiktok-shop-starten | verkopen | TikTok Shop starten | Registratie, uitbetaling, btw, GPSR/EPR, verzendopties 4PL/FBT/3PL (bron: TikTok Shop Academy NL/BE/PL). |

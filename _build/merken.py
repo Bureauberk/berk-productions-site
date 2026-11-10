@@ -48,7 +48,7 @@ HERO = '''<h1 class="h-black hero-h" style="font-size: clamp(34px, 5.4vw, 104px)
 STAT = '<span style="display: inline-flex; align-items: baseline; gap: 8px"><b class="h-black" style="font-size: clamp(26px, 2.6vw, 38px); color: #161616">%s</b><span style="font-size: 16px; color: #3C3C3C">%s</span></span>'
 PROOF = ('<div data-blok="bewijsbalk" class="wrap rv" style="margin-top: clamp(28px, 3vw, 40px); padding-top: 24px; border-top: 2px solid #161616; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 16px 40px">'
          '<div style="display: flex; flex-wrap: wrap; gap: 12px 40px">%s</div><span style="font-size: 13px; color: #6B6B6B">EK Cable Wakeboard 2026, YouTube Analytics</span></div>\n') % ''.join(
-    STAT % v for v in [('30.000', 'unieke kijkers'), ('5.300', 'uur kijktijd'), ('83%', 'van de kijktijd van niet-abonnees')])
+    STAT % v for v in [('30.000+', 'weergaven'), ('5.300', 'uur kijktijd'), ('83%', 'van de kijktijd van niet-abonnees')])
 
 FCARD = ('<div class="card" style="flex: %s; display: flex; flex-direction: column; gap: 16px; padding: %s; color: #161616%s">'
          '<span class="h-black" style="font-size: 18px; color: #D93A33">%s</span><h3 class="h-black" style="font-size: %s; line-height: 1">%s</h3>'
@@ -157,15 +157,15 @@ def homepage(s):
     # Drie formats replace the services carousel, followed by 'wat een eventdag oplevert' and the two entrances
     a, b = section_at(s, 'Wat we maken</span>')
     s = s[:a] + FORMATS + '\n\n' + EVENTDAG + '\n\n' + INGANGEN + s[b:]
-    # EK feature: one figure for viewers everywhere
-    s = s.replace('>30.000+</span><span style="font-size: 14px; line-height: 1.35; color: #A8A8A8">weergaven<', '>30.000</span><span style="font-size: 14px; line-height: 1.35; color: #A8A8A8">unieke kijkers<')
+    # EK feature: views, not unique viewers (our YouTube data counts views; undoes an earlier run of this script)
+    s = s.replace('>30.000</span><span style="font-size: 14px; line-height: 1.35; color: #A8A8A8">unieke kijkers<', '>30.000+</span><span style="font-size: 14px; line-height: 1.35; color: #A8A8A8">weergaven<')
     # Waarom live with 83% first, step 4 of 'zo werken we', closing CTA
     a, b = section_at(s, 'Waarom live</span>')
     s = s[:a] + WAAROM + s[b:]
     s = s.replace('Wij draaien. Jij krijgt de opnames en de terugkijkversie.', 'Wij draaien. Binnen 24 uur de eerste clips, daarna de opnames, de terugkijkversie en het rapport.')
     a, b = section_at(s, 'data-blok="slot"' if 'data-blok="slot"' in s else 'Klaar om')
     s = s[:a] + SLOT + s[b:]
-    for must in ('Eén opname.', 'data-blok="bewijsbalk"', 'data-blok="formats"', 'data-blok="eventdag"', 'data-blok="ingangen"', 'color: #A8A8A8">unieke kijkers<', 'data-blok="waarom-live"', 'Binnen 24 uur de eerste clips, daarna', 'data-blok="slot"'):
+    for must in ('Eén opname.', 'data-blok="bewijsbalk"', 'data-blok="formats"', 'data-blok="eventdag"', 'data-blok="ingangen"', 'color: #A8A8A8">weergaven<', 'data-blok="waarom-live"', 'Binnen 24 uur de eerste clips, daarna', 'data-blok="slot"'):
         assert s.count(must) == 1, must
     assert 'slider' not in s.split('<footer')[0].split('</header>')[-1], 'carousel left'
     return s

@@ -53,8 +53,10 @@ function applyHead(html, route) {
   const ld = { ...SEO.org };
   const pageLd = { '@context': 'https://schema.org', '@type': 'WebPage', '@id': url + '#page', url, name: title, description, inLanguage: lang, isPartOf: { '@type': 'WebSite', name: 'BERK Productions', url: SEO.site + '/' }, about: { '@id': SEO.org['@id'] } };
   const isHome = route === '/' || route === '/en' || route === '/de';
+  // x-default must be in the same language group as the page (the NL version), or the return tag is missing.
+  const nlAlt = (html.match(/<link rel="alternate" hreflang="nl" href="([^"]+)">/) || [])[1] || url;
   const extra = [
-    `<link rel="alternate" hreflang="x-default" href="${SEO.site}/">`,
+    `<link rel="alternate" hreflang="x-default" href="${nlAlt}">`,
     `<meta property="og:url" content="${url}">`,
     `<meta property="og:site_name" content="BERK Productions">`,
     `<meta property="og:locale" content="${SEO.locales[lang]}">`,

@@ -71,7 +71,7 @@ FORMATS = ('''<section data-blok="formats" style="background: #EFEFEF; color: #1
              'Sport en events live uitgezonden, met replays en graphics. Daarna clips per rijder en per moment.',
              flink('/partners', 'Voor merken') + flink('/diensten', 'Voor organisatoren'))
     + FCARD % ('1 1 320px', '32px', '', '02', '26px', 'Live verkopen',
-               'Jullie producten live verkopen op TikTok en YouTube, vanuit onze studio. Wij regelen de stream, de TikTok Shop en als jullie willen de presentator.',
+               'Jullie producten live verkopen via TikTok Shop, vanuit onze studio. Wij regelen de stream, de TikTok Shop en als jullie willen de presentator.',
                flink('/live-verkopen', 'Zo werkt live verkopen'))
     + FCARD % ('1 1 320px', '32px', '', '03', '26px', 'Podcasts',
                'Een videopodcast waarin jullie founder vertelt over het vak. Daarna staande clips voor LinkedIn: zo wordt de founder gezien als expert.',

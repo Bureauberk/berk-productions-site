@@ -4,7 +4,7 @@
       "path": "/live-verkopen",
       "name": "Live verkopen",
       "metaTitle": "Live verkopen op TikTok Shop vanuit onze studio | BERK Productions",
-      "metaDescription": "Verkoop jullie producten live op TikTok en YouTube vanuit onze studio in Apeldoorn. Wij regelen stream, TikTok Shop en presentator. Huur de studio of betaal per verkoop.",
+      "metaDescription": "Verkoop jullie producten live via TikTok Shop vanuit onze studio in Apeldoorn. Wij regelen stream, TikTok Shop en presentator. Huur de studio of betaal per verkoop.",
       "serviceType": "live shopping",
       "subject": "Live verkopen",
       "sections": [
@@ -13,7 +13,7 @@
           "notice": "De studio opent binnenkort. Plan nu een gesprek voor de eerste shows.",
           "eyebrow": "Live verkopen",
           "h1": "Live verkopen vanuit onze studio. Wij regelen de rest.",
-          "intro": "In onze studio in Apeldoorn gaan jullie live op TikTok en YouTube en verkopen jullie producten direct in de stream. Wij regelen de techniek, de TikTok Shop en als jullie willen ook de presentator. Jullie betalen huur, of een percentage van wat de show verkoopt.",
+          "intro": "In onze studio in Apeldoorn gaan jullie live op TikTok, en op TikTok verkopen jullie direct in de stream. Wij regelen de techniek, de TikTok Shop en als jullie willen ook de presentator. Jullie betalen huur, of een percentage van wat de show verkoopt.",
           "buttons": [
             [
               "Plan een gesprek",
@@ -157,9 +157,9 @@
             },
             {
               "name": "YouTube",
-              "checkout": true,
-              "checkoutText": "Afrekenen in de live, via YouTube Shopping.",
-              "use": "Welke variant we gebruiken, stemmen we per merk af."
+              "checkout": false,
+              "checkoutText": "Nog geen afrekenen in de live in Nederland. YouTube Shopping is hier sinds september 2026 een affiliateprogramma met bol.",
+              "use": "Live gaan en producten laten zien kan. Of jullie eigen webshop eraan kan koppelen, checken we per merk."
             },
             {
               "name": "Instagram",
@@ -217,7 +217,7 @@
             },
             {
               "q": "Kunnen we tegelijk op TikTok en YouTube live?",
-              "a": "Dat stemmen we per show met jullie af."
+              "a": "Dat kan, en dat stemmen we per show met jullie af. In de TikTok-stream mag je dan geen ander platform, link of QR-code noemen. Verkopen gaat in die show via de productkaart in TikTok."
             },
             {
               "q": "Hoeveel gaan we verkopen?",
@@ -233,7 +233,7 @@
             },
             {
               "q": "Moet de show als reclame worden gelabeld?",
-              "a": "Ja, volgens de regels van het platform. Wij zetten dat standaard goed."
+              "a": "Ja. De regels van het platform gelden, en daarnaast de Nederlandse Reclamecode Social Media: aan het begin duidelijk maken dat het om reclame gaat, en dat zichtbaar houden. Wij zetten dat standaard goed."
             }
           ],
           "eyebrow": "Vragen"

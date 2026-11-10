@@ -39,7 +39,7 @@ Maak daarom vooraf een actieoverzicht met per product de naam, de variant, de ex
 
 Bestellen en betalen moet in TikTok Shop blijven. Je mag kopers in een Shop-LIVE niet doorsturen naar WhatsApp, je eigen website, een DM op Instagram of een bankoverschrijving. Ook QR-codes voor bestellen of betalen, telefoonnummers en externe links in beeld vallen hieronder. TikTok noemt het risico voor de koper: buiten het platform geldt de kopersbescherming niet.
 
-Stuur kopers altijd naar de vastgepinde productkaart en gebruik voor vragen de berichtenfunctie van TikTok Shop. Dit is anders dan bij een livestream op YouTube of Instagram, waar een link of kortingscode wel gewoon kan. Waar je op welk platform kunt afrekenen, lees je op onze pagina over [live verkopen](/live-verkopen).
+Stuur kopers altijd naar de vastgepinde productkaart en gebruik voor vragen de berichtenfunctie van TikTok Shop. Bij een losse livestream op YouTube of Instagram kan een link of kortingscode wel. Stream je tegelijk naar TikTok en een ander platform, dan gelden de TikTok-regels voor de hele show: noem dan geen ander platform, geen link en geen QR-code. Waar je op welk platform kunt afrekenen, lees je op onze pagina over [live verkopen](/live-verkopen).
 
 ## 5. Een LIVE zonder inhoud
 
@@ -61,6 +61,10 @@ Niet alles mag op TikTok Shop. Sommige producten zijn verboden, voor andere heb 
 | Geen externe links, QR-codes of telefoonnummers in beeld | Voor en tijdens |
 | Iemand die meekijkt op claims en de juiste kaart | Tijdens |
 | Voorraad in de gaten houden | Tijdens |
+
+## Ook de Nederlandse regels gelden
+
+Naast de regels van TikTok geldt Nederlands recht. Een verkoopshow is reclame, dus maak volgens de Reclamecode Social Media aan het begin duidelijk dat het om reclame gaat en houd dat zichtbaar. Voor kortingen geldt de regel van de ACM: een doorgestreepte van-prijs moet de laagste prijs zijn die je in de 30 dagen ervoor hebt gevraagd. En wees eerlijk over aftellen en schaarste: zeg alleen dat iets bijna op is als dat klopt. Kopers op afstand hebben bovendien gewoon bedenktijd. Dit is algemene uitleg; controleer de actuele tekst op de site van de Reclame Code Commissie en de ACM.
 
 Ook in een livestream gelden de gewone regels voor beeld, muziek en personen in beeld. Daarover lees je meer in [beeldrecht, AVG en muziek in je livestream](/kennisbank/beeldrecht-avg-muziek-livestream). En de reclameregels van het platform: maak duidelijk dat het om een verkoopshow gaat.
 

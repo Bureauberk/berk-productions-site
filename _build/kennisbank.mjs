@@ -201,16 +201,21 @@ const CSS = `
 .chips a:hover{background:#FF5F57;border-color:#FF5F57;color:#161616}
 .kb-video{display:block;width:100%;height:auto;aspect-ratio:16 / 9;background:#161616;border:2px solid #EFEFEF;box-shadow:10px 10px 0 #FF5F57}
 .kb-cluster{scroll-margin-top:110px}
-.p-sec{padding:clamp(64px,8vw,120px) 0}
-.p-head{font-size:clamp(32px,4.6vw,64px);line-height:.95;margin:0 0 clamp(28px,4vw,48px)}
-.p-lead{margin:0;max-width:760px;font-size:clamp(19px,1.6vw,22px);line-height:1.6}
-.p-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:28px}
+.p-sec{padding:clamp(88px,10vw,150px) 0}
+.p-head{font-size:clamp(28px,3.2vw,46px);line-height:1;margin:0 0 clamp(20px,2.4vw,28px);max-width:860px}
+.p-lead{margin:0;max-width:680px;font-size:clamp(18px,1.4vw,20px);line-height:1.65}
+.p-label{display:flex;margin-bottom:18px}
+.p-top{margin-bottom:clamp(40px,5vw,64px)}
+.p-split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,6vw,96px);align-items:start}
+.p-split .p-head{margin:0}
+@media (max-width:860px){.p-split{grid-template-columns:minmax(0,1fr)}}
+.p-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:32px}
 .p-grid .promise{padding:28px}
 .p-grid h3{font-family:'Archivo Black','Archivo',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(21px,2vw,26px);line-height:1.05;margin:0;color:#161616;hyphens:auto;-webkit-hyphens:auto}
 .p-grid p{margin:0;font-size:17px;line-height:1.55;color:#3C3C3C}
 .p-num{font-family:'Archivo Black','Archivo',sans-serif;font-size:18px;color:#B3261E}
 .p-gets{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:clamp(28px,4vw,56px)}
-.p-gets h3{font-family:'Archivo Black','Archivo',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(24px,2.4vw,32px);line-height:1;margin:0 0 12px;color:#FFFFFF}
+.p-gets h3{font-family:'Archivo Black','Archivo',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(20px,1.8vw,24px);line-height:1;margin:0 0 12px;color:#FFFFFF}
 .p-gets p{margin:0;font-size:18px;line-height:1.6;color:#CFCFCF}
 .p-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:28px;margin:clamp(32px,4vw,48px) 0}
 .p-stat b{display:block;font-family:'Archivo Black','Archivo',sans-serif;font-weight:400;font-size:clamp(40px,4.4vw,64px);line-height:.9;color:#FF5F57}
@@ -227,9 +232,9 @@ const CSS = `
 .p-items{margin:4px 0 20px;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;font-size:16px;line-height:1.45;color:#2A2A2A}
 .p-items li{display:flex;gap:10px}
 .p-items li::before{content:"✓";color:#D93A33;font-weight:700}
-.p-faq{max-width:820px}
-.p-faq h3{font-family:'Archivo',sans-serif;font-weight:700;font-size:21px;margin:0 0 6px;color:#161616}
-.p-faq p{margin:0 0 28px;font-size:18px;line-height:1.6;color:#3C3C3C}
+.p-faq{max-width:820px;border-bottom:1px solid #CFCFCF}
+.p-faq h3{font-family:'Archivo',sans-serif;font-weight:700;font-size:19px;line-height:1.35;margin:0;padding:22px 0 6px;border-top:1px solid #CFCFCF;color:#161616}
+.p-faq p{margin:0;padding-bottom:22px;font-size:17px;line-height:1.6;color:#3C3C3C}
 .p-cat{text-decoration:none}
 .p-more{margin-top:auto;font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#B3261E}
 .p-cat:hover{transform:translate(-4px,-4px);box-shadow:12px 12px 0 #FF5F57}
@@ -579,6 +584,9 @@ ${l.html}
   const sec = (bg, inner) => `<section class="p-sec" style="${bg}"><div class="wrap">${inner}</div></section>`;
   const LIGHT = 'background: #EFEFEF; color: #161616', DARK = 'background: #161616; color: #EFEFEF', BLACK = 'background: #000000; color: #EFEFEF';
   const head = (text, color = '#161616') => `<h2 class="h-black p-head" style="color: ${color}">${esc(text)}</h2>`;
+  // Section header with an optional small label; split() puts the header left and the text right.
+  const top = (eb, text, color = '#161616') => `<div class="p-top">${eb ? `<span class="eyebrow p-label" style="color: ${color === '#161616' ? '#555555' : '#A8A8A8'}"><span class="dot"></span>${esc(eb)}</span>` : ''}${head(text, color)}</div>`;
+  const split = (eb, text, color, right) => `<div class="p-split"><div>${eb ? `<span class="eyebrow p-label" style="color: ${color === '#161616' ? '#555555' : '#A8A8A8'}"><span class="dot"></span>${esc(eb)}</span>` : ''}${head(text, color)}</div><div>${right}</div></div>`;
   const HOME = { nl: '/', en: '/en', de: '/de' };
   const build = (lang, e, isOverview) => {
     const L = P.langs[lang], S = L.shared, U = L.ui, Y = P.youtube;
@@ -587,18 +595,21 @@ ${l.html}
     const alts = Object.fromEntries(LANGS.map((l) => [l, P.langs[l].base + suffix]));
     const mailto = `mailto:${P.email}?subject=${encodeURIComponent(`${U.subject} - ${e.name}`)}`;
     const crumbs = isOverview ? [[U.home, HOME[lang]], [U.partners, path]] : [[U.home, HOME[lang]], [U.partners, L.base], [e.name, path]];
-    const hero = `<section class="kb-hero"><div class="wrap">${crumbsHtml(crumbs, U.crumbs)}<div style="display: flex; flex-direction: column; gap: 24px; max-width: 1100px"><span class="eyebrow" style="color: #A8A8A8"><span class="dot"></span><span id="p-kicker">${esc(e.kicker)}</span></span><h1 class="h-black" style="font-size: clamp(34px, 6.4vw, 96px); line-height: 0.95; color: #FFFFFF; text-shadow: 6px 6px 0 #000">${esc(e.h1)}</h1><p style="margin: 0; max-width: 720px; font-size: 20px; line-height: 1.6; color: #CFCFCF">${esc(e.intro)}</p>${e.events ? `<p class="kb-meta" style="margin: 0; max-width: 720px; line-height: 1.6">${esc(U.events)}: ${esc(e.events)}</p>` : ''}<div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 8px"><a class="btn" href="${mailto}">${esc(U.talk)} <span aria-hidden="true">→</span></a><a class="btn" href="${U.packagesBtn ? '#pakketten' : '#livestream'}" style="background: #161616; color: #FFFFFF; border-color: #EFEFEF">${esc(U.packagesBtn || U.watch)}</a></div></div></div></section>`;
-    const how = sec(LIGHT, `${head(S.howHead)}${[].concat(S.how).map((t) => `<p class="p-lead" style="color: #2A2A2A; margin-bottom: 1em">${esc(t)}</p>`).join('')}`);
-    const problem = S.problem ? sec(BLACK, `${head(S.problemHead, '#FFFFFF')}<p class="p-lead" style="color: #CFCFCF">${esc(S.problem)}</p>`) : '';
-    const why = S.why ? sec(LIGHT, `${head(S.whyHead)}<p class="p-lead" style="color: #2A2A2A">${esc(S.why)}</p>`) : '';
+    const hero = `<section class="kb-hero"><div class="wrap">${crumbsHtml(crumbs, U.crumbs)}<div style="display: flex; flex-direction: column; gap: 24px; max-width: 1100px"><span class="eyebrow" style="color: #A8A8A8"><span class="dot"></span><span id="p-kicker">${esc(e.kicker)}</span></span><h1 class="h-black" style="font-size: clamp(34px, 5vw, 76px); line-height: 0.98; color: #FFFFFF; text-shadow: 5px 5px 0 #000; max-width: 1000px">${esc(e.h1)}</h1><p style="margin: 0; max-width: 720px; font-size: 20px; line-height: 1.6; color: #CFCFCF">${esc(e.intro)}</p>${e.events ? `<p class="kb-meta" style="margin: 0; max-width: 720px; line-height: 1.6">${esc(U.events)}: ${esc(e.events)}</p>` : ''}<div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 8px"><a class="btn" href="${mailto}">${esc(U.talk)} <span aria-hidden="true">→</span></a><a class="btn" href="${U.packagesBtn ? '#pakketten' : '#livestream'}" style="background: #161616; color: #FFFFFF; border-color: #EFEFEF">${esc(U.packagesBtn || U.watch)}</a></div></div></div></section>`;
+    const E = S.eyebrows || {};
+    const leads = (t, c) => [].concat(t).map((x) => `<p class="p-lead" style="color: ${c}; margin-bottom: 1em">${esc(x)}</p>`).join('');
+    const how = sec(LIGHT, S.problem ? split(E.how, S.howHead, '#161616', leads(S.how, '#2A2A2A')) : `${head(S.howHead)}${leads(S.how, '#2A2A2A')}`);
+    const problem = S.problem ? sec(BLACK, split(E.problem, S.problemHead, '#FFFFFF', leads(S.problem, '#CFCFCF'))) : '';
+    const why = S.why ? sec(LIGHT, split(E.why, S.whyHead, '#161616', leads(S.why, '#2A2A2A'))) : '';
     const middle = isOverview
-      ? sec(LIGHT, `${head(e.gridHead)}<div class="p-grid">${L.categories.map((c) => `<a class="promise p-cat" href="${L.base}/${c.slug}"><h3>${esc(c.name)}</h3><p>${esc(c.events)}</p><span class="p-more">${esc(U.more)}</span></a>`).join('')}</div>`)
-      : sec(LIGHT, `${head(S.ideasHead)}<div class="p-grid">${e.ideas.map((i, n) => `<div class="promise"><span class="p-num">0${n + 1}</span><h3>${esc(i.title)}</h3><p>${esc(i.text)}</p></div>`).join('')}</div>`);
-    const gets = sec(DARK, `${head(S.getsHead, '#FFFFFF')}<div class="p-gets">${S.gets.map((g) => `<div><h3>${esc(g.title)}</h3><p>${esc(g.text)}</p></div>`).join('')}</div>`);
-    const proof = sec(BLACK, `${head(S.proofHead, '#FFFFFF')}<p class="p-lead" style="color: #CFCFCF">${esc(S.proof)}</p><div class="p-stats">${S.stats.map((st) => `<div class="p-stat"><b>${esc(st.value)}</b><span>${esc(st.label)}</span></div>`).join('')}</div><div class="yt" id="livestream"><button type="button" data-yt="${Y.id}" data-title="${esc(Y.title)}" aria-label="${esc(U.play)}: ${esc(Y.title)}"><img src="${Y.poster}" alt="${esc(S.posterAlt)}" loading="lazy" decoding="async" width="1440" height="1080"><span class="yt-btn"><span aria-hidden="true">▶</span> ${esc(U.watch)}</span></button></div><p class="yt-note">${esc(U.ytNote)}</p>${S.proofNote ? `<p class="kb-meta" style="margin: 20px 0 0">${esc(S.proofNote)}</p>` : ''}`);
-    const packages = sec(LIGHT, `<div id="pakketten" style="scroll-margin-top: 110px">${head(S.packagesHead)}${S.packagesIntro ? `<p class="p-lead" style="color: #2A2A2A; margin-bottom: 40px">${esc(S.packagesIntro)}</p>` : ''}<div class="p-grid">${S.packages.map((pk) => `<div class="promise"><h3>${esc(pk.name)}</h3><p>${esc(pk.text)}</p>${pk.items ? `<ul class="p-items">${pk.items.map((it) => `<li>${esc(it)}</li>`).join('')}</ul>` : ''}<span class="p-price">${esc(pk.price)}</span></div>`).join('')}</div></div><p style="margin: 28px 0 0; font-size: 16px; color: #3C3C3C">${esc(S.packagesNote)}</p>`);
+      ? sec(LIGHT, `${top((S.eyebrows || {}).grid, e.gridHead)}<div class="p-grid">${L.categories.map((c) => `<a class="promise p-cat" href="${L.base}/${c.slug}"><h3>${esc(c.name)}</h3><p>${esc(c.events)}</p><span class="p-more">${esc(U.more)}</span></a>`).join('')}</div>`)
+      : sec(LIGHT, `${top((S.eyebrows || {}).ideas, S.ideasHead)}<div class="p-grid">${e.ideas.map((i, n) => `<div class="promise"><span class="p-num">0${n + 1}</span><h3>${esc(i.title)}</h3><p>${esc(i.text)}</p></div>`).join('')}</div>`);
+    const gets = sec(DARK, `${top(E.gets, S.getsHead, '#FFFFFF')}<div class="p-gets">${S.gets.map((g) => `<div><h3>${esc(g.title)}</h3><p>${esc(g.text)}</p></div>`).join('')}</div>`);
+    const proof = sec(BLACK, `${top(E.proof, S.proofHead, '#FFFFFF')}<p class="p-lead" style="color: #CFCFCF; margin-top: -24px">${esc(S.proof)}</p><div class="p-stats">${S.stats.map((st) => `<div class="p-stat"><b>${esc(st.value)}</b><span>${esc(st.label)}</span></div>`).join('')}</div><div class="yt" id="livestream"><button type="button" data-yt="${Y.id}" data-title="${esc(Y.title)}" aria-label="${esc(U.play)}: ${esc(Y.title)}"><img src="${Y.poster}" alt="${esc(S.posterAlt)}" loading="lazy" decoding="async" width="1440" height="1080"><span class="yt-btn"><span aria-hidden="true">▶</span> ${esc(U.watch)}</span></button></div><p class="yt-note">${esc(U.ytNote)}</p>${S.proofNote ? `<p class="kb-meta" style="margin: 20px 0 0">${esc(S.proofNote)}</p>` : ''}`);
+    const packages = sec(LIGHT, `<div id="pakketten" style="scroll-margin-top: 110px">${top(E.packages, S.packagesHead)}${S.packagesIntro ? `<p class="p-lead" style="color: #2A2A2A; margin: -24px 0 40px">${esc(S.packagesIntro)}</p>` : ''}<div class="p-grid">${S.packages.map((pk) => `<div class="promise"><h3>${esc(pk.name)}</h3><p>${esc(pk.text)}</p>${pk.items ? `<ul class="p-items">${pk.items.map((it) => `<li>${esc(it)}</li>`).join('')}</ul>` : ''}<span class="p-price">${esc(pk.price)}</span></div>`).join('')}</div></div><p style="margin: 28px 0 0; font-size: 16px; color: #3C3C3C">${esc(S.packagesNote)}</p>`);
     const pilot = `<section style="background: #FF5F57; color: #161616; padding: clamp(64px, 7vw, 104px) 0"><div class="wrap" style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start"><h2 class="h-black" style="margin: 0; font-size: clamp(36px, 5vw, 72px); line-height: 0.95">${esc(S.pilotHead)}</h2><p style="margin: 0; max-width: 720px; font-size: 21px; line-height: 1.55">${esc([e.pilot, S.pilotAsk].filter(Boolean).join(' '))}</p><a class="btn" href="${mailto}" style="background: #161616; color: #FFFFFF">${esc(U.pilotBtn || U.talk)} <span aria-hidden="true">→</span></a><p style="margin: 0; font-size: 16px">${esc(P.contactLine)}</p></div></section>`;
-    const faq = sec(LIGHT, `${head(U.faqHead)}<div class="p-faq">${S.faq.map((f) => `<h3>${esc(f.q)}</h3><p>${esc(f.a)}</p>`).join('')}</div>`);
+    const faqList = `<div class="p-faq">${S.faq.map((f) => `<h3>${esc(f.q)}</h3><p>${esc(f.a)}</p>`).join('')}</div>`;
+    const faq = sec(LIGHT, S.problem ? split(E.faq, U.faqHead, '#161616', faqList) : `${head(U.faqHead)}${faqList}`);
     const jsonld = [
       { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + path + '#page', url: SITE + path, name: e.metaTitle, description: e.metaDescription, inLanguage: lang, isPartOf: { '@type': 'WebSite', name: 'BERK Productions', url: SITE + '/' }, publisher: ORG },
       { '@context': 'https://schema.org', ...crumbsLd(crumbs) },
@@ -625,16 +636,19 @@ ${l.html}
   const txt = (t) => esc(t).replace(/\[BEVESTIGEN[^\]]*\]/g, (m) => `<mark class="todo">${m}</mark>`);
   const dark = (bg) => bg !== 'light';
   const head = (t, bg) => `<h2 class="h-black p-head" style="color: ${dark(bg) ? '#FFFFFF' : '#161616'}">${txt(t)}</h2>`;
+  const label = (x) => x.eyebrow ? `<span class="eyebrow p-label" style="color: ${dark(x.bg) ? '#A8A8A8' : '#555555'}"><span class="dot"></span>${esc(x.eyebrow)}</span>` : '';
+  const top = (x, lead) => `<div class="p-top">${label(x)}${head(x.head, x.bg)}${lead || ''}</div>`;
+  const split = (x, title, right) => `<div class="p-split"><div>${label(x)}${head(title, x.bg)}</div><div>${right}</div></div>`;
   const lead = (t, bg) => `<p class="p-lead" style="color: ${dark(bg) ? '#CFCFCF' : '#2A2A2A'}; margin-bottom: 1em">${txt(t)}</p>`;
   const sec = (x, inner) => `<section class="p-sec"${x.id ? ` id="${x.id}" style="scroll-margin-top: 90px; ${BG[x.bg]}"` : ` style="${BG[x.bg]}"`}><div class="wrap">${inner}</div></section>`;
   const R = {
-    hero: (x) => `<section class="kb-hero"><div class="wrap">${x.crumbs}<div style="display: flex; flex-direction: column; gap: 24px; max-width: 1100px">${x.notice ? `<p class="f-notice">${txt(x.notice)}</p>` : ''}<span class="eyebrow" style="color: #A8A8A8"><span class="dot"></span>${txt(x.eyebrow)}</span><h1 class="h-black" style="font-size: clamp(34px, 6.4vw, 96px); line-height: 0.95; color: #FFFFFF; text-shadow: 6px 6px 0 #000">${txt(x.h1)}</h1><p style="margin: 0; max-width: 720px; font-size: 20px; line-height: 1.6; color: #CFCFCF">${txt(x.intro)}</p><div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 8px">${x.buttons.map(([label, href], i) => `<a class="btn" href="${href}"${i ? ' style="background: #161616; color: #FFFFFF; border-color: #EFEFEF"' : ''}>${esc(label)}${i ? '' : ' <span aria-hidden="true">→</span>'}</a>`).join('')}</div></div></div></section>`,
-    text: (x) => sec(x, `${head(x.head, x.bg)}${x.paras.map((p) => lead(p, x.bg)).join('')}`),
-    cards: (x) => sec(x, `${head(x.head, x.bg)}<div class="p-grid">${x.items.map((it, n) => `<div class="promise">${x.numbered ? `<span class="p-num">${String(n + 1).padStart(2, '0')}</span>` : it.label ? `<span class="p-num">${esc(it.label)}</span>` : ''}<h3>${txt(it.title)}</h3><p>${txt(it.text)}</p></div>`).join('')}</div>`),
-    stats: (x) => sec(x, `${head(x.head, x.bg)}<div class="p-stats">${x.items.map((st) => `<div class="p-stat"><b>${esc(st.value)}</b><span>${txt(st.label)}</span></div>`).join('')}</div>${x.note ? lead(x.note, x.bg) : ''}<p class="kb-meta" style="margin: 8px 0 0; line-height: 1.6">Bron: ${esc(x.source)}</p>`),
-    table: (x) => sec(x, `${head(x.head, x.bg)}${x.intro ? lead(x.intro, x.bg) : ''}<div class="prose" style="max-width: 1100px"><div class="tbl"${x.highlight ? ' style="box-shadow: 10px 10px 0 #FF5F57"' : ''}><table><thead><tr>${x.columns.map((c) => `<th scope="col">${esc(c)}</th>`).join('')}</tr></thead><tbody>${x.rows.map((r) => `<tr>${r.map((c, i) => i ? `<td>${txt(c)}</td>` : `<th scope="row" style="background: #FFFFFF; color: #161616">${txt(c)}</th>`).join('')}</tr>`).join('')}</tbody></table></div></div>${x.note ? `<p style="margin: 24px 0 0; font-size: 17px; color: ${dark(x.bg) ? '#CFCFCF' : '#3C3C3C'}">${txt(x.note)}</p>` : ''}`),
-    prices: (x) => sec(x, `${head(x.head, x.bg)}<div class="p-grid" style="max-width: 900px">${x.cards.map((c) => `<div class="promise"><h3>${esc(c.name)}</h3><ul class="p-items">${c.items.map((it) => `<li>${txt(it)}</li>`).join('')}</ul><span class="p-price">${esc(c.price)}</span></div>`).join('')}</div><p style="margin: 28px 0 0; font-size: 16px; color: #3C3C3C">${txt(x.note)}</p>${x.after ? `<p class="p-lead" style="margin-top: 28px; color: #2A2A2A">${txt(x.after)}</p>` : ''}`),
-    faq: (x) => sec(x, `${head('Veelgestelde vragen', x.bg)}<div class="p-faq">${x.items.map((f) => `<h3>${txt(f.q)}</h3><p>${txt(f.a)}</p>`).join('')}</div>`),
+    hero: (x) => `<section class="kb-hero"><div class="wrap">${x.crumbs}<div style="display: flex; flex-direction: column; gap: 24px; max-width: 1100px">${x.notice ? `<p class="f-notice">${txt(x.notice)}</p>` : ''}<span class="eyebrow" style="color: #A8A8A8"><span class="dot"></span>${txt(x.eyebrow)}</span><h1 class="h-black" style="font-size: clamp(34px, 5vw, 76px); line-height: 0.98; color: #FFFFFF; text-shadow: 5px 5px 0 #000; max-width: 1000px">${txt(x.h1)}</h1><p style="margin: 0; max-width: 720px; font-size: 20px; line-height: 1.6; color: #CFCFCF">${txt(x.intro)}</p><div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 8px">${x.buttons.map(([label, href], i) => `<a class="btn" href="${href}"${i ? ' style="background: #161616; color: #FFFFFF; border-color: #EFEFEF"' : ''}>${esc(label)}${i ? '' : ' <span aria-hidden="true">→</span>'}</a>`).join('')}</div></div></div></section>`,
+    text: (x) => sec(x, split(x, x.head, x.paras.map((p) => lead(p, x.bg)).join(''))),
+    cards: (x) => sec(x, `${top(x)}<div class="p-grid">${x.items.map((it, n) => `<div class="promise">${x.numbered ? `<span class="p-num">${String(n + 1).padStart(2, '0')}</span>` : it.label ? `<span class="p-num">${esc(it.label)}</span>` : ''}<h3>${txt(it.title)}</h3><p>${txt(it.text)}</p></div>`).join('')}</div>`),
+    stats: (x) => sec(x, `${top(x)}<div class="p-stats">${x.items.map((st) => `<div class="p-stat"><b>${esc(st.value)}</b><span>${txt(st.label)}</span></div>`).join('')}</div>${x.note ? lead(x.note, x.bg) : ''}<p class="kb-meta" style="margin: 8px 0 0; line-height: 1.6">Bron: ${esc(x.source)}</p>`),
+    table: (x) => sec(x, `${top(x, x.intro ? lead(x.intro, x.bg) : '')}<div class="prose" style="max-width: 1100px"><div class="tbl"${x.highlight ? ' style="box-shadow: 10px 10px 0 #FF5F57"' : ''}><table><thead><tr>${x.columns.map((c) => `<th scope="col">${esc(c)}</th>`).join('')}</tr></thead><tbody>${x.rows.map((r) => `<tr>${r.map((c, i) => i ? `<td>${txt(c)}</td>` : `<th scope="row" style="background: #FFFFFF; color: #161616">${txt(c)}</th>`).join('')}</tr>`).join('')}</tbody></table></div></div>${x.note ? `<p style="margin: 24px 0 0; font-size: 17px; color: ${dark(x.bg) ? '#CFCFCF' : '#3C3C3C'}">${txt(x.note)}</p>` : ''}`),
+    prices: (x) => sec(x, `${top(x)}<div class="p-grid" style="max-width: 900px">${x.cards.map((c) => `<div class="promise"><h3>${esc(c.name)}</h3><ul class="p-items">${c.items.map((it) => `<li>${txt(it)}</li>`).join('')}</ul><span class="p-price">${esc(c.price)}</span></div>`).join('')}</div><p style="margin: 28px 0 0; font-size: 16px; color: #3C3C3C">${txt(x.note)}</p>${x.after ? `<p class="p-lead" style="margin-top: 28px; color: #2A2A2A">${txt(x.after)}</p>` : ''}`),
+    faq: (x) => sec(x, split(x, 'Veelgestelde vragen', `<div class="p-faq">${x.items.map((f) => `<h3>${txt(f.q)}</h3><p>${txt(f.a)}</p>`).join('')}</div>`)),
     cta: (x) => `<section style="background: #FF5F57; color: #161616; padding: clamp(64px, 7vw, 104px) 0"><div class="wrap" style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start"><h2 class="h-black" style="margin: 0; font-size: clamp(36px, 5vw, 72px); line-height: 0.95">${txt(x.head)}</h2><p style="margin: 0; max-width: 720px; font-size: 21px; line-height: 1.55">${txt(x.text)}</p><a class="btn" href="${x.button[1]}" style="background: #161616; color: #FFFFFF">${esc(x.button[0])} <span aria-hidden="true">→</span></a></div></section>`,
   };
   const css = `.f-notice{margin:0;align-self:flex-start;background:#FF5F57;color:#161616;border:2px solid #161616;box-shadow:5px 5px 0 #000;padding:10px 16px;font-family:'Archivo',sans-serif;font-weight:700;font-size:15px;line-height:1.4}

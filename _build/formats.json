@@ -14,75 +14,197 @@
           "eyebrow": "Live verkopen",
           "h1": "Live verkopen vanuit onze studio. Wij regelen de rest.",
           "intro": "In onze studio in Apeldoorn gaan jullie live op TikTok en YouTube en verkopen jullie producten direct in de stream. Wij regelen de techniek, de TikTok Shop en als jullie willen ook de presentator. Jullie betalen huur, of een percentage van wat de show verkoopt.",
-          "buttons": [["Plan een gesprek", "/contact"], ["Zo werkt het", "#zo-werkt-het"]]
+          "buttons": [
+            [
+              "Plan een gesprek",
+              "/contact"
+            ],
+            [
+              "Zo werkt het",
+              "#zo-werkt-het"
+            ]
+          ]
         },
         {
-          "type": "text", "bg": "black",
+          "type": "text",
+          "bg": "black",
           "head": "Een telefoon op een statief verkoopt geen product",
-          "paras": ["Op één camera zien kijkers de presentator, maar niet wat jullie verkopen. Ze zien de stof niet, de details niet, de prijs niet. En de presentator moet tegelijk praten, de chat lezen en de techniek bewaken. In onze studio staat alles al klaar. Jullie presentator hoeft alleen te verkopen."]
+          "paras": [
+            "Op één camera zien kijkers de presentator, maar niet wat jullie verkopen. Ze zien de stof niet, de details niet, de prijs niet. En de presentator moet tegelijk praten, de chat lezen en de techniek bewaken. In onze studio staat alles al klaar. Jullie presentator hoeft alleen te verkopen."
+          ],
+          "eyebrow": "Het probleem"
         },
         {
-          "type": "cards", "bg": "light", "id": "zo-werkt-het", "numbered": true,
+          "type": "cards",
+          "bg": "light",
+          "id": "zo-werkt-het",
+          "numbered": true,
           "head": "Jullie komen met de producten. Wij regelen de rest.",
           "items": [
-            {"title": "De studio", "text": "Decor, licht, geluid en meerdere camera's, waaronder een close-up van het product."},
-            {"title": "De livestream", "text": "Regie, graphics met productnaam, prijs, actie en afteltimer. Wij schakelen, jullie verkopen."},
-            {"title": "De TikTok Shop", "text": "Nog geen TikTok Shop? Dan richten we die samen in, in de studio."},
-            {"title": "De presentator", "text": "Zelf presenteren kan. Willen jullie dat niet, dan regelen wij een presentator of een verkoper."},
-            {"title": "De clips", "text": "De momenten die verkochten, geknipt tot staande video's. Die kunnen jullie weer als shoppable video plaatsen."},
-            {"title": "Het overzicht", "text": "Na elke show: kijkers, piek en bestellingen, uit de gegevens van het platform."}
-          ]
+            {
+              "title": "De studio",
+              "text": "Decor, licht, geluid en meerdere camera's, waaronder een close-up van het product."
+            },
+            {
+              "title": "De livestream",
+              "text": "Regie, graphics met productnaam, prijs, actie en afteltimer. Wij schakelen, jullie verkopen."
+            },
+            {
+              "title": "De TikTok Shop",
+              "text": "Nog geen TikTok Shop? Dan richten we die samen in, in de studio."
+            },
+            {
+              "title": "De presentator",
+              "text": "Zelf presenteren kan. Willen jullie dat niet, dan regelen wij een presentator of een verkoper."
+            },
+            {
+              "title": "De clips",
+              "text": "De momenten die verkochten, geknipt tot staande video's. Die kunnen jullie weer als shoppable video plaatsen."
+            },
+            {
+              "title": "Het overzicht",
+              "text": "Na elke show: kijkers, piek en bestellingen, uit de gegevens van het platform."
+            }
+          ],
+          "eyebrow": "Wat wij regelen"
         },
         {
-          "type": "table", "bg": "dark", "highlight": true,
+          "type": "table",
+          "bg": "dark",
+          "highlight": true,
           "head": "Huur de studio, of betaal per verkoop",
           "intro": "Jullie kiezen hoe jullie betalen. Bij het percentagemodel verdienen wij pas als jullie verkopen.",
-          "columns": ["", "Studio huren", "Percentage van de verkoop"],
-          "rows": [
-            ["Jullie betalen", "Een vaste prijs per show [BEVESTIGEN: prijs en eenheid, bijv. per show of per dagdeel]", "[BEVESTIGEN: percentage] van de omzet uit de show"],
-            ["Past bij", "Merken die vaker live gaan en zelf willen presenteren", "Merken die willen beginnen zonder vaste kosten"],
-            ["Wat erbij zit", "[BEVESTIGEN]", "[BEVESTIGEN]"]
-          ]
-        },
-        {
-          "type": "table", "bg": "light",
-          "head": "Waar jullie live kunnen verkopen",
-          "columns": ["Platform", "Afrekenen tijdens de live", "Hoe wij het inzetten"],
-          "rows": [
-            ["TikTok", "Ja, via TikTok Shop (sinds 15 juni 2026 in Nederland)", "Hoofdplatform. Producten vastgepind in de live, afrekenen in de app."],
-            ["YouTube", "Ja, via YouTube Shopping", "Welke variant we gebruiken, stemmen we per merk af."],
-            ["Instagram", "Nee. Meta stopte in maart 2023 met afrekenen in Instagram Live", "Live gaan kan wel. Daar werken we met een kortingscode of een link in de bio."]
+          "columns": [
+            "",
+            "Studio huren",
+            "Percentage van de verkoop"
           ],
-          "note": "Op welke platforms jullie tegelijk live gaan, stemmen we per show met jullie af."
+          "rows": [
+            [
+              "Jullie betalen",
+              "Een vaste prijs per show [BEVESTIGEN: prijs en eenheid, bijv. per show of per dagdeel]",
+              "[BEVESTIGEN: percentage] van de omzet uit de show"
+            ],
+            [
+              "Past bij",
+              "Merken die vaker live gaan en zelf willen presenteren",
+              "Merken die willen beginnen zonder vaste kosten"
+            ],
+            [
+              "Wat erbij zit",
+              "[BEVESTIGEN]",
+              "[BEVESTIGEN]"
+            ]
+          ],
+          "eyebrow": "Betalen"
         },
         {
-          "type": "cards", "bg": "black", "numbered": true,
+          "type": "table",
+          "bg": "light",
+          "head": "Waar jullie live kunnen verkopen",
+          "columns": [
+            "Platform",
+            "Afrekenen tijdens de live",
+            "Hoe wij het inzetten"
+          ],
+          "rows": [
+            [
+              "TikTok",
+              "Ja, via TikTok Shop (sinds 15 juni 2026 in Nederland)",
+              "Hoofdplatform. Producten vastgepind in de live, afrekenen in de app."
+            ],
+            [
+              "YouTube",
+              "Ja, via YouTube Shopping",
+              "Welke variant we gebruiken, stemmen we per merk af."
+            ],
+            [
+              "Instagram",
+              "Nee. Meta stopte in maart 2023 met afrekenen in Instagram Live",
+              "Live gaan kan wel. Daar werken we met een kortingscode of een link in de bio."
+            ]
+          ],
+          "note": "Op welke platforms jullie tegelijk live gaan, stemmen we per show met jullie af.",
+          "eyebrow": "Platforms"
+        },
+        {
+          "type": "cards",
+          "bg": "black",
+          "numbered": true,
           "head": "Drie shows die werken",
           "items": [
-            {"title": "De lancering", "text": "Een nieuw product live onthuld, met een actie die alleen tijdens de show geldt."},
-            {"title": "De expert", "text": "Een atleet of specialist test het product live en beantwoordt vragen uit de chat."},
-            {"title": "De vaste show", "text": "Elke week op dezelfde dag en tijd live. Kijkers weten wanneer ze moeten kijken, en komen terug."}
-          ]
+            {
+              "title": "De lancering",
+              "text": "Een nieuw product live onthuld, met een actie die alleen tijdens de show geldt."
+            },
+            {
+              "title": "De expert",
+              "text": "Een atleet of specialist test het product live en beantwoordt vragen uit de chat."
+            },
+            {
+              "title": "De vaste show",
+              "text": "Elke week op dezelfde dag en tijd live. Kijkers weten wanneer ze moeten kijken, en komen terug."
+            }
+          ],
+          "eyebrow": "Formats"
         },
         {
-          "type": "text", "bg": "light",
+          "type": "text",
+          "bg": "light",
           "head": "Voor merken die laten zien wat ze maken",
-          "paras": ["Live verkopen werkt het best voor producten die kijkers moeten zien of uitgelegd moeten krijgen: outdoor- en sportuitrusting, sportvoeding, camera's en elektronica, kleding met details. Hebben jullie een webshop en willen jullie meer uit TikTok halen? Dan past dit."]
+          "paras": [
+            "Live verkopen werkt het best voor producten die kijkers moeten zien of uitgelegd moeten krijgen: outdoor- en sportuitrusting, sportvoeding, camera's en elektronica, kleding met details. Hebben jullie een webshop en willen jullie meer uit TikTok halen? Dan past dit."
+          ],
+          "eyebrow": "Voor wie"
         },
         {
-          "type": "faq", "bg": "light",
+          "type": "faq",
+          "bg": "light",
           "items": [
-            {"q": "Hebben we een TikTok Shop nodig?", "a": "Om in de live te laten afrekenen op TikTok wel. Hebben jullie die nog niet, dan richten we hem samen in, in de studio."},
-            {"q": "Wie presenteert?", "a": "Jullie zelf, of wij regelen een presentator of verkoper."},
-            {"q": "Waar is de studio?", "a": "In Apeldoorn. [BEVESTIGEN: adres zodra de studio open is]"},
-            {"q": "Kunnen we tegelijk op TikTok en YouTube live?", "a": "Dat stemmen we per show met jullie af."},
-            {"q": "Hoeveel gaan we verkopen?", "a": "Dat beloven we niet vooraf. Na elke show krijgen jullie een overzicht met kijkers en bestellingen, zodat jullie zien wat werkt. Kiezen jullie het percentagemodel, dan hebben wij hetzelfde belang als jullie."},
-            {"q": "Wat kost het?", "a": "Jullie huren de studio tegen een vaste prijs, of jullie betalen een percentage van wat de show verkoopt. Samen kiezen we wat past."},
-            {"q": "Kan het ook op Instagram?", "a": "Live gaan wel, afrekenen in de live niet. Daar werken we met een kortingscode of een link."},
-            {"q": "Moet de show als reclame worden gelabeld?", "a": "Ja, volgens de regels van het platform. Wij zetten dat standaard goed."}
-          ]
+            {
+              "q": "Hebben we een TikTok Shop nodig?",
+              "a": "Om in de live te laten afrekenen op TikTok wel. Hebben jullie die nog niet, dan richten we hem samen in, in de studio."
+            },
+            {
+              "q": "Wie presenteert?",
+              "a": "Jullie zelf, of wij regelen een presentator of verkoper."
+            },
+            {
+              "q": "Waar is de studio?",
+              "a": "In Apeldoorn. [BEVESTIGEN: adres zodra de studio open is]"
+            },
+            {
+              "q": "Kunnen we tegelijk op TikTok en YouTube live?",
+              "a": "Dat stemmen we per show met jullie af."
+            },
+            {
+              "q": "Hoeveel gaan we verkopen?",
+              "a": "Dat beloven we niet vooraf. Na elke show krijgen jullie een overzicht met kijkers en bestellingen, zodat jullie zien wat werkt. Kiezen jullie het percentagemodel, dan hebben wij hetzelfde belang als jullie."
+            },
+            {
+              "q": "Wat kost het?",
+              "a": "Jullie huren de studio tegen een vaste prijs, of jullie betalen een percentage van wat de show verkoopt. Samen kiezen we wat past."
+            },
+            {
+              "q": "Kan het ook op Instagram?",
+              "a": "Live gaan wel, afrekenen in de live niet. Daar werken we met een kortingscode of een link."
+            },
+            {
+              "q": "Moet de show als reclame worden gelabeld?",
+              "a": "Ja, volgens de regels van het platform. Wij zetten dat standaard goed."
+            }
+          ],
+          "eyebrow": "Vragen"
         },
-        {"type": "cta", "head": "Zet jullie eerste show live", "text": "Begin met één show. Daarna weten jullie wat werkt.", "button": ["Plan een gesprek", "/contact"]}
+        {
+          "type": "cta",
+          "head": "Zet jullie eerste show live",
+          "text": "Begin met één show. Daarna weten jullie wat werkt.",
+          "button": [
+            "Plan een gesprek",
+            "/contact"
+          ]
+        }
       ]
     },
     {
@@ -98,65 +220,163 @@
           "eyebrow": "Podcasts voor ondernemers",
           "h1": "Word gezien als de expert die je al bent.",
           "intro": "Wij nemen jullie videopodcast op met meerdere camera's. Daarna knippen we het gesprek in staande clips voor LinkedIn. Zo komt de kennis van de founder online, in eigen woorden.",
-          "buttons": [["Plan een gesprek", "/contact"], ["Bekijk de prijzen", "#prijzen"]]
+          "buttons": [
+            [
+              "Plan een gesprek",
+              "/contact"
+            ],
+            [
+              "Bekijk de prijzen",
+              "#prijzen"
+            ]
+          ]
         },
         {
-          "type": "text", "bg": "black",
+          "type": "text",
+          "bg": "black",
           "head": "De kennis zit in jullie hoofd, niet op LinkedIn",
-          "paras": ["Mensen volgen mensen, geen logo's. Toch blijft de kennis van de meeste founders binnen de muren van het bedrijf. Schrijven kost tijd, en een post typen voelt al snel als reclame. In een gesprek komt het vanzelf. Dat gesprek nemen wij op."]
+          "paras": [
+            "Mensen volgen mensen, geen logo's. Toch blijft de kennis van de meeste founders binnen de muren van het bedrijf. Schrijven kost tijd, en een post typen voelt al snel als reclame. In een gesprek komt het vanzelf. Dat gesprek nemen wij op."
+          ],
+          "eyebrow": "Het probleem"
         },
         {
-          "type": "stats", "bg": "dark",
+          "type": "stats",
+          "bg": "dark",
           "head": "Beslissers vertrouwen experts meer dan reclame",
           "items": [
-            {"value": "65%", "label": "van de beslissers vertrouwt inhoudelijke content van experts meer dan marketingmateriaal en productbladen."},
-            {"value": "79%", "label": "van de beslissers die niet zelf aan tafel zitten, steunt eerder een voorstel van een bedrijf dat steeds goede inhoudelijke content maakt."},
-            {"value": "65%", "label": "van die beslissers heeft liever een menselijke, minder formele toon. Een gesprek dus."}
+            {
+              "value": "65%",
+              "label": "van de beslissers vertrouwt inhoudelijke content van experts meer dan marketingmateriaal en productbladen."
+            },
+            {
+              "value": "79%",
+              "label": "van de beslissers die niet zelf aan tafel zitten, steunt eerder een voorstel van een bedrijf dat steeds goede inhoudelijke content maakt."
+            },
+            {
+              "value": "65%",
+              "label": "van die beslissers heeft liever een menselijke, minder formele toon. Een gesprek dus."
+            }
           ],
           "note": "Een podcast is precies dat: kennis, in een menselijke toon, van iemand met een gezicht.",
-          "source": "2025 Edelman-LinkedIn B2B Thought Leadership Impact Report, 1.934 zakelijke beslissers, maart–april 2025."
+          "source": "2025 Edelman-LinkedIn B2B Thought Leadership Impact Report, 1.934 zakelijke beslissers, maart–april 2025.",
+          "eyebrow": "Onderzoek"
         },
         {
-          "type": "cards", "bg": "light", "numbered": true,
+          "type": "cards",
+          "bg": "light",
+          "numbered": true,
           "head": "Wat jullie krijgen",
           "items": [
-            {"title": "Opname", "text": "Meerdere camera's, goede microfoons en licht. In onze studio of bij jullie op locatie. [BEVESTIGEN: studio pas noemen als die open is]"},
-            {"title": "Aflevering", "text": "Gemonteerd voor YouTube en als audio voor Spotify en Apple Podcasts."},
-            {"title": "Clips voor LinkedIn", "text": "Staand, ondertiteld, per onderwerp. Zoveel als het gesprek goede momenten heeft."},
-            {"title": "Eigendom", "text": "De opnames en clips zijn van jullie."}
-          ]
+            {
+              "title": "Opname",
+              "text": "Meerdere camera's, goede microfoons en licht. In onze studio of bij jullie op locatie. [BEVESTIGEN: studio pas noemen als die open is]"
+            },
+            {
+              "title": "Aflevering",
+              "text": "Gemonteerd voor YouTube en als audio voor Spotify en Apple Podcasts."
+            },
+            {
+              "title": "Clips voor LinkedIn",
+              "text": "Staand, ondertiteld, per onderwerp. Zoveel als het gesprek goede momenten heeft."
+            },
+            {
+              "title": "Eigendom",
+              "text": "De opnames en clips zijn van jullie."
+            }
+          ],
+          "eyebrow": "Wat erin zit"
         },
         {
-          "type": "cards", "bg": "black",
+          "type": "cards",
+          "bg": "black",
           "head": "Drie soorten podcasts",
           "items": [
-            {"label": "Hoofdformat", "title": "De founderpodcast", "text": "De founder in gesprek over het eigen vak, de markt en de klanten. Voor LinkedIn en de eigen site."},
-            {"title": "De klantpodcast", "text": "In gesprek met klanten of partners. Een case die mensen wel uitkijken."},
-            {"title": "De merkpodcast", "text": "Voor merken: in gesprek met atleten, experts of de makers van het product. Kan ook op een event dat wij uitzenden."}
-          ]
+            {
+              "label": "Hoofdformat",
+              "title": "De founderpodcast",
+              "text": "De founder in gesprek over het eigen vak, de markt en de klanten. Voor LinkedIn en de eigen site."
+            },
+            {
+              "title": "De klantpodcast",
+              "text": "In gesprek met klanten of partners. Een case die mensen wel uitkijken."
+            },
+            {
+              "title": "De merkpodcast",
+              "text": "Voor merken: in gesprek met atleten, experts of de makers van het product. Kan ook op een event dat wij uitzenden."
+            }
+          ],
+          "eyebrow": "Formats"
         },
         {
-          "type": "prices", "bg": "light", "id": "prijzen",
+          "type": "prices",
+          "bg": "light",
+          "id": "prijzen",
           "head": "Prijzen",
           "cards": [
-            {"name": "Losse aflevering", "price": "€ 750", "items": ["Opname met meerdere camera's", "Aflevering voor YouTube en Spotify", "Staande clips voor LinkedIn"]},
-            {"name": "Reeks van 6 afleveringen", "price": "€ 3.600", "items": ["Alles van de losse aflevering, zes keer", "€ 600 per aflevering", "Genoeg voor drie maanden als jullie elke twee weken een aflevering publiceren"]}
+            {
+              "name": "Losse aflevering",
+              "price": "€ 750",
+              "items": [
+                "Opname met meerdere camera's",
+                "Aflevering voor YouTube en Spotify",
+                "Staande clips voor LinkedIn"
+              ]
+            },
+            {
+              "name": "Reeks van 6 afleveringen",
+              "price": "€ 3.600",
+              "items": [
+                "Alles van de losse aflevering, zes keer",
+                "€ 600 per aflevering",
+                "Genoeg voor drie maanden als jullie elke twee weken een aflevering publiceren"
+              ]
+            }
           ],
           "note": "Prijzen excl. btw. [BEVESTIGEN: excl. btw, net als de rest van de site]",
-          "after": "Willen jullie helemaal niets zelf doen? Gasten, onderwerpen, publicatie: neem contact op, we regelen het."
+          "after": "Willen jullie helemaal niets zelf doen? Gasten, onderwerpen, publicatie: neem contact op, we regelen het.",
+          "eyebrow": "Twee opties"
         },
         {
-          "type": "faq", "bg": "light",
+          "type": "faq",
+          "bg": "light",
           "items": [
-            {"q": "Moet ik goed kunnen praten?", "a": "Nee. Een goed gesprek is geen presentatie. We bereiden de onderwerpen samen voor."},
-            {"q": "Waar nemen we op?", "a": "In onze studio in Apeldoorn of bij jullie op locatie. [BEVESTIGEN: studio pas noemen als die open is]"},
-            {"q": "Hoeveel clips krijgen we?", "a": "Zoveel als het gesprek goede momenten heeft. We knippen per onderwerp."},
-            {"q": "Helpen jullie met gasten, onderwerpen en publiceren?", "a": "Ja, totale ontzorging kan. Neem contact op, dan bespreken we wat jullie nodig hebben."},
-            {"q": "Wie is eigenaar van de opnames?", "a": "Jullie."},
-            {"q": "Wat is het verschil tussen een losse aflevering en een reeks?", "a": "De reeks is € 150 per aflevering goedkoper en zorgt dat jullie maandenlang regelmatig posten."}
-          ]
+            {
+              "q": "Moet ik goed kunnen praten?",
+              "a": "Nee. Een goed gesprek is geen presentatie. We bereiden de onderwerpen samen voor."
+            },
+            {
+              "q": "Waar nemen we op?",
+              "a": "In onze studio in Apeldoorn of bij jullie op locatie. [BEVESTIGEN: studio pas noemen als die open is]"
+            },
+            {
+              "q": "Hoeveel clips krijgen we?",
+              "a": "Zoveel als het gesprek goede momenten heeft. We knippen per onderwerp."
+            },
+            {
+              "q": "Helpen jullie met gasten, onderwerpen en publiceren?",
+              "a": "Ja, totale ontzorging kan. Neem contact op, dan bespreken we wat jullie nodig hebben."
+            },
+            {
+              "q": "Wie is eigenaar van de opnames?",
+              "a": "Jullie."
+            },
+            {
+              "q": "Wat is het verschil tussen een losse aflevering en een reeks?",
+              "a": "De reeks is € 150 per aflevering goedkoper en zorgt dat jullie maandenlang regelmatig posten."
+            }
+          ],
+          "eyebrow": "Vragen"
         },
-        {"type": "cta", "head": "Neem jullie eerste aflevering op", "text": "Vertel waar jullie verstand van hebben. Binnen twee werkdagen hebben jullie een voorstel.", "button": ["Plan een gesprek", "/contact"]}
+        {
+          "type": "cta",
+          "head": "Neem jullie eerste aflevering op",
+          "text": "Vertel waar jullie verstand van hebben. Binnen twee werkdagen hebben jullie een voorstel.",
+          "button": [
+            "Plan een gesprek",
+            "/contact"
+          ]
+        }
       ]
     }
   ]

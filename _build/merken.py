@@ -32,11 +32,11 @@ def eyebrow(text, color='#555555', dot=False):
     return '<span class="eyebrow" style="color: %s">%s%s</span>' % (color, '<span class="dot"></span>' if dot else '', text)
 
 
-H2 = 'class="h-black" style="font-size: clamp(34px, 4.4vw, 64px); line-height: 0.95; text-wrap: initial%s"'
+H2 = 'class="h-black" style="font-size: clamp(30px, 3.6vw, 52px); line-height: 1; text-wrap: initial%s"'
 ARROW = '<span aria-hidden="true">→</span>'
 LINK = 'font-family: \'Archivo\', sans-serif; font-weight: 700; font-size: 17px'
 
-HERO = '''<h1 class="h-black hero-h" style="font-size: clamp(34px, 5.4vw, 104px); line-height: 0.95; color: #FFFFFF; text-shadow: 6px 6px 0 #000000; text-wrap: initial"><span class="eyebrow" style="display: flex; width: fit-content; margin-bottom: 28px; color: #EFEFEF; line-height: 1.4; text-shadow: none"><span class="dot"></span>Livestream, live verkopen en podcasts</span><span class="hl">Eén opname.</span> <span class="hl">Een maand aan <span style="color: #FF5F57">content.</span></span></h1>
+HERO = '''<h1 class="h-black hero-h" style="font-size: clamp(34px, 4.8vw, 84px); line-height: 0.95; color: #FFFFFF; text-shadow: 6px 6px 0 #000000; text-wrap: initial"><span class="eyebrow" style="display: flex; width: fit-content; margin-bottom: 28px; color: #EFEFEF; line-height: 1.4; text-shadow: none"><span class="dot"></span>Livestream, live verkopen en podcasts</span><span class="hl">Eén opname.</span> <span class="hl">Een maand aan <span style="color: #FF5F57">content.</span></span></h1>
 <p style="margin: 0; max-width: 600px; font-size: 20px; line-height: 1.55; color: #D8D8D8">Wij zenden sport en events live uit, produceren live verkoopshows en nemen podcasts op. Met meerdere camera’s, replays en graphics. Daarna knippen we er clips van. Die zijn van jullie.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 16px">
 <a class="btn" href="/partners">Voor merken %s</a>
@@ -55,7 +55,7 @@ FCARD = ('<div class="card" style="flex: %s; display: flex; flex-direction: colu
          '<p style="margin: 0; font-size: 17px; line-height: 1.55; color: #3C3C3C; max-width: 560px">%s</p>'
          '<div style="margin-top: auto; padding-top: 8px; display: flex; flex-wrap: wrap; gap: 10px 28px">%s</div></div>\n')
 flink = lambda href, text: '<a href="%s" style="%s; color: #B3261E">%s %s</a>' % (href, LINK, text, ARROW)
-FORMATS = ('''<section data-blok="formats" style="background: #EFEFEF; color: #161616; padding: clamp(80px, 9vw, 140px) 0">
+FORMATS = ('''<section data-blok="formats" style="background: #EFEFEF; color: #161616; padding: clamp(96px, 11vw, 170px) 0">
 <div class="wrap" style="display: flex; flex-direction: column; gap: 48px">
 <div class="rv" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px clamp(32px, 5vw, 80px)">
 <div style="flex: 1 1 560px; display: flex; flex-direction: column; gap: 16px">%s<h2 %s>Drie manieren om live te gaan. Eén manier van <span style="color: #D93A33">werken.</span></h2></div>
@@ -67,25 +67,25 @@ FORMATS = ('''<section data-blok="formats" style="background: #EFEFEF; color: #1
 </div>
 </section>''') % (
     eyebrow('Wat we maken'), H2 % '',
-    FCARD % ('2 1 100%', 'clamp(32px, 4vw, 48px)', '; box-shadow: 10px 10px 0 #FF5F57', '01 · Hoofdformat', 'clamp(32px, 4vw, 52px)', 'Events live',
+    FCARD % ('2 1 100%', 'clamp(32px, 4vw, 48px)', '; box-shadow: 8px 8px 0 #FF5F57', '01 · Hoofdformat', 'clamp(28px, 3vw, 40px)', 'Events live',
              'Sport en events live uitgezonden, met replays en graphics. Daarna clips per rijder en per moment.',
              flink('/partners', 'Voor merken') + flink('/diensten', 'Voor organisatoren'))
-    + FCARD % ('1 1 320px', '32px', '', '02', '30px', 'Live verkopen',
+    + FCARD % ('1 1 320px', '32px', '', '02', '26px', 'Live verkopen',
                'Jullie producten live verkopen op TikTok en YouTube, vanuit onze studio. Wij regelen de stream, de TikTok Shop en als jullie willen de presentator.',
                flink('/live-verkopen', 'Zo werkt live verkopen'))
-    + FCARD % ('1 1 320px', '32px', '', '03', '30px', 'Podcasts',
+    + FCARD % ('1 1 320px', '32px', '', '03', '26px', 'Podcasts',
                'Een videopodcast waarin jullie founder vertelt over het vak. Daarna staande clips voor LinkedIn: zo wordt de founder gezien als expert.',
                flink('/podcasts', 'Zo werken podcasts')),
     LINK, ARROW)
 
 STEP = ('<li style="position: relative; display: flex; flex-direction: column; gap: 12px; border-top: 3px solid %s; padding-top: 20px">'
-        '<span class="h-black" style="font-size: 56px; line-height: 1; color: %s">%02d</span><h3 class="h-black" style="font-size: 26px; color: #FFFFFF">%s</h3>'
+        '<span class="h-black" style="font-size: 40px; line-height: 1; color: %s">%02d</span><h3 class="h-black" style="font-size: 22px; color: #FFFFFF">%s</h3>'
         '<p style="margin: 0; font-size: 17px; line-height: 1.55; color: #CFCFCF">%s</p>%s</li>\n')
 STEPS = [('Live', 'Het event live op YouTube, met jullie merk in de titel, de graphics en een eigen blok.'),
          ('Clips', 'Binnen 24 uur de eerste clips: per rijder, per hoogtepunt, klaar voor socials.'),
          ('Eigendom', 'De clips zijn van jullie. Gebruik ze waar jullie willen, ook in advertenties.'),
          ('Rapport', 'Na afloop: kijkers, kijktijd en waar het publiek vandaan kwam.')]
-EVENTDAG = ('''<section data-blok="eventdag" style="background: #161616; padding: clamp(80px, 9vw, 140px) 0">
+EVENTDAG = ('''<section data-blok="eventdag" style="background: #161616; padding: clamp(96px, 11vw, 170px) 0">
 <div class="wrap" style="display: flex; flex-direction: column; gap: 48px">
 <div class="rv" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px clamp(32px, 5vw, 80px)">
 <div style="flex: 1 1 560px; display: flex; flex-direction: column; gap: 16px">%s<h2 %s>Live is het begin. De clips blijven <span style="color: #FF5F57">werken.</span></h2></div>
@@ -103,10 +103,10 @@ EVENTDAG = ('''<section data-blok="eventdag" style="background: #161616; padding
     ARROW)
 
 DOOR = ('<a class="card" href="%s" style="flex: 1 1 380px; display: flex; flex-direction: column; gap: 16px; padding: clamp(32px, 4vw, 48px); color: #161616">'
-        '%s<h3 class="h-black" style="font-size: clamp(26px, 2.8vw, 38px); line-height: 1">%s</h3>'
+        '%s<h3 class="h-black" style="font-size: clamp(22px, 2.2vw, 30px); line-height: 1.05">%s</h3>'
         '<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #3C3C3C">%s</p>'
         '<span style="margin-top: auto; padding-top: 8px; %s; color: #B3261E">%s <span class="arrow" aria-hidden="true">→</span></span></a>\n')
-INGANGEN = ('''<section data-blok="ingangen" style="background: #EFEFEF; color: #161616; padding: clamp(80px, 9vw, 140px) 0">
+INGANGEN = ('''<section data-blok="ingangen" style="background: #EFEFEF; color: #161616; padding: clamp(96px, 11vw, 170px) 0">
 <div class="wrap rv" style="display: flex; flex-wrap: wrap; gap: 32px">
 %s</div>
 </section>''') % (
@@ -117,11 +117,11 @@ INGANGEN = ('''<section data-blok="ingangen" style="background: #EFEFEF; color: 
               'Wij verzorgen de complete uitzending. Vaak brengen we een merk mee dat het grootste deel betaalt. Jullie krijgen bereik en iets concreets om aan jullie sponsors te geven.',
               LINK, 'Zo werkt het voor organisatoren'))
 
-NUM = ('<div class="rv" style="display: flex; flex-direction: column; gap: 8px; border-top: 3px solid #FF5F57; padding-top: 18px"><span class="h-black" style="font-size: clamp(44px, 4.4vw, 68px); line-height: 1; color: %s">%s</span>'
+NUM = ('<div class="rv" style="display: flex; flex-direction: column; gap: 8px; border-top: 3px solid #FF5F57; padding-top: 18px"><span class="h-black" style="font-size: clamp(38px, 3.6vw, 56px); line-height: 1; color: %s">%s</span>'
        '<span style="font-size: 16px; line-height: 1.5; color: #BDBDBD">%s</span></div>\n')
-WAAROM = ('''<section data-blok="waarom-live" style="background: #000000; padding: clamp(80px, 9vw, 140px) 0; border-top: 1px solid #2A2A2A">
+WAAROM = ('''<section data-blok="waarom-live" style="background: #000000; padding: clamp(96px, 11vw, 170px) 0; border-top: 1px solid #2A2A2A">
 <div class="wrap" style="display: flex; flex-direction: column; gap: 40px">
-<div class="rv" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px"><div style="display: flex; flex-direction: column; gap: 16px; max-width: 900px"><span class="eyebrow" style="color: #FF5F57"><span class="dot"></span>Waarom live</span><h2 class="h-black" style="font-size: clamp(40px, 5.2vw, 80px); line-height: 0.95; color: #FFFFFF">Het publiek kwam niet van het eigen kanaal</h2><p style="margin: 0; max-width: 680px; font-size: 18px; line-height: 1.6; color: #CFCFCF">83%% van de kijktijd kwam van mensen die het kanaal niet volgden. De uitzending vond zelf zijn publiek. Dat bereik krijgt jullie merk mee.</p></div><a class="btn" href="/waarom-live">Lees waarom live werkt %s</a></div>
+<div class="rv" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px"><div style="display: flex; flex-direction: column; gap: 16px; max-width: 900px"><span class="eyebrow" style="color: #FF5F57"><span class="dot"></span>Waarom live</span><h2 class="h-black" style="font-size: clamp(30px, 3.6vw, 52px); line-height: 1; color: #FFFFFF">Het publiek kwam niet van het eigen kanaal</h2><p style="margin: 0; max-width: 680px; font-size: 18px; line-height: 1.6; color: #CFCFCF">83%% van de kijktijd kwam van mensen die het kanaal niet volgden. De uitzending vond zelf zijn publiek. Dat bereik krijgt jullie merk mee.</p></div><a class="btn" href="/waarom-live">Lees waarom live werkt %s</a></div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%%, 240px), 1fr)); gap: 28px">
 %s</div>
 <span style="font-size: 14px; color: #8C8C8C">EK Cable Wakeboard 2026 · YouTube Analytics</span>
@@ -133,7 +133,7 @@ WAAROM = ('''<section data-blok="waarom-live" style="background: #000000; paddin
 
 SLOT = ('''<section data-blok="slot" style="background: #161616; padding: clamp(96px, 10vw, 160px) 0">
 <div class="wrap rv" style="display: flex; flex-direction: column; align-items: flex-start; gap: 32px">
-<h2 class="h-black" style="font-size: clamp(44px, 7.4vw, 124px); line-height: 0.9; color: #FFFFFF; text-shadow: 6px 6px 0 #000000">Welk event zetten jullie <span style="color: #FF5F57">live?</span></h2>
+<h2 class="h-black" style="font-size: clamp(38px, 5.4vw, 84px); line-height: 0.95; color: #FFFFFF; text-shadow: 6px 6px 0 #000000">Welk event zetten jullie <span style="color: #FF5F57">live?</span></h2>
 <p style="margin: 0; max-width: 560px; font-size: 20px; line-height: 1.55; color: #CFCFCF">Merk of organisator: vertel wat jullie willen bereiken. Binnen twee werkdagen hebben jullie een voorstel.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 16px">
 <a class="btn" href="/contact">Plan een gesprek %s</a>
@@ -175,6 +175,7 @@ def homepage(s):
 RENAME = {
     'Diensten': [('>Aftercare</h2>\n<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #3C3C3C">Na elke wedstrijddag haalt onze AI de hoogtepunten uit de opnames. Wij kijken alles na voordat het online gaat.</p>',
                   '>Content na het event</h2>\n<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #3C3C3C">Na elke wedstrijddag haalt onze AI de hoogtepunten uit de opnames: per rijder, per moment. Wij keuren alles goed voordat het online gaat. De eerste clips hebben jullie binnen 24 uur.</p>')],
+    'Main': [('font-size: clamp(44px, 5.6vw, 84px); line-height: 0.95">Van', 'font-size: clamp(30px, 3.6vw, 52px); line-height: 1">Van')],
     'Werk': [('aftercare per wedstrijddag', 'clips per wedstrijddag'), ("'Aftercare'", "'Content na het event'"), ('"Aftercare"', '"Content na het event"')],
 }
 

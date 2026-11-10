@@ -55,11 +55,11 @@ def block(t, src):
                   '<span class="h-black" style="font-size: 18px; color: #FF5F57">%s</span>'
                   '<h3 class="h-black" style="font-size: 30px; line-height: 1; color: #FFFFFF">%s</h3>'
                   '<p style="margin: 0; font-size: 17px; line-height: 1.55; color: #CFCFCF">%s</p>%s</li>\n') % (border, shadow, when, title, text, link)
-    return ('<section data-blok="verhaal" aria-label="%s" style="background: #000000; padding: clamp(80px, 9vw, 140px) 0">\n'
+    return ('<section data-blok="verhaal" aria-label="%s" style="background: #000000; padding: clamp(96px, 11vw, 170px) 0">\n'
             '<div class="wrap" style="display: flex; flex-direction: column; gap: 56px">\n'
             '<div class="rv" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px clamp(32px, 5vw, 80px)">\n'
             '<div style="flex: 1 1 560px; display: flex; flex-direction: column; gap: 16px"><span class="eyebrow" style="color: #A8A8A8"><span class="dot"></span>%s</span>'
-            '<h2 class="h-black" style="font-size: clamp(40px, 5.6vw, 84px); line-height: 0.95; color: #FFFFFF; text-wrap: initial">%s</h2></div>\n'
+            '<h2 class="h-black" style="font-size: clamp(30px, 3.6vw, 52px); line-height: 1; color: #FFFFFF; text-wrap: initial">%s</h2></div>\n'
             '<p style="flex: 1 1 380px; max-width: 520px; margin: 0; font-size: 18px; line-height: 1.6; color: #CFCFCF">%s</p>\n'
             '</div>\n'
             '<ol class="rv" style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px">\n%s</ol>\n'

@@ -67,10 +67,10 @@ import{a as o,b as c,c as d,d as h}from"./chunk-O3OTVWYO.js";var g=h.bind(o),r=c
 </div>
 </section>
 
-<section data-blok="verhaal" aria-label="Why BERK exists" style="background: #000000; padding: clamp(80px, 9vw, 140px) 0">
+<section data-blok="verhaal" aria-label="Why BERK exists" style="background: #000000; padding: clamp(96px, 11vw, 170px) 0">
 <div class="wrap" style="display: flex; flex-direction: column; gap: 56px">
 <div class="rv" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px clamp(32px, 5vw, 80px)">
-<div style="flex: 1 1 560px; display: flex; flex-direction: column; gap: 16px"><span class="eyebrow" style="color: #A8A8A8"><span class="dot"></span>Why BERK exists</span><h2 class="h-black" style="font-size: clamp(40px, 5.6vw, 84px); line-height: 0.95; color: #FFFFFF; text-wrap: initial">Taking niche sports to the <span style="color: #FF5F57">next</span> level</h2></div>
+<div style="flex: 1 1 560px; display: flex; flex-direction: column; gap: 16px"><span class="eyebrow" style="color: #A8A8A8"><span class="dot"></span>Why BERK exists</span><h2 class="h-black" style="font-size: clamp(30px, 3.6vw, 52px); line-height: 1; color: #FFFFFF; text-wrap: initial">Taking niche sports to the <span style="color: #FF5F57">next</span> level</h2></div>
 <p style="flex: 1 1 380px; max-width: 520px; margin: 0; font-size: 18px; line-height: 1.6; color: #CFCFCF">More visibility for the sport and for its athletes. Athletes who get seen draw an audience and sponsors, and can earn more from their passion. That is what every stream we make works towards.</p>
 </div>
 <ol class="rv" style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px">

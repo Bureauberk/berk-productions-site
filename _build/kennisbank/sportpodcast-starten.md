@@ -8,7 +8,7 @@ description: Sportpodcast starten als club of bond? Praktische keuzes over forma
 h1: Een sportpodcast starten als club of bond
 summary: Een sportpodcast starten begint met een vast format en een vast ritme, niet met apparatuur. Kies een host, een herkenbare opbouw en een frequentie die je een jaar volhoudt, bijvoorbeeld elke twee weken. Haal gasten uit je eigen sport: sporters, trainers, scheidsrechters, vrijwilligers. Neem op met video en maak uit elke aflevering korte clips, want daar vinden nieuwe kijkers je vaak als eerste.
 cta: diensten
-related: videopodcast-laten-maken, podcast-clips-voor-social, sponsors-in-je-livestream
+related: videopodcast-laten-maken, podcast-clips-voor-social, videopodcast-studio-of-locatie
 ---
 Een club of bond heeft verhalen genoeg. Een sporter die net een titel won, een trainer die een team opbouwt, een vrijwilliger die al dertig jaar de kantine draait. Die verhalen komen zelden verder dan het clubblad. Een sportpodcast starten is een manier om ze een groter publiek te geven. Hieronder lees je hoe je dat aanpakt: welk format, welke gasten, hoe vaak en wat je met clips doet.
 

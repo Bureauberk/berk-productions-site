@@ -8,7 +8,7 @@ description: Podcast clips maken voor Instagram, TikTok en YouTube Shorts: hoe j
 h1: Podcast clips maken voor Instagram, TikTok en YouTube Shorts
 summary: Podcast clips maken komt neer op vier dingen: kies momenten die zonder context werken, snij ze verticaal uit naar 9:16, zet er ondertitels in en begin met de sterkste zin. Een clip van 30 tot 60 seconden is een goede vuistregel. Neem op met meerdere camera's, dan kun je in de verticale versie altijd de spreker goed in beeld houden.
 cta: diensten
-related: videopodcast-laten-maken, sportpodcast-starten, highlights-en-clips-na-je-event
+related: videopodcast-laten-maken, videopodcast-studio-of-locatie, highlights-en-clips-na-je-event
 ---
 Een aflevering van veertig minuten kijkt bijna niemand op zijn telefoon tussen twee berichten door. Een clip van veertig seconden wel. Daarom is podcast clips maken minstens zo belangrijk als de aflevering zelf. De clips zijn de etalage: daar zien nieuwe mensen je podcast voor het eerst. Hieronder lees je hoe je van één opname tot een reeks clips komt voor Instagram, TikTok en YouTube Shorts.
 

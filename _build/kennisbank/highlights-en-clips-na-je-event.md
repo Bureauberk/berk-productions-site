@@ -8,7 +8,7 @@ description: Highlights maken na je event? Zo haal je dagsamenvattingen en clips
 h1: Highlights maken van je event: zo werkt aftercare
 summary: Highlights maken na een event kan direct uit de opnames van je livestream. Na elke wedstrijddag haal je de hoogtepunten eruit: een dagsamenvatting, clips per deelnemer en verticale versies voor Instagram en TikTok. Dat noemen wij aftercare. Het is iets anders dan een aftermovie, die een eigen filmmaker met een eigen plan vraagt.
 cta: prijscalculator
-related: podcast-clips-voor-social, sponsors-in-je-livestream, case-ek-cable-wakeboard-2026
+related: podcast-clips-voor-social, sponsors-in-je-livestream, clips-uit-tiktok-live
 ---
 Een livestream is na afloop niet klaar. De uitzending is voorbij, maar de opnames staan er nog. Daarin zitten de beste ritten, de finales en de reacties van deelnemers. Highlights maken uit die beelden is de snelste manier om je event na afloop nog dagen zichtbaar te houden. Hieronder lees je hoe dat werkt, wat je krijgt en waarom het iets anders is dan een aftermovie.
 

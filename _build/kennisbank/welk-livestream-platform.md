@@ -8,7 +8,7 @@ description: Welk livestream platform past bij je event? YouTube, je eigen websi
 h1: Welk livestream platform past bij jouw event?
 summary: Voor de meeste sportevents en clubs is YouTube het beste livestream platform: gratis, bekend bij kijkers, goed vindbaar en met een terugkijkversie. Je eigen website is een goede aanvulling, niet altijd een vervanging. Facebook en Twitch passen bij een specifiek publiek. Een betaalmuur werkt alleen als kijkers echt willen betalen, en bij kleinere sporten is dat zelden zo.
 cta: prijscalculator
-related: sportevent-livestreamen, hoeveel-kijkers-livestream, sponsors-in-je-livestream
+related: sportevent-livestreamen, vertraging-livestream, sponsors-in-je-livestream
 ---
 Welk livestream platform je kiest, bepaalt wie je uitzending vindt. De camera's, de regie en de overlays zijn hetzelfde. Maar of je stream terechtkomt bij een paar honderd vaste fans of bij duizenden mensen die de sport nog niet kenden, hangt voor een groot deel af van waar je uitzendt. Hieronder zetten we de opties naast elkaar, met de voor- en nadelen die je in de praktijk tegenkomt.
 

@@ -179,6 +179,15 @@ RENAME = {
     'Werk': [('aftercare per wedstrijddag', 'clips per wedstrijddag'), ("'Aftercare'", "'Content na het event'"), ('"Aftercare"', '"Content na het event"')],
 }
 
+# Hero photo on all three homepages: load it first, and a smaller file on phones (LCP).
+HERO_ATTRS = ' fetchpriority="high" srcset="/assets/hero-828.webp 828w, /assets/43961b6008b5434aee2fd74d9a674b26.webp 1440w" sizes="100vw"'
+for f in glob.glob('js/Main*.js') + glob.glob('_build/pages/Main*.dc.html'):
+    s = open(f, encoding='utf-8').read()
+    if 'fetchpriority="high"' not in s:
+        assert s.count('<img class="hero-img"') == 1, f
+        s = s.replace('<img class="hero-img"', '<img class="hero-img"' + HERO_ATTRS)
+        open(f, 'w', encoding='utf-8').write(s)
+
 for f in sorted(glob.glob('js/*.js') + glob.glob('_build/pages/*.dc.html')):
     name = f.split('/')[-1].split('.')[0]
     if name not in CURRENT:

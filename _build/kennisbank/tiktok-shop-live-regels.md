@@ -8,7 +8,7 @@ description: De regels voor live verkopen op TikTok Shop: wat je niet mag zeggen
 h1: TikTok Shop LIVE: de regels en valkuilen
 summary: In een TikTok Shop LIVE moet het product dat je laat zien hetzelfde zijn als het product dat je vastpint, moeten prijs en actie kloppen met de productpagina en blijft het afrekenen in TikTok. Geen WhatsApp, eigen website of QR-code voor bestellingen, geen claims die je niet kunt onderbouwen. Overtredingen kunnen leiden tot verwijderde producten of beperkingen van je account.
 cta: live-verkopen
-related: live-verkopen-tiktok-shop, tiktok-shop-starten, beeldrecht-avg-muziek-livestream
+related: live-verkopen-tiktok-shop, tiktok-shop-starten, clips-uit-tiktok-live
 date: 2026-11-10
 ---
 De regels voor een TikTok Shop LIVE komen neer op één ding: wat je zegt en laat zien, moet kloppen met wat de koper krijgt. TikTok Shop Academy beschrijft zes overtredingen die verkopers het vaakst maken. Ze kunnen leiden tot het verwijderen van producten, het uitzetten van de verkoopfuncties of beperkingen op je account. Hieronder zetten we ze op een rij, met wat je in plaats daarvan doet. De regels kunnen per land verschillen, dus kijk voor Nederland altijd in Seller Center of op [TikTok Shop Academy](https://seller-nl.tiktok.com/university/). Dit is algemene uitleg en geen juridisch advies.

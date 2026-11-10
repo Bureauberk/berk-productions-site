@@ -5,6 +5,7 @@
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, rmSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { execFileSync } from 'node:child_process';
 import { clarityTag } from './clarity.mjs';
 import { siteCss } from './site-css.mjs';
 
@@ -907,6 +908,25 @@ ${f('Opmerkingen', '<textarea class="field" name="opmerkingen" rows="4"></textar
 // Sitemap: replace the kennisbank, landing, legal, partner and rental block
 const sm = join(ROOT, 'sitemap.xml');
 const urls = [...landings.map((l) => l.path), ...legals.map((l) => l.path), ...partnerPaths, ...formatPaths, ...verhuurPaths, '/kennisbank', ...articles.map((a) => `/kennisbank/${a.slug}`)].map((p) => `<url><loc>${SITE}${p}</loc></url>`).join('\n');
-writeFileSync(sm, readFileSync(sm, 'utf8').replace(new RegExp(`<url><loc>[^<]*(/kennisbank|${[VERHUUR.base, ...formatPaths, ...Object.values(PARTNERS.langs).map((l) => l.base), ...[...landings, ...legals].map((l) => l.path)].join('|')})[^<]*</loc></url>\\n`, 'g'), '').replace('</urlset>', `${urls}\n</urlset>`));
+const smBase = readFileSync(sm, 'utf8').replace(/<lastmod>[^<]*<\/lastmod>/g, '').replace(`<loc>${SITE}</loc>`, `<loc>${SITE}/</loc>`);
+const smBody = smBase.replace(new RegExp(`<url><loc>[^<]*(/kennisbank|${[VERHUUR.base, ...formatPaths, ...Object.values(PARTNERS.langs).map((l) => l.base), ...[...landings, ...legals].map((l) => l.path)].join('|')})[^<]*</loc></url>\\n`, 'g'), '').replace('</urlset>', `${urls}\n</urlset>`);
+// lastmod per URL: today if the page has uncommitted changes, otherwise the date of its last commit.
+const BUILD_DAY = new Date().toISOString().slice(0, 10);
+const lastmod = (url) => {
+  const rel = url.replace(SITE, '').replace(/^\//, '');
+  const file = rel ? join(rel, 'index.html') : 'index.html';
+  try {
+    if (execFileSync('git', ['status', '--porcelain', '--', file], { cwd: ROOT }).toString().trim()) return BUILD_DAY;
+    return execFileSync('git', ['log', '-1', '--format=%cs', '--', file], { cwd: ROOT }).toString().trim() || BUILD_DAY;
+  } catch { return BUILD_DAY; }
+};
+writeFileSync(sm, smBody.replace(/<url><loc>([^<]+)<\/loc><\/url>/g, (m, u) => `<url><loc>${u}</loc><lastmod>${lastmod(u)}</lastmod></url>`));
+
+// 404 page: Vercel serves /404.html for unknown URLs.
+{
+  const body = `<section class="kb-hero"><div class="wrap"><div style="display: flex; flex-direction: column; gap: 24px; max-width: 900px"><span class="eyebrow" style="color: #A8A8A8"><span class="dot"></span>404</span><h1 class="h-black" style="font-size: clamp(34px, 5vw, 76px); line-height: 0.98; color: #FFFFFF; text-shadow: 5px 5px 0 #000">Deze pagina bestaat niet (meer)</h1><p style="margin: 0; max-width: 640px; font-size: 20px; line-height: 1.6; color: #CFCFCF">De link klopt niet of de pagina is verhuisd. Hieronder vind je de belangrijkste plekken op de site.</p><div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 8px"><a class="btn" href="/">Naar de homepage <span aria-hidden="true">→</span></a><a class="btn" href="/contact" style="background: #161616; color: #FFFFFF; border-color: #EFEFEF">Plan een gesprek</a></div></div></div></section>
+<section class="kb-light"><div class="wrap"><div class="cards">${[['/partners', 'Voor merken', 'Jullie merk live in de actiesport, met clips die van jullie zijn.'], ['/diensten', 'Voor organisatoren', 'Jullie event live, met replays, graphics en clips.'], ['/live-verkopen', 'Live verkopen', 'Live verkopen op TikTok Shop vanuit onze studio.'], ['/podcasts', 'Podcasts', 'Een videopodcast met clips voor LinkedIn.'], ['/kennisbank', 'Kennisbank', 'Artikelen over livestreams, podcasts en live verkopen.'], ['/en', 'English', 'BERK Productions in English.']].map(([href, h, p]) => `<a class="card" href="${href}"><h3>${esc(h)}</h3><p>${esc(p)}</p><span class="more">Bekijk →</span></a>`).join('')}</div></div></section>`;
+  writeFileSync(join(ROOT, '404.html'), page({ path: '/404', title: 'Pagina niet gevonden | BERK Productions', description: 'Deze pagina bestaat niet (meer). Ga naar de homepage of de kennisbank van BERK Productions.', jsonld: [], body, ogType: 'website', noindex: true, current: null }));
+}
 
 console.table([...legals, ...landings, ...articles].map((a) => ({ slug: a.slug || a.path, words: a.words, title: (a.title + ' | BERK Productions').length, desc: a.description.length, faq: a.faq.length, links: (a.html.match(/href="\//g) || []).length })));

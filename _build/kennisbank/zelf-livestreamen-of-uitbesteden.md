@@ -8,7 +8,7 @@ description: Zelf livestreamen met een telefoon of OBS, of uitbesteden? Een eerl
 h1: Zelf livestreamen of uitbesteden: een eerlijke vergelijking
 summary: Zelf livestreamen met een telefoon of OBS werkt prima voor een klein publiek, één vaste plek en een event waar het niet erg is als er iets misgaat. Uitbesteden loont als de actie beweegt, je meerdere camera's of replay wilt, sponsors zichtbaar moeten zijn of de uitzending gewoon moet lukken. Het verschil zit vooral in mensen, regie en betrouwbaarheid.
 cta: prijscalculator
-related: wat-kost-een-livestream, een-camera-of-multicam, hoeveel-internet-voor-livestream
+related: wat-kost-een-livestream, een-camera-of-multicam, congres-livestreamen
 ---
 Zelf livestreamen is goedkoper en makkelijker dan veel mensen denken. Met een telefoon, een statief en een goede verbinding ben je in een kwartier live. Wij maken professionele livestreams, maar we zeggen het eerlijk: lang niet elk event heeft ons nodig. Hieronder lees je wanneer zelf doen prima is, wanneer uitbesteden loont en waar je op let als je het zelf probeert.
 

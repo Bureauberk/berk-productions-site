@@ -8,7 +8,7 @@ description: Multicam livestream of één camera? Wanneer een vast beeld volstaa
 h1: Multicam livestream of één camera: wat heb je nodig?
 summary: Eén camera volstaat als er op één plek iets gebeurt en de kijker vooral wil volgen wat er gezegd wordt, zoals bij een lezing of vergadering. Een multicam livestream is nodig zodra de actie beweegt, je wilt wisselen tussen overzicht en detail, of het publiek lang moet blijven kijken. Bij sport heb je bijna altijd meerdere camera's en regie nodig.
 cta: diensten
-related: wat-kost-een-livestream, wat-doet-een-livestreamregisseur, replay-en-live-scores
+related: wat-kost-een-livestream, wat-doet-een-livestreamregisseur, congres-livestreamen
 ---
 Een multicam livestream gebruikt meerdere camera's die live worden gemixt door een regie. Bij één camera ziet de kijker de hele uitzending hetzelfde beeld. Allebei kan goed zijn. De vraag is niet welke opzet beter is, maar wat jouw event nodig heeft. Hieronder lees je wanneer één camera prima is, wanneer je er meer nodig hebt en wat het verschil is tussen een bemande en een onbemande camera.
 

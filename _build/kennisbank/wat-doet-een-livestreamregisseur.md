@@ -8,7 +8,7 @@ description: Wat doet de livestream regie? Wat een regisseur live beslist, wie e
 h1: Wat doet een livestreamregisseur?
 summary: De livestream regie bepaalt live welk camerabeeld kijkers zien, wanneer er een replay of score in beeld komt en hoe het verhaal van het event verteld wordt. De regisseur stuurt de cameramensen aan, werkt samen met replay, graphics en geluid en houdt het overzicht als er iets onverwachts gebeurt. Goede regie is het verschil tussen een stream die je volgt en een die je wegklikt.
 cta: diensten
-related: een-camera-of-multicam, replay-en-live-scores, sportevent-livestreamen
+related: een-camera-of-multicam, replay-en-live-scores, vertraging-livestream
 ---
 De livestream regie is de plek waar alle camerabeelden samenkomen en waar live besloten wordt wat de kijker ziet. Je ziet de regisseur nooit in beeld, maar je merkt het verschil direct. Bij een goede regie zit je als kijker steeds op het juiste moment op de juiste plek. Bij een slechte regie kijk je naar een leeg veld terwijl er aan de andere kant gescoord wordt. Hieronder lees je wat een regisseur doet, wie er nog meer in een crew zitten en waarom het verschil zo groot is.
 
